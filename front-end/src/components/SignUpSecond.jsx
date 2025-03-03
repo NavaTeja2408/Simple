@@ -4,7 +4,6 @@ import Signup_logo from "../assets/Signup_logo.png";
 import Signup_company from "../assets/signup_company.png";
 import Signup_folder from "../assets/Signup_folder.png";
 import Arrow from "../assets/arraw.png";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { DatabaseContext } from "../context/DatabaseContext";
