@@ -16,7 +16,7 @@ export function UserContextProvider({ children }) {
   const getUserData = async () => {
     try {
       const res = await axios.get(
-        `simple-jet-eta.vercel.app/api/auth/getUser`,
+        `https://simple-jet-eta.vercel.app/api/auth/getUser`,
         {
           params: { user_id: user.id },
         }
