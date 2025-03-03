@@ -4,7 +4,6 @@ const mongoose = require("mongoose");
 const authRouter = require("./Routes/authRouter");
 const workspace = require("./Routes/workspaceRouter");
 const editor = require("./Routes/editorRouter");
-const path = require("path");
 
 const app = express();
 
@@ -31,11 +30,6 @@ mongoose
   .catch(() => {
     console.log("Database is not Connected");
   });
-
-app.use(express.static(path.join(__dirname, "../front-end/dist")));
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../front-end/dist", "index.html"));
-});
 
 app.use("/api/auth", authRouter);
 app.use("/api/workspace", workspace);
