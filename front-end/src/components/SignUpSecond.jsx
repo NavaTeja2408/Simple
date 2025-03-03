@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import logo from "../assets/logo.png";
+import logo from "../assets/Logo.png";
 import Signup_logo from "../assets/Signup_logo.png";
 import Signup_company from "../assets/signup_company.png";
 import Signup_folder from "../assets/Signup_folder.png";

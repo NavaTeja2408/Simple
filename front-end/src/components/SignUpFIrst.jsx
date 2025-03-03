@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import logo from "../assets/logo.png";
+import logo from "../assets/Logo.png";
 import Signup_logo from "../assets/Signup_logo.png";
 import Google from "../assets/Google.png";
 import Linkedin from "../assets/Linkedin.png";
