@@ -1,5 +1,4 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { DatabaseContext } from "./DatabaseContext";
 import axios from "axios";
 
 export const UserContext = createContext({});
@@ -16,9 +15,12 @@ export function UserContextProvider({ children }) {
   }, []);
   const getUserData = async () => {
     try {
-      const res = await axios.get(`http://localhost:9000/api/auth/getUser`, {
-        params: { user_id: user.id },
-      });
+      const res = await axios.get(
+        `simple-jet-eta.vercel.app/api/auth/getUser`,
+        {
+          params: { user_id: user.id },
+        }
+      );
       setUser(res.data);
       localStorage.setItem("user", JSON.stringify(res.data));
     } catch (error) {
