@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Monsieur+La+Doulaise&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+.signature-text {
+  font-family: "Monsieur La Doulaise", serif;
+}
+
+@layer utilities {
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 2px; /* Adjust width */
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: #888; /* Customize scrollbar color */
+    border-radius: 10px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+}
+@layer utilities {
+  .no-spinner::-webkit-outer-spin-button,
+  .no-spinner::-webkit-inner-spin-button {
+    appearance: none;
+    margin: 0;
+  }
+
+  .no-spinner {
+    -moz-appearance: textfield; /* Firefox */
+  }
+}
