@@ -1,29 +1,16 @@
 import React, { useRef, useState } from "react";
-import heading_sidebar from "../../../assets/heading_sidebar.png";
-import paragraph_side from "../../../assets/paragraph_side.png";
-import image_side from "../../../assets/image_side.png";
-import breake_side from "../../../assets/breake_side.png";
-import code_side from "../../../assets/code_side.png";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import heading_side from "../../../assets/heading_side.png";
 import paragraph_side_2 from "../../../assets/paragraph_side_2.png";
 import table_side_2 from "../../../assets/table_side_2.png";
-import image_side_2 from "../../../assets/image_side_2.png";
+import image_side_2 from "../../../assets/Image_side_2.png";
 import divide from "../../../assets/divide.png";
 import code_side_2 from "../../../assets/code_side_1.png";
 
 import { FiPlus } from "react-icons/fi";
 const ContentSideBar = ({
-  addHeadingRow,
-  addInputRow,
-  addImageRow,
-  addImageAndParagraph,
-  addDoublePara,
-  selected,
   addBreakPoint,
   addCodeBlock,
-  addTableRow,
-  setSign,
   setThirdLevel,
   thirdLevel,
 }) => {
