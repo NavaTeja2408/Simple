@@ -31,6 +31,7 @@ import Sidebar_header from "../../assets/Sidebar_header.png";
 import margin from "../../assets/margin.png";
 import color from "../../assets/color.png";
 import typography from "../../assets/typography.png";
+
 import ContentSideBar from "./SideBarComponents/ContentSideBar";
 import { FaAngleDoubleLeft } from "react-icons/fa";
 import GoalModuleSideBar from "./SideBarComponents/GoalModuleSideBar";
