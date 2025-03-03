@@ -1,16 +1,19 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import Home from "../pages/website/Home";
-import Signup from "../pages/website/Signup";
-import Pricing from "../pages/website/Pricing";
-import Template from "../pages/website/Template";
-import ContactUs from "../pages/website/ContactUs";
-import Login from "../pages/website/Login.jsx";
-import DropCanvas from "../pages/Editor/DropCanvas";
-import EditorDnD from "../pages/Editor/EditorDnD.jsx";
-import DashboardFirst from "../pages/Dashboard/DashboardFirst.jsx";
-import AllWorkspace from "../pages/Dashboard/AllWorkspace.jsx";
-import Preview from "../pages/Editor/Preview.jsx";
+const Home = React.lazy(() => import("../pages/website/Home"));
+const Signup = React.lazy(() => import("../pages/website/Signup"));
+const Pricing = React.lazy(() => import("../pages/website/Pricing"));
+const Template = React.lazy(() => import("../pages/website/Template"));
+const ContactUs = React.lazy(() => import("../pages/website/ContactUs"));
+const Login = React.lazy(() => import("../pages/website/Login.jsx"));
+const EditorDnD = React.lazy(() => import("../pages/Editor/EditorDnD.jsx"));
+const DashboardFirst = React.lazy(() =>
+  import("../pages/Dashboard/DashboardFirst.jsx")
+);
+const AllWorkspace = React.lazy(() =>
+  import("../pages/Dashboard/AllWorkspace.jsx")
+);
+const Preview = React.lazy(() => import("../pages/Editor/Preview.jsx"));
 
 const WebsiteRoute = () => {
   return (
