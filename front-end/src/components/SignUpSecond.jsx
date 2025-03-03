@@ -2,7 +2,6 @@ import React, { useState, useContext } from "react";
 import logo from "../assets/Logo.png";
 import Signup_logo from "../assets/Signup_logo.png";
 import Signup_company from "../assets/signup_company.png";
-import Signup_folder from "../assets/Signup_folder.png";
 import Arrow from "../assets/arraw.png";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -113,7 +112,6 @@ const SignUpSecond = ({ setNext, email, password }) => {
       {/* This div is incomplete */}
       <div className="mt-6 ">
         <div className="flex gap-1 items-center ml-7 ">
-          <img src={Signup_folder} alt="Signup" className="w-[20px] h-[20px]" />
           <p className="text-[14px] font-bold">Workspace:</p>
         </div>
         <div className="w-full mt-2 flex items-center justify-center">
