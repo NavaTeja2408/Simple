@@ -24,7 +24,7 @@ import Content from "../../assets/Content.png";
 import help from "../../assets/help.png";
 import heading_one from "../../assets/heading_one.png";
 import image_in from "../../assets/Image_in.png";
-import image_paragraph from "../../assets/image_paragraph.png";
+import image_paragraph from "../../assets/Image_paragraph.png";
 
 import Footer from "../../assets/Footer.png";
 import Sidebar_header from "../../assets/Sidebar_header.png";
