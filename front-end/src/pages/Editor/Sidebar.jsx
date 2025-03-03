@@ -23,7 +23,7 @@ import Themes from "../../assets/Themes.png";
 import Content from "../../assets/Content.png";
 import help from "../../assets/help.png";
 import heading_one from "../../assets/heading_one.png";
-import image_in from "../../assets/image_in.png";
+import image_in from "../../assets/Image_in.png";
 import image_paragraph from "../../assets/image_paragraph.png";
 
 import Footer from "../../assets/Footer.png";
