@@ -38,7 +38,7 @@ const CostModuleSlate = ({ index, rows, selected }) => {
         </button>
       )}
       <table className="w-full border border-gray-300 rounded-sm">
-        <thead className="text-center">
+        <thead className="">
           <tr className="bg-gray-100 text-center">
             <th className="border border-r-gray-200 px-2 py-2 text-center w-[65%]">
               Deliverables
@@ -52,7 +52,7 @@ const CostModuleSlate = ({ index, rows, selected }) => {
               </th>
             )}
 
-            <th className="border px-2 py-1 text-center">Amount</th>
+            <th className="border px-2 py-1 text-right">Amount</th>
           </tr>
         </thead>
         <tbody>
@@ -69,7 +69,7 @@ const CostModuleSlate = ({ index, rows, selected }) => {
                 <td className="border px-2 py-1">{row.quantity}</td>
               )}
 
-              <td className="border px-2 py-1">
+              <td className="border px-2 py-1 text-right">
                 {rows.options.currency}
                 {row.amount}
               </td>

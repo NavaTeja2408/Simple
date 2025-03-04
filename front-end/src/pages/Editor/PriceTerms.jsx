@@ -139,7 +139,7 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
               <thead className="sticky top-0 bg-gray-50">
                 <tr>
                   <th className={` px-4 py-2 w-[${width}] text-left`}>
-                    Deliverables
+                    Services/Products
                   </th>
                   {percentage && (
                     <th className=" px-2 py-2 text-center">Percentage</th>

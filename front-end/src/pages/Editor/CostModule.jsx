@@ -184,7 +184,9 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
             <table className="w-[95%] ml-2 table-auto text-xs border-collapse rounded-md bg-gray-50 mt-3 block   h-[170px] overflow-y-auto scrollbar-thin">
               <thead className="sticky top-0 bg-gray-50 z-[5000]">
                 <tr>
-                  <th className=" px-4 py-2 w-96 text-left">Deliverables</th>
+                  <th className=" px-4 py-2 w-96 text-left">
+                    Services/Products
+                  </th>
                   {quantity && (
                     <th className=" px-2 py-2 text-center">Unit Price</th>
                   )}

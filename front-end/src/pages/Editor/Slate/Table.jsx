@@ -284,9 +284,7 @@ const Table = ({
           >
             <FaBold
               className={`${
-                boldAll?.[row]?.[col]
-                  ? "text-graidient_bottom"
-                  : "text-gray-400"
+                boldAll?.[row]?.[col] ? "text-black" : "text-gray-400"
               }`}
             />
           </button>
@@ -301,9 +299,7 @@ const Table = ({
           >
             <FaUnderline
               className={`${
-                underlineAll?.[row]?.[col]
-                  ? "text-graidient_bottom "
-                  : "text-gray-400"
+                underlineAll?.[row]?.[col] ? "text-black " : "text-gray-400"
               } mt-[2px]`}
             />
           </button>
@@ -318,9 +314,7 @@ const Table = ({
           >
             <FaItalic
               className={`${
-                italicAll?.[row]?.[col]
-                  ? "text-graidient_bottom"
-                  : "text-gray-400"
+                italicAll?.[row]?.[col] ? "text-black" : "text-gray-400"
               } `}
             />
           </button>

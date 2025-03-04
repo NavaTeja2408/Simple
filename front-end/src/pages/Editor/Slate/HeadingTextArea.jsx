@@ -301,7 +301,7 @@ const MyRichTextEditor = ({
             <div className="h-8 w-[1px] my-[-4px] bg-gray-300"></div>
             <div className="relative my-[-3px] flex flex-row ">
               <select
-                className="border border-gray-200 rounded px-2 bg-white py-1"
+                className="border border-gray-200 rounded px-2 bg-white py-1 outline-none"
                 onChange={(e) => toggleBlock(editor, e.target.value)}
                 defaultValue="Heading-two"
               >
@@ -314,7 +314,7 @@ const MyRichTextEditor = ({
                 <option value="paragraph">P</option>
               </select>
               <select
-                className="border  bg-white border-gray-200 rounded px-2 py-1 ml-4"
+                className="border  bg-white border-gray-200 rounded px-2 py-1 ml-4 outline-none"
                 onChange={(e) => transformText(editor, e.target.value)}
                 defaultValue=""
               >

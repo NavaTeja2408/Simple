@@ -42,7 +42,7 @@ const DropRow = ({
     }),
   }));
 
-  const [indexValue, setIndexValue] = useState(preview ? null : 0);
+  const [indexValue, setIndexValue] = useState(null);
   const [switchButton, setSwitchButtons] = useState(null);
   const divRef = useRef();
   const sideRef = useRef();
