@@ -59,7 +59,12 @@ const DropRow = ({
     }
   };
   const handleClickOutsideMenuB = (event) => {
-    if (buttonRef.current && !buttonRef.current.contains(event.target)) {
+    if (
+      buttonRef.current &&
+      !buttonRef.current.contains(event.target) &&
+      divRef.current &&
+      !divRef.current.contains(event.target)
+    ) {
       setSwitchButtons(null);
     }
   };
@@ -517,7 +522,7 @@ const DropRow = ({
             />
           </div>
         ) : row.type === "sign" ? (
-          <div className="w-full  " onClick={() => setSelected(index)}>
+          <div className="w-full " onClick={() => setSelected(index)}>
             <SignRow
               index={index}
               rows={row}
@@ -543,7 +548,7 @@ const DropRow = ({
       {/* Row management buttons */}
       {selected === index && (
         <div
-          className={`absolute -top-12 right-0 bg-white flex  gap-2 border border-gray-100 shadow-lg py-1 px-1 z-50 rounded-sm`}
+          className={`absolute -top-12 right-0 bg-white flex  gap-2 border border-gray-100 shadow-lg py-1 px-1  rounded-sm`}
           ref={sideRef}
           onClick={() => setIndexValue(index)}
         >
@@ -566,6 +571,7 @@ const DropRow = ({
           <button
             onClick={() => {
               moveRowUp(index);
+              setSelected(index - 1);
             }}
             className="  bg-white flex items-center justify-center px-2 py-2 hover:bg-gray-100"
           >
@@ -574,6 +580,7 @@ const DropRow = ({
           <button
             onClick={() => {
               moveRowDown(index);
+              setSelected(index + 1);
             }}
             className="  bg-white flex items-center justify-center px-2 py-2 hover:bg-gray-100"
           >

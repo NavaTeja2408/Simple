@@ -110,12 +110,17 @@ const isMarkActive = (editor, format) => {
 };
 
 const Element = ({ attributes, children, element }) => {
-  const alignment = element.align ? `text-${element.align}` : "text-left";
+  const alignment =
+    element.align === "center"
+      ? `text-${element.align}`
+      : element.align === "right"
+      ? "text-right"
+      : "text-left";
 
   switch (element.type) {
     case "heading-one":
       return (
-        <h1 className={`text-3xl ${alignment}`} {...attributes}>
+        <h1 className={`w-full text-3xl ${alignment}`} {...attributes}>
           {children}
         </h1>
       );
@@ -207,7 +212,7 @@ const MyRichTextEditor = ({
 
   return (
     <div
-      className={` relative w-[100%] p-4 rounded ${
+      className={` relative w-[100%] p-2 rounded  ${
         index === indexValue ? "mt-10" : "mt-1"
       }`}
       onFocus={() => setIndexValue(index)}
@@ -238,7 +243,7 @@ const MyRichTextEditor = ({
       >
         {index === indexValue && (
           <Toolbar
-            className="absolute top-[-30px] shadow-sm shadow-gray-400 left-[26%]  bg-white flex flex-row items-center justify-center gap-1 border border-gray-200 rounded-sm  px-3 py-2 "
+            className="absolute top-[-40px] shadow-sm shadow-gray-400 left-[26%]  bg-white flex flex-row items-center justify-center  border border-gray-200 rounded-sm  px-3 py-2 "
             ref={toolbarRef}
             onFocus={() => setIndexValue(index)}
             onBlur={(e) => {

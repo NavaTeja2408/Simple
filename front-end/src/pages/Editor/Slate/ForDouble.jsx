@@ -105,10 +105,11 @@ const ForDouble = ({
           <div className="relative w-fit">
             <AiOutlineColumnWidth className="absolute left-2 top-1/2 transform -translate-y-1/2" />
             <select
-              value={width} // Changed from `selected` to `width`
+              value={""} // Changed from `selected` to `width`
               onChange={(e) => onWidth(e.target.value)}
               className="p-1 bg-white outline-none border-[1px] border-gray-200"
             >
+              <option value="" hidden></option>
               <option value="100">Container Width</option>
               <option value="50">50% Width</option>
               <option value="25">25% Width</option>
@@ -117,23 +118,6 @@ const ForDouble = ({
           <div className="w-[1px] h-7 bg-gray-300"></div>
 
           {/* Alignment Buttons */}
-          <div className="flex items-center justify-center gap-4">
-            <button onClick={() => onAliegn("left")}>
-              <FaAlignLeft
-                className={aliegn === "left" ? "text-black" : "text-gray-400"}
-              />
-            </button>
-            <button onClick={() => onAliegn("center")}>
-              <FaAlignCenter
-                className={aliegn === "center" ? "text-black" : "text-gray-400"}
-              />
-            </button>
-            <button onClick={() => onAliegn("right")}>
-              <FaAlignRight
-                className={aliegn === "right" ? "text-black" : "text-gray-400"}
-              />
-            </button>
-          </div>
         </div>
       )}
 

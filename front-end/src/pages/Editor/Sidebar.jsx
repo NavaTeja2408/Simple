@@ -541,7 +541,7 @@ const Sidebar = ({
       </div>
 
       {active === "elements" ? (
-        <div className="w-[220px] overflow-x-hidden h-screen pr-4 border-r-2 border-gray-200 overflow-auto pb-20  ">
+        <div className="w-[220px] overflow-x-hidden h-screen pr-4 border-r-2 border-gray-200 overflow-auto pb-20 scrollbar-thin  ">
           <button
             className=" p-2 w-full   mx-3  flex  items-center justify-between
            gap-2 "
@@ -690,7 +690,7 @@ const Sidebar = ({
           </button> */}
         </div>
       ) : active === "layout" ? (
-        <div className="grid grid-cols-2 w-[240px] h-[65%] pr-4  ">
+        <div className="grid grid-cols-2 w-[240px] h-[65%] pr-4   ">
           <button
             onClick={() => setActive("margin-3")}
             className="h-20 w-[75%]   m-3 flex flex-col items-center justify-center 
@@ -820,7 +820,7 @@ const Sidebar = ({
         {thirdLevel === "heading" ? (
           <div
             ref={headingRef}
-            className="absolute left-0 w-[200px] flex flex-col items-center pt-10 gap-4 h-screen border-r border-gray-300 bg-white z-50 overflow-auto pb-20  "
+            className="scrollbar-thin absolute left-0 w-[200px] flex flex-col items-center pt-10 gap-4 h-screen border-r border-gray-300 bg-white z-50 overflow-auto pb-20  "
           >
             <div
               onClick={() => {
@@ -887,7 +887,7 @@ const Sidebar = ({
         ) : thirdLevel === "paragraph" ? (
           <div
             ref={headingRef}
-            className="absolute left-0 w-[200px] flex flex-col items-center pt-10 gap-4 h-screen border-r border-gray-300 bg-white z-50 overflow-auto pb-20  "
+            className="scrollbar-thin absolute left-0 w-[200px] flex flex-col items-center pt-10 gap-4 h-screen border-r border-gray-300 bg-white z-50 overflow-auto pb-20  "
           >
             <div
               onClick={() => {
@@ -911,7 +911,7 @@ const Sidebar = ({
         ) : thirdLevel === "image" ? (
           <div
             ref={headingRef}
-            className="absolute left-0 w-[200px] flex flex-col items-center pt-10 gap-10 h-screen border-r border-gray-300 bg-white z-50 overflow-auto pb-20  "
+            className="scrollbar-thin absolute left-0 w-[200px] flex flex-col items-center pt-10 gap-10 h-screen border-r border-gray-300 bg-white z-50 overflow-auto pb-20  "
           >
             <div
               onClick={() => {
@@ -941,7 +941,7 @@ const Sidebar = ({
         ) : thirdLevel === "table" ? (
           <div
             ref={headingRef}
-            className="absolute left-0 w-[200px] flex flex-col items-center pt-10 gap-4 h-screen border-r border-gray-300 bg-white z-50 overflow-auto pb-20 text-xs text-gray-400 text-center  "
+            className="scrollbar-thin absolute left-0 w-[200px] flex flex-col items-center pt-10 gap-4 h-screen border-r border-gray-300 bg-white z-50 overflow-auto pb-20 text-xs text-gray-400 text-center  "
           >
             <div
               onClick={() => {
@@ -998,7 +998,7 @@ const Sidebar = ({
         ) : thirdLevel === "sections" ? (
           <div
             ref={headingRef}
-            className="absolute left-0 w-[200px] flex flex-col items-center pt-10 gap-4 h-screen border-r border-gray-300 bg-white z-50 overflow-auto pb-20 text-xs text-gray-400 text-center  "
+            className="scrollbar-thin absolute left-0 w-[200px] flex flex-col items-center pt-10 gap-4 h-screen border-r border-gray-300 bg-white z-50 overflow-auto pb-20 text-xs text-gray-400 text-center  "
           >
             <div
               onClick={() => {
@@ -1022,7 +1022,7 @@ const Sidebar = ({
         ) : thirdLevel === "pages" ? (
           <div
             ref={headingRef}
-            className="absolute left-0 w-[200px] flex flex-col items-center pt-10 gap-4 h-screen border-r border-gray-300 bg-white z-50 overflow-auto pb-20 text-xs text-gray-400 text-center  "
+            className=" scrollbar-thinabsolute left-0 w-[200px] flex flex-col items-center pt-10 gap-4 h-screen border-r border-gray-300 bg-white z-50 overflow-auto pb-20 text-xs text-gray-400 text-center  "
           >
             <div
               onClick={() => {
@@ -1037,14 +1037,14 @@ const Sidebar = ({
         ) : thirdLevel === "saved" ? (
           <div
             ref={headingRef}
-            className="absolute left-0 w-[240px] flex flex-col  items-center pt-4  h-screen border-r border-gray-300 bg-white z-50 overflow-auto pb-20  "
+            className=" scrollbar-thin absolute left-0 w-[200px] flex flex-col  items-center pt-4  h-screen border-r border-gray-300 bg-white z-50 overflow-auto pb-20  "
           >
             {user?.goals ? (
               user.goals?.map((item, index) => {
                 return (
                   <div
                     key={index}
-                    className="my-3 w-[95%] bg-gray-100 p-3 flex flex-col items-center justify-center gap-2"
+                    className="my-3 w-[95%] bg-gray-100 p-2 flex flex-col items-center justify-center gap-2"
                     onClick={() => {
                       setRows([...rows, ...item.data]);
                       setThirdLevel("");

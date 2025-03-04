@@ -103,7 +103,7 @@ const DropCanvas = ({ rows, setRows, preview }) => {
       <button onClick={() => console.log(rows)}>Show data</button>
       {bookmark !== null && (
         <div className="fixed inset-0 bg-black bg-opacity-20 flex items-center justify-center p-4 z-[1000]">
-          <div className="bg-white  rounded-lg shadow-xl w-[40%] h-[35%] flex flex-col relative">
+          <div className="bg-white  rounded-lg shadow-xl w-[40%] min-h-[35%] flex flex-col relative">
             <div className="flex flex-col gap-2 items-center justify-center mt-4">
               <label
                 className={`w-full flex items-start justify-start ml-16 font-bold `}

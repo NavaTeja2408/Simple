@@ -205,7 +205,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                     <td
                       className={`pr-8 px-2 py-1 relative ${
                         quantity ? "w-[60%]" : "w-[78%]"
-                      }`}
+                      } ${dropdown === index ? "pb-10" : "pb-1"}`}
                     >
                       <div className="relative">
                         <input

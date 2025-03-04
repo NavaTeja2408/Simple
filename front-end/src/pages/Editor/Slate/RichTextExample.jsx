@@ -109,7 +109,12 @@ const initialValue = [
 
 // Define elements
 const Element = ({ attributes, children, element }) => {
-  const alignment = element.align ? `text-${element.align}` : "text-left";
+  const alignment =
+    element.align === "center"
+      ? `text-${element.align}`
+      : element.align === "right"
+      ? "text-right"
+      : "text-left";
 
   switch (element.type) {
     case "heading-one":

@@ -11,15 +11,21 @@
 
 @layer utilities {
   .scrollbar-thin::-webkit-scrollbar {
-    width: 2px; /* Adjust width */
+    width: 1px; /* Thin scrollbar */
+    background: transparent; /* Initially hidden */
   }
+
+  .scrollbar-thin:hover::-webkit-scrollbar {
+    background: rgba(128, 128, 128, 0.2); /* Light gray on hover */
+  }
+
   .scrollbar-thin::-webkit-scrollbar-thumb {
-    background: #888; /* Customize scrollbar color */
+    background: rgba(136, 136, 136, 0.4); /* Gray thumb */
     border-radius: 10px;
   }
 
   .scrollbar-thin::-webkit-scrollbar-thumb:hover {
-    background: #555;
+    background: rgba(85, 85, 85, 0.8); /* Darker gray on hover */
   }
 }
 @layer utilities {
