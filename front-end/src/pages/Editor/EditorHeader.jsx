@@ -174,10 +174,23 @@ const EditorHeader = ({
       setSaving(false);
     }
   };
+  const updateTimeout = useRef(null);
+
   useEffect(() => {
-    const interval = setInterval(updateProposal, 5000);
-    return () => clearInterval(interval);
-  }, [rows, id]);
+    // Clear any existing timeout when rows change
+    if (updateTimeout.current) {
+      clearTimeout(updateTimeout.current);
+    }
+
+    // Set a new timeout to wait 2 seconds after last change
+    updateTimeout.current = setTimeout(() => {
+      updateProposal(); // Execute only once after rows stop changing
+      updateTimeout.current = null; // Reset reference after execution
+    }, 2000);
+
+    // Cleanup timeout when component unmounts
+    return () => clearTimeout(updateTimeout.current);
+  }, [rows]); // Runs only when rows change
   return (
     <div className="w-full flex items-center justify-evenly h-16 px-5 border-b-[1px] border-gray-200 shadow-lg">
       <div className="flex flex-row w-[40%] items-center justify-start gap-2">
