@@ -42,9 +42,12 @@ const createProposal = async (req, res) => {
 };
 
 const updateProposal = async (req, res) => {
-  const { id, rows } = req.body;
+  const { id, rows, name } = req.body;
   try {
-    const proposal = await ProposalModel.findByIdAndUpdate(id, { data: rows });
+    const proposal = await ProposalModel.findByIdAndUpdate(id, {
+      data: rows,
+      proposalName: name,
+    });
     if (!proposal) {
       return res.status(404).json({ message: "error" });
     }

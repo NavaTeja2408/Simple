@@ -30,21 +30,15 @@ const CodeBlock = ({ content, onChange, preview }) => {
 
   return (
     <div style={containerStyles}>
-      <MonacoEditor
-        height="300px"
-        language="python"
+      <textarea
+        className="w-full min-h-[20px] bg-gray-200 outline-none font-mono text-sm px-2 resize-none overflow-hidden break-words whitespace-pre-wrap"
         value={content}
-        onChange={onChange}
-        options={{
-          readOnly: preview,
-          minimap: { enabled: false },
-          scrollPredominantAxis: false,
-          scrollBeyondLastLine: false,
-          wordWrap: "on", // Enable word wrapping
-          automaticLayout: true,
+        onChange={(e) => onChange(e.target.value)}
+        onInput={(e) => {
+          e.target.style.height = "auto"; // Reset height
+          e.target.style.height = `${e.target.scrollHeight}px`; // Expand dynamically
         }}
-        className="rounded-md overflow-hidden "
-      />
+      ></textarea>
     </div>
   );
 };

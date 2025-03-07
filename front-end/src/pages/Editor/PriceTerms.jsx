@@ -180,12 +180,11 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
                             handleInputChange(
                               index,
                               "percentage",
-                              parseFloat(e.target.value) || 0
+                              parseFloat(e.target.value)
                             )
                           }
                           max={100}
                           className="w-full border border-gray-300 bg-gray-50 rounded px-2 py-1"
-                          placeholder="Discount"
                         />
                       </td>
                     )}
@@ -199,11 +198,10 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
                             handleInputChange(
                               index,
                               "value",
-                              parseInt(e.target.value) || 0
+                              parseInt(e.target.value)
                             )
                           }
                           className="w-full border border-gray-300 bg-gray-50 rounded px-2 py-1 font-normal text-sm"
-                          placeholder="Quantity"
                         />
                       </td>
                     )}

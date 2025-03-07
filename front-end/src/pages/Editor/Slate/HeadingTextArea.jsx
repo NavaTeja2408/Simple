@@ -120,31 +120,31 @@ const Element = ({ attributes, children, element }) => {
   switch (element.type) {
     case "heading-one":
       return (
-        <h1 className={`w-full text-3xl ${alignment}`} {...attributes}>
+        <h1 className={`w-full text-4xl ${alignment}`} {...attributes}>
           {children}
         </h1>
       );
     case "heading-two":
       return (
-        <h2 className={`text-2xl ${alignment}`} {...attributes}>
+        <h2 className={`text-3xl ${alignment}`} {...attributes}>
           {children}
         </h2>
       );
     case "heading-three":
       return (
-        <h3 className={`text-xl ${alignment}`} {...attributes}>
+        <h3 className={`text-2xl ${alignment}`} {...attributes}>
           {children}
         </h3>
       );
     case "heading-four":
       return (
-        <h4 className={`text-lg ${alignment}`} {...attributes}>
+        <h4 className={`text-xl ${alignment}`} {...attributes}>
           {children}
         </h4>
       );
     case "heading-five":
       return (
-        <h5 className={`text-base ${alignment}`} {...attributes}>
+        <h5 className={`text-lg ${alignment}`} {...attributes}>
           {children}
         </h5>
       );
@@ -311,7 +311,6 @@ const MyRichTextEditor = ({
                 <option value="heading-four">H4</option>
                 <option value="heading-five">H5</option>
                 <option value="heading-six">H6</option>
-                <option value="paragraph">P</option>
               </select>
               <select
                 className="border  bg-white border-gray-200 rounded px-2 py-1 ml-4 outline-none"

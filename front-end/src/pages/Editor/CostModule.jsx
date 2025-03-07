@@ -263,11 +263,10 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                             handleInputChange(
                               index,
                               "price",
-                              parseFloat(e.target.value) || 0
+                              parseFloat(e.target.value)
                             )
                           }
                           className="w-full border border-gray-300 bg-gray-50  rounded px-2 py-1 no-spinner"
-                          placeholder="Price"
                         />
                       </td>
                     )}
@@ -281,11 +280,10 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                             handleInputChange(
                               index,
                               "quantity",
-                              parseInt(e.target.value) || 0
+                              parseInt(e.target.value)
                             )
                           }
                           className="w-full border border-gray-300 bg-gray-50 rounded px-2 py-1 no-spinner"
-                          placeholder="Quantity"
                         />
                       </td>
                     )}
@@ -298,12 +296,11 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                           handleInputChange(
                             index,
                             "amount",
-                            parseInt(e.target.value) || 0
+                            parseInt(e.target.value)
                           )
                         }
                         readOnly={quantity}
-                        className="w-full border border-gray-300 bg-gray-50 rounded px-2 py-1 no-spinner"
-                        placeholder="Amount"
+                        className="w-full border border-gray-300 bg-gray-50 rounded px-2 py-1 no-spinner text-right"
                       />
                     </td>
                     <td className=" px-2 py-2 text-center">

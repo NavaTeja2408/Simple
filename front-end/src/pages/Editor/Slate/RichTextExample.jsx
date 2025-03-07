@@ -5,7 +5,6 @@ import React, {
   useRef,
   useEffect,
 } from "react";
-import { ImQuotesRight } from "react-icons/im";
 import { FaAlignLeft, FaAlignCenter, FaAlignRight } from "react-icons/fa";
 import { FaItalic } from "react-icons/fa";
 import { FaUnderline, FaBold } from "react-icons/fa";
@@ -13,7 +12,6 @@ import { MdFormatListBulleted } from "react-icons/md";
 import { MdFormatListNumbered } from "react-icons/md";
 import { FaStrikethrough } from "react-icons/fa6";
 import { IoLink } from "react-icons/io5";
-import { useNavigate } from "react-router-dom";
 import {
   createEditor,
   Transforms,
@@ -23,7 +21,6 @@ import {
 import { Slate, Editable, withReact } from "slate-react";
 import { withHistory } from "slate-history";
 import { Button, Toolbar } from "./comp"; // Your components
-import { Navigate } from "react-router-dom";
 
 // Block types
 const LIST_TYPES = ["numbered-list", "bulleted-list"];
@@ -34,7 +31,12 @@ const toggleBlock = (editor, format) => {
   const isActive = isBlockActive(editor, format);
   const isList = LIST_TYPES.includes(format);
 
-  // Unwrap existing lists
+  // Detect if inside a table (assuming table blocks exist)
+  const [tableMatch] = Editor.nodes(editor, {
+    match: (n) => SlateElement.isElement(n) && n.type === "table",
+  });
+
+  // Unwrap existing lists (if needed)
   Transforms.unwrapNodes(editor, {
     match: (n) =>
       !Editor.isEditor(n) &&
@@ -43,7 +45,23 @@ const toggleBlock = (editor, format) => {
     split: true,
   });
 
-  // Handle toggling lists
+  // Apply nesting for level 2 inside a table
+  if (tableMatch && isList) {
+    const newListItem = {
+      type: "list-item",
+      children: [{ text: "" }],
+    };
+
+    const newList = {
+      type: format,
+      children: [newListItem],
+    };
+
+    Transforms.wrapNodes(editor, newList);
+    return;
+  }
+
+  // Normal list behavior
   const newProperties = {
     type: isActive ? "paragraph" : isList ? "list-item" : format,
   };
@@ -52,6 +70,48 @@ const toggleBlock = (editor, format) => {
   if (!isActive && isList) {
     const block = { type: format, children: [] };
     Transforms.wrapNodes(editor, block);
+  }
+};
+
+const handleKeyDown = (event, editor) => {
+  if (event.key === "Tab") {
+    event.preventDefault();
+    const { selection } = editor;
+
+    if (selection) {
+      const [match] = Editor.nodes(editor, {
+        match: (n) => SlateElement.isElement(n) && n.type === "list-item",
+      });
+
+      if (match) {
+        if (event.shiftKey) {
+          // Decrease indentation (Outdent)
+          Transforms.liftNodes(editor, {
+            match: (n) => SlateElement.isElement(n) && n.type === "list-item",
+          });
+        } else {
+          // Increase indentation (Indent)
+          const parentList = Editor.above(editor, {
+            match: (n) =>
+              SlateElement.isElement(n) && n.type === "bulleted-list",
+          });
+
+          if (parentList) {
+            // If already inside a list, wrap the list item inside another list
+            Transforms.wrapNodes(editor, {
+              type: "bulleted-list",
+              children: [],
+            });
+          } else {
+            // If not inside a list, wrap in a list
+            Transforms.wrapNodes(editor, {
+              type: "bulleted-list",
+              children: [],
+            });
+          }
+        }
+      }
+    }
   }
 };
 
@@ -119,31 +179,31 @@ const Element = ({ attributes, children, element }) => {
   switch (element.type) {
     case "heading-one":
       return (
-        <h1 className={`text-3xl py-1 font-bold ${alignment}`} {...attributes}>
+        <h1 className={`text-4xl py-1 font-bold ${alignment}`} {...attributes}>
           {children}
         </h1>
       );
     case "heading-two":
       return (
-        <h2 className={`text-2xl py-1 font-bold ${alignment}`} {...attributes}>
+        <h2 className={`text-3xl py-1 font-bold ${alignment}`} {...attributes}>
           {children}
         </h2>
       );
     case "heading-three":
       return (
-        <h2 className={`text-xl py-1 font-bold ${alignment}`} {...attributes}>
+        <h2 className={`text-2xl py-1 font-bold ${alignment}`} {...attributes}>
           {children}
         </h2>
       );
     case "heading-four":
       return (
-        <h2 className={`text-lg py-1 font-bold ${alignment}`} {...attributes}>
+        <h2 className={`text-xl py-1 font-bold ${alignment}`} {...attributes}>
           {children}
         </h2>
       );
     case "heading-five":
       return (
-        <h2 className={`text-md font-bold ${alignment}`} {...attributes}>
+        <h2 className={`text-lg font-bold ${alignment}`} {...attributes}>
           {children}
         </h2>
       );
@@ -156,6 +216,12 @@ const Element = ({ attributes, children, element }) => {
     case "paragrapgh":
       return (
         <h2 className={`text-sm ${alignment}`} {...attributes}>
+          {children}
+        </h2>
+      );
+    case "paragrapgh-two":
+      return (
+        <h2 className={`text-xs ${alignment}`} {...attributes}>
           {children}
         </h2>
       );
@@ -181,10 +247,24 @@ const Element = ({ attributes, children, element }) => {
         </ol>
       );
     case "list-item":
-      return <li {...attributes}>{children}</li>;
+      return (
+        <li {...attributes}>
+          {children}
+          {/* Render nested lists inside list items */}
+          {element.children.some((child) => child.type === "bulleted-list") && (
+            <ul className="pl-6" style={{ listStyleType: "circle" }}>
+              {element.children.map((child, index) => (
+                <li key={index} {...attributes}>
+                  {child.children}
+                </li>
+              ))}
+            </ul>
+          )}
+        </li>
+      );
     default:
       return (
-        <p className={`mb-2 ${alignment}`} {...attributes}>
+        <p className={` ${alignment}`} {...attributes}>
           {children}
         </p>
       );
@@ -314,7 +394,8 @@ const RichTextEditor = ({
                 <option value="heading-four">H4</option>
                 <option value="heading-five">H5</option>
                 <option value="heading-six">H6</option>
-                <option value="paragraph">P</option>
+                <option value="paragrapgh">P1</option>
+                <option value="paragrapgh-two">P2</option>
               </select>
             </div>
 
@@ -418,6 +499,7 @@ const RichTextEditor = ({
         )}
 
         <Editable
+          onKeyDown={(event) => handleKeyDown(event, editor)}
           onFocus={() => {
             setChoosen(true);
           }}

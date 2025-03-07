@@ -76,9 +76,9 @@ const DropCanvas = ({ rows, setRows, preview }) => {
         minHeight: "100vh",
         marginBottom: "25px",
         position: "relative",
-        padding: "10px",
+        padding: "15px",
       }}
-      className=" m-7   bg-white shadow-lg shadow-gray-300  "
+      className=" m-7   bg-white shadow-lg shadow-gray-300   "
     >
       {/* Render rows */}
       {rows.map((row, index) => (

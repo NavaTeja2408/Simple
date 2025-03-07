@@ -44,6 +44,7 @@ const EditorHeader = ({
   setFavorate,
 }) => {
   const [saving, setSaving] = useState(false);
+  const [headerName, setHeaderName] = useState(proposalName);
   const [notifiacations, setNotification] = useState(false);
   const [lock, setLock] = useState(false);
   const { databaseUrl } = useContext(DatabaseContext);
@@ -167,6 +168,7 @@ const EditorHeader = ({
       await axios.put(`${databaseUrl}/api/editor/updateProposal`, {
         id: id,
         rows: rows,
+        name: proposalName,
       });
     } catch (error) {
       console.log(error);
