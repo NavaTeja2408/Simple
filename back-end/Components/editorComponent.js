@@ -2,7 +2,7 @@ const GoalModuleModel = require("../models/goalModuleModel");
 const ProposalModel = require("../models/proposeModel");
 const UserModel = require("../models/tempModel");
 const createProposal = async (req, res) => {
-  const { email, workspace_id, name } = req.body;
+  const { email, workspace_id, name, settings } = req.body;
 
   try {
     if (!email) {
@@ -21,6 +21,7 @@ const createProposal = async (req, res) => {
       workspaces: workspace_id,
       favorate: false,
       locked: false,
+      settings: settings,
     });
 
     await proposal.save();
@@ -42,11 +43,11 @@ const createProposal = async (req, res) => {
 };
 
 const updateProposal = async (req, res) => {
-  const { id, rows, name } = req.body;
+  const { id, rows, settings } = req.body;
   try {
     const proposal = await ProposalModel.findByIdAndUpdate(id, {
       data: rows,
-      proposalName: name,
+      settings: settings,
     });
     if (!proposal) {
       return res.status(404).json({ message: "error" });

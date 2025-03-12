@@ -48,6 +48,13 @@ const EditorDnD = () => {
     tableStyle: "header_highlight",
     tableBorderThickness: 1,
   });
+  const [settings, setSettings] = useState({
+    heading: "Arieal",
+    body: "Arieal",
+    header: false,
+    footer: false,
+    theme: 0,
+  });
   const [active, setActive] = useState("elements");
   const {
     sign,
@@ -71,6 +78,7 @@ const EditorDnD = () => {
         .then((res) => {
           setProposalName(res.data.proposalName);
           setRows(res.data.data);
+          setSettings(res.data.settings || settings);
           setFavorate(res.data.favorate);
           setPreview(res.data.locked);
         });
@@ -239,6 +247,7 @@ const EditorDnD = () => {
     ]);
     setPriceTerms(false);
   };
+  const dropCanvasRef = useRef(null);
 
   return (
     <DndProvider backend={HTML5Backend}>
@@ -259,6 +268,7 @@ const EditorDnD = () => {
           preview={preview}
           setFavorate={setFavorate}
           favorate={favorate}
+          settings={settings}
         />
       </div>
 
@@ -380,12 +390,16 @@ const EditorDnD = () => {
         </div>
 
         {/* Canvas Section */}
-        <div style={{ flex: 1, overflow: "auto" }}>
+        <div
+          style={{ flex: 1, overflow: "auto", maxHeight: "100vh" }}
+          ref={dropCanvasRef}
+        >
           <DropCanvas
             rows={rows}
             setRows={setRows}
             preview={preview}
             setSignEdit={setSignEdit}
+            dropCanvasRef={dropCanvasRef}
           />
         </div>
       </div>

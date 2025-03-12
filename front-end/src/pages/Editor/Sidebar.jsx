@@ -34,9 +34,6 @@ import typography from "../../assets/typography.png";
 
 import ContentSideBar from "./SideBarComponents/ContentSideBar";
 import { FaAngleDoubleLeft } from "react-icons/fa";
-import GoalModuleSideBar from "./SideBarComponents/GoalModuleSideBar";
-import MarginSideBar from "./SideBarComponents/MarginSideBar";
-import TypoSideBar from "./SideBarComponents/TypoSideBar";
 import single_para from "../../assets/single_para.png";
 import double_para from "../../assets/double_para.png";
 import { StateManageContext } from "../../context/StateManageContext";
@@ -53,8 +50,6 @@ const Sidebar = ({
   addCodeBlock,
   active,
   setActive,
-  style,
-  setStyle,
   rows,
   setRows,
 }) => {
@@ -411,8 +406,13 @@ const Sidebar = ({
     }
   };
 
-  const { setSign, setPriceTerms, setCostModeule } =
-    useContext(StateManageContext);
+  const {
+    setSign,
+    setPriceTerms,
+    setCostModeule,
+    scrollIndex,
+    setScrollIndex,
+  } = useContext(StateManageContext);
 
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutsideHeading);
@@ -420,6 +420,36 @@ const Sidebar = ({
       document.removeEventListener("mousedown", handleClickOutsideHeading);
     };
   }, []);
+
+  const renderHeadingLinks = (items, index, prefix = "") => {
+    return items?.flatMap((item, idx) =>
+      (item.type === "heading-one" ||
+        item.type === "heading-two" ||
+        item.type === "heading-three") &&
+      item.children
+        ? item.children.map(
+            (child, childIdx) =>
+              child.text !== "" && (
+                <p
+                  onClick={() => setScrollIndex(index)}
+                  className={`px-1 mt-[1px] cursor-pointer hover:text-black flex gap-1 items-start ${
+                    item.type === "heading-one"
+                      ? "text-gray-700 text-md font-semibold"
+                      : "text-gray-500"
+                  }`}
+                  key={`${index}-${prefix}-${idx}-${childIdx}`}
+                >
+                  <FaAngleDoubleLeft className="rotate-180 mt-1" />
+                  <span className="flex-1 w-[90%] break-words">
+                    {child.text}
+                  </span>
+                </p>
+              )
+          )
+        : []
+    );
+  };
+
   return (
     <div className="flex flex-row">
       <div className="max-w-20 relative h-screen flex flex-col border-r-[1px] border-gray-300 ">
@@ -689,6 +719,30 @@ const Sidebar = ({
             <p className="text-xs ">Goal Module</p>
           </button> */}
         </div>
+      ) : active === "outline" ? (
+        <div className="w-[240px] h-screen pr-4 border-r-2 border-gray-200  pb-10 scrollbar-thin flex flex-col">
+          <p className="w-full text-start p-2 px-2 text-gray-400 mb-1 ">
+            Outline
+          </p>
+          <div className="w-full h-screen break-words pl-2 scrollbar-thin flex flex-col overflow-y-auto ">
+            {rows?.map((row, index) => {
+              if (row.type === "heading") {
+                return renderHeadingLinks(row.content, index);
+              } else if (row.type === "input") {
+                return renderHeadingLinks(row.content, index);
+              } else if (row.type === "double-para") {
+                return [
+                  ...renderHeadingLinks(row.firstContent, index, "first"),
+                  ...renderHeadingLinks(row.secondContent, index, "second"),
+                ];
+              } else if (row.type === "image-para") {
+                return renderHeadingLinks(row.content, index);
+              }
+
+              return null;
+            })}
+          </div>
+        </div>
       ) : active === "layout" ? (
         <div className="grid grid-cols-2 w-[240px] h-[65%] pr-4   ">
           <button
@@ -780,42 +834,10 @@ const Sidebar = ({
             <p className="text-xs">Color</p>
           </button>
         </div>
-      ) : active === "goal-3" ? (
-        <div className="w-[240px] h-[65%] overflow-auto">
-          <button
-            className="w-full text-start bg-gray-200   pl-5   px-1 py-2 flex gap-2 hover:text-graidient_bottom "
-            onClick={() => setActive("elements")}
-          >
-            <FaAngleDoubleLeft className="mt-1" />
-            Back
-          </button>
-          <GoalModuleSideBar />
-        </div>
-      ) : active === "margin-3" ? (
-        <div className="w-[240px] h-[65%] overflow-auto">
-          <button
-            className="w-full text-start bg-gray-200   pl-5   px-1 py-2 flex gap-2 hover:text-graidient_bottom "
-            onClick={() => setActive("layout")}
-          >
-            <FaAngleDoubleLeft className="mt-1" />
-            Back
-          </button>
-          <MarginSideBar style={style} setStyle={setStyle} />
-        </div>
-      ) : active === "typography-3" ? (
-        <div className="w-[240px] h-[65%] overflow-auto">
-          <button
-            className="w-full text-start bg-gray-200   pl-5   px-1 py-2 flex gap-2 hover:text-graidient_bottom "
-            onClick={() => setActive("themes")}
-          >
-            <FaAngleDoubleLeft className="mt-1" />
-            Back
-          </button>
-          <TypoSideBar style={style} setStyle={setStyle} />
-        </div>
       ) : (
         <div> </div>
       )}
+
       <div className="w-[1px] h-screen bg-gray-100 relative ">
         {thirdLevel === "heading" ? (
           <div

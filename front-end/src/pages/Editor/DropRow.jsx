@@ -147,6 +147,7 @@ const DropRow = ({
         marginBottom: "10px",
         marginLeft: row.type === "brake" ? "0px" : "20px",
         marginRight: row.type === "brake" ? "0px" : "7px",
+        marginTop: selected === index && index === 0 ? "30px" : "0px",
         border:
           selected === index ? "1px dashed rgba(223 , 6 , 78 , 1)" : "none",
         backgroundColor: "#fff",

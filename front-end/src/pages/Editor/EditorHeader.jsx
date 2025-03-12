@@ -35,13 +35,13 @@ const EditorHeader = ({
   menu,
   setMenu,
   parentRef,
-  move,
   setMove,
   setRows,
   setPreview,
   preview,
   favorate,
   setFavorate,
+  settings,
 }) => {
   const [saving, setSaving] = useState(false);
   const [headerName, setHeaderName] = useState(proposalName);
@@ -168,7 +168,7 @@ const EditorHeader = ({
       await axios.put(`${databaseUrl}/api/editor/updateProposal`, {
         id: id,
         rows: rows,
-        name: proposalName,
+        settings: settings,
       });
     } catch (error) {
       console.log(error);

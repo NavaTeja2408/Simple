@@ -1,10 +1,11 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useRef, useEffect } from "react";
 import DropRow from "./DropRow";
 import { UserContext } from "../../context/UserContext";
 import axios from "axios";
 import { DatabaseContext } from "../../context/DatabaseContext";
+import { StateManageContext } from "../../context/StateManageContext";
 
-const DropCanvas = ({ rows, setRows, preview }) => {
+const DropCanvas = ({ rows, setRows, preview, dropCanvasRef }) => {
   const [bookmark, setBookmark] = useState(null);
   const [snapshotLink, setSnapshotLink] = useState("");
   const [savedTitile, setSavedTitle] = useState("");
@@ -12,14 +13,16 @@ const DropCanvas = ({ rows, setRows, preview }) => {
   const { user, setUser } = useContext(UserContext);
   const { databaseUrl } = useContext(DatabaseContext);
   const [loading, setLoading] = useState(false);
+  const rowRefs = useRef([]);
+  const { scrollIndex, setScrollIndex } = useContext(StateManageContext);
   // Move row up
   const moveRowUp = (index) => {
-    console.log(index);
     if (index > 0) {
       const updatedRows = [...rows];
       const [movedRow] = updatedRows.splice(index, 1);
       updatedRows.splice(index - 1, 0, movedRow);
       setRows(updatedRows);
+      setScrollIndex(index - 1);
     }
   };
 
@@ -30,6 +33,7 @@ const DropCanvas = ({ rows, setRows, preview }) => {
       const [movedRow] = updatedRows.splice(index, 1);
       updatedRows.splice(index + 1, 0, movedRow);
       setRows(updatedRows);
+      setScrollIndex(index + 1);
     }
   };
 
@@ -45,6 +49,32 @@ const DropCanvas = ({ rows, setRows, preview }) => {
     updatedRows[rowIndex].content = item.content; // Set the content of the row
     setRows(updatedRows);
   };
+
+  const handleScrollToIndex = (index) => {
+    if (rowRefs.current[index] && dropCanvasRef.current) {
+      const element = rowRefs.current[index];
+      const container = dropCanvasRef.current; // Scroll within this container
+
+      // Get the element's position relative to the container
+      const offsetTop =
+        element.getBoundingClientRect().top -
+        container.getBoundingClientRect().top;
+
+      // Scroll smoothly to the element
+      container.scrollTo({
+        top: container.scrollTop + offsetTop - 10, // Adjust for better alignment
+        behavior: "smooth",
+      });
+    }
+  };
+
+  useEffect(() => {
+    if (scrollIndex === null) {
+      handleScrollToIndex(0);
+    } else {
+      handleScrollToIndex(scrollIndex);
+    }
+  }, [scrollIndex]);
 
   const handleSavedModule = async () => {
     try {
@@ -74,31 +104,32 @@ const DropCanvas = ({ rows, setRows, preview }) => {
       style={{
         width: "94%",
         minHeight: "100vh",
-        marginBottom: "25px",
         position: "relative",
         padding: "15px",
       }}
-      className=" m-7   bg-white shadow-lg shadow-gray-300   "
+      className=" m-7 bg-white shadow-lg shadow-gray-300   "
     >
       {/* Render rows */}
       {rows.map((row, index) => (
-        <DropRow
-          key={row.id || index}
-          row={row}
-          rows={rows}
-          setRows={setRows}
-          index={index}
-          moveRowUp={moveRowUp}
-          moveRowDown={moveRowDown}
-          deleteRow={deleteRow}
-          handleDropItem={handleDropItem}
-          preview={preview}
-          bookmark={bookmark}
-          setBookmark={setBookmark}
-          setSnapshotLink={setSnapshotLink}
-          loading={loading}
-          setLoading={setLoading}
-        />
+        <div key={index} ref={(el) => (rowRefs.current[index] = el)}>
+          <DropRow
+            key={row.id || index}
+            row={row}
+            rows={rows}
+            setRows={setRows}
+            index={index}
+            moveRowUp={moveRowUp}
+            moveRowDown={moveRowDown}
+            deleteRow={deleteRow}
+            handleDropItem={handleDropItem}
+            preview={preview}
+            bookmark={bookmark}
+            setBookmark={setBookmark}
+            setSnapshotLink={setSnapshotLink}
+            loading={loading}
+            setLoading={setLoading}
+          />
+        </div>
       ))}
       <button onClick={() => console.log(rows)}>Show data</button>
       {bookmark !== null && (

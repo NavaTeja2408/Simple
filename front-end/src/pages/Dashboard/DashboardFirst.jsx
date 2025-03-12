@@ -24,6 +24,13 @@ const DashboardFirst = () => {
           id: user.id,
           workspace_id: id,
           name: name,
+          settings: {
+            heading: "Arieal",
+            body: "Arieal",
+            header: false,
+            footer: false,
+            theme: 0,
+          },
         }
       );
       navigate(`/editor/${response.data._id}`);

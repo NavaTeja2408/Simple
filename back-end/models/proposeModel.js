@@ -64,6 +64,9 @@ const ProposalSchema = new Schema(
     favorate: {
       type: Boolean,
     },
+    settings: {
+      type: Object,
+    },
 
     // activities: [
     //   {

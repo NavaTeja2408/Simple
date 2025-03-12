@@ -9,6 +9,7 @@ export function StateManageContextProvider({ children }) {
   const [signEdit, setSignEdit] = useState(null);
   const [costModuleEdit, setCostMouleEdit] = useState(null);
   const [priceTermsEdit, setPriceTermsEdit] = useState(null);
+  const [scrollIndex, setScrollIndex] = useState(null);
 
   return (
     <StateManageContext.Provider
@@ -25,6 +26,8 @@ export function StateManageContextProvider({ children }) {
         setCostMouleEdit,
         priceTermsEdit,
         setPriceTermsEdit,
+        scrollIndex,
+        setScrollIndex,
       }}
     >
       {children}
