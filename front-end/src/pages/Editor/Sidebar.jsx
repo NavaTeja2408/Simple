@@ -743,226 +743,225 @@ const Sidebar = ({
             <p className="text-xs ">Goal Module</p>
           </button> */}
         </div>
-      ) : (
-        // ) : active === "outline" ? (
-        //   <div className="w-[220px] h-screen pr-4 border-r-2 border-gray-200  pb-10 scrollbar-thin flex flex-col">
-        //     <p className="w-full text-start p-2 px-2 text-gray-400 mb-1 ">
-        //       Outline
-        //     </p>
-        //     <div className="w-full h-screen pl-2 scrollbar-thin flex flex-col overflow-y-auto gap-1 ">
-        //       {rows?.map((row, index) => {
-        //         if (row.type === "heading") {
-        //           return renderHeadingLinks(row.content, index);
-        //         } else if (row.type === "input") {
-        //           return renderHeadingLinks(row.content, index);
-        //         } else if (row.type === "double-para") {
-        //           return [
-        //             ...renderHeadingLinks(row.firstContent, index, "first"),
-        //             ...renderHeadingLinks(row.secondContent, index, "second"),
-        //           ];
-        //         } else if (row.type === "image-para") {
-        //           return renderHeadingLinks(row.content, index);
-        //         }
+      ) : active === "outline" ? (
+        <div className="w-[220px] h-screen pr-4 border-r-2 border-gray-200  pb-10 scrollbar-thin flex flex-col">
+          <p className="w-full text-start p-2 px-2 text-gray-400 mb-1 ">
+            Outline
+          </p>
+          <div className="w-full h-screen pl-2 scrollbar-thin flex flex-col overflow-y-auto gap-1 ">
+            {rows?.map((row, index) => {
+              if (row.type === "heading") {
+                return renderHeadingLinks(row.content, index);
+              } else if (row.type === "input") {
+                return renderHeadingLinks(row.content, index);
+              } else if (row.type === "double-para") {
+                return [
+                  ...renderHeadingLinks(row.firstContent, index, "first"),
+                  ...renderHeadingLinks(row.secondContent, index, "second"),
+                ];
+              } else if (row.type === "image-para") {
+                return renderHeadingLinks(row.content, index);
+              }
 
-        //         return null;
-        //       })}
-        //     </div>
-        //   </div>
-        // ) : active === "layout" ? (
-        //   <div className="flex flex-row">
-        //     <div className=" w-[220px] h-screen px-4 py-4 border-r-2 border-gray-200  pb-20 scrollbar-thin flex flex-col overflow-y-scroll overflow-x-hidden  ">
-        //       <h3 className="text-lg text-gray-800 font-semibold ">Typography</h3>
-        //       <div className="mt-4">
-        //         <label className="text-sm text-gray-400 mb-2">Heading Font</label>
-        //         <select
-        //           value={settings.heading}
-        //           onChange={(e) => {
-        //             const temp = { ...settings };
-        //             temp.heading = e.target.value;
-        //             setSettings(temp);
-        //           }}
-        //           className="w-full py-1 px-1 outline-none border border-gray-50 rounded-md text-gray-400 text-xs
-        //       "
-        //         >
-        //           <option value="arial">Arial</option>
-        //           <option value="helvetica">Helvetica</option>
-        //           <option value="poppins">Poppins</option>
-        //           <option value="montserrat">Montserrat</option>
-        //           <option value="roboto">Roboto</option>
-        //           <option value="times-new-roman">Times New Roman</option>
-        //           <option value="georgia">Georgia</option>
-        //           <option value="playfair-display">Playfair Display</option>
-        //           <option value="merriweather">Merriweather</option>
-        //           <option value="garamond">Garamond</option>
-        //           <option value="lobster">Lobster</option>
-        //           <option value="pacifico">Pacifico</option>
-        //           <option value="bebas-neue">Bebas Neue</option>
-        //           <option value="anton">Anton</option>
-        //           <option value="oswald">Oswald</option>
-        //         </select>
-        //       </div>
-        //       <div className="mt-2 gap-1">
-        //         <label className="text-sm text-gray-400 mb-2">Body Font</label>
-        //         <select
-        //           value={settings.body}
-        //           onChange={(e) => {
-        //             const temp = { ...settings };
-        //             temp.body = e.target.value;
-        //             setSettings(temp);
-        //           }}
-        //           className="w-full py-1 px-1 outline-none border border-gray-50 rounded-md text-gray-400 text-xs"
-        //         >
-        //           <option value="arial">Arial</option>
-        //           <option value="helvetica">Helvetica</option>
-        //           <option value="poppins">Poppins</option>
-        //           <option value="montserrat">Montserrat</option>
-        //           <option value="roboto">Roboto</option>
-        //           <option value="times-new-roman">Times New Roman</option>
-        //           <option value="georgia">Georgia</option>
-        //           <option value="playfair-display">Playfair Display</option>
-        //           <option value="merriweather">Merriweather</option>
-        //           <option value="garamond">Garamond</option>
-        //           <option value="lobster">Lobster</option>
-        //           <option value="pacifico">Pacifico</option>
-        //           <option value="bebas-neue">Bebas Neue</option>
-        //           <option value="anton">Anton</option>
-        //           <option value="oswald">Oswald</option>
-        //         </select>
-        //       </div>
-        //       <div className="mt-3 flex items-center justify-between px-3 py-1 border border-gray-200 rounded-md text-xs text-gray-400 ">
-        //         <label>Header</label>
-        //         <input
-        //           className="accent-graidient_bottom "
-        //           value={settings.header}
-        //           onChange={(e) => {
-        //             const temp = { ...settings };
-        //             temp.header = e.target.value;
-        //             setSettings(temp);
-        //           }}
-        //           type="checkbox"
-        //         />
-        //       </div>
-        //       <div className="mt-3 flex items-center justify-between px-3 py-1 border border-gray-200 rounded-md text-xs text-gray-400 ">
-        //         <label>Footer</label>
-        //         <input
-        //           className="accent-graidient_bottom "
-        //           value={settings.footer}
-        //           onChange={(e) => {
-        //             const temp = { ...settings };
-        //             temp.footer = e.target.value;
-        //             setSettings(temp);
-        //           }}
-        //           type="checkbox"
-        //         />
-        //       </div>
-        //       <div>
-        //         <h3 className="text-lg mt-3 text-gray-800 font-semibold ">
-        //           Theme Fill
-        //         </h3>
-        //         <div
-        //           ref={colorButtonRef}
-        //           className="py-1 mt-2 flex   items-center justify-between border border-gray-100"
-        //           onClick={() => setShowPicker(true)}
-        //         >
-        //           <p className=" text-sm">
-        //             <span className="flex gap-1 px-2 items-center">
-        //               <div
-        //                 className="w-4 h-4"
-        //                 style={{ backgroundColor: settings.color }}
-        //               ></div>
-        //               {settings.color}
-        //             </span>
-        //           </p>
-        //         </div>
-        //       </div>
-        //       <div className="mt-4">
-        //         <h3 className="text-lg text-gray-800 font-semibold ">
-        //           Design Theme
-        //         </h3>
-        //         <p className="text-gray-400 text-sm mt-3">Select Designh Theme</p>
-        //         <div className=" grid grid-cols-2 gap-3 mt-4">
-        //           <img
-        //             onClick={() => {
-        //               const temp = { ...settings };
-        //               temp.theme = 0;
-        //               setSettings(temp);
-        //             }}
-        //             className="h-28 w-[90%]"
-        //             src={theme_0}
-        //             alt="sometthing"
-        //           />
-        //           <img
-        //             onClick={() => {
-        //               const temp = { ...settings };
-        //               temp.theme = 1;
-        //               setSettings(temp);
-        //             }}
-        //             className="h-28 w-[90%]"
-        //             src={theme_1}
-        //             alt="sometthing"
-        //           />
-        //           <img
-        //             onClick={() => {
-        //               const temp = { ...settings };
-        //               temp.theme = 2;
-        //               setSettings(temp);
-        //             }}
-        //             className="h-28 w-[90%]"
-        //             src={theme_2}
-        //             alt="sometthing"
-        //           />
-        //           <img
-        //             onClick={() => {
-        //               const temp = { ...settings };
-        //               temp.theme = 3;
-        //               setSettings(temp);
-        //             }}
-        //             className="h-28 w-[90%]"
-        //             src={theme_3}
-        //             alt="sometthing"
-        //           />
-        //           <img
-        //             onClick={() => {
-        //               const temp = { ...settings };
-        //               temp.theme = 4;
-        //               setSettings(temp);
-        //             }}
-        //             className="h-28 w-[90%]"
-        //             src={theme_4}
-        //             alt="sometthing"
-        //           />
-        //           <img
-        //             onClick={() => {
-        //               const temp = { ...settings };
-        //               temp.theme = 5;
-        //               setSettings(temp);
-        //             }}
-        //             className="h-28 w-[90%]"
-        //             src={theme_5}
-        //             alt="sometthing"
-        //           />
-        //         </div>
-        //       </div>
-        //     </div>
-        //     <div className="relative w-[1px] h-screen">
-        //       {showPicker && (
-        //         <div
-        //           ref={colorRef}
-        //           className="absolute top-[25%] -left-1 mt-2 shadow-lg z-50"
-        //         >
-        //           <SketchPicker
-        //             color={settings.color}
-        //             onChange={(updatedColor) => {
-        //               const temp = { ...settings };
-        //               temp.color = updatedColor.hex;
-        //               setSettings(temp);
-        //             }}
-        //           />
-        //         </div>
-        //       )}
-        //     </div>
-        //   </div>
-        // ) :
+              return null;
+            })}
+          </div>
+        </div>
+      ) : active === "layout" ? (
+        <div className="flex flex-row">
+          <div className=" w-[220px] h-screen px-4 py-4 border-r-2 border-gray-200  pb-20 scrollbar-thin flex flex-col overflow-y-scroll overflow-x-hidden  ">
+            <h3 className="text-lg text-gray-800 font-semibold ">Typography</h3>
+            <div className="mt-4">
+              <label className="text-sm text-gray-400 mb-2">Heading Font</label>
+              <select
+                value={settings.heading}
+                onChange={(e) => {
+                  const temp = { ...settings };
+                  temp.heading = e.target.value;
+                  setSettings(temp);
+                }}
+                className="w-full py-1 px-1 outline-none border border-gray-50 rounded-md text-gray-400 text-xs
+            "
+              >
+                <option value="arial">Arial</option>
+                <option value="helvetica">Helvetica</option>
+                <option value="poppins">Poppins</option>
+                <option value="montserrat">Montserrat</option>
+                <option value="roboto">Roboto</option>
+                <option value="times-new-roman">Times New Roman</option>
+                <option value="georgia">Georgia</option>
+                <option value="playfair-display">Playfair Display</option>
+                <option value="merriweather">Merriweather</option>
+                <option value="garamond">Garamond</option>
+                <option value="lobster">Lobster</option>
+                <option value="pacifico">Pacifico</option>
+                <option value="bebas-neue">Bebas Neue</option>
+                <option value="anton">Anton</option>
+                <option value="oswald">Oswald</option>
+              </select>
+            </div>
+            <div className="mt-2 gap-1">
+              <label className="text-sm text-gray-400 mb-2">Body Font</label>
+              <select
+                value={settings.body}
+                onChange={(e) => {
+                  const temp = { ...settings };
+                  temp.body = e.target.value;
+                  setSettings(temp);
+                }}
+                className="w-full py-1 px-1 outline-none border border-gray-50 rounded-md text-gray-400 text-xs"
+              >
+                <option value="arial">Arial</option>
+                <option value="helvetica">Helvetica</option>
+                <option value="poppins">Poppins</option>
+                <option value="montserrat">Montserrat</option>
+                <option value="roboto">Roboto</option>
+                <option value="times-new-roman">Times New Roman</option>
+                <option value="georgia">Georgia</option>
+                <option value="playfair-display">Playfair Display</option>
+                <option value="merriweather">Merriweather</option>
+                <option value="garamond">Garamond</option>
+                <option value="lobster">Lobster</option>
+                <option value="pacifico">Pacifico</option>
+                <option value="bebas-neue">Bebas Neue</option>
+                <option value="anton">Anton</option>
+                <option value="oswald">Oswald</option>
+              </select>
+            </div>
+            <div className="mt-3 flex items-center justify-between px-3 py-1 border border-gray-200 rounded-md text-xs text-gray-400 ">
+              <label>Header</label>
+              <input
+                className="accent-graidient_bottom "
+                value={settings.header}
+                onChange={(e) => {
+                  const temp = { ...settings };
+                  temp.header = e.target.value;
+                  setSettings(temp);
+                }}
+                type="checkbox"
+              />
+            </div>
+            <div className="mt-3 flex items-center justify-between px-3 py-1 border border-gray-200 rounded-md text-xs text-gray-400 ">
+              <label>Footer</label>
+              <input
+                className="accent-graidient_bottom "
+                value={settings.footer}
+                onChange={(e) => {
+                  const temp = { ...settings };
+                  temp.footer = e.target.value;
+                  setSettings(temp);
+                }}
+                type="checkbox"
+              />
+            </div>
+            <div>
+              <h3 className="text-lg mt-3 text-gray-800 font-semibold ">
+                Theme Fill
+              </h3>
+              <div
+                ref={colorButtonRef}
+                className="py-1 mt-2 flex   items-center justify-between border border-gray-100"
+                onClick={() => setShowPicker(true)}
+              >
+                <p className=" text-sm">
+                  <span className="flex gap-1 px-2 items-center">
+                    <div
+                      className="w-4 h-4"
+                      style={{ backgroundColor: settings.color }}
+                    ></div>
+                    {settings.color}
+                  </span>
+                </p>
+              </div>
+            </div>
+            <div className="mt-4">
+              <h3 className="text-lg text-gray-800 font-semibold ">
+                Design Theme
+              </h3>
+              <p className="text-gray-400 text-sm mt-3">Select Designh Theme</p>
+              <div className=" grid grid-cols-2 gap-3 mt-4">
+                <img
+                  onClick={() => {
+                    const temp = { ...settings };
+                    temp.theme = 0;
+                    setSettings(temp);
+                  }}
+                  className="h-28 w-[90%]"
+                  src={theme_0}
+                  alt="sometthing"
+                />
+                <img
+                  onClick={() => {
+                    const temp = { ...settings };
+                    temp.theme = 1;
+                    setSettings(temp);
+                  }}
+                  className="h-28 w-[90%]"
+                  src={theme_1}
+                  alt="sometthing"
+                />
+                <img
+                  onClick={() => {
+                    const temp = { ...settings };
+                    temp.theme = 2;
+                    setSettings(temp);
+                  }}
+                  className="h-28 w-[90%]"
+                  src={theme_2}
+                  alt="sometthing"
+                />
+                <img
+                  onClick={() => {
+                    const temp = { ...settings };
+                    temp.theme = 3;
+                    setSettings(temp);
+                  }}
+                  className="h-28 w-[90%]"
+                  src={theme_3}
+                  alt="sometthing"
+                />
+                <img
+                  onClick={() => {
+                    const temp = { ...settings };
+                    temp.theme = 4;
+                    setSettings(temp);
+                  }}
+                  className="h-28 w-[90%]"
+                  src={theme_4}
+                  alt="sometthing"
+                />
+                <img
+                  onClick={() => {
+                    const temp = { ...settings };
+                    temp.theme = 5;
+                    setSettings(temp);
+                  }}
+                  className="h-28 w-[90%]"
+                  src={theme_5}
+                  alt="sometthing"
+                />
+              </div>
+            </div>
+          </div>
+          <div className="relative w-[1px] h-screen">
+            {showPicker && (
+              <div
+                ref={colorRef}
+                className="absolute top-[25%] -left-1 mt-2 shadow-lg z-50"
+              >
+                <SketchPicker
+                  color={settings.color}
+                  onChange={(updatedColor) => {
+                    const temp = { ...settings };
+                    temp.color = updatedColor.hex;
+                    setSettings(temp);
+                  }}
+                />
+              </div>
+            )}
+          </div>
+        </div>
+      ) : (
         <div> </div>
       )}
 
