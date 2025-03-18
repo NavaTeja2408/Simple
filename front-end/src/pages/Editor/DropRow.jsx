@@ -33,6 +33,7 @@ const DropRow = ({
   setSnapshotLink,
   setLoading,
   loading,
+  settings,
 }) => {
   const [{ isOver }, drop] = useDrop(() => ({
     accept: "TEXT", // Accepts draggable text items
@@ -144,7 +145,7 @@ const DropRow = ({
       style={{
         width: row.type === "brake" ? "100%" : "94%",
         minHeight: "100px",
-        marginBottom: "10px",
+        marginBottom: "0px",
         marginLeft: row.type === "brake" ? "0px" : "20px",
         marginRight: row.type === "brake" ? "0px" : "7px",
         marginTop: selected === index && index === 0 ? "30px" : "0px",
@@ -184,6 +185,7 @@ const DropRow = ({
               }}
               data={row.content}
               preview={preview}
+              settings={settings}
             />
           </div>
         ) : row.type === "heading" ? (
@@ -197,12 +199,18 @@ const DropRow = ({
                 updatedContent[index].content = newData;
                 setRows(updatedContent);
               }}
+              onSizeChange={(newData) => {
+                const updatedData = [...rows];
+                updatedData[index].size = newData;
+                setRows(updatedData);
+              }}
               size={row.size}
               data={row}
               preview={preview}
               moveRowUp={moveRowUp}
               moveRowDown={moveRowDown}
               deleteRow={deleteRow}
+              settings={settings}
             />
           </div>
         ) : row.type === "double-para" ? (
@@ -221,6 +229,7 @@ const DropRow = ({
               }}
               data={row.firstContent}
               preview={preview}
+              settings={settings}
             />
             <RichTextExample
               index={index}
@@ -233,6 +242,7 @@ const DropRow = ({
               }}
               data={row.secondContent}
               preview={preview}
+              settings={settings}
             />
           </div>
         ) : row.type === "image-para" ? (
@@ -257,6 +267,7 @@ const DropRow = ({
                   data={row.content}
                   preview={preview}
                   className="relative"
+                  settings={settings}
                 />
 
                 {switchButton === index && (
@@ -376,6 +387,7 @@ const DropRow = ({
                   data={row.content}
                   preview={preview}
                   className="relative"
+                  settings={settings}
                 />
               </>
             )}
@@ -431,6 +443,7 @@ const DropRow = ({
         ) : row.type === "table" ? (
           <div className="w-full  " onClick={() => setSelected(index)}>
             <Table
+              settings={settings}
               data={row.content}
               design={row.design}
               onUpdate={(newData) => {
@@ -506,7 +519,12 @@ const DropRow = ({
           </div>
         ) : row.type === "cost" ? (
           <div className="w-full  " onClick={() => setSelected(index)}>
-            <CostModuleSlate index={index} rows={row} selected={selected} />
+            <CostModuleSlate
+              settings={settings}
+              index={index}
+              rows={row}
+              selected={selected}
+            />
           </div>
         ) : row.type === "code" ? (
           <div className="w-full  " onClick={() => setSelected(index)}>
@@ -539,7 +557,12 @@ const DropRow = ({
           </div>
         ) : row.type === "price" ? (
           <div className="w-full  " onClick={() => setSelected(index)}>
-            <PriceTermSlate index={index} rows={row} selected={selected} />
+            <PriceTermSlate
+              settings={settings}
+              index={index}
+              rows={row}
+              selected={selected}
+            />
           </div>
         ) : (
           <span>Empty Row</span>

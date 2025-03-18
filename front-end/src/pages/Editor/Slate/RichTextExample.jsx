@@ -311,6 +311,7 @@ const RichTextEditor = ({
   onChange,
   data,
   preview,
+  settings,
 }) => {
   const editor = useMemo(() => withHistory(withReact(createEditor())), []);
   const [value, setValue] = useState(initialValue);
@@ -339,8 +340,8 @@ const RichTextEditor = ({
   return (
     <div
       className={`relative   w-[100%] ${
-        index === indexValue ? "pt-14" : "pt-1"
-      }  p-2 rounded overflow-hidden`}
+        index === indexValue ? "pt-14" : "pt-0"
+      }  px-2 py-1 rounded overflow-hidden`}
       onFocus={() => setIndexValue(index)}
       onBlur={(e) => {
         // Prevent toolbar from hiding when interacting with the dropdowns
@@ -517,9 +518,9 @@ const RichTextEditor = ({
           renderElement={renderElement}
           renderLeaf={renderLeaf}
           placeholder="Paragraph"
-          className={` min-h-[100px] p-2 outline-none ${
+          className={` min-h-[100px] px-2 outline-none ${
             index === indexValue ? "border-[2px] border-gray-300" : "none"
-          }`}
+          } font-${settings.body}`}
           readOnly={preview}
         />
       </Slate>

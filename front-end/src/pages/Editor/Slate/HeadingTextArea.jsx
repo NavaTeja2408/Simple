@@ -109,7 +109,7 @@ const isMarkActive = (editor, format) => {
   return marks ? marks[format] === true : false;
 };
 
-const Element = ({ attributes, children, element }) => {
+const Element = ({ attributes, children, element, size }) => {
   const alignment =
     element.align === "center"
       ? `text-${element.align}`
@@ -117,7 +117,7 @@ const Element = ({ attributes, children, element }) => {
       ? "text-right"
       : "text-left";
 
-  switch (element.type) {
+  switch (size) {
     case "heading-one":
       return (
         <h1 className={`w-full text-4xl ${alignment}`} {...attributes}>
@@ -184,9 +184,11 @@ const MyRichTextEditor = ({
   indexValue,
   setIndexValue,
   onChange,
+  onSizeChange,
   data,
   preview,
   size,
+  settings,
 }) => {
   const [textSize, setTextSize] = useState(size);
   const initialValue = [
@@ -201,14 +203,139 @@ const MyRichTextEditor = ({
       ],
     },
   ];
+
+  const createBorder = (theme, color) => {
+    if (theme === 1) {
+      return size === "heading-one" ? (
+        <div
+          style={{ "--tw-bg-opacity": 1, backgroundColor: color }}
+          className="h-[10px] w-full"
+        ></div>
+      ) : size === "heading-two" ? (
+        <div
+          style={{ "--tw-bg-opacity": 1, backgroundColor: color }}
+          className="h-[5px] w-full"
+        ></div>
+      ) : (
+        <div
+          style={{ "--tw-bg-opacity": 1, backgroundColor: "white" }}
+          className="h-[5px] w-full"
+        ></div>
+      );
+    } else if (theme === 2) {
+      return size === "heading-one" ? (
+        <div
+          style={{ "--tw-bg-opacity": 1, backgroundColor: color }}
+          className="h-[10px] w-full"
+        ></div>
+      ) : size === "heading-two" ? (
+        <div className="w-full h-[5px] flex items-center justify-center">
+          <div
+            style={{ "--tw-bg-opacity": 1, backgroundColor: color }}
+            className="h-[10px] w-[20%]"
+          ></div>
+          <div
+            style={{ "--tw-bg-opacity": 1, backgroundColor: color }}
+            className="h-[2px] w-[80%]"
+          ></div>
+        </div>
+      ) : (
+        <div
+          style={{ "--tw-bg-opacity": 1, backgroundColor: "white" }}
+          className="h-[5px] w-full"
+        ></div>
+      );
+    } else if (theme === 3) {
+      return size === "heading-one" ? (
+        <div
+          style={{ "--tw-bg-opacity": 1, backgroundColor: color }}
+          className="h-[10px] w-[20%]"
+        ></div>
+      ) : size === "heading-two" ? (
+        <div
+          style={{ "--tw-bg-opacity": 1, backgroundColor: color }}
+          className="h-[5px] w-[20%]"
+        ></div>
+      ) : (
+        <div
+          style={{ "--tw-bg-opacity": 1, backgroundColor: "white" }}
+          className="h-[5px] w-full"
+        ></div>
+      );
+    } else if (theme === 4) {
+      return size === "heading-one" ? (
+        <div
+          style={{ "--tw-bg-opacity": 1, backgroundColor: color }}
+          className="h-[10px] w-[20%]"
+        ></div>
+      ) : size === "heading-two" ? (
+        <div
+          style={{ "--tw-bg-opacity": 1, backgroundColor: color }}
+          className="h-[5px] w-[20%]"
+        ></div>
+      ) : (
+        <div
+          style={{ "--tw-bg-opacity": 1, backgroundColor: "white" }}
+          className="h-[5px] w-full"
+        ></div>
+      );
+    } else if (theme === 5) {
+      return size === "heading-one" ? (
+        <div
+          style={{ "--tw-bg-opacity": 1, backgroundColor: color }}
+          className="h-[8px] w-full"
+        ></div>
+      ) : size === "heading-two" ? (
+        <div
+          style={{ "--tw-bg-opacity": 1, backgroundColor: color }}
+          className="h-[6px] w-full"
+        ></div>
+      ) : (
+        <div
+          style={{ "--tw-bg-opacity": 1, backgroundColor: "white" }}
+          className="h-[5px] w-full"
+        ></div>
+      );
+    } else if (theme === 0) {
+      return <div></div>;
+    }
+  };
   const editor = useMemo(() => withHistory(withReact(createEditor())), []);
   const [value, setValue] = useState(initialValue);
   const toolbarRef = useRef(null);
   const editorRef = useRef(null);
   const moveRef = useRef(null);
 
-  const renderElement = useCallback((props) => <Element {...props} />, []);
-  const renderLeaf = useCallback((props) => <Leaf {...props} />, []);
+  const renderElement = useCallback(
+    (props) => <Element {...props} size={size} />,
+    [size]
+  );
+  const renderLeaf = useCallback(
+    (props) => <Leaf {...props} size={size} />,
+    [size]
+  );
+
+  const lightenColor = (hex, percent) => {
+    // Remove "#" if present
+    hex = hex.replace("#", "");
+
+    // Convert hex to RGB values
+    let num = parseInt(hex, 16);
+    let r = (num >> 16) & 255;
+    let g = (num >> 8) & 255;
+    let b = num & 255;
+
+    // Adjust each color channel toward 255 (white)
+    r = Math.round(r + (255 - r) * percent);
+    g = Math.round(g + (255 - g) * percent);
+    b = Math.round(b + (255 - b) * percent);
+
+    return `rgb(${r}, ${g}, ${b})`;
+  };
+
+  // ✅ Usage: Lighten #01070c by 50%
+  const lighterColor = lightenColor("#01070c", 0.5);
+  console.log(lighterColor); // Output: rgb(128, 132, 134) (lighter shade)
 
   return (
     <div
@@ -302,8 +429,11 @@ const MyRichTextEditor = ({
             <div className="relative my-[-3px] flex flex-row ">
               <select
                 className="border border-gray-200 rounded px-2 bg-white py-1 outline-none"
-                onChange={(e) => toggleBlock(editor, e.target.value)}
-                defaultValue="Heading-two"
+                onChange={(e) => {
+                  toggleBlock(editor, e.target.value);
+                  onSizeChange(e.target.value);
+                }}
+                defaultValue={size}
               >
                 <option value="heading-one">H1</option>
                 <option value="heading-two">H2</option>
@@ -360,11 +490,27 @@ const MyRichTextEditor = ({
           renderElement={renderElement}
           renderLeaf={renderLeaf}
           placeholder="Heading"
-          className={` min-h-[20px] p-2 outline-none ${
-            index === indexValue ? "border-[2px] border-gray-300" : "none"
-          }`}
+          style={{
+            "--tw-bg-opacity": 0.4,
+            backgroundColor:
+              settings.theme === 5
+                ? lightenColor(settings.color, 0.8)
+                : "White",
+          }}
+          className={` relative min-h-[20px] p-2 outline-none font-${
+            settings.heading
+          } ${index === indexValue ? "border-[2px] border-gray-300" : "none"}`}
           readOnly={preview}
         />
+        {settings.theme !== 0 && (
+          <div
+            className={`absolute w-full h-[15px] px-2 ${
+              settings.theme === 4 ? "top-0" : "-bottom-2"
+            } left-0`}
+          >
+            {createBorder(settings.theme, settings.color)}{" "}
+          </div>
+        )}
       </Slate>
     </div>
   );

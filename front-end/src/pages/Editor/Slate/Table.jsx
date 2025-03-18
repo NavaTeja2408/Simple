@@ -28,6 +28,7 @@ const Table = ({
   onUnderline,
   italicAll,
   onItalic,
+  settings,
 }) => {
   const [show, setShow] = useState(false);
 
@@ -225,7 +226,7 @@ const Table = ({
 
   return (
     <div
-      className=" w-full flex items-center justify-center py-5   rounded-lg  "
+      className={` w-full flex items-center justify-center py-5   rounded-lg  font-${settings.body} `}
       style={{
         marginTop: show === true ? "40px" : "10px",
       }}

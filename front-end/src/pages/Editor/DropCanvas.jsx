@@ -5,7 +5,7 @@ import axios from "axios";
 import { DatabaseContext } from "../../context/DatabaseContext";
 import { StateManageContext } from "../../context/StateManageContext";
 
-const DropCanvas = ({ rows, setRows, preview, dropCanvasRef }) => {
+const DropCanvas = ({ rows, setRows, preview, dropCanvasRef, settings }) => {
   const [bookmark, setBookmark] = useState(null);
   const [snapshotLink, setSnapshotLink] = useState("");
   const [savedTitile, setSavedTitle] = useState("");
@@ -128,10 +128,16 @@ const DropCanvas = ({ rows, setRows, preview, dropCanvasRef }) => {
             setSnapshotLink={setSnapshotLink}
             loading={loading}
             setLoading={setLoading}
+            settings={settings}
           />
         </div>
       ))}
-      <button onClick={() => console.log(rows)}>Show data</button>
+      <button
+        className={`font-${settings.body}`}
+        onClick={() => console.log(rows)}
+      >
+        Show data
+      </button>
       {bookmark !== null && (
         <div className="fixed inset-0 bg-black bg-opacity-20 flex items-center justify-center p-4 z-[1000]">
           <div className="bg-white  rounded-lg shadow-xl w-[40%] min-h-[35%] flex flex-col relative">

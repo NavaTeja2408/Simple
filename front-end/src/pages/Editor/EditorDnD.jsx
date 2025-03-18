@@ -49,10 +49,11 @@ const EditorDnD = () => {
     tableBorderThickness: 1,
   });
   const [settings, setSettings] = useState({
-    heading: "Arieal",
-    body: "Arieal",
+    heading: "arial",
+    body: "arial",
     header: false,
     footer: false,
+    color: "#9b9b9b",
     theme: 0,
   });
   const [active, setActive] = useState("elements");
@@ -386,6 +387,8 @@ const EditorDnD = () => {
             setStyle={setStyle}
             rows={rows}
             setRows={setRows}
+            settings={settings}
+            setSettings={setSettings}
           />
         </div>
 
@@ -396,6 +399,7 @@ const EditorDnD = () => {
         >
           <DropCanvas
             rows={rows}
+            settings={settings}
             setRows={setRows}
             preview={preview}
             setSignEdit={setSignEdit}

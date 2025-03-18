@@ -192,7 +192,7 @@ const EditorHeader = ({
 
     // Cleanup timeout when component unmounts
     return () => clearTimeout(updateTimeout.current);
-  }, [rows]); // Runs only when rows change
+  }, [rows, settings]); // Runs only when rows change
   return (
     <div className="w-full flex items-center justify-evenly h-16 px-5 border-b-[1px] border-gray-200 shadow-lg">
       <div className="flex flex-row w-[40%] items-center justify-start gap-2">

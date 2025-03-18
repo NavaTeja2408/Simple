@@ -29,6 +29,7 @@ const DashboardFirst = () => {
             body: "Arieal",
             header: false,
             footer: false,
+            color: "#9b9b9b",
             theme: 0,
           },
         }

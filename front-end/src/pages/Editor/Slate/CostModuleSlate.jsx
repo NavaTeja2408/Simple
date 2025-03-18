@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { StateManageContext } from "../../../context/StateManageContext";
 import { FaEdit } from "react-icons/fa";
 
-const CostModuleSlate = ({ index, rows, selected }) => {
+const CostModuleSlate = ({ index, rows, selected, settings }) => {
   const calculateTotalAmount = () => {
     return rows.content?.reduce((total, row) => total + (row.amount || 0), 0);
   };
@@ -25,7 +25,7 @@ const CostModuleSlate = ({ index, rows, selected }) => {
   const { setCostModeule, setCostMouleEdit } = useContext(StateManageContext);
 
   return (
-    <div className="p-7 py-10 relative">
+    <div className={`p-7 py-6 relative font-${settings.body}`}>
       {selected !== null && (
         <button
           onClick={() => {

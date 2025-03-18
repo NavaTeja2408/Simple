@@ -25,18 +25,19 @@ import help from "../../assets/help.png";
 import heading_one from "../../assets/heading_one.png";
 import image_in from "../../assets/Image_in.png";
 import image_paragraph from "../../assets/Image_paragraph.png";
-
-import Footer from "../../assets/Footer.png";
-import Sidebar_header from "../../assets/Sidebar_header.png";
-import margin from "../../assets/margin.png";
-import color from "../../assets/color.png";
-import typography from "../../assets/typography.png";
+import theme_0 from "../../assets/theme-0.png";
+import theme_1 from "../../assets/theme-1.png";
+import theme_2 from "../../assets/theme-2.png";
+import theme_3 from "../../assets/theme-3.png";
+import theme_4 from "../../assets/theme-4.png";
+import theme_5 from "../../assets/theme-5.png";
 
 import ContentSideBar from "./SideBarComponents/ContentSideBar";
 import { FaAngleDoubleLeft } from "react-icons/fa";
 import single_para from "../../assets/single_para.png";
 import double_para from "../../assets/double_para.png";
 import { StateManageContext } from "../../context/StateManageContext";
+import { SketchPicker } from "react-color";
 
 const Sidebar = ({
   selected,
@@ -52,6 +53,8 @@ const Sidebar = ({
   setActive,
   rows,
   setRows,
+  settings,
+  setSettings,
 }) => {
   const { user } = useContext(UserContext);
   const section_1_row = {
@@ -400,6 +403,7 @@ const Sidebar = ({
 
   const [thirdLevel, setThirdLevel] = useState("");
   const headingRef = useRef(null);
+  const [showPicker, setShowPicker] = useState(false);
   const handleClickOutsideHeading = (event) => {
     if (headingRef.current && !headingRef.current.contains(event.target)) {
       setThirdLevel("");
@@ -421,6 +425,26 @@ const Sidebar = ({
     };
   }, []);
 
+  const colorRef = useRef();
+  const colorButtonRef = useRef();
+
+  const handleClickOutsideColor = (event) => {
+    if (
+      colorRef.current &&
+      !colorRef.current.contains(event.target) &&
+      colorButtonRef.current &&
+      !colorButtonRef.current.contains(event.target)
+    ) {
+      setShowPicker(false);
+    }
+  };
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutsideColor);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutsideColor);
+    };
+  }, []);
+
   const renderHeadingLinks = (items, index, prefix = "") => {
     return items?.flatMap((item, idx) =>
       (item.type === "heading-one" ||
@@ -430,20 +454,20 @@ const Sidebar = ({
         ? item.children.map(
             (child, childIdx) =>
               child.text !== "" && (
-                <p
-                  onClick={() => setScrollIndex(index)}
-                  className={`px-1 mt-[1px] cursor-pointer hover:text-black flex gap-1 items-start ${
-                    item.type === "heading-one"
-                      ? "text-gray-700 text-md font-semibold"
-                      : "text-gray-500"
-                  }`}
-                  key={`${index}-${prefix}-${idx}-${childIdx}`}
-                >
-                  <FaAngleDoubleLeft className="rotate-180 mt-1" />
-                  <span className="flex-1 w-[90%] break-words">
+                <div className="w-full  text-ellipsis flex items-center justify-start px-1 ">
+                  <FaAngleDoubleLeft className="rotate-180 p-[2px] text-gray-400 mt-1 mr-1 " />
+                  <p
+                    onClick={() => setScrollIndex(index)}
+                    className={`w-[95%] mt-[1px] overflow-hidden text-ellipsis cursor-pointer hover:text-black whitespace-nowrap ${
+                      item.type === "heading-one"
+                        ? "text-gray-700 text-md font-semibold"
+                        : "text-gray-500"
+                    }`}
+                    key={`${index}-${prefix}-${idx}-${childIdx}`}
+                  >
                     {child.text}
-                  </span>
-                </p>
+                  </p>
+                </div>
               )
           )
         : []
@@ -720,11 +744,11 @@ const Sidebar = ({
           </button> */}
         </div>
       ) : active === "outline" ? (
-        <div className="w-[240px] h-screen pr-4 border-r-2 border-gray-200  pb-10 scrollbar-thin flex flex-col">
+        <div className="w-[220px] h-screen pr-4 border-r-2 border-gray-200  pb-10 scrollbar-thin flex flex-col">
           <p className="w-full text-start p-2 px-2 text-gray-400 mb-1 ">
             Outline
           </p>
-          <div className="w-full h-screen break-words pl-2 scrollbar-thin flex flex-col overflow-y-auto ">
+          <div className="w-full h-screen pl-2 scrollbar-thin flex flex-col overflow-y-auto gap-1 ">
             {rows?.map((row, index) => {
               if (row.type === "heading") {
                 return renderHeadingLinks(row.content, index);
@@ -744,95 +768,198 @@ const Sidebar = ({
           </div>
         </div>
       ) : active === "layout" ? (
-        <div className="grid grid-cols-2 w-[240px] h-[65%] pr-4   ">
-          <button
-            onClick={() => setActive("margin-3")}
-            className="h-20 w-[75%]   m-3 flex flex-col items-center justify-center 
-            bg-gradient-to-b from-editor_button_top to-editor_button_bot 
-           gap-2 shadow-lg"
-            style={{
-              border: "1px solid rgba(152 , 152 , 152 , 1)",
-              boxShadow: "1px 2px 4px gray",
-            }}
-          >
-            <img src={margin} className="w-6" alt="heading" />
-            <p className="text-xs">Margin</p>
-          </button>
-          <button
-            className="h-20 w-[75%] m-3 flex flex-col items-center justify-center 
-            bg-gradient-to-b from-editor_button_top to-editor_button_bot  gap-2 shadow-lg"
-            style={{
-              border:
-                selected === "input"
-                  ? "1px solid rgba(223, 6, 78, 0.3)"
-                  : "1px solid rgba(152 , 152 , 152 , 1)",
-              boxShadow:
-                selected === "input"
-                  ? "inset 0px 10px 20px rgba(223, 6, 78, 0.2)"
-                  : "1px 2px 4px gray",
-            }}
-          >
-            <img src={Sidebar_header} className="w-6" alt="heading" />
-            <p className="text-xs">Header</p>
-          </button>
-          <button
-            className="h-20 w-[75%] m-3 flex flex-col items-center justify-center 
-            bg-gradient-to-b from-editor_button_top to-editor_button_bot border-[1px] 
-            border-[rgba(152 , 152 , 152 , 1)] gap-2 shadow-lg"
-            style={{
-              border:
-                selected === "double"
-                  ? "1px solid rgba(223, 6, 78, 0.3)"
-                  : "1px solid rgba(152 , 152 , 152 , 1)",
-              boxShadow:
-                selected === "double"
-                  ? "inset 0px 10px 20px rgba(223, 6, 78, 0.2)"
-                  : "1px 2px 4px gray",
-            }}
-          >
-            <img src={Footer} className="w-6 " alt="heading" />
-            <p className="text-xs w-[60%] text-center">Footer</p>
-          </button>
-        </div>
-      ) : active === "themes" ? (
-        <div className="grid grid-cols-2 w-[240px] h-[65%] pr-4  ">
-          <button
-            onClick={() => setActive("typography-3")}
-            className="h-20 w-[75%]   m-3 flex flex-col items-center justify-center 
-            bg-gradient-to-b from-editor_button_top to-editor_button_bot 
-           gap-2 shadow-lg"
-            style={{
-              border:
-                selected === "heading"
-                  ? "1px solid rgba(223, 6, 78, 0.3)"
-                  : "1px solid rgba(152 , 152 , 152 , 1)",
-              boxShadow:
-                selected === "heading"
-                  ? "inset 0px 10px 20px rgba(223, 6, 78, 0.2)"
-                  : "1px 2px 4px gray",
-            }}
-          >
-            <img src={typography} className="w-6" alt="heading" />
-            <p className="text-xs">Typography</p>
-          </button>
-          <button
-            onClick={() => setActive("colors-3")}
-            className="h-20 w-[75%] m-3 flex flex-col items-center justify-center 
-            bg-gradient-to-b from-editor_button_top to-editor_button_bot  gap-2 shadow-lg"
-            style={{
-              border:
-                selected === "input"
-                  ? "1px solid rgba(223, 6, 78, 0.3)"
-                  : "1px solid rgba(152 , 152 , 152 , 1)",
-              boxShadow:
-                selected === "input"
-                  ? "inset 0px 10px 20px rgba(223, 6, 78, 0.2)"
-                  : "1px 2px 4px gray",
-            }}
-          >
-            <img src={color} className="w-6" alt="heading" />
-            <p className="text-xs">Color</p>
-          </button>
+        <div className="flex flex-row">
+          <div className=" w-[220px] h-screen px-4 py-4 border-r-2 border-gray-200  pb-20 scrollbar-thin flex flex-col overflow-y-scroll overflow-x-hidden  ">
+            <h3 className="text-lg text-gray-800 font-semibold ">Typography</h3>
+            <div className="mt-4">
+              <label className="text-sm text-gray-400 mb-2">Heading Font</label>
+              <select
+                value={settings.heading}
+                onChange={(e) => {
+                  const temp = { ...settings };
+                  temp.heading = e.target.value;
+                  setSettings(temp);
+                }}
+                className="w-full py-1 px-1 outline-none border border-gray-50 rounded-md text-gray-400 text-xs
+            "
+              >
+                <option value="arial">Arial</option>
+                <option value="helvetica">Helvetica</option>
+                <option value="poppins">Poppins</option>
+                <option value="montserrat">Montserrat</option>
+                <option value="roboto">Roboto</option>
+                <option value="times-new-roman">Times New Roman</option>
+                <option value="georgia">Georgia</option>
+                <option value="playfair-display">Playfair Display</option>
+                <option value="merriweather">Merriweather</option>
+                <option value="garamond">Garamond</option>
+                <option value="lobster">Lobster</option>
+                <option value="pacifico">Pacifico</option>
+                <option value="bebas-neue">Bebas Neue</option>
+                <option value="anton">Anton</option>
+                <option value="oswald">Oswald</option>
+              </select>
+            </div>
+            <div className="mt-2 gap-1">
+              <label className="text-sm text-gray-400 mb-2">Body Font</label>
+              <select
+                value={settings.body}
+                onChange={(e) => {
+                  const temp = { ...settings };
+                  temp.body = e.target.value;
+                  setSettings(temp);
+                }}
+                className="w-full py-1 px-1 outline-none border border-gray-50 rounded-md text-gray-400 text-xs"
+              >
+                <option value="arial">Arial</option>
+                <option value="helvetica">Helvetica</option>
+                <option value="poppins">Poppins</option>
+                <option value="montserrat">Montserrat</option>
+                <option value="roboto">Roboto</option>
+                <option value="times-new-roman">Times New Roman</option>
+                <option value="georgia">Georgia</option>
+                <option value="playfair-display">Playfair Display</option>
+                <option value="merriweather">Merriweather</option>
+                <option value="garamond">Garamond</option>
+                <option value="lobster">Lobster</option>
+                <option value="pacifico">Pacifico</option>
+                <option value="bebas-neue">Bebas Neue</option>
+                <option value="anton">Anton</option>
+                <option value="oswald">Oswald</option>
+              </select>
+            </div>
+            <div className="mt-3 flex items-center justify-between px-3 py-1 border border-gray-200 rounded-md text-xs text-gray-400 ">
+              <label>Header</label>
+              <input
+                className="accent-graidient_bottom "
+                value={settings.header}
+                onChange={(e) => {
+                  const temp = { ...settings };
+                  temp.header = e.target.value;
+                  setSettings(temp);
+                }}
+                type="checkbox"
+              />
+            </div>
+            <div className="mt-3 flex items-center justify-between px-3 py-1 border border-gray-200 rounded-md text-xs text-gray-400 ">
+              <label>Footer</label>
+              <input
+                className="accent-graidient_bottom "
+                value={settings.footer}
+                onChange={(e) => {
+                  const temp = { ...settings };
+                  temp.footer = e.target.value;
+                  setSettings(temp);
+                }}
+                type="checkbox"
+              />
+            </div>
+            <div>
+              <h3 className="text-lg mt-3 text-gray-800 font-semibold ">
+                Theme Fill
+              </h3>
+              <div
+                ref={colorButtonRef}
+                className="py-1 mt-2 flex   items-center justify-between border border-gray-100"
+                onClick={() => setShowPicker(true)}
+              >
+                <p className=" text-sm">
+                  <span className="flex gap-1 px-2 items-center">
+                    <div
+                      className="w-4 h-4"
+                      style={{ backgroundColor: settings.color }}
+                    ></div>
+                    {settings.color}
+                  </span>
+                </p>
+              </div>
+            </div>
+            <div className="mt-4">
+              <h3 className="text-lg text-gray-800 font-semibold ">
+                Design Theme
+              </h3>
+              <p className="text-gray-400 text-sm mt-3">Select Designh Theme</p>
+              <div className=" grid grid-cols-2 gap-3 mt-4">
+                <img
+                  onClick={() => {
+                    const temp = { ...settings };
+                    temp.theme = 0;
+                    setSettings(temp);
+                  }}
+                  className="h-28 w-[90%]"
+                  src={theme_0}
+                  alt="sometthing"
+                />
+                <img
+                  onClick={() => {
+                    const temp = { ...settings };
+                    temp.theme = 1;
+                    setSettings(temp);
+                  }}
+                  className="h-28 w-[90%]"
+                  src={theme_1}
+                  alt="sometthing"
+                />
+                <img
+                  onClick={() => {
+                    const temp = { ...settings };
+                    temp.theme = 2;
+                    setSettings(temp);
+                  }}
+                  className="h-28 w-[90%]"
+                  src={theme_2}
+                  alt="sometthing"
+                />
+                <img
+                  onClick={() => {
+                    const temp = { ...settings };
+                    temp.theme = 3;
+                    setSettings(temp);
+                  }}
+                  className="h-28 w-[90%]"
+                  src={theme_3}
+                  alt="sometthing"
+                />
+                <img
+                  onClick={() => {
+                    const temp = { ...settings };
+                    temp.theme = 4;
+                    setSettings(temp);
+                  }}
+                  className="h-28 w-[90%]"
+                  src={theme_4}
+                  alt="sometthing"
+                />
+                <img
+                  onClick={() => {
+                    const temp = { ...settings };
+                    temp.theme = 5;
+                    setSettings(temp);
+                  }}
+                  className="h-28 w-[90%]"
+                  src={theme_5}
+                  alt="sometthing"
+                />
+              </div>
+            </div>
+          </div>
+          <div className="relative w-[1px] h-screen">
+            {showPicker && (
+              <div
+                ref={colorRef}
+                className="absolute top-[25%] -left-1 mt-2 shadow-lg z-50"
+              >
+                <SketchPicker
+                  color={settings.color}
+                  onChange={(updatedColor) => {
+                    const temp = { ...settings };
+                    temp.color = updatedColor.hex;
+                    setSettings(temp);
+                  }}
+                />
+              </div>
+            )}
+          </div>
         </div>
       ) : (
         <div> </div>

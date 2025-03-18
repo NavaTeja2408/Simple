@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { StateManageContext } from "../../../context/StateManageContext";
 import { FaEdit } from "react-icons/fa";
 
-const PriceTermSlate = ({ index, rows, selected }) => {
+const PriceTermSlate = ({ index, rows, selected, settings }) => {
   const calculateTotalPercentage = () => {
     let value = 0;
     rows.content.forEach((element) => {
@@ -20,7 +20,9 @@ const PriceTermSlate = ({ index, rows, selected }) => {
   const { setPriceTerms, setPriceTermsEdit } = useContext(StateManageContext);
 
   return (
-    <div className="w-full flex flex-row min-h-[100px] px-6 py-8">
+    <div
+      className={`w-full flex flex-row min-h-[100px] px-6 py-5 font-${settings.body}`}
+    >
       {selected !== null && (
         <button
           onClick={() => {
