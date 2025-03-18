@@ -445,34 +445,34 @@ const Sidebar = ({
     };
   }, []);
 
-  // const renderHeadingLinks = (items, index, prefix = "") => {
-  //   return items?.flatMap((item, idx) =>
-  //     (item.type === "heading-one" ||
-  //       item.type === "heading-two" ||
-  //       item.type === "heading-three") &&
-  //     item.children
-  //       ? item.children.map(
-  //           (child, childIdx) =>
-  //             child.text !== "" && (
-  //               <div className="w-full  text-ellipsis flex items-center justify-start px-1 ">
-  //                 <FaAngleDoubleLeft className="rotate-180 p-[2px] text-gray-400 mt-1 mr-1 " />
-  //                 <p
-  //                   onClick={() => setScrollIndex(index)}
-  //                   className={`w-[95%] mt-[1px] overflow-hidden text-ellipsis cursor-pointer hover:text-black whitespace-nowrap ${
-  //                     item.type === "heading-one"
-  //                       ? "text-gray-700 text-md font-semibold"
-  //                       : "text-gray-500"
-  //                   }`}
-  //                   key={`${index}-${prefix}-${idx}-${childIdx}`}
-  //                 >
-  //                   {child.text}
-  //                 </p>
-  //               </div>
-  //             )
-  //         )
-  //       : []
-  //   );
-  // };
+  const renderHeadingLinks = (items, index, prefix = "") => {
+    return items?.flatMap((item, idx) =>
+      (item.type === "heading-one" ||
+        item.type === "heading-two" ||
+        item.type === "heading-three") &&
+      item.children
+        ? item.children.map(
+            (child, childIdx) =>
+              child.text !== "" && (
+                <div className="w-full  text-ellipsis flex items-center justify-start px-1 ">
+                  <FaAngleDoubleLeft className="rotate-180 p-[2px] text-gray-400 mt-1 mr-1 " />
+                  <p
+                    onClick={() => setScrollIndex(index)}
+                    className={`w-[95%] mt-[1px] overflow-hidden text-ellipsis cursor-pointer hover:text-black whitespace-nowrap ${
+                      item.type === "heading-one"
+                        ? "text-gray-700 text-md font-semibold"
+                        : "text-gray-500"
+                    }`}
+                    key={`${index}-${prefix}-${idx}-${childIdx}`}
+                  >
+                    {child.text}
+                  </p>
+                </div>
+              )
+          )
+        : []
+    );
+  };
 
   return (
     <div className="flex flex-row">
@@ -748,7 +748,7 @@ const Sidebar = ({
           <p className="w-full text-start p-2 px-2 text-gray-400 mb-1 ">
             Outline
           </p>
-          {/* <div className="w-full h-screen pl-2 scrollbar-thin flex flex-col overflow-y-auto gap-1 ">
+          <div className="w-full h-screen pl-2 scrollbar-thin flex flex-col overflow-y-auto gap-1 ">
             {rows?.map((row, index) => {
               if (row.type === "heading") {
                 return renderHeadingLinks(row.content, index);
@@ -765,7 +765,7 @@ const Sidebar = ({
 
               return null;
             })}
-          </div> */}
+          </div>
         </div>
       ) : active === "layout" ? (
         <div className="flex flex-row">
