@@ -2,6 +2,7 @@ const UserModel = require("../models/tempModel");
 const WorkspaceModel = require("../models/workspaceModel");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const RecycleModel = require("../models/RecycleBinModel");
 
 const login = async (req, res) => {
   const { email, password } = req.body;
@@ -123,6 +124,12 @@ const signUp = async (req, res) => {
     workspace.activities.push("New Workspace has been created");
     workspace.userActive.push(user._id);
     await workspace.save();
+
+    const Recycle = new RecycleModel({
+      user: newuser._id,
+    });
+
+    await Recycle.save();
 
     return res.status(201).json(user);
   } catch (error) {

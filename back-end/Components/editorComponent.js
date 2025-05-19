@@ -1,6 +1,8 @@
 const GoalModuleModel = require("../models/goalModuleModel");
 const ProposalModel = require("../models/proposeModel");
+const RecycleModel = require("../models/RecycleBinModel");
 const UserModel = require("../models/tempModel");
+const WorkspaceModel = require("../models/workspaceModel");
 const createProposal = async (req, res) => {
   const { email, workspace_id, name, settings } = req.body;
 
@@ -22,6 +24,9 @@ const createProposal = async (req, res) => {
       favorate: false,
       locked: false,
       settings: settings,
+      status: "Draft",
+      views: 0,
+      lastUpdate: new Date(),
     });
 
     await proposal.save();
@@ -34,6 +39,13 @@ const createProposal = async (req, res) => {
     user.proposals.push(proposal._id);
 
     await user.save();
+
+    const workspace = await WorkspaceModel.findById(workspace_id);
+    if (!workspace.proposals) {
+      workspace.proposals = [];
+    }
+    workspace.proposals.push(proposal._id);
+    await workspace.save();
 
     return res.status(201).json(proposal);
   } catch (error) {
@@ -95,10 +107,46 @@ const updateLocked = async (req, res) => {
   }
 };
 
-const deleteProposal = (req, res) => {
-  res.json({
-    message: "something",
-  });
+const deleteProposal = async (req, res) => {
+  const { proposalId, user_id } = req.body;
+
+  try {
+    // Find the proposal
+    const proposal = await ProposalModel.findById(proposalId);
+    if (!proposal) {
+      return res.status(404).json({ message: "Proposal not found" });
+    }
+
+    // Find the workspace containing the proposal
+    const workspace = await WorkspaceModel.findById(proposal.workspaces[0]);
+    if (!workspace) {
+      return res.status(404).json({ message: "Workspace not found" });
+    }
+
+    // Remove proposalId from workspace.proposals array
+    workspace.proposals = workspace.proposals.filter(
+      (item) => item.toString() !== proposalId
+    );
+    await workspace.save();
+
+    // Find the user's recycle bin
+    let recycle = await RecycleModel.findOne({ user: user_id });
+    if (!recycle) {
+      // Create a new recycle bin if not found
+      recycle = new RecycleModel({ user: user_id, proposals: [] });
+    }
+
+    // Push the deleted proposal to the recycle bin
+    recycle.proposals.push(proposalId);
+    await recycle.save();
+
+    return res
+      .status(200)
+      .json({ message: "Proposal deleted and moved to recycle bin" });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Internal server error" });
+  }
 };
 
 const getAllProposal = async (req, res) => {
@@ -111,7 +159,9 @@ const getAllProposal = async (req, res) => {
   try {
     const proposals = await ProposalModel.find({
       workspaces: workspace_id,
-    }).lean(); // Add `lean()` for plain objects
+    })
+      .sort({ createdAt: -1 })
+      .lean(); // Add `lean()` for plain objects
 
     if (!proposals || proposals.length === 0) {
       return res
@@ -196,6 +246,44 @@ const deleteGoal = (req, res) => {
   });
 };
 
+const updateViews = async (req, res) => {
+  const { id } = req.body;
+  try {
+    const proposal = await ProposalModel.findByIdAndUpdate(
+      id,
+      { $inc: { views: 1 } }, // Increment views
+      { new: true } // Return the updated document
+    );
+
+    if (!proposal) {
+      return res.status(404).json({ message: "error" });
+    }
+    await proposal.save();
+    return res.status(201).json(proposal);
+  } catch (error) {
+    console.error("Error creating proposal:", error);
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
+const updateLastseen = async (req, res) => {
+  const { id } = req.body;
+  try {
+    const proposal = await ProposalModel.findByIdAndUpdate(id, {
+      lastUpdate: new Date(),
+      lastSeen: new Date(),
+    });
+    if (!proposal) {
+      return res.status(404).json({ message: "error" });
+    }
+    await proposal.save();
+    return res.status(201).json(proposal);
+  } catch (error) {
+    console.error("Error creating proposal:", error);
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
 module.exports = {
   createGoal,
   createProposal,
@@ -207,4 +295,6 @@ module.exports = {
   deleteProposal,
   updateFavorate,
   updateLocked,
+  updateViews,
+  updateLastseen,
 };

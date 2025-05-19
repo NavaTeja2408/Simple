@@ -335,7 +335,6 @@ const MyRichTextEditor = ({
 
   // ✅ Usage: Lighten #01070c by 50%
   const lighterColor = lightenColor("#01070c", 0.5);
-  console.log(lighterColor); // Output: rgb(128, 132, 134) (lighter shade)
 
   return (
     <div
@@ -508,7 +507,7 @@ const MyRichTextEditor = ({
               settings.theme === 4 ? "top-0" : "-bottom-2"
             } left-0`}
           >
-            {createBorder(settings.theme, settings.color)}{" "}
+            {createBorder(settings.theme, settings.color)}
           </div>
         )}
       </Slate>

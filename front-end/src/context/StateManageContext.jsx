@@ -10,6 +10,7 @@ export function StateManageContextProvider({ children }) {
   const [costModuleEdit, setCostMouleEdit] = useState(null);
   const [priceTermsEdit, setPriceTermsEdit] = useState(null);
   const [scrollIndex, setScrollIndex] = useState(null);
+  const [newProposal, setNewProposal] = useState(false);
 
   return (
     <StateManageContext.Provider
@@ -28,6 +29,8 @@ export function StateManageContextProvider({ children }) {
         setPriceTermsEdit,
         scrollIndex,
         setScrollIndex,
+        newProposal,
+        setNewProposal,
       }}
     >
       {children}

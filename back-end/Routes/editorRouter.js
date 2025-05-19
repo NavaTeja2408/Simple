@@ -11,6 +11,8 @@ const {
   deleteProposal,
   updateLocked,
   updateFavorate,
+  updateViews,
+  updateLastseen,
 } = require("../Components/editorComponent");
 
 const editor = express.Router();
@@ -21,6 +23,8 @@ editor.post("/newproposal", createProposal);
 editor.put("/updateProposal", updateProposal);
 editor.put("/locked", updateLocked);
 editor.put("/favorate", updateFavorate);
+editor.put("/views", updateViews);
+editor.put("/lastseen", updateLastseen);
 editor.get("/getproposal", getAllProposal);
 editor.post("/newgoal", createGoal);
 editor.get("/getgoals", getGoal);

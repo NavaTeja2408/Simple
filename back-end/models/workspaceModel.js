@@ -42,6 +42,12 @@ const WorkspaceSchema = new Schema(
     favorate: {
       type: Boolean,
     },
+    collabUsers: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
   },
   { timestamps: true }
 );

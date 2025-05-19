@@ -132,12 +132,7 @@ const DropCanvas = ({ rows, setRows, preview, dropCanvasRef, settings }) => {
           />
         </div>
       ))}
-      <button
-        className={`font-${settings.body}`}
-        onClick={() => console.log(rows)}
-      >
-        Show data
-      </button>
+      <button onClick={() => console.log(rows)}>Show data</button>
       {bookmark !== null && (
         <div className="fixed inset-0 bg-black bg-opacity-20 flex items-center justify-center p-4 z-[1000]">
           <div className="bg-white  rounded-lg shadow-xl w-[40%] min-h-[35%] flex flex-col relative">

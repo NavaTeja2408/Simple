@@ -16,12 +16,12 @@ const ProposalSchema = new Schema(
         type: Object,
       },
     ],
-    // workspace: [
-    //   {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: "Workspaces",
-    //   },
-    // ],
+    workspaces: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Workspaces",
+      },
+    ],
     readOnlyUsers: [
       {
         type: mongoose.Schema.Types.ObjectId,
@@ -52,12 +52,6 @@ const ProposalSchema = new Schema(
         ref: "User",
       },
     ],
-    workspaces: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-      },
-    ],
     locked: {
       type: Boolean,
     },
@@ -66,6 +60,38 @@ const ProposalSchema = new Schema(
     },
     settings: {
       type: Object,
+    },
+    views: {
+      type: Number,
+    },
+    Status: {
+      type: String,
+    },
+
+    lastUpdate: {
+      type: Date,
+    },
+
+    analytics: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Analytics",
+      },
+    ],
+
+    sectionWise: {
+      type: Object,
+    },
+
+    totalTime: {
+      type: Number,
+    },
+
+    lastSeen: {
+      type: Date,
+    },
+    recycle: {
+      type: Boolean,
     },
 
     // activities: [

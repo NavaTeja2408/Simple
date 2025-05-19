@@ -1,5 +1,15 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+import Dashboard from "../pages/Dashboard/Dashboard.jsx";
+import DashboardHome from "../pages/Dashboard/DashboardHome.jsx";
+import DashboardDrafts from "../pages/Dashboard/DashboardDrafts.jsx";
+import DashboardRecycle from "../pages/Dashboard/DashboardRecycle.jsx";
+import DashboardProposals from "../pages/Dashboard/DashboardProposals.jsx";
+import DashboardAnalytics from "../pages/Dashboard/DashboardAnalytics.jsx";
+import Profile from "../pages/Dashboard/Profile.jsx";
+import Subscription from "../pages/Dashboard/Subscription.jsx";
+import GeneralSettings from "../pages/Dashboard/GeneralSettings.jsx";
+import ManageUsers from "../pages/Dashboard/ManageUsers.jsx";
 const Home = React.lazy(() => import("../pages/website/Home"));
 const Signup = React.lazy(() => import("../pages/website/Signup"));
 const Pricing = React.lazy(() => import("../pages/website/Pricing"));
@@ -34,10 +44,19 @@ const WebsiteRoute = () => {
             </div>
           }
         />
+        <Route path="/home" element={<DashboardHome />} />
+        <Route path="/drafts" element={<DashboardDrafts />} />
+        <Route path="/recycle" element={<DashboardRecycle />} />
+        <Route path="/proposals" element={<DashboardProposals />} />
         <Route path="/view/:id" element={<Preview />} />
-
         <Route path="/workspaces" element={<AllWorkspace />} />
+
         <Route path="/workspace/:id" element={<DashboardFirst />} />
+        <Route path="/analytics/:id" element={<DashboardAnalytics />} />
+        <Route path="profile" element={<Profile />} />
+        <Route path="subscription" element={<Subscription />} />
+        <Route path="settings" element={<GeneralSettings />} />
+        <Route path="manage" element={<ManageUsers />} />
       </Routes>
     </>
   );

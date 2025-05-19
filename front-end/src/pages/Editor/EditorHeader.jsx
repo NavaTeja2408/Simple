@@ -105,6 +105,21 @@ const EditorHeader = ({
       console.log(error);
     }
   };
+
+  const handleLastSeen = async () => {
+    try {
+      await axios.put(`${databaseUrl}/api/editor/lastseen`, {
+        id: id,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    handleLastSeen();
+  }, []);
+
   const handleClickOutsideLock = (event) => {
     if (lockRef.current && !lockRef.current.contains(event.target)) {
       setLock(false);
@@ -179,20 +194,24 @@ const EditorHeader = ({
   const updateTimeout = useRef(null);
 
   useEffect(() => {
-    // Clear any existing timeout when rows change
+    // Clear any existing timeout when dependencies change
     if (updateTimeout.current) {
       clearTimeout(updateTimeout.current);
     }
 
-    // Set a new timeout to wait 2 seconds after last change
+    // Set a new timeout to wait 5 seconds after the last change
     updateTimeout.current = setTimeout(() => {
-      updateProposal(); // Execute only once after rows stop changing
+      updateProposal(); // Execute only once after rows/settings stop changing
       updateTimeout.current = null; // Reset reference after execution
-    }, 2000);
+    }, 5000);
 
     // Cleanup timeout when component unmounts
-    return () => clearTimeout(updateTimeout.current);
-  }, [rows, settings]); // Runs only when rows change
+    return () => {
+      if (updateTimeout.current) {
+        clearTimeout(updateTimeout.current);
+      }
+    };
+  }, [rows, settings]);
   return (
     <div className="w-full flex items-center justify-evenly h-16 px-5 border-b-[1px] border-gray-200 shadow-lg">
       <div className="flex flex-row w-[40%] items-center justify-start gap-2">

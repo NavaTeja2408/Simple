@@ -1,14 +1,11 @@
-import React, { useContext, useEffect, useState, useRef } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { UserContext } from "../../context/UserContext";
-import axios from "axios";
-import { DatabaseContext } from "../../context/DatabaseContext";
-import NewProposal from "./NewProposal";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Dashboard from "./Dashboard";
+import { UserContext } from "../../context/UserContext";
+import { DatabaseContext } from "../../context/DatabaseContext";
+import axios from "axios";
+import { useAsyncError, useNavigate } from "react-router-dom";
 import { FiEye } from "react-icons/fi";
 import { GoLink } from "react-icons/go";
-import { CiLock } from "react-icons/ci";
-import { LiaEditSolid } from "react-icons/lia";
 import { FaRegCopy } from "react-icons/fa6";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { SiSimpleanalytics } from "react-icons/si";
@@ -16,26 +13,19 @@ import { IoMdLock } from "react-icons/io";
 import { FaRegFileLines } from "react-icons/fa6";
 import { FaRegStar } from "react-icons/fa6";
 import { FaStar } from "react-icons/fa6";
-import { FaRegFolder } from "react-icons/fa";
-import { FiArrowLeft } from "react-icons/fi";
 import { FaCheck } from "react-icons/fa";
+import { FaRegFolder } from "react-icons/fa";
 
-const DashboardFirst = () => {
-  const navigate = useNavigate();
+const DashboardProposals = () => {
   const { user } = useContext(UserContext);
-  const [popup, setPopup] = useState(false);
   const { databaseUrl } = useContext(DatabaseContext);
-  const { id } = useParams();
-  const [selLocked, setSelLoacked] = useState([]);
-  const blockRef = useRef();
-  const buttonRef = useRef();
-  const [threeDots, setThreeDots] = useState(null);
-  const [workspace, setWorkspace] = useState(null);
-
-  const [errorMessage, setErrorMessage] = useState("");
   const [proposals, setProposals] = useState([]);
+  const [selLocked, setSelLoacked] = useState([]);
+  const [threeDots, setThreeDots] = useState(null);
   const [renameV, setRenameV] = useState("");
   const [rename, setRename] = useState(null);
+  const blockRef = useRef();
+  const buttonRef = useRef();
   const [move, setMove] = useState(null);
   const [workspaces, setWorkspaces] = useState([]);
   const [selected, setSelected] = useState(null);
@@ -47,7 +37,7 @@ const DashboardFirst = () => {
         id: move,
         workspace_id: selected,
       });
-      setProposals(proposals.filter((item) => item._id !== move));
+      setProposals(proposals.filter((item) => item._id !== id));
     } catch (error) {
       console.log(error);
     } finally {
@@ -57,6 +47,21 @@ const DashboardFirst = () => {
       setThreeDots(null);
     }
   };
+
+  const handleDelete = async (id) => {
+    try {
+      const res = await axios.post(`${databaseUrl}/api/workspace/delete`, {
+        id: id,
+        user_id: user.id,
+      });
+      setProposals(proposals.filter((item) => item._id !== id));
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setThreeDots(null);
+    }
+  };
+
   useEffect(() => {
     if (user?.id && databaseUrl) {
       getWorkspaces();
@@ -73,6 +78,19 @@ const DashboardFirst = () => {
     } catch (error) {
       console.error("Error fetching workspaces:", error);
       setError("Failed to fetch workspaces. Please try again later.");
+    }
+  };
+
+  const handleDuplicate = async (id) => {
+    try {
+      const res = await axios.post(`${databaseUrl}/api/workspace/duplicate`, {
+        id: id,
+        user_id: user.id,
+      });
+
+      setProposals([res.data, ...proposals]);
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -93,6 +111,9 @@ const DashboardFirst = () => {
     }
   };
 
+  const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
+
   const getLastSeen = (date) => {
     if (!date) return "No data";
 
@@ -108,34 +129,6 @@ const DashboardFirst = () => {
       return `${Math.floor(diffInSeconds / 3600)} hours ago`;
     } else {
       return `${Math.floor(diffInSeconds / 86400)} days ago`;
-    }
-  };
-
-  const handleDelete = async (id) => {
-    try {
-      const res = await axios.post(`${databaseUrl}/api/workspace/delete`, {
-        id: id,
-        user_id: user.id,
-      });
-
-      console.log(res);
-      setProposals(proposals.filter((item) => item._id !== id));
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setThreeDots(null);
-    }
-  };
-  const handleDuplicate = async (id) => {
-    try {
-      const res = await axios.post(`${databaseUrl}/api/workspace/duplicate`, {
-        id: id,
-        user_id: user.id,
-      });
-
-      setProposals([res.data, ...proposals]);
-    } catch (error) {
-      console.log(error);
     }
   };
 
@@ -164,68 +157,24 @@ const DashboardFirst = () => {
     }
   };
 
-  const handleCreateNewProposal = async (name) => {
-    try {
-      const response = await axios.post(
-        `${databaseUrl}/api/editor/newproposal`,
-        {
-          email: user.email,
-          id: user.id,
-          workspace_id: id,
-          name: name,
-          settings: {
-            heading: "Arieal",
-            body: "Arieal",
-            header: false,
-            footer: false,
-            color: "#9b9b9b",
-            theme: 0,
-          },
-        }
-      );
-      navigate(`/editor/${response.data._id}`);
-    } catch (error) {
-      console.error("Error creating proposal:", error);
-      setErrorMessage("Failed to create a new proposal. Please try again.");
-    }
-  };
-
   useEffect(() => {
-    getAllProposals();
-  }, [id]); // Re-run if `id` changes
-
-  const getAllProposals = async () => {
-    try {
-      const response = await axios.get(
-        `${databaseUrl}/api/editor/getproposal`,
-        {
-          params: { workspace_id: id },
-        }
-      );
-      console.log(response);
-      setProposals(response.data);
-    } catch (error) {
-      console.error("Error fetching proposals:", error);
-      setErrorMessage("Failed to fetch proposals. Please try again.");
+    if (user?.id && databaseUrl) {
+      getProposals();
     }
-  };
+  }, [user?.id, databaseUrl]);
 
-  useEffect(() => {
-    getWorkspace();
-  }, [id]); // Re-run if `id` changes
-
-  const getWorkspace = async () => {
+  const getProposals = async () => {
     try {
-      const response = await axios.get(`${databaseUrl}/api/workspace/single`, {
-        params: { workspace_id: id },
+      const res = await axios.get(`${databaseUrl}/api/workspace/getproposals`, {
+        params: { user_id: user.id },
       });
-      console.log(response);
-      setWorkspace(response.data);
+
+      setProposals(res.data);
     } catch (error) {
-      console.error("Error fetching proposals:", error);
-      setErrorMessage("Failed to fetch proposals. Please try again.");
+      console.error("Error fetching workspaces:", error);
     }
   };
+
   const getBaseUrl = () => {
     const url = window.location.origin; // Gets up to .com, .net, etc.
     return url;
@@ -265,13 +214,6 @@ const DashboardFirst = () => {
     }
   };
 
-  useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutsideBlock);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutsideBlock);
-    };
-  }, []);
-
   const getProposal = async (id) => {
     try {
       const res = await axios.get(`${databaseUrl}/api/workspace/proposal`, {
@@ -284,6 +226,12 @@ const DashboardFirst = () => {
     }
   };
 
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutsideBlock);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutsideBlock);
+    };
+  }, []);
   return (
     <Dashboard>
       {move !== null && (
@@ -356,26 +304,12 @@ const DashboardFirst = () => {
           </div>
         </div>
       )}
-      <div className="w-full bg-white min-h-[85vh] px-10 pt-4 shadow-lg shadow-gray-300 ">
-        <div className="flex  items-center justify-start text-xl mt-3 mb-6 mx-2">
-          <button
-            onClick={() => {
-              navigate("/workspaces");
-            }}
-            className="text-gray-500  hover:bg-gray-100 p-1 rounded-xl mr-3"
-          >
-            <FiArrowLeft />
-          </button>
-          <div className="p-2 text-lg shadow-md shadow-gray-300 rounded-md mr-3">
-            <FaRegFolder
-              style={{
-                color: workspace ? workspace.workspaceColor : "red",
-              }}
-            />
-          </div>
-          <h3>{workspace ? workspace.workspaceName : "jlsbdvljs"}</h3>
+      <div className="w-full bg-white min-h-[85vh] px-10 pt-10 shadow-lg shadow-gray-300 ">
+        <div className="flex items-center justify-start mb-6 gap-2 text-xl text-gray-600">
+          <FaRegFileLines className="text-gray-600" />
+          <h2>Proposals</h2>
         </div>
-        <div className="w-full h-[75vh] overflow-y-auto scrollbar-hide relative">
+        <div className="w-full h-[75vh] overflow-y-auto scrollbar-hide relative overflow-x-hidden">
           <table className="auto-table w-full ">
             <thead className="h-12 bg-gray-100 text-left text-gray-500  text-sm font-semibold sticky top-0">
               <tr>
@@ -397,7 +331,7 @@ const DashboardFirst = () => {
                   >
                     <td
                       key={proposal._id}
-                      className="px-4 flex flex-col items-start justify-center  text-left pt-1"
+                      className="px-2 flex flex-col items-start justify-center  text-left pt-1"
                     >
                       <span className="flex items-center gap-2 w-full">
                         {proposal.favorate ? (
@@ -421,7 +355,6 @@ const DashboardFirst = () => {
                             className="text-gray-500"
                           />
                         )}
-
                         <input
                           onClick={() => {
                             if (rename === null) {
@@ -443,9 +376,7 @@ const DashboardFirst = () => {
                         />
                         {rename === proposal._id && (
                           <button
-                            onClick={() => {
-                              handleRename(proposal._id, index);
-                            }}
+                            onClick={() => handleRename(proposal._id, index)}
                           >
                             <FaCheck />
                           </button>
@@ -553,4 +484,4 @@ const DashboardFirst = () => {
   );
 };
 
-export default DashboardFirst;
+export default DashboardProposals;

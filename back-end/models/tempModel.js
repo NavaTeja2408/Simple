@@ -17,14 +17,7 @@ const UserSchema = new Schema({
     required: true,
   },
   avatar: {
-    public_id: {
-      type: String,
-      required: false,
-    },
-    url: {
-      type: String,
-      required: false,
-    },
+    type: String,
   },
   companyName: {
     type: String,
@@ -45,6 +38,7 @@ const UserSchema = new Schema({
     type: Date,
     default: Date.now,
   },
+
   pendingWorkspaces: [
     {
       type: mongoose.Schema.Types.ObjectId,
@@ -63,6 +57,48 @@ const UserSchema = new Schema({
       ref: "GoalModule",
     },
   ],
+  collab: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Collab",
+    },
+  ],
+  phoneNo: {
+    type: String,
+  },
+  country: {
+    type: String,
+  },
+  adress: {
+    type: String,
+  },
+  Time: {
+    type: String,
+  },
+  Curency: {
+    type: String,
+  },
+  DataP: {
+    type: Boolean,
+  },
+  DataA: {
+    type: Boolean,
+  },
+  DataT: {
+    type: Boolean,
+  },
+  EmailN: {
+    type: Boolean,
+  },
+  PushN: {
+    type: Boolean,
+  },
+  WorkspaceN: {
+    type: Boolean,
+  },
+  ProposalN: {
+    type: Boolean,
+  },
 });
 
 const UserModel = mongoose.model("User", UserSchema);
