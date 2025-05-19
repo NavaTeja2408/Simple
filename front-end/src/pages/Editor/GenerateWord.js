@@ -1,5 +1,6 @@
 import { Document, Packer, Paragraph, TextRun } from "docx";
 import { saveAs } from "file-saver";
+import React from "react";
 
 const JsonToWord = async (data) => {
   const doc = new Document({
@@ -32,7 +33,7 @@ const JsonToWord = async (data) => {
     //     console.warn(`Content for type '${item.type}' is missing or invalid:`);
     //     return;
     //   }
-    // } 
+    // }
 
     switch (item.type) {
       case "heading":

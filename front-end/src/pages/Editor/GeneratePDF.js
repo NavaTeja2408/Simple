@@ -1,4 +1,5 @@
 import jsPDF from "jspdf";
+import React from "react";
 import "jspdf-autotable";
 import ImageAlter from "../../assets/ImageAlter.png";
 import { BsFileLock } from "react-icons/bs";
