@@ -1,4 +1,5 @@
 // useRouteTracker.js
+import React from "react";
 import { useEffect, useRef } from "react";
 import { UAParser } from "ua-parser-js";
 
