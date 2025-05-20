@@ -7,6 +7,7 @@ import axios from "axios";
 import { FaRegFolder } from "react-icons/fa";
 import { FaEdit } from "react-icons/fa";
 import { RiDeleteBin5Line } from "react-icons/ri";
+import profile from "../../assets/profile.png";
 
 const ManageUsers = () => {
   const [addNew, setAddNew] = useState(false);
@@ -145,7 +146,7 @@ const ManageUsers = () => {
                 <input
                   type="text"
                   className="w-full py-2 px-2 outline-none border border-gray-200 rounded-lg mt-4"
-                  placeholder="Search for Workspace"
+                  placeholder="Search for User"
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                 />
@@ -165,7 +166,10 @@ const ManageUsers = () => {
                     )
                     .map((item) => (
                       <div
-                        onClick={() => setSelected(item._id)}
+                        onClick={() => {
+                          setSelected(item._id);
+                          setSearch("");
+                        }}
                         key={item._id}
                         className={` mt-3 mr-3 placeholder:w-[100%] h-14 px-3 py-2 border ${
                           selected === item._id
@@ -176,7 +180,10 @@ const ManageUsers = () => {
                         <div
                           className={`h-10 w-12  p-2 flex items-center justify-center rounded-md shadow-md shadow-gray-300 `}
                         >
-                          <FaRegFolder className=" h-5 w-5" />
+                          <img
+                            src={item.avatar ? item.avatar : profile}
+                            className="w-8 h-8 rounded-[50%]"
+                          />
                         </div>
                         <div className="text-sm flex flex-col w-[90%] ">
                           <h2 className=" text-gray-600 font-semibold overflow-hidden whitespace-nowrap text-ellipsis flex items-center justify-start gap-1">
@@ -190,6 +197,7 @@ const ManageUsers = () => {
                   <button
                     className="px-5 py-2  bg-gray-300 rounded-md"
                     onClick={() => {
+                      setSearch("");
                       setAddNew(false);
                       setSelected(null);
                     }}

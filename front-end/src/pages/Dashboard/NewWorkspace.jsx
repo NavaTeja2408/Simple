@@ -4,6 +4,7 @@ import { DatabaseContext } from "../../context/DatabaseContext";
 import { FaRegFolder } from "react-icons/fa";
 import { IoSearch } from "react-icons/io5";
 import { UserContext } from "../../context/UserContext";
+import profile from "../../assets/profile.png";
 
 const NewWorkspace = ({
   handleNewWorkspace,
@@ -287,7 +288,10 @@ const NewWorkspace = ({
                   <div
                     className={`h-10 w-12  p-2 flex items-center justify-center rounded-md shadow-md shadow-gray-300 `}
                   >
-                    <FaRegFolder className=" h-5 w-5" />
+                    <img
+                      src={item.user.avatar ? item.user.avatar : profile}
+                      className="w-8 h-8 rounded-[50%]"
+                    />
                   </div>
                   <div className="text-sm flex flex-col w-[90%] ">
                     <h2 className=" text-gray-600 font-semibold overflow-hidden whitespace-nowrap text-ellipsis flex items-center justify-start gap-1 px-2">

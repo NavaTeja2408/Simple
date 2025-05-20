@@ -339,13 +339,13 @@ const AllWorkspace = () => {
                     className="relative h-8 w-8 rounded-[50%] "
                     style={{
                       marginRight:
-                        workspace.collabUsers?.length >= 1 ? "20px" : 0,
+                        workspace.collabUsers?.length >= 0 ? "20px" : 0,
                     }}
                   >
                     <img src={Profile} alt="aksjdch" />
-                    {workspace.collabUsers?.length >= 1 && (
+                    {workspace.collabUsers?.length >= 0 && (
                       <div className="absolute h-8 w-8 bg-white top-0 left-[58%] rounded-[50%] text-gray-500 flex items-center justify-center shadow-md shadow-gray-300">
-                        + {workspace.collabUsers?.length - 1}
+                        + {workspace.collabUsers?.length + 1}
                       </div>
                     )}
                   </div>
