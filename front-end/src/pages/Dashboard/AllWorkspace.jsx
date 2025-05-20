@@ -399,7 +399,7 @@ const AllWorkspace = () => {
               >
                 <FaRegFolder className=" h-5 w-5 text-gray-300" />
               </div>
-              <div className="text-sm flex w-[63%] ">
+              <div className="text-sm flex items-center w-[63%] ">
                 <input
                   type="text"
                   className="py-1  border-b-1 border-black outline-none"
