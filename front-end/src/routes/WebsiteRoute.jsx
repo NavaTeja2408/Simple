@@ -44,19 +44,97 @@ const WebsiteRoute = () => {
             </div>
           }
         />
-        <Route path="/home" element={<DashboardHome />} />
-        <Route path="/drafts" element={<DashboardDrafts />} />
-        <Route path="/recycle" element={<DashboardRecycle />} />
-        <Route path="/proposals" element={<DashboardProposals />} />
+        <Route
+          path="/home"
+          element={
+            <Dashboard>
+              {" "}
+              <DashboardHome />{" "}
+            </Dashboard>
+          }
+        />
+        <Route
+          path="/drafts"
+          element={
+            <Dashboard>
+              <DashboardDrafts />
+            </Dashboard>
+          }
+        />
+        <Route
+          path="/recycle"
+          element={
+            <Dashboard>
+              <DashboardRecycle />
+            </Dashboard>
+          }
+        />
+        <Route
+          path="/proposals"
+          element={
+            <Dashboard>
+              <DashboardProposals />
+            </Dashboard>
+          }
+        />
         <Route path="/view/:id" element={<Preview />} />
-        <Route path="/workspaces" element={<AllWorkspace />} />
+        <Route
+          path="/workspaces"
+          element={
+            <Dashboard>
+              <AllWorkspace />
+            </Dashboard>
+          }
+        />
 
-        <Route path="/workspace/:id" element={<DashboardFirst />} />
-        <Route path="/analytics/:id" element={<DashboardAnalytics />} />
-        <Route path="profile" element={<Profile />} />
-        <Route path="subscription" element={<Subscription />} />
-        <Route path="settings" element={<GeneralSettings />} />
-        <Route path="manage" element={<ManageUsers />} />
+        <Route
+          path="/workspace/:id"
+          element={
+            <Dashboard>
+              <DashboardFirst />
+            </Dashboard>
+          }
+        />
+        <Route
+          path="/analytics/:id"
+          element={
+            <Dashboard>
+              <DashboardAnalytics />
+            </Dashboard>
+          }
+        />
+        <Route
+          path="profile"
+          element={
+            <Dashboard>
+              <Profile />
+            </Dashboard>
+          }
+        />
+        <Route
+          path="subscription"
+          element={
+            <Dashboard>
+              <Subscription />
+            </Dashboard>
+          }
+        />
+        <Route
+          path="settings"
+          element={
+            <Dashboard>
+              <GeneralSettings />
+            </Dashboard>
+          }
+        />
+        <Route
+          path="manage"
+          element={
+            <Dashboard>
+              <ManageUsers />
+            </Dashboard>
+          }
+        />
       </Routes>
     </>
   );
