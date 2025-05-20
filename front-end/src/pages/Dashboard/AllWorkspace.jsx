@@ -15,7 +15,6 @@ import { RiArrowUpDownLine } from "react-icons/ri";
 import { FaCheck } from "react-icons/fa6";
 import { FaRegEdit } from "react-icons/fa";
 import { MdOutlineDelete } from "react-icons/md";
-import { FaCheck } from "react-icons/fa";
 
 const AllWorkspace = () => {
   const { user } = useContext(UserContext);
