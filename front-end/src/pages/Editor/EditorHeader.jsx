@@ -166,8 +166,11 @@ const EditorHeader = ({
   }, []);
 
   const handleCopy = () => {
+    const baseUrl = window.location.origin; // dynamically gets the base URL
+    const fullUrl = `${baseUrl}/view/${id}`;
+
     navigator.clipboard
-      .writeText(`http://localhost:5173/view/${id}`)
+      .writeText(fullUrl)
       .then(() => {
         setCopySuccess("Copied");
         setTimeout(() => setCopySuccess(""), 3000);
@@ -440,7 +443,7 @@ const EditorHeader = ({
                 </span>
               </p>
               <div className="border-[1px] w-[90%] rounded-md border-gray-600 flex items-center justify-between pl-2  gap-2 mt-2">
-                <Link to={`http://localhost:5173/view/${id}`}>
+                <Link to={`/view/${id}`}>
                   <p className="text-xs text-blue-600">
                     http://localhost:5173/view
                   </p>
