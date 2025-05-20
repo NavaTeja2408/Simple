@@ -149,7 +149,7 @@ const AllWorkspace = () => {
   }, []);
 
   return (
-    <Dashboard>
+    <>
       <div className="relative w-full bg-white min-h-[85vh] px-10 pt-10 shadow-lg shadow-gray-300">
         <h1 className="mb-4 flex items-center justify-start gap-2 text-xl">
           <FaRegFolder className="text-gray-400 mr-1" /> Workspaces
@@ -431,7 +431,7 @@ const AllWorkspace = () => {
           )}
         </div>
       </div>
-    </Dashboard>
+    </>
   );
 };
 

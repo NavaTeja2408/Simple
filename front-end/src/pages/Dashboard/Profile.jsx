@@ -147,7 +147,7 @@ const Profile = () => {
   };
 
   return (
-    <Dashboard>
+    <>
       <div className="w-full bg-white min-h-[85vh] px-16 pt-8 shadow-lg shadow-gray-300 ">
         <div className="flex items-center justify-start gap-3 text-xl  ">
           <FaRegUser /> <h2>Personal Informatin</h2>
@@ -270,7 +270,7 @@ const Profile = () => {
           </div>
         </div>
       </div>
-    </Dashboard>
+    </>
   );
 };
 

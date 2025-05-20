@@ -3,9 +3,9 @@ import Dashboard from "./Dashboard";
 
 const Subscription = () => {
   return (
-    <Dashboard>
+    <>
       <div>Subscription</div>
-    </Dashboard>
+    </>
   );
 };
 

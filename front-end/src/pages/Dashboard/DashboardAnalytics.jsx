@@ -151,7 +151,7 @@ const DashboardAnalytics = () => {
   }, []);
 
   return (
-    <Dashboard>
+    <>
       <div className="bg-white w-full h-[85vh] flex flex-col items-center overflow-y-auto relative">
         <div className="w-full pt-4 pb-4 px-6 flex gap-4  bg-white sticky top-0 z-50">
           <button className="text-xl" onClick={() => navigate(-1)}>
@@ -267,7 +267,7 @@ const DashboardAnalytics = () => {
           </table>
         </div>
       </div>
-    </Dashboard>
+    </>
   );
 };
 

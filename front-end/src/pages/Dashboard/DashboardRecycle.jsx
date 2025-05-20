@@ -51,7 +51,7 @@ const DashboardRecycle = () => {
   };
 
   return (
-    <Dashboard>
+    <>
       <div className="w-full bg-white min-h-[85vh] px-10 pt-6 shadow-lg shadow-gray-300 ">
         <div className="text-xl text-gray-500 flex items-center justify-start gap-3">
           <RiDeleteBin5Line />
@@ -112,7 +112,7 @@ const DashboardRecycle = () => {
           )}
         </div>
       </div>
-    </Dashboard>
+    </>
   );
 };
 

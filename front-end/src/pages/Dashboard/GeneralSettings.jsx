@@ -140,7 +140,7 @@ const GeneralSettings = () => {
     }
   };
   return (
-    <Dashboard>
+    <>
       <div className="w-full bg-white min-h-[85vh] px-16 pt-8 shadow-lg shadow-gray-300 ">
         <div className="flex items-center justify-start gap-1 text-xl text-gray-500  ">
           <CiSettings className="text-2xl" /> <h2>Settings</h2>
@@ -351,7 +351,7 @@ const GeneralSettings = () => {
           </div>
         )}
       </div>
-    </Dashboard>
+    </>
   );
 };
 

@@ -100,7 +100,7 @@ const DashboardHome = () => {
   };
 
   return (
-    <Dashboard>
+    <>
       <div className="w-[97%] bg-gray-100 min-h-[85vh]   ">
         <div className="w-full h-[85vh] overflow-auto scrollbar-hide">
           <h1 className=" p-3 text-2xl">Hello {user.username}</h1>
@@ -242,7 +242,7 @@ const DashboardHome = () => {
           </div>
         </div>
       </div>
-    </Dashboard>
+    </>
   );
 };
 

@@ -233,7 +233,7 @@ const DashboardProposals = () => {
     };
   }, []);
   return (
-    <Dashboard>
+    <>
       {move !== null && (
         <div className="fixed inset-0 bg-transparent bg-opacity-40 flex justify-center items-center z-50">
           <div className="w-[30%] h-[60%] bg-white px-4 py-3 flex flex-col shadow-lg shadow-gray-200">
@@ -480,7 +480,7 @@ const DashboardProposals = () => {
           </table>
         </div>
       </div>
-    </Dashboard>
+    </>
   );
 };
 

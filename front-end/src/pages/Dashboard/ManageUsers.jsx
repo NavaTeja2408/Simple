@@ -132,7 +132,7 @@ const ManageUsers = () => {
   };
 
   return (
-    <Dashboard>
+    <>
       <div className="bg-white w-full h-[85vh] flex flex-col items-center overflow-y-auto relative">
         {addNew !== false && (
           <div className="fixed inset-0 bg-transparent bg-opacity-40 flex justify-center items-center z-50">
@@ -419,7 +419,7 @@ const ManageUsers = () => {
           </tbody>
         </table>
       </div>
-    </Dashboard>
+    </>
   );
 };
 
