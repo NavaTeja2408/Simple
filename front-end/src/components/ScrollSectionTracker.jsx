@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useEffect, useRef } from "react";
 import axios from "axios";
+import { DatabaseContext } from "../context/DatabaseContext";
 
 const ScrollSectionTracker = ({
   groupedData,
@@ -16,6 +17,7 @@ const ScrollSectionTracker = ({
   const currentSection = useRef(null);
   const startTime = useRef(null);
   const containerRef = useRef(null);
+  const { databaseUrl } = useContext(DatabaseContext);
 
   useEffect(() => {
     const temp = {};
@@ -64,7 +66,7 @@ const ScrollSectionTracker = ({
           (temp[currentSection.current] || 0) + duration;
 
         axios
-          .post("http://localhost:9000/api/workspace/analytics", {
+          .post(`${databaseUrl}/api/workspace/analytics`, {
             temp,
             os,
             browser,
