@@ -15,9 +15,12 @@ export function UserContextProvider({ children }) {
   }, []);
   const getUserData = async () => {
     try {
-      const res = await axios.get(`http://localhost:9000/api/auth/getUser`, {
-        params: { user_id: user.id },
-      });
+      const res = await axios.get(
+        `https://simple-jet-eta.vercel.app/api/auth/getUser`,
+        {
+          params: { user_id: user.id },
+        }
+      );
       setUser(res.data);
       localStorage.setItem("user", JSON.stringify(res.data));
     } catch (error) {
