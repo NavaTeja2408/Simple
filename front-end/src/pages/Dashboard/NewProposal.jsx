@@ -32,10 +32,12 @@ const NewProposal = ({ handleCreateNewProposal, setPopup }) => {
 
   const getWorkspaces = async () => {
     try {
-      const res = await axios.get(`${databaseUrl}/api/workspace/getall`, {
-        params: { user_id: user.id },
-      });
-      console.log(res);
+      const res = await axios.get(
+        `${databaseUrl}/api/workspace/getallworkspaces`,
+        {
+          params: { user_id: user.id, sortw: "alp" },
+        }
+      );
       setWorkspaces(res.data);
     } catch (error) {
       console.error("Error fetching workspaces:", error);
