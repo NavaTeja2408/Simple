@@ -15,6 +15,7 @@ import { RiArrowUpDownLine } from "react-icons/ri";
 import { FaCheck } from "react-icons/fa6";
 import { FaRegEdit } from "react-icons/fa";
 import { MdOutlineDelete } from "react-icons/md";
+import { FaCheck } from "react-icons/fa";
 
 const AllWorkspace = () => {
   const { user } = useContext(UserContext);
@@ -54,7 +55,7 @@ const AllWorkspace = () => {
   }, [user?.id, databaseUrl, sortW]);
 
   function getRandomColor() {
-    const colors = ["green", "red", "orange", "blue", "Yellow"];
+    const colors = ["green", "red", "orange", "blue"];
     const randomIndex = Math.floor(Math.random() * colors.length);
     return colors[randomIndex];
   }
@@ -411,6 +412,9 @@ const AllWorkspace = () => {
                       handleNewWorkspace(name, "orange", []); // replace this with your actual function
                     }
                   }}
+                />
+                <FaCheck
+                  onClick={() => handleNewWorkspace(name, "orange", [])}
                 />
               </div>
               <div className="flex flex-row gap-1 items-center justify-end">
