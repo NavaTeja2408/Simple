@@ -396,7 +396,7 @@ const ManageUsers = () => {
           <tbody>
             {collab.map((item, _) => {
               return (
-                <tr>
+                <tr key={item._id}>
                   <td className="py-2 px-4">{item.user?.fullName}</td>
                   <td className="py-2 px-8">{item.workspaces.length}</td>
                   <td className="py-2 px-10">{item.type}</td>

@@ -19,7 +19,7 @@ const DashboardRecycle = () => {
         params: { user_id: user.id },
       });
       console.log(res.data);
-      setProposals(res.data[0].proposals);
+      setProposals(res.data);
     } catch (error) {
       console.error("Error fetching workspaces:", error);
     }
@@ -76,24 +76,24 @@ const DashboardRecycle = () => {
               </thead>
               <tbody className="">
                 {proposals?.map((item, index) => {
+                  const proposal = item?.proposals?.[0];
+                  const workspace = proposal?.workspaces?.[0];
+
+                  if (!proposal || !workspace) return null;
+
                   return (
                     <tr
                       className="border-b border-gray-200 mt-1 text-gray-600 hover:bg-gray-50 cursor-pointer h-12"
                       key={index}
                     >
-                      <td
-                        key={item.proposals[0]._id}
-                        className="px-4 flex flex-col items-start justify-start py-3 text-left"
-                      >
+                      <td className="px-4 flex flex-col items-start justify-start py-3 text-left">
                         <span className="w-[90%] overflow-hidden whitespace-nowrap text-ellipsis block ">
-                          {item?.proposals[0]?.proposalName}
+                          {proposal.proposalName}
                         </span>
                       </td>
-                      <td className=" pr-3">
-                        {item?.proposals[0].workspaces[0].workspaceName}
-                      </td>
+                      <td className=" pr-3">{workspace.workspaceName}</td>
                       <td>
-                        <div className="flex flex-row gap-2 text-md text-gray-500 ml-14 text-lg  ">
+                        <div className="flex flex-row gap-2 text-md text-gray-500 ml-14 text-lg">
                           <MdRestorePage
                             onClick={() => handleRestore(item._id)}
                           />
