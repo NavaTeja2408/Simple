@@ -55,48 +55,30 @@ const ScrollSectionTracker = ({
       if (ref) observer.observe(ref);
     });
 
-    const sendAnalytics = () => {
+    return () => {
+      observer.disconnect();
+
+      if (Object.keys(temp).length === 0) return; // guard from double call
+
       if (currentSection.current && startTime.current) {
         const duration = (Date.now() - startTime.current) / 1000;
         temp[currentSection.current] =
           (temp[currentSection.current] || 0) + duration;
 
-        const payload = {
-          temp,
-          os,
-          browser,
-          country,
-          sta,
-          timespent: (Date.now() - totalTime) / 1000,
-          seen: totalTime,
-          id,
-        };
-
-        const blob = new Blob([JSON.stringify(payload)], {
-          type: "application/json",
-        });
-
-        navigator.sendBeacon(`${databaseUrl}/api/workspace/analytics`, blob);
+        axios
+          .post(`${databaseUrl}/api/workspace/analytics`, {
+            temp,
+            os,
+            browser,
+            country,
+            sta,
+            timespent: (Date.now() - totalTime) / 1000,
+            seen: totalTime,
+            id,
+          })
+          .then((res) => console.log("Analytics sent:", res.data))
+          .catch((err) => console.error("Analytics error:", err));
       }
-    };
-
-    const handleBeforeUnload = (e) => {
-      sendAnalytics();
-    };
-
-    const handleVisibilityChange = () => {
-      if (document.visibilityState === "hidden") {
-        sendAnalytics();
-      }
-    };
-
-    window.addEventListener("beforeunload", handleBeforeUnload);
-    document.addEventListener("visibilitychange", handleVisibilityChange);
-
-    return () => {
-      observer.disconnect();
-      window.removeEventListener("beforeunload", handleBeforeUnload);
-      document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
   }, [groupedData]);
 
