@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
@@ -8,9 +9,9 @@ const session = require("express-session");
 const passport = require("passport");
 const UserModel = require("./models/tempModel");
 const OAuth2Strategy = require("passport-google-oauth2").Strategy;
-const google_client_id =
-  "757799082640-u9plre6ms011ncm0g20bjpn0h0bfg7f7.apps.googleusercontent.com";
-const google_client_secret = "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";
+
+const google_client_id = process.env.GOOGLE_SECRET_ID;
+const google_client_secret = process.env.GOOGLE_SECRET_KEY;
 
 const app = express();
 
