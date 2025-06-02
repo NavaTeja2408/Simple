@@ -61,19 +61,22 @@ const ScrollSectionTracker = ({
         temp[currentSection.current] =
           (temp[currentSection.current] || 0) + duration;
 
-        axios
-          .post(`${databaseUrl}/api/workspace/analytics`, {
-            temp,
-            os,
-            browser,
-            country,
-            sta,
-            timespent: (Date.now() - totalTime) / 1000,
-            seen: totalTime,
-            id,
-          })
-          .then((res) => console.log("Analytics sent:", res.data))
-          .catch((err) => console.error("Analytics error:", err));
+        const payload = {
+          temp,
+          os,
+          browser,
+          country,
+          sta,
+          timespent: (Date.now() - totalTime) / 1000,
+          seen: totalTime,
+          id,
+        };
+
+        const blob = new Blob([JSON.stringify(payload)], {
+          type: "application/json",
+        });
+
+        navigator.sendBeacon(`${databaseUrl}/api/workspace/analytics`, blob);
       }
     };
 
