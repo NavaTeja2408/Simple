@@ -55,11 +55,7 @@ const ScrollSectionTracker = ({
       if (ref) observer.observe(ref);
     });
 
-    return () => {
-      observer.disconnect();
-
-      if (Object.keys(temp).length === 0) return; // guard from double call
-
+    const sendAnalytics = () => {
       if (currentSection.current && startTime.current) {
         const duration = (Date.now() - startTime.current) / 1000;
         temp[currentSection.current] =
@@ -79,6 +75,25 @@ const ScrollSectionTracker = ({
           .then((res) => console.log("Analytics sent:", res.data))
           .catch((err) => console.error("Analytics error:", err));
       }
+    };
+
+    const handleBeforeUnload = (e) => {
+      sendAnalytics();
+    };
+
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "hidden") {
+        sendAnalytics();
+      }
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
   }, [groupedData]);
 
