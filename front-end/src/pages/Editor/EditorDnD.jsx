@@ -165,6 +165,19 @@ const EditorDnD = () => {
     setSelected("image");
   };
 
+  const addCoverPage = (url) => {
+    setRows((prevRows) => [
+      {
+        id: uuidv4(),
+        type: "cover",
+        content: url,
+        bookmark: false,
+      },
+      ...prevRows,
+    ]);
+    setSelected("cover");
+  };
+
   const addBreakPoint = () => {
     setRows((prevRows) => [
       ...prevRows,
@@ -389,6 +402,7 @@ const EditorDnD = () => {
             setRows={setRows}
             settings={settings}
             setSettings={setSettings}
+            addCoverPage={addCoverPage}
           />
         </div>
 

@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Navigate, useLocation } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
 import Dashboard from "../pages/Dashboard/Dashboard.jsx";
 import DashboardHome from "../pages/Dashboard/DashboardHome.jsx";
@@ -10,6 +11,11 @@ import Profile from "../pages/Dashboard/Profile.jsx";
 import Subscription from "../pages/Dashboard/Subscription.jsx";
 import GeneralSettings from "../pages/Dashboard/GeneralSettings.jsx";
 import ManageUsers from "../pages/Dashboard/ManageUsers.jsx";
+import { UserContext } from "../context/UserContext.jsx";
+import Redirect from "../pages/website/Redirect.jsx";
+import Terms from "../pages/website/Terms.jsx";
+import ChangePassword from "../pages/website/ChangePassword.jsx";
+import ForgotPassWord from "../pages/website/ForgotPassWord.jsx";
 const Home = React.lazy(() => import("../pages/website/Home"));
 const Signup = React.lazy(() => import("../pages/website/Signup"));
 const Pricing = React.lazy(() => import("../pages/website/Pricing"));
@@ -24,8 +30,9 @@ const AllWorkspace = React.lazy(() =>
   import("../pages/Dashboard/AllWorkspace.jsx")
 );
 const Preview = React.lazy(() => import("../pages/Editor/Preview.jsx"));
-
 const WebsiteRoute = () => {
+  const { user } = useContext(UserContext);
+  const location = useLocation();
   return (
     <>
       <Routes>
@@ -35,6 +42,9 @@ const WebsiteRoute = () => {
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/template" element={<Template />} />
         <Route path="/contact" element={<ContactUs />} />
+        <Route path="/terms" element={<Terms />} />
+        <Route path="/changepass/:id" element={<ChangePassword />} />
+        <Route path="/forgot" element={<ForgotPassWord />} />
 
         <Route
           path="/editor/:id"
@@ -133,6 +143,17 @@ const WebsiteRoute = () => {
             <Dashboard>
               <ManageUsers />
             </Dashboard>
+          }
+        />
+        <Route path="/redirect" element={<Redirect />} />
+        <Route
+          path="*"
+          element={
+            user ? (
+              <Navigate to="/home" replace state={{ from: location }} />
+            ) : (
+              <Navigate to="/login" replace state={{ from: location }} />
+            )
           }
         />
       </Routes>

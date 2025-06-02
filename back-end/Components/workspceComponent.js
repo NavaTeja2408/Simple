@@ -815,6 +815,18 @@ const AddTeamForAll = async (req, res) => {
     if (!profile.collab) {
       profile.collab = [];
     }
+    // Add the new_user_id to each workspace's collabUser array
+    for (const workspace of workspaces) {
+      if (!workspace.collabUsers) {
+        workspace.collabUsers = [];
+      }
+
+      // Avoid duplicating users
+      if (!workspace.collabUsers.includes(new_user_id)) {
+        workspace.collabUsers.push(new_user_id);
+        await workspace.save();
+      }
+    }
 
     profile.collab.push(collab._id);
     await profile.save();
@@ -845,6 +857,21 @@ const AddTeamForLimited = async (req, res) => {
 
     profile.collab.push(collab._id);
     await profile.save();
+
+    const workspaces = await WorkspaceModel.find({
+      _id: { $in: workspaceIds },
+    });
+    for (const workspace of workspaces) {
+      if (!workspace.collabUsers) {
+        workspace.collabUsers = [];
+      }
+
+      // Avoid duplicates
+      if (!workspace.collabUsers.includes(new_user_id)) {
+        workspace.collabUsers.push(new_user_id);
+        await workspace.save();
+      }
+    }
 
     return res.json(collab);
   } catch (error) {
@@ -1091,10 +1118,36 @@ const editCollab = async (req, res) => {
       const workspaces = await WorkspaceModel.find({ owner: user_id });
       const workspaceIds = workspaces.map((workspace) => workspace._id);
       collab.workspaces = workspaceIds;
+      for (const workspace of workspaces) {
+        if (!workspace.collabUsers) {
+          workspace.collabUsers = [];
+        }
+
+        // Avoid duplicating users
+        if (!workspace.collabUsers.includes(collab.user)) {
+          workspace.collabUsers.push(collab.userd);
+          await workspace.save();
+        }
+      }
+
       collab.type = "full";
     } else {
       collab.workspaces = workspaceIds;
       collab.type = "limited";
+      const workspaces = await WorkspaceModel.find({
+        _id: { $in: workspaceIds },
+      });
+      for (const workspace of workspaces) {
+        if (!workspace.collabUsers) {
+          workspace.collabUsers = [];
+        }
+
+        // Avoid duplicates
+        if (!workspace.collabUsers.includes(collab.user)) {
+          workspace.collabUsers.push(collab.user);
+          await workspace.save();
+        }
+      }
     }
     await collab.save();
     const result = await CollabModel.findById(collab_id).populate("user");

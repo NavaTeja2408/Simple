@@ -38,6 +38,7 @@ import single_para from "../../assets/single_para.png";
 import double_para from "../../assets/double_para.png";
 import { StateManageContext } from "../../context/StateManageContext";
 import { SketchPicker } from "react-color";
+import { IoCloudUploadOutline } from "react-icons/io5";
 
 const Sidebar = ({
   selected,
@@ -55,7 +56,9 @@ const Sidebar = ({
   setRows,
   settings,
   setSettings,
+  addCoverPage,
 }) => {
+  const [loading, setLoading] = useState(false);
   const { user } = useContext(UserContext);
   const section_1_row = {
     id: "f3bb0c8f-c949-4cec-af2b-148bc7aa191c",
@@ -474,6 +477,50 @@ const Sidebar = ({
     );
   };
 
+  const handleUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) {
+      alert("Please select an image first!");
+      return;
+    }
+
+    // Cloudinary details
+    setLoading(true);
+    const cloudName = "dojwaepbj"; // Replace with your Cloudinary cloud name
+    const uploadPreset = "simple_quotes"; // Replace with your upload preset
+
+    // Create FormData object
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", uploadPreset);
+
+    try {
+      // Upload image to Cloudinary
+      const response = await fetch(
+        `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+
+      const photo = await response.json();
+      // console.log(photo.secure_url);
+      // console.log("Uploaded Image URL:", photo.secure_url);
+      if (rows[0]?.type === "cover") {
+        rows[0].content = photo.secure_url;
+        console.log(photo.secure_url);
+      } else {
+        addCoverPage(photo.secure_url);
+      }
+    } catch (error) {
+      console.error("Error uploading image:", error);
+    } finally {
+      setLoading(false);
+      setThirdLevel("");
+    }
+  };
+
   return (
     <div className="flex flex-row">
       <div className="max-w-20 relative h-screen flex flex-col border-r-[1px] border-gray-300 ">
@@ -628,6 +675,19 @@ const Sidebar = ({
               <p className="text-sm text-gray-400">Assets</p>
             </button>
             <div className="pr-4 w-[220px]">
+              <button
+                onClick={() => setThirdLevel("cover")}
+                className=" relative p-2 px-3 w-[95%] rounded-lg flex text-gray-500 mx-3  items-center  
+           gap-4 hover:bg-gray-100 "
+              >
+                <img
+                  src={sections}
+                  className="w-8 rounded-md p-[6px] border border-gray-100 shadow-lg shadow-gray-300"
+                  alt="heading"
+                />
+                <p className="text-sm">Cover Page</p>
+                <MdKeyboardArrowRight className="flex absolute right-4 " />
+              </button>
               <button
                 onClick={() => setThirdLevel("sections")}
                 className=" relative p-2 px-3 w-[95%] rounded-lg flex text-gray-500 mx-3  items-center  
@@ -1215,6 +1275,31 @@ const Sidebar = ({
             ) : (
               <div></div>
             )}
+          </div>
+        ) : thirdLevel === "cover" ? (
+          <div
+            ref={headingRef}
+            className="scrollbar-thin absolute left-0 w-[200px] flex flex-col items-center pt-10 gap-4 h-screen border-r border-gray-300 bg-white z-50 overflow-auto pb-20 text-xs text-gray-400 text-center  "
+          >
+            <div>
+              <input
+                id={`file-upload`}
+                type="file"
+                className="hidden"
+                accept="image/*"
+                onChange={(e) => {
+                  handleUpload(e);
+                }}
+              />
+              {/* Upload Image Label */}
+              <label
+                htmlFor={`file-upload`}
+                className="px-1 py-1 flex items-center justify-center gap-2  text-center rounded cursor-pointer text-xs"
+              >
+                <IoCloudUploadOutline />
+                {loading ? "Loading..." : "Upload Cover Page"}
+              </label>
+            </div>
           </div>
         ) : (
           <div></div>

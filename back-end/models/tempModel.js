@@ -10,11 +10,9 @@ const UserSchema = new Schema({
   email: {
     type: String,
     unique: true,
-    required: true,
   },
   password: {
     type: String,
-    required: true,
   },
   avatar: {
     type: String,
@@ -36,8 +34,18 @@ const UserSchema = new Schema({
   },
   subscriptionDate: {
     type: Date,
-    default: Date.now,
   },
+  subscriptionEnd: {
+    type: Date,
+  },
+  teamMembers: {
+    type: Number,
+  },
+  sharedSubscription: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+    },
+  ],
 
   pendingWorkspaces: [
     {

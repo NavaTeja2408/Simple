@@ -189,12 +189,15 @@ const MyRichTextEditor = ({
   preview,
   size,
   settings,
+  onTextColor,
+  textColor,
 }) => {
   const [textSize, setTextSize] = useState(size);
   const initialValue = [
     {
       type: textSize,
       align: "center",
+
       children: [
         {
           text: "Heading",
@@ -442,7 +445,18 @@ const MyRichTextEditor = ({
                 <option value="heading-six">H6</option>
               </select>
               <select
-                className="border  bg-white border-gray-200 rounded px-2 py-1 ml-4 outline-none"
+                className="border border-gray-200 rounded px-2 ml-2 bg-white py-1 outline-none"
+                onChange={(e) => {
+                  onTextColor(e.target.value);
+                }}
+                defaultValue={"text-black"}
+              >
+                <option value="text-black">B</option>
+                <option value="text-white">W</option>
+                <option value="text-gray-700">G</option>
+              </select>
+              <select
+                className="border  bg-white border-gray-200 rounded px-2 py-1 ml-2 outline-none"
                 onChange={(e) => transformText(editor, e.target.value)}
                 defaultValue=""
               >
@@ -494,9 +508,9 @@ const MyRichTextEditor = ({
             backgroundColor:
               settings.theme === 5
                 ? lightenColor(settings.color, 0.8)
-                : "White",
+                : "transparent",
           }}
-          className={` relative min-h-[20px] p-2 outline-none font-${
+          className={` relative min-h-[20px] ${textColor}   p-2 outline-none   font-${
             settings.heading
           } ${index === indexValue ? "border-[2px] border-gray-300" : "none"}`}
           readOnly={preview}

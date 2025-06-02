@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import logo from "../assets/Logo.png";
+import React, { useCallback, useContext, useState } from "react";
 import Signup_logo from "../assets/Signup_logo.png";
 import Google from "../assets/Google.png";
 import Linkedin from "../assets/Linkedin.png";
@@ -9,112 +8,113 @@ import Arrow from "../assets/arraw.png";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import SignUpSecond from "./SignUpSecond";
+import { DatabaseContext } from "../context/DatabaseContext";
+import logo from "../assets/Web_logo.png";
+import { FaEye } from "react-icons/fa6";
 
 const SignUpFIrst = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { databaseUrl } = useContext(DatabaseContext);
 
   const navigate = useNavigate();
   const [terms, setTerms] = useState(false);
   const [next, setNext] = useState(false);
   const [error, setError] = useState(false);
+  const [pass1, setPass1] = useState(false);
+  const [pass2, setPass2] = useState(false);
+  const [cpassword, setCPassword] = useState("");
 
   const handleSignupFirst = () => {
     if (email === "" || password === "") {
       setError(true);
       console.log("error");
     }
-    if (terms === false) {
-      alert("Check the Terms");
+    if (password !== cpassword) {
+      setError(true);
+      alert("The password and confirm password is not same");
     } else {
       setNext(true);
     }
   };
+  const signupwithgoogle = () => {
+    window.open(`${databaseUrl}/auth/google/callback`, "_self");
+  };
   return (
-    <div className="w-[60%] lg:w-[45%] h-[80%] bg-overlap ">
+    <div className="w-[70%] h-[75%] bg-white flex items-center shadow-xl shadow-gray-200 justify-between mt-16 border border-gray-100 rounded-xl  ">
+      <div className="w-[50%] h-[100%] flex items-center justify-center  ">
+        <div className="w-[85%] h-[85%] flex items-center justify-center text-center relative bg-gray-200 rounded-2xl">
+          <div className="w-full h-14 flex justify-center items-center absolute top-1">
+            <img src={logo} className="w-40" alt="" />
+          </div>
+          <p className="w-[70%] text-center">
+            Start your quest with Simple Quest — create proposals that win.
+          </p>
+        </div>
+      </div>
       {next === true ? (
         <SignUpSecond setNext={setNext} email={email} password={password} />
       ) : (
-        <div className="w-full h-full">
-          <div className="flex flex-row w-full items-center justify-center gap-3 border-2 border-overlap  bg-white pt-4 ">
-            <h2 className="text-[17px]">Sign Up to </h2>
-            <img src={logo} alt="logo" className="h-[28px]" />
+        <div className="w-[50%] h-[90%] flex flex-col justify-center items-center">
+          <div className="w-full flex items-center justify-center">
+            <h1 className="text-2xl mb-2">Create Account</h1>
           </div>
-          <div className="mt-6 ml-7">
-            <div className="flex gap-1 items-center ">
-              <img
-                src={Signup_logo}
-                alt="Signup"
-                className="w-[20px] h-[20px]"
+
+          <div className="flex flex-col gap-3 items-center justify-center w-full">
+            <div className="flex flex-col w-[80%] gap-1">
+              <label className="text-gray-700 pl-1">Email</label>
+              <input
+                type="text"
+                className="w-full  p-2 border border-gray-200 rounded-sm outline-none "
+                placeholder="Email Address"
+                value={email}
+                style={{
+                  borderColor: error && "red",
+                }}
+                onChange={(e) => setEmail(e.target.value)}
               />
-              <p className="text-[14px]">Sign up with:</p>
             </div>
-            <div className="w-full flex items-center justify-evenly mt-4 mr-4">
-              <button className="p-2 pr-6 pl-6 bg-white rounded-sm border border-gray-300 flex gap-2">
-                <img src={Google} alt="google" className="w-6" />
-                Google
-              </button>
-              <button className="p-2 pr-6 pl-6 bg-white rounded-sm border border-gray-300 flex gap-2">
-                <img src={Linkedin} alt="google" className="w-6" />
-                Linkedin
-              </button>
-              <button className="p-2 pr-6 pl-6 bg-white rounded-sm border border-gray-300 flex gap-2">
-                <img src={Yahoo} alt="google" className="w-6" />
-                Yahoo
-              </button>
-            </div>
-          </div>
-          <div className="w-full flex flez-row items-center justify-center p-6 gap-3 ">
-            <div className=" w-[45%] h-[1px] bg-gray-400"></div>
-            <p className="font-bold">Or</p>
-            <div className=" w-[45%] h-[1px] bg-gray-400"></div>
-          </div>
-          <div className="flex flex-col gap-3 items-center justify-center">
-            <input
-              type="text"
-              className="w-[80%]  m-1 p-2 border border-gray-300 "
-              placeholder="Email Address"
-              value={email}
-              style={{
-                borderColor: error && "red",
-              }}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <input
-              type="Password"
-              className="w-[80%]  m-1 p-2 border border-gray-300 "
-              placeholder="Password"
-              value={password}
-              style={{
-                borderColor: error && "red",
-              }}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-          <div className="ml-7 mt-5">
-            <div className="flex gap-1 items-center ">
-              <img
-                src={Terms_signup}
-                alt="Signup"
-                className="w-[20px] h-[20px]"
-              />
-              <p className="text-[14px] font-bold">Terms of use:</p>
-            </div>
-            <div className=" flex items-center justify-center ml-4 mr-5 bg-white p-3 w-[90%] mt-1 border border-gray-300">
-              <p className="w-full text-[12px]">
-                Do you agree to provide accurate information and use the
-                platform for legitimate business proposals only. Terms &
-                Conditions
+            <div className="flex flex-col w-[80%] gap-1">
+              <label className="text-gray-700 pl-1">Password</label>
+              <div
+                className="w-full  border border-gray-200 flex items-center justify-between pr-4 rounded-sm"
+                style={{
+                  borderColor: error && "red",
+                }}
+              >
                 <input
-                  type="checkbox"
-                  className="ml-3 mt-2"
-                  value={terms}
-                  onChange={() => setTerms(!terms)}
-                  style={{
-                    borderColor: error && "red",
-                  }}
+                  type={pass1 ? "text" : "password"}
+                  className="w-[95%] p-2 outline-none "
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
-              </p>
+                <FaEye
+                  onClick={() => setPass1(!pass1)}
+                  className=" cursor-pointer"
+                />
+              </div>
+            </div>
+            <div className="flex flex-col w-[80%] gap-1">
+              <label className="text-gray-700 pl-1">Confirm Password</label>
+              <div
+                className="w-full  border border-gray-200 flex items-center justify-between pr-4 rounded-sm"
+                style={{
+                  borderColor: error && "red",
+                }}
+              >
+                <input
+                  type={pass2 ? "text" : "password"}
+                  className="w-[95%] p-2 outline-none "
+                  placeholder="Password"
+                  value={cpassword}
+                  onChange={(e) => setCPassword(e.target.value)}
+                />
+                <FaEye
+                  onClick={() => setPass2(!pass2)}
+                  className=" cursor-pointer"
+                />
+              </div>
             </div>
           </div>
           <div className="flex flex-col items-center justify-center w-full mt-4">
@@ -125,15 +125,28 @@ const SignUpFIrst = () => {
               NEXT
               <img src={Arrow} alt="no" className="w-5 m-[2px]" />
             </button>
-            <a className="mt-5">Already have an Account?</a>
-            <Link
-              to="/login"
-              className="w-full flex items-center justify-center"
-            >
-              <button className="pl-3 pr-3 pt-2 pb-2 mt-2 mb-2 w-[80%] text-graidient_bottom border-[1px] border-graidient_bottom bg-white rounded-md flex items-center justify-center">
-                LOGIN
-              </button>
-            </Link>
+            <div className="w-full flex flez-row items-center justify-center p-6 gap-3 ">
+              <div className=" w-[30%] h-[1px] bg-gray-400"></div>
+              <p className="text-sm text-gray-700">Or sign Up with</p>
+              <div className=" w-[30%] h-[1px] bg-gray-400"></div>
+            </div>
+            <div className="w-full">
+              <div className="w-full flex items-center justify-evenly mt-4 mr-4">
+                <button
+                  onClick={() => signupwithgoogle()}
+                  className="w-[80%] py-2 flex items-center justify-center bg-white rounded-sm border border-gray-300  gap-2 text-gray-600"
+                >
+                  <img src={Google} alt="google" className="w-6" />
+                  Google
+                </button>
+              </div>
+            </div>
+            <a className="mt-5 text-sm text-gray-600">
+              Already have an Account?
+              <Link to="/login">
+                <span className="text-graidient_bottom"> Login</span>
+              </Link>
+            </a>
           </div>
         </div>
       )}

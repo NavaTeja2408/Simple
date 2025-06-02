@@ -312,6 +312,8 @@ const RichTextEditor = ({
   data,
   preview,
   settings,
+  onTextColor,
+  textColor,
 }) => {
   const editor = useMemo(() => withHistory(withReact(createEditor())), []);
   const [value, setValue] = useState(initialValue);
@@ -383,9 +385,9 @@ const RichTextEditor = ({
               }
             }}
           >
-            <div className="relative">
+            <div className="relative flex flex-row">
               <select
-                className="border border-gray-200 rounded px-2 bg-white py-1"
+                className="border border-gray-200 rounded px-1 bg-white py-1"
                 onChange={(e) => toggleBlock(editor, e.target.value)}
                 defaultValue="paragraph"
               >
@@ -397,6 +399,17 @@ const RichTextEditor = ({
                 <option value="heading-six">H6</option>
                 <option value="paragrapgh">P1</option>
                 <option value="paragrapgh-two">P2</option>
+              </select>
+              <select
+                className="border border-gray-200 rounded  ml-2 bg-white py-1 outline-none"
+                onChange={(e) => {
+                  onTextColor(e.target.value);
+                }}
+                defaultValue={"text-black"}
+              >
+                <option value="text-black">B</option>
+                <option value="text-white">W</option>
+                <option value="text-gray-700">G</option>
               </select>
             </div>
 
@@ -518,7 +531,7 @@ const RichTextEditor = ({
           renderElement={renderElement}
           renderLeaf={renderLeaf}
           placeholder="Paragraph"
-          className={` min-h-[100px] px-2 outline-none ${
+          className={` min-h-[100px] px-2 outline-none ${textColor} ${
             index === indexValue ? "border-[2px] border-gray-300" : "none"
           } font-${settings.body}`}
           readOnly={preview}

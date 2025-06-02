@@ -18,6 +18,7 @@ import { MdOutlineDeleteForever } from "react-icons/md";
 import { FaBookmark } from "react-icons/fa";
 import PriceTermSlate from "./Slate/PriceTermSlate";
 import { StateManageContext } from "../../context/StateManageContext";
+import CoverPageSlate from "./Slate/CoverPageSlate";
 
 const DropRow = ({
   row,
@@ -144,21 +145,20 @@ const DropRow = ({
       ref={divRef}
       style={{
         width: row.type === "brake" ? "100%" : "94%",
-        minHeight: "100px",
+        minHeight: row.type !== "cover" ? "100px" : "35px",
         marginBottom: "0px",
         marginLeft: row.type === "brake" ? "0px" : "20px",
         marginRight: row.type === "brake" ? "0px" : "7px",
         marginTop: selected === index && index === 0 ? "30px" : "0px",
         border:
           selected === index ? "1px dashed rgba(223 , 6 , 78 , 1)" : "none",
-        backgroundColor: "#fff",
         textAlign: "center",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
         flexDirection: "column",
       }}
-      className="relative"
+      className="relative bg-transparent"
     >
       {/* Render row's content */}
       <div className="w-full">
@@ -183,13 +183,19 @@ const DropRow = ({
                 updatedContent[index].content = newData;
                 setRows(updatedContent);
               }}
+              onTextColor={(newData) => {
+                const updatedData = [...rows];
+                updatedData[index].textColor = newData;
+                setRows(updatedData);
+              }}
+              textColor={row.textColor ? row.textColor : "text-black"}
               data={row.content}
               preview={preview}
               settings={settings}
             />
           </div>
         ) : row.type === "heading" ? (
-          <div className="w-full " onClick={() => setSelected(index)}>
+          <div className="w-full  " onClick={() => setSelected(index)}>
             <MyRichTextEditor
               index={index}
               indexValue={indexValue}
@@ -204,6 +210,12 @@ const DropRow = ({
                 updatedData[index].size = newData;
                 setRows(updatedData);
               }}
+              onTextColor={(newData) => {
+                const updatedData = [...rows];
+                updatedData[index].textColor = newData;
+                setRows(updatedData);
+              }}
+              textColor={row.textColor ? row.textColor : "text-black"}
               size={row.size}
               data={row}
               preview={preview}
@@ -230,6 +242,12 @@ const DropRow = ({
               data={row.firstContent}
               preview={preview}
               settings={settings}
+              onTextColor={(newData) => {
+                const updatedData = [...rows];
+                updatedData[index].textColor = newData;
+                setRows(updatedData);
+              }}
+              textColor={row.textColor ? row.textColor : "text-black"}
             />
             <RichTextExample
               index={index}
@@ -243,6 +261,12 @@ const DropRow = ({
               data={row.secondContent}
               preview={preview}
               settings={settings}
+              onTextColor={(newData) => {
+                const updatedData = [...rows];
+                updatedData[index].textColor = newData;
+                setRows(updatedData);
+              }}
+              textColor={row.textColor ? row.textColor : "text-black"}
             />
           </div>
         ) : row.type === "image-para" ? (
@@ -268,6 +292,12 @@ const DropRow = ({
                   preview={preview}
                   className="relative"
                   settings={settings}
+                  onTextColor={(newData) => {
+                    const updatedData = [...rows];
+                    updatedData[index].textColor = newData;
+                    setRows(updatedData);
+                  }}
+                  textColor={row.textColor ? row.textColor : "text-black"}
                 />
 
                 {switchButton === index && (
@@ -384,6 +414,12 @@ const DropRow = ({
                     updatedContent[index].content = newData;
                     setRows(updatedContent);
                   }}
+                  onTextColor={(newData) => {
+                    const updatedData = [...rows];
+                    updatedData[index].textColor = newData;
+                    setRows(updatedData);
+                  }}
+                  textColor={row.textColor ? row.textColor : "text-black"}
                   data={row.content}
                   preview={preview}
                   className="relative"
@@ -562,6 +598,26 @@ const DropRow = ({
               index={index}
               rows={row}
               selected={selected}
+            />
+          </div>
+        ) : row.type === "cover" ? (
+          <div
+            className="w-full  "
+            onClick={() => {
+              setSelected(index);
+            }}
+          >
+            <CoverPageSlate
+              index={index}
+              indexValue={indexValue}
+              setIndexValue={setIndexValue}
+              selected={selected}
+              url={row.content}
+              onChange={(newData) => {
+                const updatedContent = [...rows];
+                updatedContent[0].content = newData;
+                setRows(updatedContent);
+              }}
             />
           </div>
         ) : (

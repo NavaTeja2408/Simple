@@ -104,6 +104,8 @@ const ManageUsers = () => {
         user_id: user.id,
       });
 
+      console.log(res);
+
       // Update the matching collab in state
       setCollab((prev) =>
         prev.map((item) => (item._id === res.data._id ? res.data : item))
