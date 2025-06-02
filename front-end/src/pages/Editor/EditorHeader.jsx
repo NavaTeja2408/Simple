@@ -167,7 +167,7 @@ const EditorHeader = ({
 
   const handleCopy = () => {
     const baseUrl = window.location.origin; // dynamically gets the base URL
-    const fullUrl = `${baseUrl}/view/${id}`;
+    const fullUrl = `${baseUrl}/#/view/${id}`;
 
     navigator.clipboard
       .writeText(fullUrl)

@@ -183,7 +183,7 @@ const DashboardProposals = () => {
   const copyToClipboard = (id) => {
     const domain = getBaseUrl();
     navigator.clipboard
-      .writeText(`${domain}/view/${id}`)
+      .writeText(`${domain}/#/view/${id}`)
       .then(() => {
         alert("Copied to clipboard!");
       })
