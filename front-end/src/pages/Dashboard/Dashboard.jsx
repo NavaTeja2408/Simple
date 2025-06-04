@@ -44,12 +44,17 @@ const Dashboard = ({ children }) => {
   return (
     <div className="h-screen w-full overflow-hidden">
       <DashboardHeader />
-      <div className="flex flex-row bg-gray-100">
+      <div
+        className="flex flex-row "
+        style={{
+          backgroundColor: "rgba(245, 245, 245, 1)",
+        }}
+      >
         <DashboardSideBar setBody={setBody} />
         {newProposal && (
           <NewProposal handleCreateNewProposal={handleCreateNewProposal} />
         )}
-        <div className="px-10 pt-10 w-[85%] flex items-start justify-center">
+        <div className="px-10 pt-5 w-[85%] flex items-start justify-center rounded-lg">
           {children}
         </div>
       </div>

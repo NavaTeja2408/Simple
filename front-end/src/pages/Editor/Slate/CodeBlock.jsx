@@ -18,6 +18,7 @@ const CodeBlock = ({ content, onChange, preview }) => {
           e.target.style.height = "auto"; // Reset height
           e.target.style.height = `${e.target.scrollHeight}px`; // Expand dynamically
         }}
+        readOnly={preview}
       ></textarea>
     </div>
   );

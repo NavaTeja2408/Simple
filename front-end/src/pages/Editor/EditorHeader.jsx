@@ -73,7 +73,7 @@ const EditorHeader = ({
   };
 
   const handleGeneratePdf = () => {
-    GeneratePDF(rows);
+    GeneratePDF(rows, settings);
   };
 
   const handleGenerateWord = () => {
@@ -182,12 +182,14 @@ const EditorHeader = ({
   };
   const updateProposal = async () => {
     try {
-      setSaving(true);
-      await axios.put(`${databaseUrl}/api/editor/updateProposal`, {
-        id: id,
-        rows: rows,
-        settings: settings,
-      });
+      if (rows.length !== 0) {
+        setSaving(true);
+        await axios.put(`${databaseUrl}/api/editor/updateProposal`, {
+          id: id,
+          rows: rows,
+          settings: settings,
+        });
+      }
     } catch (error) {
       console.log(error);
     } finally {
@@ -206,7 +208,7 @@ const EditorHeader = ({
     updateTimeout.current = setTimeout(() => {
       updateProposal(); // Execute only once after rows/settings stop changing
       updateTimeout.current = null; // Reset reference after execution
-    }, 5000);
+    }, 4000);
 
     // Cleanup timeout when component unmounts
     return () => {

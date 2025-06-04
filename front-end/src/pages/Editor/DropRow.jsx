@@ -19,6 +19,7 @@ import { FaBookmark } from "react-icons/fa";
 import PriceTermSlate from "./Slate/PriceTermSlate";
 import { StateManageContext } from "../../context/StateManageContext";
 import CoverPageSlate from "./Slate/CoverPageSlate";
+import { FiPlus } from "react-icons/fi";
 
 const DropRow = ({
   row,
@@ -35,6 +36,16 @@ const DropRow = ({
   setLoading,
   loading,
   settings,
+  addEmptyRow,
+  addInputRow,
+  addTextRow,
+  addHeadingRow,
+  addDoublePara,
+  addImageAndParagraph,
+  addImageRow,
+  addBreakPoint,
+  addTableRow,
+  addCodeBlock,
 }) => {
   const [{ isOver }, drop] = useDrop(() => ({
     accept: "TEXT", // Accepts draggable text items
@@ -49,6 +60,9 @@ const DropRow = ({
   const divRef = useRef();
   const sideRef = useRef();
   const buttonRef = useRef();
+  const quickRef = useRef();
+  const quickButtonRef = useRef();
+
   const { setSign, setPriceTerms } = useContext(StateManageContext);
   const handleClickOutsideMenu = (event) => {
     if (
@@ -60,6 +74,22 @@ const DropRow = ({
       setSelected(null);
     }
   };
+  const handleClickQuick = (event) => {
+    if (
+      quickRef.current &&
+      !quickRef.current.contains(event.target) &&
+      quickButtonRef.current &&
+      !quickButtonRef.current.contains(event.target)
+    ) {
+      setQuickAdd(false);
+    }
+  };
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickQuick);
+    return () => {
+      document.removeEventListener("mousedown", handleClickQuick);
+    };
+  }, []);
   const handleClickOutsideMenuB = (event) => {
     if (
       buttonRef.current &&
@@ -139,6 +169,7 @@ const DropRow = ({
   };
 
   const [selected, setSelected] = useState(null);
+  const [quickAdd, setQuickAdd] = useState(false);
 
   return (
     <div
@@ -150,8 +181,12 @@ const DropRow = ({
         marginLeft: row.type === "brake" ? "0px" : "20px",
         marginRight: row.type === "brake" ? "0px" : "7px",
         marginTop: selected === index && index === 0 ? "30px" : "0px",
+        paddingBottom: selected === index ? "30px" : "0px",
+
         border:
-          selected === index ? "1px dashed rgba(223 , 6 , 78 , 1)" : "none",
+          selected === index && preview !== true
+            ? "1px dashed rgba(223 , 6 , 78 , 1)"
+            : "none",
         textAlign: "center",
         display: "flex",
         justifyContent: "center",
@@ -626,7 +661,7 @@ const DropRow = ({
       </div>
 
       {/* Row management buttons */}
-      {selected === index && (
+      {selected === index && preview !== true && (
         <div
           className={`absolute -top-12 right-0 bg-white flex  gap-2 border border-gray-100 shadow-lg py-1 px-1  rounded-sm`}
           ref={sideRef}
@@ -671,6 +706,143 @@ const DropRow = ({
             className="  bg-white flex items-center justify-center px-2 py-2 hover:bg-gray-100"
           >
             <MdOutlineDeleteForever />
+          </button>
+        </div>
+      )}
+
+      {selected === index && preview !== true && (
+        <div
+          ref={quickButtonRef}
+          onClick={() => setQuickAdd(true)}
+          className={`absolute -bottom-4 right-[50%] bg-white flex   border border-graidient_bottom text-graidient_bottom items-center justify-center w-10 h-10  rounded-[50%] text-xl cursor-pointer z-[5000]`}
+        >
+          <FiPlus />
+        </div>
+      )}
+      {selected === index && preview !== true && quickAdd === true && (
+        <div
+          ref={quickRef}
+          className={`absolute bottom-7 right-[47%] bg-white flex flex-col items-center justify-start w-fit h-44 overflow-auto py-3 px-4   cursor-pointer shadow-lg z-[5000] scrollbar-hide `}
+        >
+          <button
+            onClick={() => {
+              addHeadingRow("heading-one", selected + 1);
+              setSelected(selected + 1);
+              setQuickAdd(false);
+            }}
+            className="py-1.5 w-full px-3 hover:bg-gray-100 text-start"
+          >
+            Heading 1
+          </button>
+          <button
+            onClick={() => {
+              addHeadingRow("heading-two", selected + 1);
+              setSelected(selected + 1);
+              setQuickAdd(false);
+            }}
+            className="py-1.5 w-full px-3 hover:bg-gray-100 text-start"
+          >
+            Heading 2
+          </button>
+          <button
+            onClick={() => {
+              addHeadingRow("heading-three", selected + 1);
+              setSelected(selected + 1);
+              setQuickAdd(false);
+            }}
+            className="py-1.5 w-full px-3 hover:bg-gray-100 text-start"
+          >
+            Heading 3
+          </button>
+          <button
+            onClick={() => {
+              addHeadingRow("heading-four", selected + 1);
+              setSelected(selected + 1);
+              setQuickAdd(false);
+            }}
+            className="py-1.5 w-full px-3 hover:bg-gray-100 text-start"
+          >
+            Heading 4
+          </button>
+          <button
+            onClick={() => {
+              addHeadingRow("heading-five", selected + 1);
+              setSelected(selected + 1);
+              setQuickAdd(false);
+            }}
+            className="py-1.5 w-full px-3 hover:bg-gray-100 text-start"
+          >
+            Heading 5
+          </button>
+          <button
+            onClick={() => {
+              addHeadingRow("heading-six", selected + 1);
+              setSelected(selected + 1);
+              setQuickAdd(false);
+            }}
+            className="py-1.5 w-full px-3 hover:bg-gray-100 text-start"
+          >
+            Heading 6
+          </button>
+          <button
+            onClick={() => {
+              addInputRow(selected + 1);
+              setSelected(selected + 1);
+              setQuickAdd(false);
+            }}
+            className="py-1.5 w-full px-3 hover:bg-gray-100 text-start"
+          >
+            Paragraph
+          </button>
+          <button
+            onClick={() => {
+              addDoublePara(selected + 1);
+              setSelected(selected + 1);
+              setQuickAdd(false);
+            }}
+            className="py-1.5 w-full px-3 hover:bg-gray-100 text-start"
+          >
+            Doble-Para
+          </button>
+          <button
+            onClick={() => {
+              addImageRow(selected + 1);
+              setSelected(selected + 1);
+              setQuickAdd(false);
+            }}
+            className="py-1.5 w-full px-3 hover:bg-gray-100 text-start"
+          >
+            Image
+          </button>
+          <button
+            onClick={() => {
+              addImageAndParagraph(selected + 1);
+              setSelected(selected + 1);
+              setQuickAdd(false);
+            }}
+            className="py-1.5 w-full px-3 hover:bg-gray-100 text-start"
+          >
+            Image-Para
+          </button>
+          <button
+            onClick={() => {
+              addCodeBlock(selected + 1);
+              setSelected(selected + 1);
+              setQuickAdd(false);
+            }}
+            className="py-1.5 w-full px-3 hover:bg-gray-100 text-start"
+          >
+            Code block
+          </button>
+          <button
+            onClick={() => {
+              addBreakPoint(selected + 1);
+              setSelected(selected + 1);
+              setQuickAdd(false);
+            }}
+            className="py-1.5 w-full px-3 hover:bg-gray-100 text-start"
+          >
+            Page Break
           </button>
         </div>
       )}

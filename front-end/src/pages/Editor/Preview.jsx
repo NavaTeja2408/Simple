@@ -100,7 +100,7 @@ const Preview = () => {
   return (
     <div className="w-full h-screen overflow-auto">
       <DndProvider backend={HTML5Backend}>
-        <div className=" relative flex w-full  overflow-auto border-4 border-gray-300">
+        <div className=" relative flex w-full justify-center  overflow-auto border-4 border-gray-300">
           <DropCanvas
             preview={true}
             rows={rows}

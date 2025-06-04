@@ -5,7 +5,23 @@ import axios from "axios";
 import { DatabaseContext } from "../../context/DatabaseContext";
 import { StateManageContext } from "../../context/StateManageContext";
 
-const DropCanvas = ({ rows, setRows, preview, dropCanvasRef, settings }) => {
+const DropCanvas = ({
+  rows,
+  setRows,
+  preview,
+  dropCanvasRef,
+  settings,
+  addEmptyRow,
+  addInputRow,
+  addTextRow,
+  addHeadingRow,
+  addDoublePara,
+  addImageAndParagraph,
+  addImageRow,
+  addBreakPoint,
+  addTableRow,
+  addCodeBlock,
+}) => {
   const [bookmark, setBookmark] = useState(null);
   const [snapshotLink, setSnapshotLink] = useState("");
   const [savedTitile, setSavedTitle] = useState("");
@@ -129,6 +145,16 @@ const DropCanvas = ({ rows, setRows, preview, dropCanvasRef, settings }) => {
             loading={loading}
             setLoading={setLoading}
             settings={settings}
+            addEmptyRow={addEmptyRow}
+            addInputRow={addInputRow}
+            addTextRow={addTextRow}
+            addHeadingRow={addHeadingRow}
+            addDoublePara={addDoublePara}
+            addImageAndParagraph={addImageAndParagraph}
+            addImageRow={addImageRow}
+            addBreakPoint={addBreakPoint}
+            addTableRow={addTableRow}
+            addCodeBlock={addCodeBlock}
           />
         </div>
       ))}

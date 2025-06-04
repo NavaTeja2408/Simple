@@ -159,6 +159,7 @@ const getAllProposal = async (req, res) => {
   try {
     const proposals = await ProposalModel.find({
       workspaces: workspace_id,
+      $or: [{ recycle: false }, { recycle: { $exists: false } }],
     })
       .sort({ createdAt: -1 })
       .lean(); // Add `lean()` for plain objects

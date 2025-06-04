@@ -57,6 +57,7 @@ const Sidebar = ({
   settings,
   setSettings,
   addCoverPage,
+  preview,
 }) => {
   const [loading, setLoading] = useState(false);
   const { user } = useContext(UserContext);
@@ -523,262 +524,274 @@ const Sidebar = ({
 
   return (
     <div className="flex flex-row">
-      <div className="max-w-20 relative h-screen flex flex-col border-r-[1px] border-gray-300 ">
-        <div
-          onClick={() => setActive("elements")}
-          className="flex p-1  flex-col w-full h-14   cursor-pointer items-center justify-center "
-          style={{
-            backgroundColor:
-              active === "elements"
-                ? "rgba(236, 236, 236, 1)"
-                : active === "content-3"
-                ? "rgba(236, 236, 236, 1)"
-                : active === "table-3"
-                ? "rgba(236, 236, 236, 1)"
-                : active === "goal-3"
-                ? "rgba(236, 236, 236, 1)"
-                : "white",
-            borderRight:
-              active === "elements"
-                ? "4px solid rgba(223, 6, 78, 1)"
-                : active === "content-3"
-                ? "4px solid rgba(223, 6, 78, 1)"
-                : active === "table-3"
-                ? "4px solid rgba(223, 6, 78, 1)"
-                : active === "goal-3"
-                ? "4px solid rgba(223, 6, 78, 1)"
-                : "white",
-          }}
-        >
-          <img src={Elements} alt="plus" className="w-[60%]" />
-        </div>
-        <div
-          onClick={() => setActive("outline")}
-          className="flex p-2 flex-col w-full h-14   cursor-pointer items-center justify-center"
-          style={{
-            backgroundColor:
-              active === "outline" ? "rgba(236, 236, 236, 1)" : "white",
-            borderRight:
-              active === "outline" ? "4px solid rgba(223, 6, 78, 1)" : "white",
-          }}
-        >
-          <img src={Outline} alt="plus" className="w-[60%]" />
-        </div>
-        <div
-          onClick={() => setActive("layout")}
-          className="flex  flex-col w-full h-14   cursor-pointer items-center justify-center "
-          style={{
-            backgroundColor:
-              active === "layout" || active === "margin-3"
-                ? "rgba(236, 236, 236, 1)"
-                : "white",
-            borderRight:
-              active === "layout" || active === "margin-3"
-                ? "4px solid rgba(223, 6, 78, 1)"
-                : "white",
-          }}
-        >
-          <img src={Layout} alt="plus" className="w-[80%]" />
-        </div>
-        <div
-          onClick={() => setActive("themes")}
-          className="flex  flex-col w-full h-14   cursor-pointer items-center justify-center "
-          style={{
-            backgroundColor:
-              active === "themes" ||
-              active === "typography-3" ||
-              active === "colors-3"
-                ? "rgba(236, 236, 236, 1)"
-                : "white",
-            borderRight:
-              active === "themes" ||
-              active === "typography-3" ||
-              active === "colors-3"
-                ? "4px solid rgba(223, 6, 78, 1)"
-                : "white",
-          }}
-        >
-          <img src={Themes} alt="plus" className="w-[80%]" />
-        </div>
-        <div
-          onClick={() => setActive("layers")}
-          className="flex  flex-col w-full h-14 cursor-pointer items-center justify-center "
-          style={{
-            backgroundColor:
-              active === "layers" ? "rgba(236, 236, 236, 1)" : "white",
-            borderRight:
-              active === "layers" ? "4px solid rgba(223, 6, 78, 1)" : "white",
-          }}
-        >
-          <img src={Layers} alt="plus" className="w-[80%]" />
-        </div>
-        <div
-          onClick={() => setActive("content")}
-          className="flex  flex-col w-full h-14   cursor-pointer items-center justify-center "
-          style={{
-            backgroundColor:
-              active === "content" ? "rgba(236, 236, 236, 1)" : "white",
-            borderRight:
-              active === "content" ? "4px solid rgba(223, 6, 78, 1)" : "white",
-          }}
-        >
-          <img src={Content} alt="plus" className="w-[80%]" />
-        </div>
-        <div
-          onClick={() => setActive("history")}
-          className="flex  flex-col w-full h-14   cursor-pointer items-center justify-center "
-          style={{
-            backgroundColor:
-              active === "history" ? "rgba(236, 236, 236, 1)" : "white",
-            borderRight:
-              active === "history" ? "4px solid rgba(223, 6, 78, 1)" : "white",
-          }}
-        >
-          <img src={History} alt="plus" className="w-[80%]" />
-        </div>
-        <div className="flex  flex-col absolute bottom-20 w-full h-14   cursor-pointer items-center justify-center ">
-          <img src={help} alt="plus" className="w-[100%]" />
-        </div>
-      </div>
-
-      {active === "elements" ? (
-        <div className="w-[220px] overflow-x-hidden h-screen pr-4 border-r-2 border-gray-200 overflow-auto pb-20 scrollbar-thin  ">
-          <button
-            className=" p-2 w-full   mx-3  flex  items-center justify-between
-           gap-2 "
-          >
-            <p className="text-sm text-gray-400">Basics</p>
-          </button>
-
-          <div className="w-[220px]">
-            <ContentSideBar
-              addHeadingRow={addHeadingRow}
-              addImageRow={addImageRow}
-              addInputRow={addInputRow}
-              addDoublePara={addDoublePara}
-              addImageAndParagraph={addImageAndParagraph}
-              selected={selected}
-              addBreakPoint={addBreakPoint}
-              addTableRow={addTableRow}
-              addCodeBlock={addCodeBlock}
-              setSign={setSign}
-              setThirdLevel={setThirdLevel}
-              thirdLevel={thirdLevel}
-            />
-          </div>
-          <div className="w-full h-[1px] ml-2  bg-gray-300 mt-3"></div>
-          <div className="w-[220px]">
-            <button
-              className=" p-2 w-full   mx-3 my-1 flex  items-center justify-between
-           gap-2 "
+      {preview === true ? (
+        <div></div>
+      ) : (
+        <div className="flex flex-row">
+          {" "}
+          <div className="max-w-20 relative h-screen flex flex-col border-r-[1px] border-gray-300 ">
+            <div
+              onClick={() => setActive("elements")}
+              className="flex p-1  flex-col w-full h-14   cursor-pointer items-center justify-center "
+              style={{
+                backgroundColor:
+                  active === "elements"
+                    ? "rgba(236, 236, 236, 1)"
+                    : active === "content-3"
+                    ? "rgba(236, 236, 236, 1)"
+                    : active === "table-3"
+                    ? "rgba(236, 236, 236, 1)"
+                    : active === "goal-3"
+                    ? "rgba(236, 236, 236, 1)"
+                    : "white",
+                borderRight:
+                  active === "elements"
+                    ? "4px solid rgba(223, 6, 78, 1)"
+                    : active === "content-3"
+                    ? "4px solid rgba(223, 6, 78, 1)"
+                    : active === "table-3"
+                    ? "4px solid rgba(223, 6, 78, 1)"
+                    : active === "goal-3"
+                    ? "4px solid rgba(223, 6, 78, 1)"
+                    : "white",
+              }}
             >
-              <p className="text-sm text-gray-400">Assets</p>
-            </button>
-            <div className="pr-4 w-[220px]">
-              <button
-                onClick={() => setThirdLevel("cover")}
-                className=" relative p-2 px-3 w-[95%] rounded-lg flex text-gray-500 mx-3  items-center  
-           gap-4 hover:bg-gray-100 "
-              >
-                <img
-                  src={sections}
-                  className="w-8 rounded-md p-[6px] border border-gray-100 shadow-lg shadow-gray-300"
-                  alt="heading"
-                />
-                <p className="text-sm">Cover Page</p>
-                <MdKeyboardArrowRight className="flex absolute right-4 " />
-              </button>
-              <button
-                onClick={() => setThirdLevel("sections")}
-                className=" relative p-2 px-3 w-[95%] rounded-lg flex text-gray-500 mx-3  items-center  
-           gap-4 hover:bg-gray-100 "
-              >
-                <img
-                  src={sections}
-                  className="w-8 rounded-md p-[6px] border border-gray-100 shadow-lg shadow-gray-300"
-                  alt="heading"
-                />
-                <p className="text-sm">Sections</p>
-                <MdKeyboardArrowRight className="flex absolute right-4 " />
-              </button>
-              <button
-                onClick={() => setThirdLevel("saved")}
-                className=" relative p-2 px-3 w-[95%] rounded-lg flex text-gray-500 mx-3 items-center  
-           gap-4 hover:bg-gray-100 "
-              >
-                <img
-                  src={saved}
-                  className="w-8 rounded-md p-[6px] border border-gray-100 shadow-lg shadow-gray-300"
-                  alt="heading"
-                />
-                <p className="text-sm">My Content</p>
-                <MdKeyboardArrowRight className="flex absolute right-4 " />
-              </button>
+              <img src={Elements} alt="plus" className="w-[60%]" />
+            </div>
+            <div
+              onClick={() => setActive("outline")}
+              className="flex p-2 flex-col w-full h-14   cursor-pointer items-center justify-center"
+              style={{
+                backgroundColor:
+                  active === "outline" ? "rgba(236, 236, 236, 1)" : "white",
+                borderRight:
+                  active === "outline"
+                    ? "4px solid rgba(223, 6, 78, 1)"
+                    : "white",
+              }}
+            >
+              <img src={Outline} alt="plus" className="w-[60%]" />
+            </div>
+            <div
+              onClick={() => setActive("layout")}
+              className="flex  flex-col w-full h-14   cursor-pointer items-center justify-center "
+              style={{
+                backgroundColor:
+                  active === "layout" || active === "margin-3"
+                    ? "rgba(236, 236, 236, 1)"
+                    : "white",
+                borderRight:
+                  active === "layout" || active === "margin-3"
+                    ? "4px solid rgba(223, 6, 78, 1)"
+                    : "white",
+              }}
+            >
+              <img src={Layout} alt="plus" className="w-[80%]" />
+            </div>
+            <div
+              onClick={() => setActive("themes")}
+              className="flex  flex-col w-full h-14   cursor-pointer items-center justify-center "
+              style={{
+                backgroundColor:
+                  active === "themes" ||
+                  active === "typography-3" ||
+                  active === "colors-3"
+                    ? "rgba(236, 236, 236, 1)"
+                    : "white",
+                borderRight:
+                  active === "themes" ||
+                  active === "typography-3" ||
+                  active === "colors-3"
+                    ? "4px solid rgba(223, 6, 78, 1)"
+                    : "white",
+              }}
+            >
+              <img src={Themes} alt="plus" className="w-[80%]" />
+            </div>
+            <div
+              onClick={() => setActive("layers")}
+              className="flex  flex-col w-full h-14 cursor-pointer items-center justify-center "
+              style={{
+                backgroundColor:
+                  active === "layers" ? "rgba(236, 236, 236, 1)" : "white",
+                borderRight:
+                  active === "layers"
+                    ? "4px solid rgba(223, 6, 78, 1)"
+                    : "white",
+              }}
+            >
+              <img src={Layers} alt="plus" className="w-[80%]" />
+            </div>
+            <div
+              onClick={() => setActive("content")}
+              className="flex  flex-col w-full h-14   cursor-pointer items-center justify-center "
+              style={{
+                backgroundColor:
+                  active === "content" ? "rgba(236, 236, 236, 1)" : "white",
+                borderRight:
+                  active === "content"
+                    ? "4px solid rgba(223, 6, 78, 1)"
+                    : "white",
+              }}
+            >
+              <img src={Content} alt="plus" className="w-[80%]" />
+            </div>
+            <div
+              onClick={() => setActive("history")}
+              className="flex  flex-col w-full h-14   cursor-pointer items-center justify-center "
+              style={{
+                backgroundColor:
+                  active === "history" ? "rgba(236, 236, 236, 1)" : "white",
+                borderRight:
+                  active === "history"
+                    ? "4px solid rgba(223, 6, 78, 1)"
+                    : "white",
+              }}
+            >
+              <img src={History} alt="plus" className="w-[80%]" />
+            </div>
+            <div className="flex  flex-col absolute bottom-20 w-full h-14   cursor-pointer items-center justify-center ">
+              <img src={help} alt="plus" className="w-[100%]" />
             </div>
           </div>
-          <div className="w-full h-[1px] ml-2  bg-gray-300 mt-3"></div>
-          <div className="w-[220px]">
-            <button
-              className=" p-2 w-full   mx-3 my-1 flex  items-center justify-between
+          {active === "elements" ? (
+            <div className="w-[220px] overflow-x-hidden h-screen pr-4 border-r-2 border-gray-200 overflow-auto pb-20 scrollbar-thin  ">
+              <button
+                className=" p-2 w-full   mx-3  flex  items-center justify-between
            gap-2 "
-            >
-              <p className="text-sm text-gray-400">Cost Module</p>
-            </button>
-            <div className="pr-4 w-[220px]">
-              <button
-                onClick={() => setCostModeule(true)}
-                className=" relative p-2 px-3 w-[95%] rounded-lg flex text-gray-500 mx-3 items-center  
-           gap-4 hover:bg-gray-100 "
               >
-                <img
-                  src={cost_v}
-                  className="w-8 rounded-md p-[6px] border border-gray-100 shadow-lg shadow-gray-300"
-                  alt="heading"
-                />
-                <p className="text-sm">Costing</p>
-                <FiPlus className="flex absolute right-4 " />
+                <p className="text-sm text-gray-400">Basics</p>
               </button>
-              <button
-                onClick={() => setPriceTerms(true)}
-                className=" relative p-2 px-3 w-[95%] rounded-lg flex text-gray-500 mx-3  items-center  
-           gap-4 hover:bg-gray-100 "
-              >
-                <img
-                  src={cost_v}
-                  className="w-8 rounded-md p-[6px] border border-gray-100 shadow-lg shadow-gray-300"
-                  alt="heading"
-                />
-                <p className="text-sm">Price Terms</p>
-                <FiPlus className="flex absolute right-4 " />
-              </button>
-            </div>
-          </div>
-          <div className="w-full h-[1px] ml-2  bg-gray-300 mt-3"></div>
-          <div className="w-[220px]">
-            <button
-              className=" p-2 w-full   mx-3 my-1 flex  items-center justify-between
-           gap-2 "
-            >
-              <p className="text-sm text-gray-400">Legal</p>
-            </button>
-            <div className="pr-4 w-[220px]">
-              <button
-                onClick={() => setSign(true)}
-                className=" relative p-2 px-3 w-[95%] rounded-lg flex text-gray-500 mx-3  items-center  
-           gap-4 hover:bg-gray-100 "
-              >
-                <img
-                  src={Sign_v}
-                  className="w-8 rounded-md p-[6px] border border-gray-100 shadow-lg shadow-gray-300"
-                  alt="heading"
-                />
-                <p className="text-sm">Signiture</p>
-                <FiPlus className="flex absolute right-4 " />
-              </button>
-            </div>
-          </div>
 
-          {/* <button
+              <div className="w-[220px]">
+                <ContentSideBar
+                  addHeadingRow={addHeadingRow}
+                  addImageRow={addImageRow}
+                  addInputRow={addInputRow}
+                  addDoublePara={addDoublePara}
+                  addImageAndParagraph={addImageAndParagraph}
+                  selected={selected}
+                  addBreakPoint={addBreakPoint}
+                  addTableRow={addTableRow}
+                  addCodeBlock={addCodeBlock}
+                  setSign={setSign}
+                  setThirdLevel={setThirdLevel}
+                  thirdLevel={thirdLevel}
+                />
+              </div>
+              <div className="w-full h-[1px] ml-2  bg-gray-300 mt-3"></div>
+              <div className="w-[220px]">
+                <button
+                  className=" p-2 w-full   mx-3 my-1 flex  items-center justify-between
+           gap-2 "
+                >
+                  <p className="text-sm text-gray-400">Assets</p>
+                </button>
+                <div className="pr-4 w-[220px]">
+                  <button
+                    onClick={() => setThirdLevel("cover")}
+                    className=" relative p-2 px-3 w-[95%] rounded-lg flex text-gray-500 mx-3  items-center  
+           gap-4 hover:bg-gray-100 "
+                  >
+                    <img
+                      src={sections}
+                      className="w-8 rounded-md p-[6px] border border-gray-100 shadow-lg shadow-gray-300"
+                      alt="heading"
+                    />
+                    <p className="text-sm">Cover Page</p>
+                    <MdKeyboardArrowRight className="flex absolute right-4 " />
+                  </button>
+                  <button
+                    onClick={() => setThirdLevel("sections")}
+                    className=" relative p-2 px-3 w-[95%] rounded-lg flex text-gray-500 mx-3  items-center  
+           gap-4 hover:bg-gray-100 "
+                  >
+                    <img
+                      src={sections}
+                      className="w-8 rounded-md p-[6px] border border-gray-100 shadow-lg shadow-gray-300"
+                      alt="heading"
+                    />
+                    <p className="text-sm">Sections</p>
+                    <MdKeyboardArrowRight className="flex absolute right-4 " />
+                  </button>
+                  <button
+                    onClick={() => setThirdLevel("saved")}
+                    className=" relative p-2 px-3 w-[95%] rounded-lg flex text-gray-500 mx-3 items-center  
+           gap-4 hover:bg-gray-100 "
+                  >
+                    <img
+                      src={saved}
+                      className="w-8 rounded-md p-[6px] border border-gray-100 shadow-lg shadow-gray-300"
+                      alt="heading"
+                    />
+                    <p className="text-sm">My Content</p>
+                    <MdKeyboardArrowRight className="flex absolute right-4 " />
+                  </button>
+                </div>
+              </div>
+              <div className="w-full h-[1px] ml-2  bg-gray-300 mt-3"></div>
+              <div className="w-[220px]">
+                <button
+                  className=" p-2 w-full   mx-3 my-1 flex  items-center justify-between
+           gap-2 "
+                >
+                  <p className="text-sm text-gray-400">Cost Module</p>
+                </button>
+                <div className="pr-4 w-[220px]">
+                  <button
+                    onClick={() => setCostModeule(true)}
+                    className=" relative p-2 px-3 w-[95%] rounded-lg flex text-gray-500 mx-3 items-center  
+           gap-4 hover:bg-gray-100 "
+                  >
+                    <img
+                      src={cost_v}
+                      className="w-8 rounded-md p-[6px] border border-gray-100 shadow-lg shadow-gray-300"
+                      alt="heading"
+                    />
+                    <p className="text-sm">Costing</p>
+                    <FiPlus className="flex absolute right-4 " />
+                  </button>
+                  <button
+                    onClick={() => setPriceTerms(true)}
+                    className=" relative p-2 px-3 w-[95%] rounded-lg flex text-gray-500 mx-3  items-center  
+           gap-4 hover:bg-gray-100 "
+                  >
+                    <img
+                      src={cost_v}
+                      className="w-8 rounded-md p-[6px] border border-gray-100 shadow-lg shadow-gray-300"
+                      alt="heading"
+                    />
+                    <p className="text-sm">Price Terms</p>
+                    <FiPlus className="flex absolute right-4 " />
+                  </button>
+                </div>
+              </div>
+              <div className="w-full h-[1px] ml-2  bg-gray-300 mt-3"></div>
+              <div className="w-[220px]">
+                <button
+                  className=" p-2 w-full   mx-3 my-1 flex  items-center justify-between
+           gap-2 "
+                >
+                  <p className="text-sm text-gray-400">Legal</p>
+                </button>
+                <div className="pr-4 w-[220px]">
+                  <button
+                    onClick={() => setSign(true)}
+                    className=" relative p-2 px-3 w-[95%] rounded-lg flex text-gray-500 mx-3  items-center  
+           gap-4 hover:bg-gray-100 "
+                  >
+                    <img
+                      src={Sign_v}
+                      className="w-8 rounded-md p-[6px] border border-gray-100 shadow-lg shadow-gray-300"
+                      alt="heading"
+                    />
+                    <p className="text-sm">Signiture</p>
+                    <FiPlus className="flex absolute right-4 " />
+                  </button>
+                </div>
+              </div>
+
+              {/* <button
             onClick={() => setCostModeule(true)}
             className="h-20 w-[75%] m-3 flex flex-col items-center justify-center 
             bg-gradient-to-b from-editor_button_top to-editor_button_bot border-[1px] 
@@ -802,509 +815,518 @@ const Sidebar = ({
             <img src={goal} className="w-10" alt="heading" />
             <p className="text-xs ">Goal Module</p>
           </button> */}
-        </div>
-      ) : active === "outline" ? (
-        <div className="w-[220px] h-screen pr-4 border-r-2 border-gray-200  pb-10 scrollbar-thin flex flex-col">
-          <p className="w-full text-start p-2 px-2 text-gray-400 mb-1 ">
-            Outline
-          </p>
-          <div className="w-full h-screen pl-2 scrollbar-thin flex flex-col overflow-y-auto gap-1 ">
-            {rows?.map((row, index) => {
-              if (row.type === "heading") {
-                return renderHeadingLinks(row.content, index);
-              } else if (row.type === "input") {
-                return renderHeadingLinks(row.content, index);
-              } else if (row.type === "double-para") {
-                return [
-                  ...renderHeadingLinks(row.firstContent, index, "first"),
-                  ...renderHeadingLinks(row.secondContent, index, "second"),
-                ];
-              } else if (row.type === "image-para") {
-                return renderHeadingLinks(row.content, index);
-              }
-
-              return null;
-            })}
-          </div>
-        </div>
-      ) : active === "layout" ? (
-        <div className="flex flex-row">
-          <div className=" w-[220px] h-screen px-4 py-4 border-r-2 border-gray-200  pb-20 scrollbar-thin flex flex-col overflow-y-scroll overflow-x-hidden  ">
-            <h3 className="text-lg text-gray-800 font-semibold ">Typography</h3>
-            <div className="mt-4">
-              <label className="text-sm text-gray-400 mb-2">Heading Font</label>
-              <select
-                value={settings.heading}
-                onChange={(e) => {
-                  const temp = { ...settings };
-                  temp.heading = e.target.value;
-                  setSettings(temp);
-                }}
-                className="w-full py-1 px-1 outline-none border border-gray-50 rounded-md text-gray-400 text-xs
-            "
-              >
-                <option value="arial">Arial</option>
-                <option value="helvetica">Helvetica</option>
-                <option value="poppins">Poppins</option>
-                <option value="montserrat">Montserrat</option>
-                <option value="roboto">Roboto</option>
-                <option value="times-new-roman">Times New Roman</option>
-                <option value="georgia">Georgia</option>
-                <option value="playfair-display">Playfair Display</option>
-                <option value="merriweather">Merriweather</option>
-                <option value="garamond">Garamond</option>
-                <option value="lobster">Lobster</option>
-                <option value="pacifico">Pacifico</option>
-                <option value="bebas-neue">Bebas Neue</option>
-                <option value="anton">Anton</option>
-                <option value="oswald">Oswald</option>
-              </select>
             </div>
-            <div className="mt-2 gap-1">
-              <label className="text-sm text-gray-400 mb-2">Body Font</label>
-              <select
-                value={settings.body}
-                onChange={(e) => {
-                  const temp = { ...settings };
-                  temp.body = e.target.value;
-                  setSettings(temp);
-                }}
-                className="w-full py-1 px-1 outline-none border border-gray-50 rounded-md text-gray-400 text-xs"
-              >
-                <option value="arial">Arial</option>
-                <option value="helvetica">Helvetica</option>
-                <option value="poppins">Poppins</option>
-                <option value="montserrat">Montserrat</option>
-                <option value="roboto">Roboto</option>
-                <option value="times-new-roman">Times New Roman</option>
-                <option value="georgia">Georgia</option>
-                <option value="playfair-display">Playfair Display</option>
-                <option value="merriweather">Merriweather</option>
-                <option value="garamond">Garamond</option>
-                <option value="lobster">Lobster</option>
-                <option value="pacifico">Pacifico</option>
-                <option value="bebas-neue">Bebas Neue</option>
-                <option value="anton">Anton</option>
-                <option value="oswald">Oswald</option>
-              </select>
-            </div>
-            <div className="mt-3 flex items-center justify-between px-3 py-1 border border-gray-200 rounded-md text-xs text-gray-400 ">
-              <label>Header</label>
-              <input
-                className="accent-graidient_bottom "
-                value={settings.header}
-                onChange={(e) => {
-                  const temp = { ...settings };
-                  temp.header = e.target.value;
-                  setSettings(temp);
-                }}
-                type="checkbox"
-              />
-            </div>
-            <div className="mt-3 flex items-center justify-between px-3 py-1 border border-gray-200 rounded-md text-xs text-gray-400 ">
-              <label>Footer</label>
-              <input
-                className="accent-graidient_bottom "
-                value={settings.footer}
-                onChange={(e) => {
-                  const temp = { ...settings };
-                  temp.footer = e.target.value;
-                  setSettings(temp);
-                }}
-                type="checkbox"
-              />
-            </div>
-            <div>
-              <h3 className="text-lg mt-3 text-gray-800 font-semibold ">
-                Theme Fill
-              </h3>
-              <div
-                ref={colorButtonRef}
-                className="py-1 mt-2 flex   items-center justify-between border border-gray-100"
-                onClick={() => setShowPicker(true)}
-              >
-                <p className=" text-sm">
-                  <span className="flex gap-1 px-2 items-center">
-                    <div
-                      className="w-4 h-4"
-                      style={{ backgroundColor: settings.color }}
-                    ></div>
-                    {settings.color}
-                  </span>
-                </p>
-              </div>
-            </div>
-            <div className="mt-4">
-              <h3 className="text-lg text-gray-800 font-semibold ">
-                Design Theme
-              </h3>
-              <p className="text-gray-400 text-sm mt-3">Select Designh Theme</p>
-              <div className=" grid grid-cols-2 gap-3 mt-4">
-                <img
-                  onClick={() => {
-                    const temp = { ...settings };
-                    temp.theme = 0;
-                    setSettings(temp);
-                  }}
-                  className="h-28 w-[90%]"
-                  src={theme_0}
-                  alt="sometthing"
-                />
-                <img
-                  onClick={() => {
-                    const temp = { ...settings };
-                    temp.theme = 1;
-                    setSettings(temp);
-                  }}
-                  className="h-28 w-[90%]"
-                  src={theme_1}
-                  alt="sometthing"
-                />
-                <img
-                  onClick={() => {
-                    const temp = { ...settings };
-                    temp.theme = 2;
-                    setSettings(temp);
-                  }}
-                  className="h-28 w-[90%]"
-                  src={theme_2}
-                  alt="sometthing"
-                />
-                <img
-                  onClick={() => {
-                    const temp = { ...settings };
-                    temp.theme = 3;
-                    setSettings(temp);
-                  }}
-                  className="h-28 w-[90%]"
-                  src={theme_3}
-                  alt="sometthing"
-                />
-                <img
-                  onClick={() => {
-                    const temp = { ...settings };
-                    temp.theme = 4;
-                    setSettings(temp);
-                  }}
-                  className="h-28 w-[90%]"
-                  src={theme_4}
-                  alt="sometthing"
-                />
-                <img
-                  onClick={() => {
-                    const temp = { ...settings };
-                    temp.theme = 5;
-                    setSettings(temp);
-                  }}
-                  className="h-28 w-[90%]"
-                  src={theme_5}
-                  alt="sometthing"
-                />
-              </div>
-            </div>
-          </div>
-          <div className="relative w-[1px] h-screen">
-            {showPicker && (
-              <div
-                ref={colorRef}
-                className="absolute top-[25%] -left-1 mt-2 shadow-lg z-50"
-              >
-                <SketchPicker
-                  color={settings.color}
-                  onChange={(updatedColor) => {
-                    const temp = { ...settings };
-                    temp.color = updatedColor.hex;
-                    setSettings(temp);
-                  }}
-                />
-              </div>
-            )}
-          </div>
-        </div>
-      ) : (
-        <div> </div>
-      )}
-
-      <div className="w-[1px] h-screen bg-gray-100 relative ">
-        {thirdLevel === "heading" ? (
-          <div
-            ref={headingRef}
-            className="scrollbar-thin absolute left-0 w-[200px] flex flex-col items-center pt-10 gap-4 h-screen border-r border-gray-300 bg-white z-50 overflow-auto pb-20  "
-          >
-            <div
-              onClick={() => {
-                addHeadingRow("heading-one");
-                setThirdLevel("");
-              }}
-              className="w-[80%] h-24 p-2 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
-            >
-              <img className="h-[85%] w-[70%] " src={heading_one} />
-              <p>Heading 1</p>
-            </div>
-            <div
-              onClick={() => {
-                addHeadingRow("heading-two");
-                setThirdLevel("");
-              }}
-              className="w-[80%] h-24 p-2 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
-            >
-              <img className="h-[80%] w-[64%]" src={heading_one} />
-              <p>Heading 2</p>
-            </div>
-            <div
-              onClick={() => {
-                addHeadingRow("heading-three");
-                setThirdLevel("");
-              }}
-              className="w-[80%] h-30 p-2 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
-            >
-              <img className="h-[78%] w-[58%]" src={heading_one} />
-              <p>Heading 3</p>
-            </div>
-            <div
-              onClick={() => {
-                addHeadingRow("heading-four");
-                setThirdLevel("");
-              }}
-              className="w-[80%] h-30 p-2 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
-            >
-              <img className="h-[75%] w-[53%]" src={heading_one} />
-              <p>Heading 4</p>
-            </div>
-
-            <div
-              onClick={() => {
-                addHeadingRow("heading-five");
-                setThirdLevel("");
-              }}
-              className="w-[80%] h-30 p-2 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
-            >
-              <img className="h-[73%] w-[50%]" src={heading_one} />
-              <p>Heading 5</p>
-            </div>
-            <div
-              onClick={() => {
-                addHeadingRow("heading-six");
-                setThirdLevel("");
-              }}
-              className="w-[80%] h-30 p-2 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
-            >
-              <img className="h-[70%] w-[45%]" src={heading_one} />
-              <p>Heading 6</p>
-            </div>
-          </div>
-        ) : thirdLevel === "paragraph" ? (
-          <div
-            ref={headingRef}
-            className="scrollbar-thin absolute left-0 w-[200px] flex flex-col items-center pt-10 gap-4 h-screen border-r border-gray-300 bg-white z-50 overflow-auto pb-20  "
-          >
-            <div
-              onClick={() => {
-                addInputRow();
-                setThirdLevel("");
-              }}
-              className="w-[80%] h-28 p-1 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
-            >
-              <img className="h-[95%] w-[95%] " src={single_para} />
-            </div>
-            <div
-              onClick={() => {
-                addDoublePara();
-                setThirdLevel("");
-              }}
-              className="w-[80%] h-28 p-1 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
-            >
-              <img className="h-[95%] w-[95%]" src={double_para} />
-            </div>
-          </div>
-        ) : thirdLevel === "image" ? (
-          <div
-            ref={headingRef}
-            className="scrollbar-thin absolute left-0 w-[200px] flex flex-col items-center pt-10 gap-10 h-screen border-r border-gray-300 bg-white z-50 overflow-auto pb-20  "
-          >
-            <div
-              onClick={() => {
-                addImageRow();
-                setThirdLevel("");
-              }}
-              className="w-[80%] relative h-24 p-1 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
-            >
-              <img className="h-[85%] w-[95%] " src={image_in} />
-              <p className="text-gray-500 absolute left-1 top-[-25px] text-sm">
-                Image
+          ) : active === "outline" ? (
+            <div className="w-[220px] h-screen pr-4 border-r-2 border-gray-200  pb-10 scrollbar-thin flex flex-col">
+              <p className="w-full text-start p-2 px-2 text-gray-400 mb-1 ">
+                Outline
               </p>
-            </div>
-            <div
-              onClick={() => {
-                addImageAndParagraph();
-                setThirdLevel("");
-              }}
-              className=" relative w-[80%] h-24 p-1 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
-            >
-              <img className="h-[85%] w-[95%]" src={image_paragraph} />
-              <p className="text-gray-500 absolute left-1 top-[-25px] text-sm">
-                Image & Paragraph
-              </p>
-            </div>
-          </div>
-        ) : thirdLevel === "table" ? (
-          <div
-            ref={headingRef}
-            className="scrollbar-thin absolute left-0 w-[200px] flex flex-col items-center pt-10 gap-4 h-screen border-r border-gray-300 bg-white z-50 overflow-auto pb-20 text-xs text-gray-400 text-center  "
-          >
-            <div
-              onClick={() => {
-                addTableRow("normal");
-                setThirdLevel("");
-              }}
-              className="w-[80%] h-24 p-2 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
-            >
-              <img className="h-[75%] w-[53%]" src={table_v_1} />
-              <p>Basic Layout</p>
-            </div>
-            <div
-              onClick={() => {
-                addTableRow("alternativerow");
-                setThirdLevel("");
-              }}
-              className="w-[80%] h-24 p-2 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
-            >
-              <img className="h-[75%] w-[53%]" src={table_v_2} />
-              <p>Aleternative Row Layout</p>
-            </div>
-            <div
-              onClick={() => {
-                addTableRow("alternativecol");
-                setThirdLevel("");
-              }}
-              className="w-[80%] h-30 p-2 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
-            >
-              <img className="h-[75%] w-[53%]" src={table_v_3} />
-              <p>Aleternative Coloumn Layout</p>
-            </div>
-            <div
-              onClick={() => {
-                addTableRow("toprow");
-                setThirdLevel("");
-              }}
-              className="w-[80%] h-30 p-2 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
-            >
-              <img className="h-[75%] w-[53%]" src={table_v_4} />
-              <p>Top Row Layout</p>
-            </div>
+              <div className="w-full h-screen pl-2 scrollbar-thin flex flex-col overflow-y-auto gap-1 ">
+                {rows?.map((row, index) => {
+                  if (row.type === "heading") {
+                    return renderHeadingLinks(row.content, index);
+                  } else if (row.type === "input") {
+                    return renderHeadingLinks(row.content, index);
+                  } else if (row.type === "double-para") {
+                    return [
+                      ...renderHeadingLinks(row.firstContent, index, "first"),
+                      ...renderHeadingLinks(row.secondContent, index, "second"),
+                    ];
+                  } else if (row.type === "image-para") {
+                    return renderHeadingLinks(row.content, index);
+                  }
 
-            <div
-              onClick={() => {
-                addTableRow("leftcol");
-                setThirdLevel("");
-              }}
-              className="w-[80%] h-30 p-2 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
-            >
-              <img className="h-[75%] w-[53%]" src={table_v_5} />
-              <p>Left Coloumn Layout</p>
+                  return null;
+                })}
+              </div>
             </div>
-          </div>
-        ) : thirdLevel === "sections" ? (
-          <div
-            ref={headingRef}
-            className="scrollbar-thin absolute left-0 w-[200px] flex flex-col items-center pt-10 gap-4 h-screen border-r border-gray-300 bg-white z-50 overflow-auto pb-20 text-xs text-gray-400 text-center  "
-          >
-            <div
-              onClick={() => {
-                setRows([...rows, section_1_row]);
-                setThirdLevel("");
-              }}
-              className="w-[85%] h-26 p-1 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
-            >
-              <img className="h-[100%] w-[100%]" src={sections_1} />
-            </div>
-            <div
-              onClick={() => {
-                setRows([...rows, section_2_row]);
-                setThirdLevel("");
-              }}
-              className="w-[85%] h-26 p-1 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
-            >
-              <img className="h-[100%] w-[100%]" src={section_2} />
-            </div>
-          </div>
-        ) : thirdLevel === "pages" ? (
-          <div
-            ref={headingRef}
-            className=" scrollbar-thinabsolute left-0 w-[200px] flex flex-col items-center pt-10 gap-4 h-screen border-r border-gray-300 bg-white z-50 overflow-auto pb-20 text-xs text-gray-400 text-center  "
-          >
-            <div
-              onClick={() => {
-                setRows([...rows, ...page_1_row]);
-                setThirdLevel("");
-              }}
-              className="w-[80%] h-44  bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
-            >
-              <img className="h-[100%] w-[100%]" src={page_1} />
-            </div>
-          </div>
-        ) : thirdLevel === "saved" ? (
-          <div
-            ref={headingRef}
-            className=" scrollbar-thin absolute left-0 w-[200px] flex flex-col  items-center pt-4  h-screen border-r border-gray-300 bg-white z-50 overflow-auto pb-20  "
-          >
-            {user?.goals ? (
-              user.goals?.map((item, index) => {
-                return (
-                  <div
-                    key={index}
-                    className="my-3 w-[95%] bg-gray-100 p-2 flex flex-col items-center justify-center gap-2"
-                    onClick={() => {
-                      setRows([...rows, ...item.data]);
-                      setThirdLevel("");
+          ) : active === "layout" ? (
+            <div className="flex flex-row">
+              <div className=" w-[220px] h-screen px-4 py-4 border-r-2 border-gray-200  pb-20 scrollbar-thin flex flex-col overflow-y-scroll overflow-x-hidden  ">
+                <h3 className="text-lg text-gray-800 font-semibold ">
+                  Typography
+                </h3>
+                <div className="mt-4">
+                  <label className="text-sm text-gray-400 mb-2">
+                    Heading Font
+                  </label>
+                  <select
+                    value={settings.heading}
+                    onChange={(e) => {
+                      const temp = { ...settings };
+                      temp.heading = e.target.value;
+                      setSettings(temp);
                     }}
+                    className="w-full py-1 px-1 outline-none border border-gray-50 rounded-md text-gray-400 text-xs
+            "
                   >
-                    {item.link && (
-                      <img
-                        src={item.link}
-                        alt="No Imahe"
-                        className="w-full rounded-md "
-                      />
-                    )}
-                    <p className="text-sm text-gray-500">
-                      {item.goalModuleName}
+                    <option value="arial">Arial</option>
+                    <option value="helvetica">Helvetica</option>
+                    <option value="poppins">Poppins</option>
+                    <option value="montserrat">Montserrat</option>
+                    <option value="roboto">Roboto</option>
+                    <option value="times-new-roman">Times New Roman</option>
+                    <option value="georgia">Georgia</option>
+                    <option value="playfair-display">Playfair Display</option>
+                    <option value="merriweather">Merriweather</option>
+                    <option value="garamond">Garamond</option>
+                    <option value="lobster">Lobster</option>
+                    <option value="pacifico">Pacifico</option>
+                    <option value="bebas-neue">Bebas Neue</option>
+                    <option value="anton">Anton</option>
+                    <option value="oswald">Oswald</option>
+                  </select>
+                </div>
+                <div className="mt-2 gap-1">
+                  <label className="text-sm text-gray-400 mb-2">
+                    Body Font
+                  </label>
+                  <select
+                    value={settings.body}
+                    onChange={(e) => {
+                      const temp = { ...settings };
+                      temp.body = e.target.value;
+                      setSettings(temp);
+                    }}
+                    className="w-full py-1 px-1 outline-none border border-gray-50 rounded-md text-gray-400 text-xs"
+                  >
+                    <option value="arial">Arial</option>
+                    <option value="helvetica">Helvetica</option>
+                    <option value="poppins">Poppins</option>
+                    <option value="montserrat">Montserrat</option>
+                    <option value="roboto">Roboto</option>
+                    <option value="times-new-roman">Times New Roman</option>
+                    <option value="georgia">Georgia</option>
+                    <option value="playfair-display">Playfair Display</option>
+                    <option value="merriweather">Merriweather</option>
+                    <option value="garamond">Garamond</option>
+                    <option value="lobster">Lobster</option>
+                    <option value="pacifico">Pacifico</option>
+                    <option value="bebas-neue">Bebas Neue</option>
+                    <option value="anton">Anton</option>
+                    <option value="oswald">Oswald</option>
+                  </select>
+                </div>
+                <div className="mt-3 flex items-center justify-between px-3 py-1 border border-gray-200 rounded-md text-xs text-gray-400 ">
+                  <label>Header</label>
+                  <input
+                    className="accent-graidient_bottom "
+                    checked={settings.header}
+                    onChange={(e) => {
+                      const temp = { ...settings };
+                      temp.header = e.target.checked;
+                      setSettings(temp);
+                    }}
+                    type="checkbox"
+                  />
+                </div>
+                <div className="mt-3 flex items-center justify-between px-3 py-1 border border-gray-200 rounded-md text-xs text-gray-400 ">
+                  <label>Footer</label>
+                  <input
+                    className="accent-graidient_bottom "
+                    checked={settings.footer}
+                    onChange={(e) => {
+                      const temp = { ...settings };
+                      temp.footer = e.target.checked;
+                      setSettings(temp);
+                    }}
+                    type="checkbox"
+                  />
+                </div>
+                <div>
+                  <h3 className="text-lg mt-3 text-gray-800 font-semibold ">
+                    Theme Fill
+                  </h3>
+                  <div
+                    ref={colorButtonRef}
+                    className="py-1 mt-2 flex   items-center justify-between border border-gray-100"
+                    onClick={() => setShowPicker(true)}
+                  >
+                    <p className=" text-sm">
+                      <span className="flex gap-1 px-2 items-center">
+                        <div
+                          className="w-4 h-4"
+                          style={{ backgroundColor: settings.color }}
+                        ></div>
+                        {settings.color}
+                      </span>
                     </p>
                   </div>
-                );
-              })
+                </div>
+                <div className="mt-4">
+                  <h3 className="text-lg text-gray-800 font-semibold ">
+                    Design Theme
+                  </h3>
+                  <p className="text-gray-400 text-sm mt-3">
+                    Select Designh Theme
+                  </p>
+                  <div className=" grid grid-cols-2 gap-3 mt-4">
+                    <img
+                      onClick={() => {
+                        const temp = { ...settings };
+                        temp.theme = 0;
+                        setSettings(temp);
+                      }}
+                      className="h-28 w-[90%]"
+                      src={theme_0}
+                      alt="sometthing"
+                    />
+                    <img
+                      onClick={() => {
+                        const temp = { ...settings };
+                        temp.theme = 1;
+                        setSettings(temp);
+                      }}
+                      className="h-28 w-[90%]"
+                      src={theme_1}
+                      alt="sometthing"
+                    />
+                    <img
+                      onClick={() => {
+                        const temp = { ...settings };
+                        temp.theme = 2;
+                        setSettings(temp);
+                      }}
+                      className="h-28 w-[90%]"
+                      src={theme_2}
+                      alt="sometthing"
+                    />
+                    <img
+                      onClick={() => {
+                        const temp = { ...settings };
+                        temp.theme = 3;
+                        setSettings(temp);
+                      }}
+                      className="h-28 w-[90%]"
+                      src={theme_3}
+                      alt="sometthing"
+                    />
+                    <img
+                      onClick={() => {
+                        const temp = { ...settings };
+                        temp.theme = 4;
+                        setSettings(temp);
+                      }}
+                      className="h-28 w-[90%]"
+                      src={theme_4}
+                      alt="sometthing"
+                    />
+                    <img
+                      onClick={() => {
+                        const temp = { ...settings };
+                        temp.theme = 5;
+                        setSettings(temp);
+                      }}
+                      className="h-28 w-[90%]"
+                      src={theme_5}
+                      alt="sometthing"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="relative w-[1px] h-screen">
+                {showPicker && (
+                  <div
+                    ref={colorRef}
+                    className="absolute top-[25%] -left-1 mt-2 shadow-lg z-50"
+                  >
+                    <SketchPicker
+                      color={settings.color}
+                      onChange={(updatedColor) => {
+                        const temp = { ...settings };
+                        temp.color = updatedColor.hex;
+                        setSettings(temp);
+                      }}
+                    />
+                  </div>
+                )}
+              </div>
+            </div>
+          ) : (
+            <div> </div>
+          )}
+          <div className="w-[1px] h-screen bg-gray-100 relative ">
+            {thirdLevel === "heading" ? (
+              <div
+                ref={headingRef}
+                className="scrollbar-thin absolute left-0 w-[200px] flex flex-col items-center pt-10 gap-4 h-screen border-r border-gray-300 bg-white z-50 overflow-auto pb-20  "
+              >
+                <div
+                  onClick={() => {
+                    addHeadingRow("heading-one");
+                    setThirdLevel("");
+                  }}
+                  className="w-[80%] h-24 p-2 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
+                >
+                  <img className="h-[85%] w-[70%] " src={heading_one} />
+                  <p>Heading 1</p>
+                </div>
+                <div
+                  onClick={() => {
+                    addHeadingRow("heading-two");
+                    setThirdLevel("");
+                  }}
+                  className="w-[80%] h-24 p-2 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
+                >
+                  <img className="h-[80%] w-[64%]" src={heading_one} />
+                  <p>Heading 2</p>
+                </div>
+                <div
+                  onClick={() => {
+                    addHeadingRow("heading-three");
+                    setThirdLevel("");
+                  }}
+                  className="w-[80%] h-30 p-2 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
+                >
+                  <img className="h-[78%] w-[58%]" src={heading_one} />
+                  <p>Heading 3</p>
+                </div>
+                <div
+                  onClick={() => {
+                    addHeadingRow("heading-four");
+                    setThirdLevel("");
+                  }}
+                  className="w-[80%] h-30 p-2 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
+                >
+                  <img className="h-[75%] w-[53%]" src={heading_one} />
+                  <p>Heading 4</p>
+                </div>
+
+                <div
+                  onClick={() => {
+                    addHeadingRow("heading-five");
+                    setThirdLevel("");
+                  }}
+                  className="w-[80%] h-30 p-2 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
+                >
+                  <img className="h-[73%] w-[50%]" src={heading_one} />
+                  <p>Heading 5</p>
+                </div>
+                <div
+                  onClick={() => {
+                    addHeadingRow("heading-six");
+                    setThirdLevel("");
+                  }}
+                  className="w-[80%] h-30 p-2 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
+                >
+                  <img className="h-[70%] w-[45%]" src={heading_one} />
+                  <p>Heading 6</p>
+                </div>
+              </div>
+            ) : thirdLevel === "paragraph" ? (
+              <div
+                ref={headingRef}
+                className="scrollbar-thin absolute left-0 w-[200px] flex flex-col items-center pt-10 gap-4 h-screen border-r border-gray-300 bg-white z-50 overflow-auto pb-20  "
+              >
+                <div
+                  onClick={() => {
+                    addInputRow();
+                    setThirdLevel("");
+                  }}
+                  className="w-[80%] h-28 p-1 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
+                >
+                  <img className="h-[95%] w-[95%] " src={single_para} />
+                </div>
+                <div
+                  onClick={() => {
+                    addDoublePara();
+                    setThirdLevel("");
+                  }}
+                  className="w-[80%] h-28 p-1 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
+                >
+                  <img className="h-[95%] w-[95%]" src={double_para} />
+                </div>
+              </div>
+            ) : thirdLevel === "image" ? (
+              <div
+                ref={headingRef}
+                className="scrollbar-thin absolute left-0 w-[200px] flex flex-col items-center pt-10 gap-10 h-screen border-r border-gray-300 bg-white z-50 overflow-auto pb-20  "
+              >
+                <div
+                  onClick={() => {
+                    addImageRow();
+                    setThirdLevel("");
+                  }}
+                  className="w-[80%] relative h-24 p-1 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
+                >
+                  <img className="h-[85%] w-[95%] " src={image_in} />
+                  <p className="text-gray-500 absolute left-1 top-[-25px] text-sm">
+                    Image
+                  </p>
+                </div>
+                <div
+                  onClick={() => {
+                    addImageAndParagraph();
+                    setThirdLevel("");
+                  }}
+                  className=" relative w-[80%] h-24 p-1 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
+                >
+                  <img className="h-[85%] w-[95%]" src={image_paragraph} />
+                  <p className="text-gray-500 absolute left-1 top-[-25px] text-sm">
+                    Image & Paragraph
+                  </p>
+                </div>
+              </div>
+            ) : thirdLevel === "table" ? (
+              <div
+                ref={headingRef}
+                className="scrollbar-thin absolute left-0 w-[200px] flex flex-col items-center pt-10 gap-4 h-screen border-r border-gray-300 bg-white z-50 overflow-auto pb-20 text-xs text-gray-400 text-center  "
+              >
+                <div
+                  onClick={() => {
+                    addTableRow("normal");
+                    setThirdLevel("");
+                  }}
+                  className="w-[80%] h-24 p-2 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
+                >
+                  <img className="h-[75%] w-[53%]" src={table_v_1} />
+                  <p>Basic Layout</p>
+                </div>
+                <div
+                  onClick={() => {
+                    addTableRow("alternativerow");
+                    setThirdLevel("");
+                  }}
+                  className="w-[80%] h-24 p-2 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
+                >
+                  <img className="h-[75%] w-[53%]" src={table_v_2} />
+                  <p>Aleternative Row Layout</p>
+                </div>
+                <div
+                  onClick={() => {
+                    addTableRow("alternativecol");
+                    setThirdLevel("");
+                  }}
+                  className="w-[80%] h-30 p-2 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
+                >
+                  <img className="h-[75%] w-[53%]" src={table_v_3} />
+                  <p>Aleternative Coloumn Layout</p>
+                </div>
+                <div
+                  onClick={() => {
+                    addTableRow("toprow");
+                    setThirdLevel("");
+                  }}
+                  className="w-[80%] h-30 p-2 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
+                >
+                  <img className="h-[75%] w-[53%]" src={table_v_4} />
+                  <p>Top Row Layout</p>
+                </div>
+
+                <div
+                  onClick={() => {
+                    addTableRow("leftcol");
+                    setThirdLevel("");
+                  }}
+                  className="w-[80%] h-30 p-2 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
+                >
+                  <img className="h-[75%] w-[53%]" src={table_v_5} />
+                  <p>Left Coloumn Layout</p>
+                </div>
+              </div>
+            ) : thirdLevel === "sections" ? (
+              <div
+                ref={headingRef}
+                className="scrollbar-thin absolute left-0 w-[200px] flex flex-col items-center pt-10 gap-4 h-screen border-r border-gray-300 bg-white z-50 overflow-auto pb-20 text-xs text-gray-400 text-center  "
+              >
+                <div
+                  onClick={() => {
+                    setRows([...rows, section_1_row]);
+                    setThirdLevel("");
+                  }}
+                  className="w-[85%] h-26 p-1 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
+                >
+                  <img className="h-[100%] w-[100%]" src={sections_1} />
+                </div>
+                <div
+                  onClick={() => {
+                    setRows([...rows, section_2_row]);
+                    setThirdLevel("");
+                  }}
+                  className="w-[85%] h-26 p-1 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
+                >
+                  <img className="h-[100%] w-[100%]" src={section_2} />
+                </div>
+              </div>
+            ) : thirdLevel === "pages" ? (
+              <div
+                ref={headingRef}
+                className=" scrollbar-thinabsolute left-0 w-[200px] flex flex-col items-center pt-10 gap-4 h-screen border-r border-gray-300 bg-white z-50 overflow-auto pb-20 text-xs text-gray-400 text-center  "
+              >
+                <div
+                  onClick={() => {
+                    setRows([...rows, ...page_1_row]);
+                    setThirdLevel("");
+                  }}
+                  className="w-[80%] h-44  bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
+                >
+                  <img className="h-[100%] w-[100%]" src={page_1} />
+                </div>
+              </div>
+            ) : thirdLevel === "saved" ? (
+              <div
+                ref={headingRef}
+                className=" scrollbar-thin absolute left-0 w-[200px] flex flex-col  items-center pt-4  h-screen border-r border-gray-300 bg-white z-50 overflow-auto pb-20  "
+              >
+                {user?.goals ? (
+                  user.goals?.map((item, index) => {
+                    return (
+                      <div
+                        key={index}
+                        className="my-3 w-[95%] bg-gray-100 p-2 flex flex-col items-center justify-center gap-2"
+                        onClick={() => {
+                          setRows([...rows, ...item.data]);
+                          setThirdLevel("");
+                        }}
+                      >
+                        {item.link && (
+                          <img
+                            src={item.link}
+                            alt="No Imahe"
+                            className="w-full rounded-md "
+                          />
+                        )}
+                        <p className="text-sm text-gray-500">
+                          {item.goalModuleName}
+                        </p>
+                      </div>
+                    );
+                  })
+                ) : (
+                  <div></div>
+                )}
+              </div>
+            ) : thirdLevel === "cover" ? (
+              <div
+                ref={headingRef}
+                className="scrollbar-thin absolute left-0 w-[200px] flex flex-col items-center pt-10 gap-4 h-screen border-r border-gray-300 bg-white z-50 overflow-auto pb-20 text-xs text-gray-400 text-center  "
+              >
+                <div>
+                  <input
+                    id={`file-upload`}
+                    type="file"
+                    className="hidden"
+                    accept="image/*"
+                    onChange={(e) => {
+                      handleUpload(e);
+                    }}
+                  />
+                  {/* Upload Image Label */}
+                  <label
+                    htmlFor={`file-upload`}
+                    className="px-1 py-1 flex items-center justify-center gap-2  text-center rounded cursor-pointer text-xs"
+                  >
+                    <IoCloudUploadOutline />
+                    {loading ? "Loading..." : "Upload Cover Page"}
+                  </label>
+                </div>
+              </div>
             ) : (
               <div></div>
             )}
           </div>
-        ) : thirdLevel === "cover" ? (
-          <div
-            ref={headingRef}
-            className="scrollbar-thin absolute left-0 w-[200px] flex flex-col items-center pt-10 gap-4 h-screen border-r border-gray-300 bg-white z-50 overflow-auto pb-20 text-xs text-gray-400 text-center  "
-          >
-            <div>
-              <input
-                id={`file-upload`}
-                type="file"
-                className="hidden"
-                accept="image/*"
-                onChange={(e) => {
-                  handleUpload(e);
-                }}
-              />
-              {/* Upload Image Label */}
-              <label
-                htmlFor={`file-upload`}
-                className="px-1 py-1 flex items-center justify-center gap-2  text-center rounded cursor-pointer text-xs"
-              >
-                <IoCloudUploadOutline />
-                {loading ? "Loading..." : "Upload Cover Page"}
-              </label>
-            </div>
-          </div>
-        ) : (
-          <div></div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 };

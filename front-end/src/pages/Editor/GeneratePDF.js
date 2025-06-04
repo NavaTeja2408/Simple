@@ -1,14 +1,16 @@
 import jsPDF from "jspdf";
 import React from "react";
-import "jspdf-autotable";
+import autoTable from "jspdf-autotable";
 import ImageAlter from "../../assets/ImageAlter.png";
 import { BsFileLock } from "react-icons/bs";
 
-const GeneratePDF = async (data) => {
+const GeneratePDF = async (data, settings) => {
   const doc = new jsPDF();
   let currentY = 10; // Start position for the Y-coordinate
   const pageHeight = doc.internal.pageSize.height;
   const availableWidth = doc.internal.pageSize.width - 10;
+  doc.setFont(settings.body);
+  autoTable(doc);
 
   const renderContent = (content, type) => {
     const pageS = doc.internal.pageSize.width;
@@ -24,6 +26,7 @@ const GeneratePDF = async (data) => {
 
     switch (type) {
       case "heading":
+        doc.setFont(settings.heading);
         currentY += 10;
         const headingText =
           Array.isArray(content) &&
@@ -73,6 +76,7 @@ const GeneratePDF = async (data) => {
         doc.text(headingText, xPosition, currentY, { maxWidth: pageS });
         currentY += 5;
         // Add space after heading
+        doc.setFont(settings.body);
         break;
 
       case "table":
@@ -80,14 +84,18 @@ const GeneratePDF = async (data) => {
           doc.addPage();
           currentY = 10;
         }
+
         if (Array.isArray(content) && content.length > 0) {
           const rows = content.map((row) => (Array.isArray(row) ? row : []));
+
           doc.autoTable({
-            startY: currentY,
+            startY: 10,
             head: [rows[0] || []],
             body: rows.slice(1),
           });
-          currentY = doc.autoTable.previous.finalY + 10; // Update Y after table
+
+          // ✅ Use lastAutoTable.finalY to update currentY
+          currentY = doc.lastAutoTable.finalY + 10;
         } else {
           console.warn("Invalid table data:", content);
         }
@@ -563,19 +571,12 @@ const GeneratePDF = async (data) => {
           doc.addPage();
           currentY = 10;
         }
-        const imgWidth = 50; // Image width
+        const imgWidth = availableWidth - 10; // Image width
         const imgHeight = 50; // Image height
         const pageWidth = doc.internal.pageSize.width;
         const Position = (pageWidth - imgWidth) / 2; // Center the image horizontally
 
-        doc.addImage(
-          ImageAlter,
-          "JPEG",
-          Position,
-          currentY,
-          imgWidth,
-          imgHeight
-        );
+        doc.addImage(content, "JPEG", Position, currentY, imgWidth, imgHeight);
         currentY += imgHeight + 10; // Add space after the image
         break;
 

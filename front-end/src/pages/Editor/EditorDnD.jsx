@@ -80,6 +80,7 @@ const EditorDnD = () => {
           setProposalName(res.data.proposalName);
           setRows(res.data.data);
           setSettings(res.data.settings || settings);
+          console.log(res.data.settings);
           setFavorate(res.data.favorate);
           setPreview(res.data.locked);
         });
@@ -95,73 +96,153 @@ const EditorDnD = () => {
       { id: uuidv4(), type: "text", content: "", bookmark: false },
     ]);
   };
-  const addHeadingRow = (value) => {
-    setRows((prevRows) => [
-      ...prevRows,
-      {
-        id: uuidv4(),
-        type: "heading",
-        size: value,
-        content: "",
-        bookmark: false,
-      },
-    ]);
+  const addHeadingRow = (value, index = null) => {
+    if (index !== null && index >= 0 && index <= rows.length) {
+      // Add at the specified index
+      setRows((prevRows) => [
+        ...prevRows.slice(0, index), // Rows before the index
+        {
+          id: uuidv4(),
+          type: "heading",
+          size: value,
+          content: "",
+          bookmark: false,
+        },
+        ...prevRows.slice(index), // Rows after the index
+      ]);
+    } else {
+      // Add at the end
+      setRows((prevRows) => [
+        ...prevRows,
+        {
+          id: uuidv4(),
+          type: "heading",
+          size: value,
+          content: "",
+          bookmark: false,
+        },
+      ]);
+    }
+
     setSelected("heading");
   };
-  const addDoublePara = () => {
-    setRows((prevRows) => [
-      ...prevRows,
-      {
-        id: uuidv4(),
-        type: "double-para",
-        firstContent: "",
-        secondContent: "",
-        bookmark: false,
-      },
-    ]);
+
+  const addDoublePara = (index = null) => {
+    if (index !== null && index >= 0 && index <= rows.length) {
+      // Add at the specified index
+      setRows((prevRows) => [
+        ...prevRows.slice(0, index), // Rows before the index
+        {
+          id: uuidv4(),
+          type: "double-para",
+          firstContent: "",
+          secondContent: "",
+          bookmark: false,
+        },
+        ...prevRows.slice(index), // Rows after the index
+      ]);
+    } else {
+      setRows((prevRows) => [
+        ...prevRows,
+        {
+          id: uuidv4(),
+          type: "double-para",
+          firstContent: "",
+          secondContent: "",
+          bookmark: false,
+        },
+      ]);
+    }
     setSelected("double");
   };
-  const addImageAndParagraph = () => {
-    setRows((prevRows) => [
-      ...prevRows,
-      {
-        id: uuidv4(),
-        type: "image-para",
-        content: "",
-        ImageLink: "",
-        height: "",
-        width: "",
-        align: "left",
-        aliegn: "center",
-        bookmark: false,
-      },
-    ]);
+  const addImageAndParagraph = (index = null) => {
+    if (index !== null && index >= 0 && index <= rows.length) {
+      // Add at the specified index
+      setRows((prevRows) => [
+        ...prevRows.slice(0, index), // Rows before the index
+        {
+          id: uuidv4(),
+          type: "image-para",
+          content: "",
+          ImageLink: "",
+          height: "",
+          width: "",
+          align: "left",
+          aliegn: "center",
+          bookmark: false,
+        },
+        ...prevRows.slice(index), // Rows after the index
+      ]);
+    } else {
+      setRows((prevRows) => [
+        ...prevRows,
+        {
+          id: uuidv4(),
+          type: "image-para",
+          content: "",
+          ImageLink: "",
+          height: "",
+          width: "",
+          align: "left",
+          aliegn: "center",
+          bookmark: false,
+        },
+      ]);
+    }
     setSelected("image_para");
   };
 
   // Add a row with input field
-  const addInputRow = () => {
-    setRows((prevRows) => [
-      ...prevRows,
-      { id: uuidv4(), type: "input", content: "", bookmark: false },
-    ]);
+  const addInputRow = (index = null) => {
+    if (index !== null && index >= 0 && index <= rows.length) {
+      // Add at the specified index
+      setRows((prevRows) => [
+        ...prevRows.slice(0, index), // Rows before the index
+        { id: uuidv4(), type: "input", content: "", bookmark: false },
+        ...prevRows.slice(index), // Rows after the index
+      ]);
+    } else {
+      setRows((prevRows) => [
+        ...prevRows,
+        { id: uuidv4(), type: "input", content: "", bookmark: false },
+      ]);
+    }
     setSelected("input");
   };
-  const addImageRow = () => {
-    setRows((prevRows) => [
-      ...prevRows,
-      {
-        id: uuidv4(),
-        type: "image",
-        content: "",
-        height: "200",
-        width: "50",
-        aliegn: "center",
-        caption: "",
-        discription: "",
-        bookmark: false,
-      },
-    ]);
+  const addImageRow = (index = null) => {
+    if (index !== null && index >= 0 && index <= rows.length) {
+      // Add at the specified index
+      setRows((prevRows) => [
+        ...prevRows.slice(0, index), // Rows before the index
+        {
+          id: uuidv4(),
+          type: "image",
+          content: "",
+          height: "200",
+          width: "50",
+          aliegn: "center",
+          caption: "",
+          discription: "",
+          bookmark: false,
+        },
+        ...prevRows.slice(index), // Rows after the index
+      ]);
+    } else {
+      setRows((prevRows) => [
+        ...prevRows,
+        {
+          id: uuidv4(),
+          type: "image",
+          content: "",
+          height: "200",
+          width: "50",
+          aliegn: "center",
+          caption: "",
+          discription: "",
+          bookmark: false,
+        },
+      ]);
+    }
     setSelected("image");
   };
 
@@ -178,11 +259,20 @@ const EditorDnD = () => {
     setSelected("cover");
   };
 
-  const addBreakPoint = () => {
-    setRows((prevRows) => [
-      ...prevRows,
-      { id: uuidv4(), type: "brake", content: "", bookmark: false },
-    ]);
+  const addBreakPoint = (index = null) => {
+    if (index !== null && index >= 0 && index <= rows.length) {
+      // Add at the specified index
+      setRows((prevRows) => [
+        ...prevRows.slice(0, index), // Rows before the index
+        { id: uuidv4(), type: "brake", content: "", bookmark: false },
+        ...prevRows.slice(index), // Rows after the index
+      ]);
+    } else {
+      setRows((prevRows) => [
+        ...prevRows,
+        { id: uuidv4(), type: "brake", content: "", bookmark: false },
+      ]);
+    }
     setSelected("break");
   };
 
@@ -220,11 +310,20 @@ const EditorDnD = () => {
     setSelected("table");
   };
 
-  const addCodeBlock = () => {
-    setRows((prevRows) => [
-      ...prevRows,
-      { id: uuidv4(), type: "code", content: "", bookmark: false },
-    ]);
+  const addCodeBlock = (index = null) => {
+    if (index !== null && index >= 0 && index <= rows.length) {
+      // Add at the specified index
+      setRows((prevRows) => [
+        ...prevRows.slice(0, index), // Rows before the index
+        { id: uuidv4(), type: "code", content: "", bookmark: false },
+        ...prevRows.slice(index), // Rows after the index
+      ]);
+    } else {
+      setRows((prevRows) => [
+        ...prevRows,
+        { id: uuidv4(), type: "code", content: "", bookmark: false },
+      ]);
+    }
     setSelected("code");
   };
   const addSign = (data) => {
@@ -403,6 +502,7 @@ const EditorDnD = () => {
             settings={settings}
             setSettings={setSettings}
             addCoverPage={addCoverPage}
+            preview={preview}
           />
         </div>
 
@@ -418,6 +518,16 @@ const EditorDnD = () => {
             preview={preview}
             setSignEdit={setSignEdit}
             dropCanvasRef={dropCanvasRef}
+            addEmptyRow={addEmptyRow}
+            addInputRow={addInputRow}
+            addTextRow={addTextRow}
+            addHeadingRow={addHeadingRow}
+            addDoublePara={addDoublePara}
+            addImageAndParagraph={addImageAndParagraph}
+            addImageRow={addImageRow}
+            addBreakPoint={addBreakPoint}
+            addTableRow={addTableRow}
+            addCodeBlock={addCodeBlock}
           />
         </div>
       </div>

@@ -101,7 +101,7 @@ const DashboardHome = () => {
 
   return (
     <>
-      <div className="w-[97%] bg-gray-100 min-h-[85vh]   ">
+      <div className="w-[100%] bg-gray-100 min-h-[90vh]   ">
         <div className="w-full h-[85vh] overflow-auto scrollbar-hide">
           <h1 className=" p-3 text-2xl">Hello {user.username}</h1>
           <div className="grid grid-cols-2 gap-5">
@@ -110,7 +110,7 @@ const DashboardHome = () => {
                 <FaRegFolder className="text-gray-500" />
                 <h1>Workspaces</h1>
               </div>
-              <div className="grid grid-cols-2">
+              <div className="grid grid-cols-2 w-full h-full">
                 {favW.map((workspace, index) => {
                   return (
                     <div
