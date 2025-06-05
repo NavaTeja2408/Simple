@@ -13,6 +13,7 @@ const ForDouble = ({
   aliegn,
   onAliegn,
   onWidth,
+  preview,
 }) => {
   const divRef = useRef();
   const [loading, setLoading] = useState(false);
@@ -81,7 +82,7 @@ const ForDouble = ({
       } items-center relative`}
     >
       {/* Settings Panel */}
-      {show && (
+      {show && preview !== true && (
         <div className="absolute -top-5 left-10 px-3 h-10 bg-white border border-gray-100 shadow-lg shadow-gray-400 flex flex-row items-center space-x-2 p-2 rounded text-sm z-50">
           {/* Hidden file input */}
           <input

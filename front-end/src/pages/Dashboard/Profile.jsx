@@ -12,6 +12,7 @@ import axios from "axios";
 import { UserContext } from "../../context/UserContext";
 import { DatabaseContext } from "../../context/DatabaseContext";
 import { RiDeleteBin5Line } from "react-icons/ri";
+import toast from "react-hot-toast";
 
 const Profile = () => {
   const { user } = useContext(UserContext);
@@ -61,6 +62,7 @@ const Profile = () => {
         url: photo.secure_url,
       });
       setImageUrl(photo.secure_url);
+      toast.success("Successfully added profile picture");
     } catch (error) {
       console.error("Error uploading image:", error);
     }

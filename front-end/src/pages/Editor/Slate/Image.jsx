@@ -26,6 +26,7 @@ const Image = ({
   captionH,
   discription,
   onCaption,
+  preview,
 }) => {
   const divRef = useRef();
   const [loading, setLoading] = useState(false);
@@ -103,7 +104,7 @@ const Image = ({
       } items-center relative `}
       onClick={() => setIndexValue(index)}
     >
-      {indexValue === index && (
+      {indexValue === index && preview !== true && (
         <div className="absolute top-2 left-[25%] px-3 h-10 bg-white border border-gray-100 shadow-lg shadow-gray-400 flex flex-row items-center space-x-2 p-2 rounded text-sm">
           {/* Hidden file input */}
           <input

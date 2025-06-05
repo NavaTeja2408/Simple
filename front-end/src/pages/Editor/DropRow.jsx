@@ -335,7 +335,7 @@ const DropRow = ({
                   textColor={row.textColor ? row.textColor : "text-black"}
                 />
 
-                {switchButton === index && (
+                {switchButton === index && preview !== true && (
                   <div className="w-[1px] h-30 border-r-[1px] border-dashed border-red-400 ml-4 relative">
                     <button
                       ref={buttonRef}
@@ -420,7 +420,7 @@ const DropRow = ({
                   height={row.height ? row.height : "200"}
                 />
 
-                {switchButton === index && (
+                {switchButton === index && preview !== true && (
                   <div className="w-[1px] h-30 border-r-[1px] border-dashed border-red-400 ml-4 relative">
                     <button
                       ref={buttonRef}
@@ -653,6 +653,7 @@ const DropRow = ({
                 updatedContent[0].content = newData;
                 setRows(updatedContent);
               }}
+              preview={preview}
             />
           </div>
         ) : (

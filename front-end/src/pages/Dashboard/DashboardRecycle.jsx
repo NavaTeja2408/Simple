@@ -8,6 +8,7 @@ import { FaRegCopy } from "react-icons/fa6";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { MdRestorePage } from "react-icons/md";
+import toast from "react-hot-toast";
 
 const DashboardRecycle = () => {
   const [proposals, setProposals] = useState([]);
@@ -18,7 +19,6 @@ const DashboardRecycle = () => {
       const res = await axios.get(`${databaseUrl}/api/workspace/recycle`, {
         params: { user_id: user.id },
       });
-      console.log(res.data);
       setProposals(res.data);
     } catch (error) {
       console.error("Error fetching workspaces:", error);
@@ -35,6 +35,7 @@ const DashboardRecycle = () => {
         { proposal_id: id }
       );
       setProposals(proposals.filter((item) => item._id !== id));
+      toast.success("Proposal has been deleted perminently");
     } catch (error) {
       console.error("Error fetching workspaces:", error);
     }
@@ -45,6 +46,7 @@ const DashboardRecycle = () => {
         proposal_id: id,
       });
       setProposals(proposals.filter((item) => item._id !== id));
+      toast.success("Proposal restored successfully");
     } catch (error) {
       console.error("Error fetching workspaces:", error);
     }

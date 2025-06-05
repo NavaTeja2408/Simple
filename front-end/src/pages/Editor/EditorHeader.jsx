@@ -222,9 +222,12 @@ const EditorHeader = ({
       <div className="flex flex-row w-[40%] items-center justify-start gap-2">
         <img src={logo} alt="logo" className="w-[41px] h-[29px]" />
         <img src={Header_editor} alt="something" className="w-7 ml-4" />
-        <div>
-          <h3 className="text-sm font-bold flex items-center justify-start gap-2">
-            {proposalName}{" "}
+        <div className="w-[90%] ">
+          <h3 className="text-sm font-bold flex items-center justify-start gap-2 w-fit text-ellipsis ">
+            <h3 className="text-sm font-bold flex items-center justify-start gap-2 max-w-[45vw] overflow-hidden  ">
+              {proposalName}
+            </h3>
+
             {saving ? (
               <p className="text-[9px] mt-[3px] text-graidient_bottom">
                 saving
@@ -233,22 +236,12 @@ const EditorHeader = ({
               <IoIosCloudDone className="text-graidient_bottom" />
             )}
           </h3>
-          <p className="text-[10px] bg-gray-200 px-1 rounded-xs">
+          <p className="text-[10px] bg-gray-200 px-2 rounded-lg w-fit">
             By Ashwini - Updated 20 mins ago
           </p>
         </div>
       </div>
-      <div className="w-[30%] flex items-center justify-center text-gray-600">
-        <div className=" flex items-center border-[1px] rounded-lg border-gray-300 w-[90%] bg-gray-100">
-          <CiSearch className="w-10 text-gray-600  " />
-          <input
-            type="text"
-            placeholder="Search in proposal..."
-            className="pr-6 py-1 bg-gray-100 text-sm "
-            style={{ outline: "none" }}
-          />
-        </div>
-      </div>
+
       <div className="w-[60%] flex items-center justify-end gap-4">
         <button
           onClick={undo}

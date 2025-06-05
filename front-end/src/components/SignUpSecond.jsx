@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { DatabaseContext } from "../context/DatabaseContext";
 import { FaRegFolder } from "react-icons/fa";
+import toast from "react-hot-toast";
 
 const SignUpSecond = ({ setNext, email, password }) => {
   const [fullname, setFullname] = useState("");
@@ -39,6 +40,7 @@ const SignUpSecond = ({ setNext, email, password }) => {
           subscription: "trial",
         })
         .then((res) => console.log(res));
+      toast.success("Successfully created account");
     } catch (error) {
       console.log(error);
     } finally {

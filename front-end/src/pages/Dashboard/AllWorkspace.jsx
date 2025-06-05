@@ -15,12 +15,16 @@ import { RiArrowUpDownLine } from "react-icons/ri";
 import { FaCheck } from "react-icons/fa6";
 import { FaRegEdit } from "react-icons/fa";
 import { MdOutlineDelete } from "react-icons/md";
+import toast from "react-hot-toast";
+import { StateManageContext } from "../../context/StateManageContext";
 
 const AllWorkspace = () => {
   const { user } = useContext(UserContext);
   const { databaseUrl } = useContext(DatabaseContext);
+  const { workspaces, setWorkspaces, sortW, setSortW } =
+    useContext(StateManageContext);
   const navigate = useNavigate();
-  const [workspaces, setWorkspaces] = useState([]);
+  // const [workspaces, setWorkspaces] = useState([]);
   const [error, setError] = useState(null);
   const [popup, setPopup] = useState(null);
   const [newW, setNewW] = useState(false);
@@ -31,7 +35,7 @@ const AllWorkspace = () => {
   const [conformD, setConformD] = useState(false);
   const blockRef = useRef();
   const buttonRef = useRef();
-  const [sortW, setSortW] = useState("default");
+  // const [sortW, setSortW] = useState("default");
   const [openSort, setOpenSort] = useState(false);
   const sortButtonRef = useRef();
   const sortRef = useRef();
@@ -47,11 +51,11 @@ const AllWorkspace = () => {
     }
   };
 
-  useEffect(() => {
-    if (user?.id && databaseUrl) {
-      getWorkspaces();
-    }
-  }, [user?.id, databaseUrl, sortW]);
+  // useEffect(() => {
+  //   if (user?.id && databaseUrl) {
+  //     getWorkspaces();
+  //   }
+  // }, [user?.id, databaseUrl, sortW]);
 
   function getRandomColor() {
     const colors = ["green", "red", "orange", "blue"];
@@ -59,20 +63,20 @@ const AllWorkspace = () => {
     return colors[randomIndex];
   }
 
-  const getWorkspaces = async () => {
-    try {
-      const res = await axios.get(
-        `${databaseUrl}/api/workspace/getallworkspaces`,
-        {
-          params: { user_id: user.id, sortw: sortW },
-        }
-      );
-      setWorkspaces(res.data);
-    } catch (error) {
-      console.error("Error fetching workspaces:", error);
-      setError("Failed to fetch workspaces. Please try again later.");
-    }
-  };
+  // const getWorkspaces = async () => {
+  //   try {
+  //     const res = await axios.get(
+  //       `${databaseUrl}/api/workspace/getallworkspaces`,
+  //       {
+  //         params: { user_id: user.id, sortw: sortW },
+  //       }
+  //     );
+  //     setWorkspaces(res.data);
+  //   } catch (error) {
+  //     console.error("Error fetching workspaces:", error);
+  //     setError("Failed to fetch workspaces. Please try again later.");
+  //   }
+  // };
 
   const handleNewWorkspace = async (workspaceName, users) => {
     try {
@@ -83,6 +87,7 @@ const AllWorkspace = () => {
         users: users,
       });
       setWorkspaces([...workspaces, res.data]);
+      toast.success("Workspace has been created");
     } catch (error) {
       console.error("Error creating workspace:", error);
       setError("Failed to create workspace. Please try again later.");
@@ -114,6 +119,7 @@ const AllWorkspace = () => {
         const temp = [...workspaces];
         temp.splice(deleteW, 1);
         setWorkspaces(temp);
+        toast.success("Workspace has been deleted");
       } catch (error) {
         console.log(error);
       } finally {

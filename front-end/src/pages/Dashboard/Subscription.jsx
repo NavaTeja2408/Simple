@@ -9,6 +9,7 @@ import { DatabaseContext } from "../../context/DatabaseContext";
 import axios from "axios";
 import profile from "../../assets/profile.png";
 import { RiDeleteBinLine } from "react-icons/ri";
+import toast from "react-hot-toast";
 
 const Subscription = () => {
   const [plan, setPlan] = useState("yearly");
@@ -41,6 +42,9 @@ const Subscription = () => {
         }
       );
       console.log(res.data);
+      toast.success(
+        "Congratualations! for purchasing simple quotes membership"
+      );
     } catch (error) {
       console.error("Error fetching workspaces:", error);
     }
@@ -56,6 +60,7 @@ const Subscription = () => {
           user_id: user.id,
         }
       );
+      toast.success("Subscription has been cancelled");
       console.log(res.data);
     } catch (error) {
       console.error("Error fetching workspaces:", error);

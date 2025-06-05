@@ -8,6 +8,7 @@ import { FaRegFolder } from "react-icons/fa";
 import { FaEdit } from "react-icons/fa";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import profile from "../../assets/profile.png";
+import toast from "react-hot-toast";
 
 const ManageUsers = () => {
   const [addNew, setAddNew] = useState(false);
@@ -92,6 +93,7 @@ const ManageUsers = () => {
       setSelectedW([]);
       setSelected(null);
       setAddNew(false);
+      toast.success("User has been added to collabration");
     }
   };
 
@@ -110,6 +112,7 @@ const ManageUsers = () => {
       setCollab((prev) =>
         prev.map((item) => (item._id === res.data._id ? res.data : item))
       );
+      toast.success("Successfully saved the user");
     } catch (error) {
       console.log(error);
     } finally {
@@ -129,6 +132,7 @@ const ManageUsers = () => {
       );
 
       setCollab(collab.filter((item) => item._id !== collab_id));
+      toast.success("User has been deleted from collabration");
     } catch (error) {
       console.log(error);
     }

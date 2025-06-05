@@ -8,10 +8,10 @@ import axios from "axios";
 const NewProposal = ({ handleCreateNewProposal, setPopup }) => {
   const [name, setName] = useState("");
   const [error, setError] = useState(false);
-  const { setNewProposal } = useContext(StateManageContext);
+  const { setNewProposal, workspaces, setWorkspaces } =
+    useContext(StateManageContext);
   const { user } = useContext(UserContext);
   const { databaseUrl } = useContext(DatabaseContext);
-  const [workspaces, setWorkspaces] = useState(null);
   const [selected, setSelected] = useState(null);
   const [search, setSearch] = useState("");
 
@@ -21,27 +21,6 @@ const NewProposal = ({ handleCreateNewProposal, setPopup }) => {
       setError(true);
     } else {
       handleCreateNewProposal(name, selected);
-    }
-  };
-
-  useEffect(() => {
-    if (user?.id && databaseUrl) {
-      getWorkspaces();
-    }
-  }, [user?.id, databaseUrl]);
-
-  const getWorkspaces = async () => {
-    try {
-      const res = await axios.get(
-        `${databaseUrl}/api/workspace/getallworkspaces`,
-        {
-          params: { user_id: user.id, sortw: "alp" },
-        }
-      );
-      setWorkspaces(res.data);
-    } catch (error) {
-      console.error("Error fetching workspaces:", error);
-      setError("Failed to fetch workspaces. Please try again later.");
     }
   };
 

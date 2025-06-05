@@ -15,11 +15,14 @@ import { FaRegStar } from "react-icons/fa6";
 import { FaStar } from "react-icons/fa6";
 import { FaCheck } from "react-icons/fa";
 import { FaRegFolder } from "react-icons/fa";
+import toast from "react-hot-toast";
+import { StateManageContext } from "../../context/StateManageContext";
 
 const DashboardProposals = () => {
   const { user } = useContext(UserContext);
   const { databaseUrl } = useContext(DatabaseContext);
-  const [proposals, setProposals] = useState([]);
+  const { workspaces, setWorkspaces, proposals, setProposals } =
+    useContext(StateManageContext);
   const [selLocked, setSelLoacked] = useState([]);
   const [threeDots, setThreeDots] = useState(null);
   const [renameV, setRenameV] = useState("");
@@ -27,7 +30,6 @@ const DashboardProposals = () => {
   const blockRef = useRef();
   const buttonRef = useRef();
   const [move, setMove] = useState(null);
-  const [workspaces, setWorkspaces] = useState([]);
   const [selected, setSelected] = useState(null);
   const [search, setSearch] = useState("");
 
@@ -38,6 +40,7 @@ const DashboardProposals = () => {
         workspace_id: selected,
       });
       setProposals(proposals.filter((item) => item._id !== id));
+      toast.success("Proposal has been moved to another workspace");
     } catch (error) {
       console.log(error);
     } finally {
@@ -55,29 +58,11 @@ const DashboardProposals = () => {
         user_id: user.id,
       });
       setProposals(proposals.filter((item) => item._id !== id));
+      toast.success("Proposal has been deleted");
     } catch (error) {
       console.log(error);
     } finally {
       setThreeDots(null);
-    }
-  };
-
-  useEffect(() => {
-    if (user?.id && databaseUrl) {
-      getWorkspaces();
-    }
-  }, [move]);
-
-  const getWorkspaces = async () => {
-    try {
-      const res = await axios.get(`${databaseUrl}/api/workspace/getall`, {
-        params: { user_id: user.id },
-      });
-      console.log(res);
-      setWorkspaces(res.data);
-    } catch (error) {
-      console.error("Error fetching workspaces:", error);
-      setError("Failed to fetch workspaces. Please try again later.");
     }
   };
 
@@ -89,6 +74,7 @@ const DashboardProposals = () => {
       });
 
       setProposals([res.data, ...proposals]);
+      toast.success("Duplicate Proposal has been created");
     } catch (error) {
       console.log(error);
     }
@@ -157,24 +143,6 @@ const DashboardProposals = () => {
     }
   };
 
-  useEffect(() => {
-    if (user?.id && databaseUrl) {
-      getProposals();
-    }
-  }, [user?.id, databaseUrl]);
-
-  const getProposals = async () => {
-    try {
-      const res = await axios.get(`${databaseUrl}/api/workspace/getproposals`, {
-        params: { user_id: user.id },
-      });
-
-      setProposals(res.data);
-    } catch (error) {
-      console.error("Error fetching workspaces:", error);
-    }
-  };
-
   const getBaseUrl = () => {
     const url = window.location.origin; // Gets up to .com, .net, etc.
     return url;
@@ -185,7 +153,7 @@ const DashboardProposals = () => {
     navigator.clipboard
       .writeText(`${domain}/#/view/${id}`)
       .then(() => {
-        alert("Copied to clipboard!");
+        toast.success("Copied to clipboard!");
       })
       .catch((err) => {
         console.error("Failed to copy:", err);

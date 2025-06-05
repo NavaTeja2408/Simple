@@ -7,7 +7,7 @@ import { UserContext } from "../../context/UserContext";
 const DashboardHeader = () => {
   const { user } = useContext(UserContext);
   return (
-    <div className="h-[7vh] w-full flex items-center justify-between shadow-lg shadow-gray-200">
+    <div className="h-[7vh] w-full flex items-center justify-between shadow-lg shadow-gray-200 border-b border-gray-200">
       <div className=" w-[15%]  ">
         <img className="w-[75%] ml-2" src={Logo} alt="Logo" />
       </div>

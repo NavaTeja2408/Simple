@@ -8,6 +8,7 @@ const CoverPageSlate = ({
   selected,
   url,
   onChange,
+  preview,
 }) => {
   const [loading, setLoading] = useState(false);
   const handleUpload = async (e) => {
@@ -49,7 +50,7 @@ const CoverPageSlate = ({
   return (
     <div className="w-[104%] h-[100vh] ml-[-2%]   absolute top-0  ">
       <img src={url} />
-      {index === selected && (
+      {index === selected && preview !== true && (
         <div className="w-[20%] absolute top-0 shadow-lg h-10 ml-[40%] bg-white flex justify-center items-center gap-4 ">
           <div>
             <input

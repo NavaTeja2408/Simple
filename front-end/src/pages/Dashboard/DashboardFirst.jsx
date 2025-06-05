@@ -19,11 +19,14 @@ import { FaStar } from "react-icons/fa6";
 import { FaRegFolder } from "react-icons/fa";
 import { FiArrowLeft } from "react-icons/fi";
 import { FaCheck } from "react-icons/fa";
+import toast from "react-hot-toast";
+import { StateManageContext } from "../../context/StateManageContext";
 
 const DashboardFirst = () => {
   const navigate = useNavigate();
   const { user } = useContext(UserContext);
   const [popup, setPopup] = useState(false);
+  const { workspaces, setWorkspaces } = useContext(StateManageContext);
   const { databaseUrl } = useContext(DatabaseContext);
   const { id } = useParams();
   const [selLocked, setSelLoacked] = useState([]);
@@ -37,7 +40,7 @@ const DashboardFirst = () => {
   const [renameV, setRenameV] = useState("");
   const [rename, setRename] = useState(null);
   const [move, setMove] = useState(null);
-  const [workspaces, setWorkspaces] = useState([]);
+  // const [workspaces, setWorkspaces] = useState([]);
   const [selected, setSelected] = useState(null);
   const [search, setSearch] = useState("");
 
@@ -48,6 +51,7 @@ const DashboardFirst = () => {
         workspace_id: selected,
       });
       setProposals(proposals.filter((item) => item._id !== move));
+      toast.success("Workspace has been moved");
     } catch (error) {
       console.log(error);
     } finally {
@@ -55,24 +59,6 @@ const DashboardFirst = () => {
       setMove(null);
       setSelected(null);
       setThreeDots(null);
-    }
-  };
-  useEffect(() => {
-    if (user?.id && databaseUrl) {
-      getWorkspaces();
-    }
-  }, [move]);
-
-  const getWorkspaces = async () => {
-    try {
-      const res = await axios.get(`${databaseUrl}/api/workspace/getall`, {
-        params: { user_id: user.id },
-      });
-      console.log(res);
-      setWorkspaces(res.data);
-    } catch (error) {
-      console.error("Error fetching workspaces:", error);
-      setError("Failed to fetch workspaces. Please try again later.");
     }
   };
 
@@ -85,6 +71,7 @@ const DashboardFirst = () => {
       const temp = [...proposals];
       temp[index].proposalName = renameV;
       setProposals(temp);
+      toast.success("Proposal name has been changed");
     } catch (error) {
       console.log(error);
     } finally {
@@ -120,6 +107,7 @@ const DashboardFirst = () => {
 
       console.log(res);
       setProposals(proposals.filter((item) => item._id !== id));
+      toast.success("Successfully deleted proposal");
     } catch (error) {
       console.log(error);
     } finally {
@@ -134,6 +122,7 @@ const DashboardFirst = () => {
       });
 
       setProposals([res.data, ...proposals]);
+      toast.success("Duplicate Proposal has been created");
     } catch (error) {
       console.log(error);
     }
@@ -236,7 +225,7 @@ const DashboardFirst = () => {
     navigator.clipboard
       .writeText(`${domain}/#/view/${id}`)
       .then(() => {
-        alert("Copied to clipboard!");
+        toast.success("Copied to clipboard!");
       })
       .catch((err) => {
         console.error("Failed to copy:", err);

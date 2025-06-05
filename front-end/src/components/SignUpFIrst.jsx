@@ -11,6 +11,7 @@ import SignUpSecond from "./SignUpSecond";
 import { DatabaseContext } from "../context/DatabaseContext";
 import logo from "../assets/Web_logo.png";
 import { FaEye } from "react-icons/fa6";
+import toast from "react-hot-toast";
 
 const SignUpFIrst = () => {
   const [email, setEmail] = useState("");
@@ -28,11 +29,11 @@ const SignUpFIrst = () => {
   const handleSignupFirst = () => {
     if (email === "" || password === "") {
       setError(true);
-      console.log("error");
+      toast.error("Please enter all the details");
     }
     if (password !== cpassword) {
       setError(true);
-      alert("The password and confirm password is not same");
+      toast.error("Password and confirm password didn't match");
     } else {
       setNext(true);
     }

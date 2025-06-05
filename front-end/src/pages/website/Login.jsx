@@ -10,6 +10,7 @@ import { DatabaseContext } from "../../context/DatabaseContext";
 import { UserContext } from "../../context/UserContext";
 import { FaEye } from "react-icons/fa6";
 import logo from "../../assets/Web_logo.png";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -40,10 +41,11 @@ const Login = () => {
           password,
         });
         if (res.data.error) {
-          alert(res.data.error);
+          toast.error(res.data.error);
         } else {
           localStorage.setItem("user", JSON.stringify(res.data));
           setUser(res.data);
+          toast.success("Login Successful");
           navigate("/home");
         }
       }

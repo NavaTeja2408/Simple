@@ -5,6 +5,7 @@ import { FaRegFolder } from "react-icons/fa";
 import { IoSearch } from "react-icons/io5";
 import { UserContext } from "../../context/UserContext";
 import profile from "../../assets/profile.png";
+import toast from "react-hot-toast";
 
 const NewWorkspace = ({
   handleNewWorkspace,
@@ -56,6 +57,7 @@ const NewWorkspace = ({
       console.error("Error updating workspace:", error);
       setErrorMessage("Failed to update workspace. Please try again.");
     } finally {
+      toast.success("Workspace has been saved");
       setName("");
       setColor("");
       setUsers([]);
