@@ -285,6 +285,32 @@ const updateLastseen = async (req, res) => {
   }
 };
 
+const changeName = async (req, res) => {
+  const { name, id } = req.body;
+  try {
+    const Proposal = await ProposalModel.findById(id);
+    Proposal.proposalName = name;
+    await Proposal.save();
+    res.json({
+      message: "Successfully changed the proposal name",
+    });
+  } catch (error) {
+    console.error("Error creating proposal:", error);
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
+const getDetails = async (req, res) => {
+  const { id } = req.query;
+  try {
+    const proposal = await ProposalModel.findById(id).populate("Users");
+    res.json(proposal);
+  } catch (error) {
+    console.error("Error creating proposal:", error);
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
 module.exports = {
   createGoal,
   createProposal,
@@ -298,4 +324,6 @@ module.exports = {
   updateLocked,
   updateViews,
   updateLastseen,
+  changeName,
+  getDetails,
 };

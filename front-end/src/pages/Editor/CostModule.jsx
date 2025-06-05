@@ -133,14 +133,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
 
               {/* Checkboxes */}
               <div className="flex items-center gap-4 ">
-                <label
-                  style={{
-                    border: discount
-                      ? "1px solid rgba(223 , 6 , 78 , 1)"
-                      : "none",
-                  }}
-                  className="flex bg-gray-100 px-2 py-1 rounded-md items-center text-sm font-semibold text-gray-600"
-                >
+                <label className="flex bg-gray-100 px-2 py-1 rounded-md items-center text-sm font-semibold text-gray-600">
                   <input
                     type="checkbox"
                     checked={discount}
@@ -149,14 +142,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                   />
                   Discount
                 </label>
-                <label
-                  style={{
-                    border: quantity
-                      ? "1px solid rgba(223 , 6 , 78 , 1)"
-                      : "none",
-                  }}
-                  className="flex bg-gray-100 px-2 py-1 rounded-md items-center text-sm font-semibold text-gray-600"
-                >
+                <label className="flex bg-gray-100 px-2 py-1 rounded-md items-center text-sm font-semibold text-gray-600">
                   <input
                     type="checkbox"
                     checked={quantity}
@@ -165,12 +151,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                   />
                   Quantity
                 </label>
-                <label
-                  style={{
-                    border: tax ? "1px solid rgba(223 , 6 , 78 , 1)" : "none",
-                  }}
-                  className="flex bg-gray-100 px-4 py-1 rounded-md items-center text-sm font-semibold text-gray-600"
-                >
+                <label className="flex bg-gray-100 px-4 py-1 rounded-md items-center text-sm font-semibold text-gray-600">
                   <input
                     type="checkbox"
                     checked={tax}
@@ -255,7 +236,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                       </div>
                     </td>
                     {quantity && (
-                      <td className=" px-2 py-2 w-[13%] ">
+                      <td className=" px-2 py-2 w-[13%]  ">
                         <input
                           type="number"
                           value={row.price}
@@ -272,7 +253,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                     )}
 
                     {quantity && (
-                      <td className=" px-2 py-2 w-[13%]">
+                      <td className=" px-2 py-2 w-[13%] ">
                         <input
                           type="number"
                           value={row.quantity}
@@ -288,7 +269,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                       </td>
                     )}
 
-                    <td className=" px-2 py-2 w-[15%]">
+                    <td className=" px-2 py-2 w-[15%] ">
                       <input
                         type="number"
                         value={row.amount}
@@ -306,7 +287,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                     <td className=" px-2 py-2 text-center">
                       <button
                         onClick={() => handleDeleteRow(index)}
-                        className="px-2 py-2 rounded-md text-red-500 hover:text-red-700 bg-editor_header_button"
+                        className="px-2 py-2 rounded-md text-gray-500 hover:text-graidient_bottom"
                       >
                         <MdOutlineDelete className="text-lg" />
                       </button>

@@ -13,6 +13,8 @@ const {
   updateFavorate,
   updateViews,
   updateLastseen,
+  changeName,
+  getDetails,
 } = require("../Components/editorComponent");
 
 const editor = express.Router();
@@ -31,5 +33,7 @@ editor.get("/getgoals", getGoal);
 editor.get("/getsingle", getProposal);
 editor.delete("/delete", deleteProposal);
 editor.delete("/deleteGoal", deleteGoal);
+editor.post("/name", changeName);
+editor.get("/details", getDetails);
 
 module.exports = editor;

@@ -55,6 +55,8 @@ const EditorHeader = ({
   const bellRef = useRef(null);
   const shareRef = useRef(null);
   const [que, setQue] = useState([]);
+  const [name, setName] = useState("");
+  const [created, setCreated] = useState("");
 
   const undo = () => {
     if (rows.length > 0) {
@@ -63,6 +65,23 @@ const EditorHeader = ({
       setQue([...que, lastItem]);
     }
   };
+
+  const getDetails = async () => {
+    try {
+      const res = await axios.get(`${databaseUrl}/api/editor/details`, {
+        params: { id: id },
+      });
+      console.log(res.data);
+      setName(res.data.proposalName);
+      setCreated(res.data.Users[0].fullName);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getDetails();
+  }, [id]);
 
   const redo = () => {
     if (que.length > 0) {
@@ -180,6 +199,20 @@ const EditorHeader = ({
         setCopySuccess("Failed to copy");
       });
   };
+
+  const changeRename = async (value) => {
+    try {
+      await axios.post(`${databaseUrl}/api/editor/name`, {
+        name: value,
+        id: id,
+      });
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setName(value);
+    }
+  };
+
   const updateProposal = async () => {
     try {
       if (rows.length !== 0) {
@@ -218,15 +251,21 @@ const EditorHeader = ({
     };
   }, [rows, settings]);
   return (
-    <div className="w-full flex items-center justify-evenly h-16 px-5 border-b-[1px] border-gray-200 shadow-lg">
+    <div className="w-full flex items-center justify-evenly h-16 px-7 border-b-[1px] border-gray-200 shadow-lg">
       <div className="flex flex-row w-[40%] items-center justify-start gap-2">
         <img src={logo} alt="logo" className="w-[41px] h-[29px]" />
         <img src={Header_editor} alt="something" className="w-7 ml-4" />
-        <div className="w-[90%] ">
-          <h3 className="text-sm font-bold flex items-center justify-start gap-2 w-fit text-ellipsis ">
-            <h3 className="text-sm font-bold flex items-center justify-start gap-2 max-w-[45vw] overflow-hidden  ">
-              {proposalName}
-            </h3>
+        <div className="w-[90%] flex flex-col gap-0.5 ">
+          <h3 className="text-sm font-bold flex items-center justify-start gap-2 max-w-[45vw] text-ellipsis ">
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => {
+                changeRename(e.target.value);
+              }}
+              style={{ width: `${name.length * 7 + 50}px  ` }}
+              className="text-sm font-bold flex items-center justify-start gap-2  outline-none px-1  "
+            />
 
             {saving ? (
               <p className="text-[9px] mt-[3px] text-graidient_bottom">
@@ -237,7 +276,7 @@ const EditorHeader = ({
             )}
           </h3>
           <p className="text-[10px] bg-gray-200 px-2 rounded-lg w-fit">
-            By Ashwini - Updated 20 mins ago
+            Created By {created}
           </p>
         </div>
       </div>
@@ -255,9 +294,9 @@ const EditorHeader = ({
         >
           <GrRedo className="w-4 h-4" />
         </button>
-        <button>
+        {/* <button>
           <MdOutlineHistory className="h-6 w-6 text-gray-500" />
-        </button>
+        </button> */}
         <div className="relative">
           <button onClick={() => setLock(!lock)}>
             <LuLockKeyholeOpen
@@ -269,7 +308,7 @@ const EditorHeader = ({
           {lock && (
             <div
               ref={lockRef}
-              className="bg-white border border-graidient_bottom p-5 w-52 absolute z-10 rounded-lg flex flex-col items-center justify-center gap-1 top-9 right-20    px-2 py-2 shadow-gray-400 shadow-lg"
+              className="bg-white border border-gray-300  w-36 absolute z-10 rounded-lg flex flex-col items-center justify-center gap-1 top-9 right-20 px-3     py-2 shadow-gray-400 shadow-lg"
               style={{
                 left: "50%",
                 transform: "translate(-50%)",
@@ -277,22 +316,24 @@ const EditorHeader = ({
             >
               <button
                 onClick={() => handleLocked(true)}
-                className={`text-sm  flex gap-2 items-center justify-start w-[90%] pl-1 rounded-sm ${
-                  preview && "bg-graidient_bottom text-white"
-                } hover:bg-graidient_bottom hover:text-white`}
+                className={`text-sm w-full  flex gap-2 items-center justify-start  pl-1 rounded-md ${
+                  preview ? "bg-graidient_bottom text-white" : "bg-gray-200"
+                } hover:bg-gray-300 `}
               >
-                <p className=" h-7 flex items-center justify-center gap-2 hover:text-white">
+                <p className=" h-7 flex items-center justify-center gap-2 ">
                   <LuLockKeyhole />
                   Locked
                 </p>
               </button>
               <button
                 onClick={() => handleLocked(false)}
-                className={`text-sm flex gap-2 items-center justify-start w-[90%] pl-1 rounded-sm ${
-                  preview === false && "bg-graidient_bottom text-white"
-                } hover:bg-graidient_bottom hover:text-white`}
+                className={`text-sm flex gap-2 w-full items-center justify-start  pl-1 rounded-md ${
+                  preview === false
+                    ? "bg-graidient_bottom text-white"
+                    : "bg-gray-200"
+                } hover:bg-gray-300 `}
               >
-                <p className=" h-7 flex items-center justify-center gap-2 hover:text-white">
+                <p className=" h-7 flex items-center justify-center gap-2 ">
                   <LuLockKeyholeOpen />
                   Unlocked
                 </p>
@@ -301,9 +342,9 @@ const EditorHeader = ({
           )}
         </div>
 
-        <button onClick={() => setMove(true)}>
+        {/* <button onClick={() => setMove(true)}>
           <CgFileDocument className="w-5 h-5 text-gray-500" />
-        </button>
+        </button> */}
         <div className="relative">
           <button
             className="relative"
@@ -319,18 +360,18 @@ const EditorHeader = ({
           {notifiacations && (
             <div
               ref={bellRef}
-              className="bg-white border border-graidient_bottom p-5 w-96 absolute z-10 rounded-lg flex flex-col items-center justify-center gap-1 top-9 right-20    px-2 py-2 shadow-gray-400 shadow-lg"
+              className="bg-white border border-gray-300 p-5 w-96 absolute z-10 rounded-lg flex flex-col items-center justify-center gap-1 top-9 right-20    px-2 py-3 shadow-gray-400 shadow-lg"
               style={{
                 left: "50%",
                 transform: "translate(-50%)",
               }}
             >
-              <div className="w-full py-1 border-b border-gray-200">
+              <div className="w-full py-2 border-b border-gray-200">
                 <h2 className="ml-3 font-bold">Notifications</h2>
               </div>
-              {[1, 2, 3, 4, 5].map((item) => {
+              {[1, 2, 3, 4].map((item) => {
                 return (
-                  <div className="flex justify-between w-full mt-2">
+                  <div className="flex justify-between w-full mt-2 py-2 bg-gray-100 rounded-md">
                     <div className="w-[10%]  h-full flex items-start justify-center">
                       <div className="mt-2 w-1 h-1 rounded-[50%] bg-graidient_bottom"></div>
                     </div>
@@ -353,7 +394,7 @@ const EditorHeader = ({
         <div className="relative">
           <button
             ref={parentRef}
-            className="p-2 rounded-[50%]"
+            className="p-2 rounded-[50%] bg-gray-100"
             onClick={() => setMenu(!menu)}
           >
             <BsThreeDotsVertical
@@ -365,7 +406,7 @@ const EditorHeader = ({
           {menu && (
             <div
               ref={menuRef}
-              className="bg-white border border-graidient_bottom p-5 w-52 absolute z-10 rounded-lg flex flex-col items-center justify-center gap-1 top-9 right-20    px-2 py-2 shadow-gray-400 shadow-lg"
+              className="bg-white border border-gray-300  w-44 absolute z-10 rounded-lg flex flex-col items-center justify-center gap-1 top-9 right-20     py-3 shadow-gray-400 shadow-lg"
               style={{
                 left: "50%",
                 transform: "translate(-50%)",
@@ -373,7 +414,7 @@ const EditorHeader = ({
             >
               <button
                 onClick={handleFavorate}
-                className={`text-sm  flex gap-2 items-center justify-start w-[90%] pl-1 rounded-sm ${
+                className={`text-sm  flex gap-2 items-center justify-start w-[90%] pl-1 rounded-md ${
                   favorate && "bg-graidient_bottom text-white"
                 }  hover:bg-graidient_bottom hover:text-white`}
               >
@@ -384,7 +425,7 @@ const EditorHeader = ({
               </button>
               <button
                 onClick={() => setMenu(false)}
-                className="text-sm flex gap-2 items-center justify-start w-[90%] pl-1 rounded-sm hover:bg-graidient_bottom hover:text-white"
+                className="text-sm flex gap-2 items-center justify-start w-[90%] pl-1 rounded-md hover:bg-graidient_bottom hover:text-white "
               >
                 <BsPinAngle className="hover:text-white" />
                 <p className=" h-7 flex items-center justify-center hover:text-white">
@@ -392,7 +433,7 @@ const EditorHeader = ({
                 </p>
               </button>
               <div className="w-full bg-gray-200 h-[1px] mb-[-2px] "></div>
-              <button
+              {/* <button
                 onClick={() => setMenu(false)}
                 className="text-sm  flex gap-2 items-center justify-start w-[90%] pl-1 rounded-sm hover:bg-graidient_bottom hover:text-white"
               >
@@ -400,7 +441,7 @@ const EditorHeader = ({
                 <p className=" h-7 flex items-center justify-center  hover:text-white">
                   Delete Document
                 </p>
-              </button>
+              </button> */}
             </div>
           )}
         </div>
@@ -427,15 +468,14 @@ const EditorHeader = ({
           {share && (
             <div
               ref={shareRef}
-              className="bg-white border border-graidient_bottom p-5 w-80 absolute top-10 z-10 right-0 rounded-lg flex flex-col items-center justify-center gap-1"
+              className="bg-white border border-gray-300 p-5 w-80 absolute top-10 z-10 right-0 rounded-lg flex flex-col items-center justify-center gap-1"
             >
-              <h2 className="text-md font-bold">Share link & Download</h2>
+              <h2 className="text-md font-bold">
+                Share & Download Your Proposal
+              </h2>
               <p className="w-[80%] text-xs text-center text-gray-500">
-                Share the Proposal link by{" "}
-                <span className="text-graidient_bottom">"Copying link"</span> or{" "}
-                <span className="text-graidient_bottom">
-                  Download in word/PDF
-                </span>
+                Easily share your proposal link or download it in your preferred
+                format.
               </p>
               <div className="border-[1px] w-[90%] rounded-md border-gray-600 flex items-center justify-between pl-2  gap-2 mt-2">
                 <Link to={`/view/${id}`}>

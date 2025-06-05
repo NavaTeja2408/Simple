@@ -47,7 +47,7 @@ const CostModuleSlate = ({ index, rows, selected, settings }) => {
               <th className="border border-r-gray-200 px-2 py-2">Price</th>
             )}
             {rows.options.quantity && (
-              <th className="border border-r-gray-200 px-2 py-1 text-center">
+              <th className="border border-r-gray-200 px-2 py-1 text-right">
                 Quantity
               </th>
             )}
@@ -66,7 +66,7 @@ const CostModuleSlate = ({ index, rows, selected, settings }) => {
                 </td>
               )}
               {rows.options.quantity && (
-                <td className="border px-2 py-1">{row.quantity}</td>
+                <td className="border px-2 py-1 text-right">{row.quantity}</td>
               )}
 
               <td className="border px-2 py-1 text-right">

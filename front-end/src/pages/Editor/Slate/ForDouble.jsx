@@ -74,13 +74,13 @@ const ForDouble = ({
   return (
     <div
       ref={divRef}
-      className={`w-full mt-4 min-h-[200px] flex ${
+      className={`w-full mt-4 min-h-[30px] flex ${
         aliegn === "left"
           ? "justify-start"
           : aliegn === "right"
           ? "justify-end"
           : "justify-center"
-      } items-center relative`}
+      } items-start relative`}
     >
       {/* Settings Panel */}
       {show && preview !== true && (

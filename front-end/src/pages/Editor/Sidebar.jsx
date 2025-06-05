@@ -1059,7 +1059,7 @@ const Sidebar = ({
                   className="w-[80%] h-24 p-2 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
                 >
                   <img className="h-[85%] w-[70%] " src={heading_one} />
-                  <p>Heading 1</p>
+                  <p>H 1</p>
                 </div>
                 <div
                   onClick={() => {
@@ -1069,7 +1069,7 @@ const Sidebar = ({
                   className="w-[80%] h-24 p-2 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
                 >
                   <img className="h-[80%] w-[64%]" src={heading_one} />
-                  <p>Heading 2</p>
+                  <p>H 2</p>
                 </div>
                 <div
                   onClick={() => {
@@ -1079,7 +1079,7 @@ const Sidebar = ({
                   className="w-[80%] h-30 p-2 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
                 >
                   <img className="h-[78%] w-[58%]" src={heading_one} />
-                  <p>Heading 3</p>
+                  <p>H 3</p>
                 </div>
                 <div
                   onClick={() => {
@@ -1089,7 +1089,7 @@ const Sidebar = ({
                   className="w-[80%] h-30 p-2 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
                 >
                   <img className="h-[75%] w-[53%]" src={heading_one} />
-                  <p>Heading 4</p>
+                  <p>H 4</p>
                 </div>
 
                 <div
@@ -1100,7 +1100,7 @@ const Sidebar = ({
                   className="w-[80%] h-30 p-2 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
                 >
                   <img className="h-[73%] w-[50%]" src={heading_one} />
-                  <p>Heading 5</p>
+                  <p>H 5</p>
                 </div>
                 <div
                   onClick={() => {
@@ -1110,7 +1110,7 @@ const Sidebar = ({
                   className="w-[80%] h-30 p-2 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
                 >
                   <img className="h-[70%] w-[45%]" src={heading_one} />
-                  <p>Heading 6</p>
+                  <p>H 6</p>
                 </div>
               </div>
             ) : thirdLevel === "paragraph" ? (

@@ -28,6 +28,11 @@ const DashboardSideBar = ({ setBody }) => {
     };
   }, []);
 
+  const Logout = () => {
+    localStorage.removeItem("user");
+    navigate("/");
+  };
+
   const handleClickOutside = (event) => {
     if (
       buttonRef.current &&
@@ -140,7 +145,7 @@ const DashboardSideBar = ({ setBody }) => {
             General Settings
           </button>
           <button
-            onClick={() => navigate("/")}
+            onClick={() => Logout()}
             className="flex items-center justify-start py-2 pl-3  text-start w-full  hover:bg-gray-50  mb-2"
           >
             <span className="w-7 h-7 flex items-center justify-center  rounded-md">

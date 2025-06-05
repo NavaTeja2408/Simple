@@ -119,7 +119,7 @@ const DropCanvas = ({
     <div
       style={{
         width: "94%",
-        minHeight: "100vh",
+        minHeight: "85vh",
         position: "relative",
         paddingTop: "30px",
         padding: "15px",
