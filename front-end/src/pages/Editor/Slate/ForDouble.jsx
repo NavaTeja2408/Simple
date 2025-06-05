@@ -14,6 +14,7 @@ const ForDouble = ({
   onAliegn,
   onWidth,
   preview,
+  selected,
 }) => {
   const divRef = useRef();
   const [loading, setLoading] = useState(false);

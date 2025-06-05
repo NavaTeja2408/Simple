@@ -191,6 +191,8 @@ const MyRichTextEditor = ({
   settings,
   onTextColor,
   textColor,
+  selected,
+  setSelected,
 }) => {
   const [textSize, setTextSize] = useState(size);
   const initialValue = [
@@ -342,9 +344,9 @@ const MyRichTextEditor = ({
   return (
     <div
       className={` relative w-[100%] p-2 rounded  ${
-        index === indexValue ? "mt-10" : "mt-1"
+        selected === index ? "mt-10" : "mt-2"
       }`}
-      onFocus={() => setIndexValue(index)}
+      onFocus={() => setSelected(index)}
       onBlur={(e) => {
         // Prevent toolbar from hiding when interacting with the dropdowns
         if (
@@ -370,7 +372,7 @@ const MyRichTextEditor = ({
         value={data}
         onChange={(newValue) => onChange(newValue)}
       >
-        {index === indexValue && (
+        {index === selected && (
           <Toolbar
             className="absolute top-[-40px] shadow-sm shadow-gray-400 left-[26%]  bg-white flex flex-row items-center justify-center  border border-gray-200 rounded-sm  px-3 py-2 "
             ref={toolbarRef}
@@ -510,9 +512,9 @@ const MyRichTextEditor = ({
                 ? lightenColor(settings.color, 0.8)
                 : "transparent",
           }}
-          className={` relative min-h-[20px] ${textColor}   p-2 outline-none   font-${
+          className={` relative min-h-[20px] ${textColor}   px-2 py-1 outline-none   font-${
             settings.heading
-          } ${index === indexValue ? "border-[2px] border-gray-300" : "none"}`}
+          } ${index === selected ? "border-[2px] border-gray-300" : "none"}`}
           readOnly={preview}
         />
         {settings.theme !== 0 && (

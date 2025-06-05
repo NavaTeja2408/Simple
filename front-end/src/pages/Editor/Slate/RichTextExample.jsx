@@ -314,6 +314,8 @@ const RichTextEditor = ({
   settings,
   onTextColor,
   textColor,
+  selected,
+  setSelected,
 }) => {
   const editor = useMemo(() => withHistory(withReact(createEditor())), []);
   const [value, setValue] = useState(initialValue);
@@ -342,9 +344,9 @@ const RichTextEditor = ({
   return (
     <div
       className={`relative   w-[100%] ${
-        index === indexValue ? "pt-14" : "pt-0"
-      }  px-2 py-1 rounded overflow-hidden`}
-      onFocus={() => setIndexValue(index)}
+        index === selected ? "pt-14" : "pt-0"
+      }  px-2 rounded overflow-hidden mt-1`}
+      onFocus={() => setSelected(index)}
       onBlur={(e) => {
         // Prevent toolbar from hiding when interacting with the dropdowns
         if (
@@ -364,7 +366,7 @@ const RichTextEditor = ({
         value={data}
         onChange={(newValue) => onChange(newValue)}
       >
-        {index === indexValue && choosen && (
+        {index === selected && (
           <Toolbar
             className="flex flex-row items-center justify-center absolute top-1 shadow-sm shadow-gray-400 left-1 bg-white  border z-50 border-gray-200 rounded-sm  px-3 py-2"
             ref={toolbarRef}
@@ -381,7 +383,6 @@ const RichTextEditor = ({
                 e.preventDefault();
               } else {
                 setIndexValue(null);
-                setChoosen(false);
               }
             }}
           >
@@ -531,8 +532,8 @@ const RichTextEditor = ({
           renderElement={renderElement}
           renderLeaf={renderLeaf}
           placeholder="Paragraph"
-          className={` min-h-[100px] px-2 outline-none ${textColor} ${
-            index === indexValue ? "border-[2px] border-gray-300" : "none"
+          className={` min-h-[20px] px-2 py-1 outline-none ${textColor} ${
+            index === selected ? "border-[2px] border-gray-300" : "none"
           } font-${settings.body}`}
           readOnly={preview}
         />

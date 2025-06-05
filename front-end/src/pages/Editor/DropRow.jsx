@@ -176,7 +176,7 @@ const DropRow = ({
       ref={divRef}
       style={{
         width: row.type === "brake" ? "100%" : "94%",
-        minHeight: row.type !== "cover" ? "100px" : "35px",
+        minHeight: row.type !== "cover" ? "30px" : "30px",
         marginBottom: "0px",
         marginLeft: row.type === "brake" ? "0px" : "20px",
         marginRight: row.type === "brake" ? "0px" : "7px",
@@ -227,6 +227,8 @@ const DropRow = ({
               data={row.content}
               preview={preview}
               settings={settings}
+              selected={selected}
+              setSelected={setSelected}
             />
           </div>
         ) : row.type === "heading" ? (
@@ -258,6 +260,8 @@ const DropRow = ({
               moveRowDown={moveRowDown}
               deleteRow={deleteRow}
               settings={settings}
+              selected={selected}
+              setSelected={setSelected}
             />
           </div>
         ) : row.type === "double-para" ? (
@@ -282,7 +286,9 @@ const DropRow = ({
                 updatedData[index].textColor = newData;
                 setRows(updatedData);
               }}
+              selected={selected}
               textColor={row.textColor ? row.textColor : "text-black"}
+              setSelected={setSelected}
             />
             <RichTextExample
               index={index}
@@ -301,7 +307,9 @@ const DropRow = ({
                 updatedData[index].textColor = newData;
                 setRows(updatedData);
               }}
+              selected={selected}
               textColor={row.textColor ? row.textColor : "text-black"}
+              setSelected={setSelected}
             />
           </div>
         ) : row.type === "image-para" ? (
@@ -332,7 +340,9 @@ const DropRow = ({
                     updatedData[index].textColor = newData;
                     setRows(updatedData);
                   }}
+                  selected={selected}
                   textColor={row.textColor ? row.textColor : "text-black"}
+                  setSelected={setSelected}
                 />
 
                 {switchButton === index && preview !== true && (
@@ -374,6 +384,7 @@ const DropRow = ({
                   setIndexValue={setIndexValue}
                   preview={preview}
                   data={row.ImageLink}
+                  selected={selected}
                   onUpdate={(newData) => {
                     const updatedContent = [...rows];
                     updatedContent[index].ImageLink = newData;
@@ -418,6 +429,7 @@ const DropRow = ({
                     setRows(updatedContent);
                   }}
                   height={row.height ? row.height : "200"}
+                  selected={selected}
                 />
 
                 {switchButton === index && preview !== true && (
@@ -457,8 +469,10 @@ const DropRow = ({
                   textColor={row.textColor ? row.textColor : "text-black"}
                   data={row.content}
                   preview={preview}
+                  selected={selected}
                   className="relative"
                   settings={settings}
+                  setSelected={setSelected}
                 />
               </>
             )}
@@ -502,6 +516,7 @@ const DropRow = ({
               indexValue={indexValue}
               setIndexValue={setIndexValue}
               preview={preview}
+              selected={selected}
             />
           </div>
         ) : row.type === "brake" ? (
@@ -586,6 +601,7 @@ const DropRow = ({
               indexValue={indexValue}
               setIndexValue={setIndexValue}
               preview={preview}
+              selected={selected}
             />
           </div>
         ) : row.type === "cost" ? (

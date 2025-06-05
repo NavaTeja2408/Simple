@@ -29,6 +29,7 @@ const Table = ({
   italicAll,
   onItalic,
   settings,
+  selected,
 }) => {
   const [show, setShow] = useState(false);
 
@@ -228,7 +229,7 @@ const Table = ({
     <div
       className={` w-full flex items-center justify-center py-5   rounded-lg  font-${settings.body} `}
       style={{
-        marginTop: show === true ? "40px" : "10px",
+        marginTop: selected === index ? "40px" : "10px",
       }}
       onFocus={() => {
         setIndexValue(index);
@@ -246,7 +247,7 @@ const Table = ({
         }
       }}
     >
-      {show === true && (
+      {selected === index && (
         <div
           ref={toolbarRef}
           className="absolute top-0 left-[30%] flex gap-1 p-2 bg-white shadow-gray-300  shadow-lg rounded-md z-10"
