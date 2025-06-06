@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { StateManageContext } from "../../../context/StateManageContext";
 import { FaEdit } from "react-icons/fa";
 
-const PriceTermSlate = ({ index, rows, selected, settings }) => {
+const PriceTermSlate = ({ index, rows, selected, settings, preview }) => {
   const calculateTotalPercentage = () => {
     let value = 0;
     rows.content.forEach((element) => {
@@ -23,7 +23,7 @@ const PriceTermSlate = ({ index, rows, selected, settings }) => {
     <div
       className={`w-full flex flex-row min-h-[100px] px-6 py-5 font-${settings.body}`}
     >
-      {selected !== null && (
+      {selected !== null && preview !== true && (
         <button
           onClick={() => {
             setPriceTerms(true);
@@ -42,7 +42,9 @@ const PriceTermSlate = ({ index, rows, selected, settings }) => {
               <th className="border-2 border-gray-200 py-2">Percentage</th>
             )}
             {rows.options.value && (
-              <th className="border-2 border-gray-200 py-2">Value</th>
+              <th className="border-2 border-gray-200 py-2 text-right">
+                Value
+              </th>
             )}
           </thead>
           <tbody>
@@ -58,7 +60,7 @@ const PriceTermSlate = ({ index, rows, selected, settings }) => {
                     </td>
                   )}
                   {rows.options.value && (
-                    <th className="border-2 border-gray-200 py-2 font-normal">
+                    <th className="border-2 border-gray-200 py-2 font-normal text-right">
                       ${row.value}
                     </th>
                   )}

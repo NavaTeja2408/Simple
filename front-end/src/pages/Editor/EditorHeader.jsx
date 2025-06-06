@@ -251,7 +251,7 @@ const EditorHeader = ({
     };
   }, [rows, settings]);
   return (
-    <div className="w-full flex items-center justify-evenly h-16 px-7 border-b-[1px] border-gray-200 shadow-lg">
+    <div className="w-full flex items-center justify-evenly h-16 px-7 border-b-[1px] border-gray-200 shadow-lg be-vietnam-pro-regular ">
       <div className="flex flex-row w-[40%] items-center justify-start gap-2">
         <img src={logo} alt="logo" className="w-[41px] h-[29px]" />
         <img src={Header_editor} alt="something" className="w-7 ml-4" />

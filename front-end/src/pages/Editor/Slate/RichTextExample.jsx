@@ -366,7 +366,7 @@ const RichTextEditor = ({
         value={data}
         onChange={(newValue) => onChange(newValue)}
       >
-        {index === selected && (
+        {index === selected && preview !== true && (
           <Toolbar
             className="flex flex-row items-center justify-center absolute top-1 shadow-sm shadow-gray-400 left-1 bg-white  border z-50 border-gray-200 rounded-sm  px-3 py-2"
             ref={toolbarRef}
@@ -533,7 +533,9 @@ const RichTextEditor = ({
           renderLeaf={renderLeaf}
           placeholder="Paragraph"
           className={` min-h-[20px] px-2 py-1 outline-none ${textColor} ${
-            index === selected ? "border-[2px] border-gray-300" : "none"
+            index === selected && preview !== true
+              ? "border-[2px] border-gray-300"
+              : "none"
           } font-${settings.body}`}
           readOnly={preview}
         />

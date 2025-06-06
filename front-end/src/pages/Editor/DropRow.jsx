@@ -517,6 +517,7 @@ const DropRow = ({
               setIndexValue={setIndexValue}
               preview={preview}
               selected={selected}
+              settings={settings}
             />
           </div>
         ) : row.type === "brake" ? (
@@ -611,6 +612,7 @@ const DropRow = ({
               index={index}
               rows={row}
               selected={selected}
+              preview={preview}
             />
           </div>
         ) : row.type === "code" ? (
@@ -649,6 +651,7 @@ const DropRow = ({
               index={index}
               rows={row}
               selected={selected}
+              preview={preview}
             />
           </div>
         ) : row.type === "cover" ? (

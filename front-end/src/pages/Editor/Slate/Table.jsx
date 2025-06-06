@@ -247,7 +247,7 @@ const Table = ({
         }
       }}
     >
-      {selected === index && (
+      {selected === index && preview !== true && (
         <div
           ref={toolbarRef}
           className="absolute top-0 left-[30%] flex gap-1 p-2 bg-white shadow-gray-300  shadow-lg rounded-md z-10"

@@ -27,6 +27,7 @@ const Image = ({
   discription,
   onCaption,
   preview,
+  settings,
 }) => {
   const divRef = useRef();
   const [loading, setLoading] = useState(false);
@@ -189,7 +190,9 @@ const Image = ({
             width === "100" ? width - 20 : width === "50" ? width : 75
           }%`,
         }}
-        className={`${width === "100" ? "mt-4" : ""} flex flex-col`}
+        className={`${width === "100" ? "mt-4" : ""} flex flex-col font-${
+          settings.body
+        }`}
       >
         {captionH && (
           <h1 className="text-center text-3xl font-bold">{captionH}</h1>

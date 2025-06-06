@@ -364,7 +364,7 @@ const EditorDnD = () => {
 
   return (
     <DndProvider backend={HTML5Backend}>
-      <div className="w-full">
+      <div className="w-full ">
         <EditorHeader
           share={share}
           setShare={setShare}

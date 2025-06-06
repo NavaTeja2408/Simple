@@ -527,7 +527,7 @@ const Sidebar = ({
       {preview === true ? (
         <div></div>
       ) : (
-        <div className="flex flex-row">
+        <div className="flex flex-row be-vietnam-pro-regular">
           {" "}
           <div className="max-w-20 relative h-screen flex flex-col border-r-[1px] border-gray-300 ">
             <div
