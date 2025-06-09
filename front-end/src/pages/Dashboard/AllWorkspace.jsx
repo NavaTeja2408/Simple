@@ -40,7 +40,8 @@ const AllWorkspace = () => {
   const sortButtonRef = useRef();
   const sortRef = useRef();
 
-  const handleFavorate = async (id, favorate) => {
+  const handleFavorate = async (id, favorate, e) => {
+    e.stopPropagation();
     try {
       await axios.put(`${databaseUrl}/api/workspace/update`, {
         id: id,
@@ -305,18 +306,17 @@ const AllWorkspace = () => {
                     className=" h-5 w-5"
                   />
                 </div>
-                <div className="text-sm flex flex-col w-[63%] ">
+                <div
+                  className="text-sm flex flex-col w-[63%]  "
+                  onClick={() => navigate(`/workspace/${workspace._id}`)}
+                >
                   <h2 className=" text-gray-600 font-semibold overflow-hidden whitespace-nowrap text-ellipsis flex items-center justify-start gap-1">
-                    <span
-                      onClick={() => navigate(`/workspace/${workspace._id}`)}
-                    >
-                      {workspace.workspaceName}
-                    </span>
-                    <span>
+                    <span>{workspace.workspaceName}</span>
+                    <span className="z-10">
                       {workspace.favorate ? (
                         <FaStar
-                          onClick={() => {
-                            handleFavorate(workspace._id, false);
+                          onClick={(e) => {
+                            handleFavorate(workspace._id, false, e);
                             const temp = [...workspaces];
                             temp[index].favorate = false;
                             setWorkspaces(temp);
@@ -325,8 +325,8 @@ const AllWorkspace = () => {
                         />
                       ) : (
                         <FaRegStar
-                          onClick={() => {
-                            handleFavorate(workspace._id, true);
+                          onClick={(e) => {
+                            handleFavorate(workspace._id, true, e);
                             const temp = [...workspaces];
                             temp[index].favorate = true;
                             setWorkspaces(temp);
@@ -357,7 +357,7 @@ const AllWorkspace = () => {
                   </div>
                   <div
                     onClick={() => setThreeDots(index)}
-                    className="relative"
+                    className="relative z-10"
                     ref={buttonRef}
                   >
                     <BsThreeDotsVertical className="h-4 w-4" />

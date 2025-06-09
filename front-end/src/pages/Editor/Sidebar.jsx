@@ -39,6 +39,10 @@ import double_para from "../../assets/double_para.png";
 import { StateManageContext } from "../../context/StateManageContext";
 import { SketchPicker } from "react-color";
 import { IoCloudUploadOutline } from "react-icons/io5";
+import para from "../../assets/para.jpeg";
+import image_insert from "../../assets/img.jpeg";
+import double_para_2 from "../../assets/double_para.jpeg";
+import img_para from "../../assets/img_para.jpeg";
 
 const Sidebar = ({
   selected,
@@ -1116,25 +1120,31 @@ const Sidebar = ({
             ) : thirdLevel === "paragraph" ? (
               <div
                 ref={headingRef}
-                className="scrollbar-thin absolute left-0 w-[200px] flex flex-col items-center pt-10 gap-4 h-screen border-r border-gray-300 bg-white z-50 overflow-auto pb-20  "
+                className="scrollbar-thin absolute left-0 w-[200px] flex flex-col items-center pt-14 gap-10 h-screen border-r border-gray-300 bg-white z-50 overflow-auto pb-20  "
               >
                 <div
                   onClick={() => {
                     addInputRow();
                     setThirdLevel("");
                   }}
-                  className="w-[80%] h-28 p-1 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
+                  className="w-[80%] relative h-24 p-1 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
                 >
-                  <img className="h-[95%] w-[95%] " src={single_para} />
+                  <img className="h-[85%] w-[95%] " src={para} />
+                  <p className="text-gray-500 absolute left-1 top-[-25px] text-sm">
+                    Paragraph
+                  </p>
                 </div>
                 <div
                   onClick={() => {
                     addDoublePara();
                     setThirdLevel("");
                   }}
-                  className="w-[80%] h-28 p-1 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
+                  className=" relative w-[80%] h-24 p-1 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
                 >
-                  <img className="h-[95%] w-[95%]" src={double_para} />
+                  <img className="h-[85%] w-[95%]" src={double_para_2} />
+                  <p className="text-gray-500 absolute left-1 top-[-25px] text-sm">
+                    Double Paragraph
+                  </p>
                 </div>
               </div>
             ) : thirdLevel === "image" ? (
@@ -1149,7 +1159,7 @@ const Sidebar = ({
                   }}
                   className="w-[80%] relative h-24 p-1 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
                 >
-                  <img className="h-[85%] w-[95%] " src={image_in} />
+                  <img className="h-[85%] w-[95%] " src={image_insert} />
                   <p className="text-gray-500 absolute left-1 top-[-25px] text-sm">
                     Image
                   </p>
@@ -1161,7 +1171,7 @@ const Sidebar = ({
                   }}
                   className=" relative w-[80%] h-24 p-1 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
                 >
-                  <img className="h-[85%] w-[95%]" src={image_paragraph} />
+                  <img className="h-[85%] w-[95%]" src={img_para} />
                   <p className="text-gray-500 absolute left-1 top-[-25px] text-sm">
                     Image & Paragraph
                   </p>

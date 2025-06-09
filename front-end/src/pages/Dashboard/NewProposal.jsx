@@ -4,6 +4,7 @@ import { UserContext } from "../../context/UserContext";
 import { DatabaseContext } from "../../context/DatabaseContext";
 import { FaRegFolder } from "react-icons/fa";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const NewProposal = ({ handleCreateNewProposal, setPopup }) => {
   const [name, setName] = useState("");
@@ -16,34 +17,31 @@ const NewProposal = ({ handleCreateNewProposal, setPopup }) => {
   const [search, setSearch] = useState("");
 
   const handleOnclick = () => {
-    if (name === "" || selected === null) {
-      alert("Please enter all the details");
+    if (selected === null) {
+      toast.error("Please select a workpsace to continue");
       setError(true);
     } else {
-      handleCreateNewProposal(name, selected);
+      handleCreateNewProposal(selected);
     }
   };
 
   return (
     <div className="fixed inset-0 bg-transparent bg-opacity-40 flex justify-center items-center z-50">
       {/* Popup Content */}
-      <div
-        style={{
-          border: error ? "1px red solid" : "none",
-        }}
-        className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-lg transition-all transform scale-105"
-      >
+      <div className="bg-white rounded-2xl shadow-2xl p-10 w-full max-w-lg transition-all transform scale-105 be-vietnam-pro-regular">
         {/* Header */}
         <div className="mb-8 text-center">
-          <h2 className="text-2xl font-bold text-gray-800">Proposal Details</h2>
+          <h2 className="text-xl font-semibold text-gray-700">
+            Select Workspace for New Proposal
+          </h2>
           <p className="text-sm text-gray-500">
-            Provide the Details to Create New Proposal.
+            Organize your proposals by workspace. Select one to continue
           </p>
         </div>
 
         {/* Input Fields */}
         <div className="space-y-3">
-          <div>
+          {/* <div>
             <label
               htmlFor="proposedName"
               className="block text-sm font-medium text-gray-600"
@@ -58,9 +56,8 @@ const NewProposal = ({ handleCreateNewProposal, setPopup }) => {
               className="mt-2 w-full px-2 py-2 border border-gray-200 rounded-lg text-gray-800 shadow-sm 0"
               placeholder="Enter Proposal Name"
             />
-          </div>
-          <div className="mt-4">
-            <label className="text-sm">Workspace Select</label>
+          </div> */}
+          <div className="mt-3">
             <input
               type="text"
               className="w-full py-2 px-2 outline-none border border-gray-200 rounded-lg "
@@ -68,21 +65,28 @@ const NewProposal = ({ handleCreateNewProposal, setPopup }) => {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
-            <div className="h-[30vh] w-full overflow-auto">
-              {workspaces
-                ?.filter((item) =>
+            <div className="h-[35vh] w-full overflow-auto">
+              {(() => {
+                const filteredWorkspaces = workspaces?.filter((item) =>
                   item.workspaceName
                     .toLowerCase()
                     .includes(search?.toLowerCase() || "")
-                )
-                .map((item) => (
+                );
+
+                if (!filteredWorkspaces || filteredWorkspaces.length === 0) {
+                  return (
+                    <div className="text-gray-500 text-sm mt-4 flex justify-center">
+                      No workspace found
+                    </div>
+                  );
+                }
+
+                return filteredWorkspaces.map((item) => (
                   <div
                     onClick={() => setSelected(item._id)}
                     key={item._id}
                     className={` mt-3 mr-3 placeholder:w-[100%] h-14 px-3 py-2 border ${
-                      selected === item._id
-                        ? "border-graidient_bottom"
-                        : "border-gray-100"
+                      selected === item._id ? "bg-gray-200" : "border-gray-100"
                     }  rounded-md flex items-center justify-start gap-2 cursor-pointer `}
                   >
                     <div
@@ -99,9 +103,13 @@ const NewProposal = ({ handleCreateNewProposal, setPopup }) => {
                       <h2 className=" text-gray-600 font-semibold overflow-hidden whitespace-nowrap text-ellipsis flex items-center justify-start gap-1">
                         <span>{item.workspaceName}</span>
                       </h2>
+                      <p className="text-xs text-gray-400">
+                        {item.proposals.length} Proposals
+                      </p>
                     </div>
                   </div>
-                ))}
+                ));
+              })()}
             </div>
           </div>
         </div>

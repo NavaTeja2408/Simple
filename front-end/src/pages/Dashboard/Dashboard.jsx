@@ -14,7 +14,7 @@ const Dashboard = ({ children }) => {
   const { databaseUrl } = useContext(DatabaseContext);
   const { user } = useContext(UserContext);
   const navigate = useNavigate();
-  const handleCreateNewProposal = async (name, workspace) => {
+  const handleCreateNewProposal = async (workspace) => {
     console.log(workspace);
     try {
       const response = await axios.post(
@@ -23,7 +23,7 @@ const Dashboard = ({ children }) => {
           email: user.email,
           id: user.id,
           workspace_id: workspace,
-          name: name,
+          name: "Untitled Proposal",
           settings: {
             heading: "Arieal",
             body: "Arieal",

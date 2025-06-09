@@ -57,6 +57,7 @@ const EditorHeader = ({
   const [que, setQue] = useState([]);
   const [name, setName] = useState("");
   const [created, setCreated] = useState("");
+  const [changing, setChanging] = useState(false);
 
   const undo = () => {
     if (rows.length > 0) {
@@ -260,10 +261,19 @@ const EditorHeader = ({
             <input
               type="text"
               value={name}
+              // onChange={(e) => {
+              //   changeRename(e.target.value);
+              // }}
               onChange={(e) => {
-                changeRename(e.target.value);
+                setName(e.target.value);
               }}
-              style={{ width: `${name.length * 7 + 50}px  ` }}
+              onFocus={() => setChanging(true)}
+              onBlur={() => {
+                setChanging(false);
+                changeRename(name);
+                console.log(name);
+              }}
+              style={{ width: `${name.length * 7 + 40}px  ` }}
               className="text-sm font-bold flex items-center justify-start gap-2  outline-none px-1  "
             />
 
