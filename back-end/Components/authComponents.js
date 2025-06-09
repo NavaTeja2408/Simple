@@ -148,6 +148,7 @@ const getUser = async (req, res) => {
         username: user.fullName,
         id: user.id,
         email: user.email,
+        avatar: user.avatar,
         pendingWorkspaces: user?.pendingWorkspaces || [],
         approvedWorkspaces: user?.approvedWorkspaces || [],
         goals: user?.goals || [],

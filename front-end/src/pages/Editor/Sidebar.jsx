@@ -43,6 +43,14 @@ import para from "../../assets/para.jpeg";
 import image_insert from "../../assets/img.jpeg";
 import double_para_2 from "../../assets/double_para.jpeg";
 import img_para from "../../assets/Img_para.jpeg";
+import { IoMdAddCircleOutline } from "react-icons/io";
+import { AiOutlineBars } from "react-icons/ai";
+import { LuLayoutPanelLeft } from "react-icons/lu";
+import { HiOutlineDocumentChartBar } from "react-icons/hi2";
+import { VscHistory } from "react-icons/vsc";
+import { IoIosHelpCircleOutline } from "react-icons/io";
+import profile from "../../assets/profile.png";
+import { useNavigate } from "react-router-dom";
 
 const Sidebar = ({
   selected,
@@ -452,7 +460,7 @@ const Sidebar = ({
       document.removeEventListener("mousedown", handleClickOutsideColor);
     };
   }, []);
-
+  const navigate = useNavigate();
   const renderHeadingLinks = (items, index, prefix = "") => {
     return items?.flatMap((item, idx) =>
       (item.type === "heading-one" ||
@@ -533,129 +541,171 @@ const Sidebar = ({
       ) : (
         <div className="flex flex-row be-vietnam-pro-regular">
           {" "}
-          <div className="max-w-20 relative h-screen flex flex-col border-r-[1px] border-gray-300 ">
+          <div className="w-20 relative h-screen flex flex-col border-r-[1px] gap-2 border-gray-300 pt-2 ">
             <div
               onClick={() => setActive("elements")}
-              className="flex p-1  flex-col w-full h-14   cursor-pointer items-center justify-center "
-              style={{
-                backgroundColor:
-                  active === "elements"
-                    ? "rgba(236, 236, 236, 1)"
-                    : active === "content-3"
-                    ? "rgba(236, 236, 236, 1)"
-                    : active === "table-3"
-                    ? "rgba(236, 236, 236, 1)"
-                    : active === "goal-3"
-                    ? "rgba(236, 236, 236, 1)"
-                    : "white",
-                borderRight:
-                  active === "elements"
-                    ? "4px solid rgba(223, 6, 78, 1)"
-                    : active === "content-3"
-                    ? "4px solid rgba(223, 6, 78, 1)"
-                    : active === "table-3"
-                    ? "4px solid rgba(223, 6, 78, 1)"
-                    : active === "goal-3"
-                    ? "4px solid rgba(223, 6, 78, 1)"
-                    : "white",
-              }}
+              className="flex p-1  flex-col w-full h-14 text-[12px] text-gray-500 cursor-pointer items-center justify-center  "
             >
-              <img src={Elements} alt="plus" className="w-[60%]" />
+              {/* <img src={Elements} alt="plus" className="w-[60%]" /> */}
+              <div
+                style={{
+                  backgroundColor:
+                    active === "elements" ||
+                    active === "content-3" ||
+                    active === "table-3" ||
+                    active === "goal-3"
+                      ? "rgba(255, 206, 216, 0.2)"
+                      : "rgba(250, 250, 250, 1)",
+                }}
+                className="p-1 rounded-md "
+              >
+                <IoMdAddCircleOutline className="w-5 h-5" />
+              </div>
+
+              <p
+                style={{
+                  color:
+                    active === "elements" ||
+                    active === "content-3" ||
+                    active === "table-3" ||
+                    active === "goal-3"
+                      ? "rgba(223, 6, 78, 1)"
+                      : "rgba(172, 172, 172, 1)",
+                }}
+              >
+                Elements
+              </p>
             </div>
             <div
               onClick={() => setActive("outline")}
-              className="flex p-2 flex-col w-full h-14   cursor-pointer items-center justify-center"
-              style={{
-                backgroundColor:
-                  active === "outline" ? "rgba(236, 236, 236, 1)" : "white",
-                borderRight:
-                  active === "outline"
-                    ? "4px solid rgba(223, 6, 78, 1)"
-                    : "white",
-              }}
+              className="flex p-1  flex-col w-full h-14 text-[12px] text-gray-500 cursor-pointer items-center justify-center  "
             >
-              <img src={Outline} alt="plus" className="w-[60%]" />
+              <div
+                style={{
+                  backgroundColor:
+                    active === "outline"
+                      ? "rgba(255, 206, 216, 0.2)"
+                      : "rgba(250, 250, 250, 1)",
+                }}
+                className="p-1 rounded-md "
+              >
+                <AiOutlineBars className="w-5 h-5" />
+              </div>
+
+              <p
+                style={{
+                  color:
+                    active === "outline"
+                      ? "rgba(223, 6, 78, 1)"
+                      : "rgba(172, 172, 172, 1)",
+                }}
+              >
+                Outline
+              </p>
             </div>
             <div
               onClick={() => setActive("layout")}
-              className="flex  flex-col w-full h-14   cursor-pointer items-center justify-center "
-              style={{
-                backgroundColor:
-                  active === "layout" || active === "margin-3"
-                    ? "rgba(236, 236, 236, 1)"
-                    : "white",
-                borderRight:
-                  active === "layout" || active === "margin-3"
-                    ? "4px solid rgba(223, 6, 78, 1)"
-                    : "white",
-              }}
+              className="flex p-1  flex-col w-full h-14 text-[12px] text-gray-500 cursor-pointer items-center justify-center  "
             >
-              <img src={Layout} alt="plus" className="w-[80%]" />
+              <div
+                style={{
+                  backgroundColor:
+                    active === "layout"
+                      ? "rgba(255, 206, 216, 0.2)"
+                      : "rgba(250, 250, 250, 1)",
+                }}
+                className="p-1 rounded-md "
+              >
+                <LuLayoutPanelLeft className="w-5 h-5" />
+              </div>
+
+              <p
+                style={{
+                  color:
+                    active === "layout"
+                      ? "rgba(223, 6, 78, 1)"
+                      : "rgba(172, 172, 172, 1)",
+                }}
+              >
+                Layout
+              </p>
             </div>
             <div
-              onClick={() => setActive("themes")}
-              className="flex  flex-col w-full h-14   cursor-pointer items-center justify-center "
-              style={{
-                backgroundColor:
-                  active === "themes" ||
-                  active === "typography-3" ||
-                  active === "colors-3"
-                    ? "rgba(236, 236, 236, 1)"
-                    : "white",
-                borderRight:
-                  active === "themes" ||
-                  active === "typography-3" ||
-                  active === "colors-3"
-                    ? "4px solid rgba(223, 6, 78, 1)"
-                    : "white",
-              }}
+              onClick={() => setActive("tracking")}
+              className="flex p-1  flex-col w-full h-14 text-[12px] text-gray-500 cursor-pointer items-center justify-center  "
             >
-              <img src={Themes} alt="plus" className="w-[80%]" />
+              <div
+                style={{
+                  backgroundColor:
+                    active === "tracking"
+                      ? "rgba(255, 206, 216, 0.2)"
+                      : "rgba(250, 250, 250, 1)",
+                }}
+                className="p-1 rounded-md "
+              >
+                <HiOutlineDocumentChartBar className="w-5 h-5" />
+              </div>
+
+              <p
+                style={{
+                  color:
+                    active === "tracking"
+                      ? "rgba(223, 6, 78, 1)"
+                      : "rgba(172, 172, 172, 1)",
+                }}
+              >
+                Doc Track
+              </p>
             </div>
-            <div
-              onClick={() => setActive("layers")}
-              className="flex  flex-col w-full h-14 cursor-pointer items-center justify-center "
-              style={{
-                backgroundColor:
-                  active === "layers" ? "rgba(236, 236, 236, 1)" : "white",
-                borderRight:
-                  active === "layers"
-                    ? "4px solid rgba(223, 6, 78, 1)"
-                    : "white",
-              }}
-            >
-              <img src={Layers} alt="plus" className="w-[80%]" />
-            </div>
-            <div
-              onClick={() => setActive("content")}
-              className="flex  flex-col w-full h-14   cursor-pointer items-center justify-center "
-              style={{
-                backgroundColor:
-                  active === "content" ? "rgba(236, 236, 236, 1)" : "white",
-                borderRight:
-                  active === "content"
-                    ? "4px solid rgba(223, 6, 78, 1)"
-                    : "white",
-              }}
-            >
-              <img src={Content} alt="plus" className="w-[80%]" />
-            </div>
+
             <div
               onClick={() => setActive("history")}
-              className="flex  flex-col w-full h-14   cursor-pointer items-center justify-center "
-              style={{
-                backgroundColor:
-                  active === "history" ? "rgba(236, 236, 236, 1)" : "white",
-                borderRight:
-                  active === "history"
-                    ? "4px solid rgba(223, 6, 78, 1)"
-                    : "white",
-              }}
+              className="flex p-1  flex-col w-full h-14 text-[12px] text-gray-500 cursor-pointer items-center justify-center  "
             >
-              <img src={History} alt="plus" className="w-[80%]" />
+              <div
+                style={{
+                  backgroundColor:
+                    active === "history"
+                      ? "rgba(255, 206, 216, 0.2)"
+                      : "rgba(250, 250, 250, 1)",
+                }}
+                className="p-1 rounded-md "
+              >
+                <VscHistory className="w-5 h-5" />
+              </div>
+
+              <p
+                style={{
+                  color:
+                    active === "history"
+                      ? "rgba(223, 6, 78, 1)"
+                      : "rgba(172, 172, 172, 1)",
+                }}
+              >
+                History
+              </p>
             </div>
-            <div className="flex  flex-col absolute bottom-20 w-full h-14   cursor-pointer items-center justify-center ">
-              <img src={help} alt="plus" className="w-[100%]" />
+            <div className="w-full h-40 absolute bottom-20 pb-5 left-0 flex flex-col items-center justify-end">
+              <div className="flex p-1  flex-col w-full h-14 text-[12px] text-gray-500 cursor-pointer items-center justify-center  ">
+                <div className="p-1 rounded-md ">
+                  <IoIosHelpCircleOutline className="w-5 h-5" />
+                </div>
+
+                <p>Help</p>
+              </div>
+              <div className="flex p-1  flex-col w-full h-14 text-[12px] text-gray-500 cursor-pointer items-center justify-center  ">
+                <div
+                  className="p-1 rounded-md  "
+                  onClick={() => {
+                    navigate("/profile");
+                  }}
+                >
+                  <img
+                    src={user.avatar ? user.avatar : profile}
+                    className="w-5 h-5 z-50"
+                  />
+                </div>
+              </div>
             </div>
           </div>
           {active === "elements" ? (

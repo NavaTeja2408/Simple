@@ -115,16 +115,16 @@ const NewProposal = ({ handleCreateNewProposal, setPopup }) => {
         </div>
 
         {/* Buttons */}
-        <div className="mt-8 flex justify-end gap-4">
+        <div className="mt-5 flex justify-end gap-4">
           <button
             onClick={() => setNewProposal(false)}
-            className="px-6 py-3 bg-gray-100 text-gray-700 rounded-lg font-medium hover:bg-gray-300 hover:shadow-md transition-all"
+            className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg font-medium hover:bg-gray-300 hover:shadow-md transition-all"
           >
             Cancel
           </button>
           <button
             onClick={handleOnclick}
-            className="px-6 py-3 bg-graidient_bottom text-white rounded-lg font-medium  hover:shadow-md transition-all"
+            className="px-4 py-2 bg-graidient_bottom text-white rounded-lg font-medium  hover:shadow-md transition-all"
           >
             Save
           </button>
