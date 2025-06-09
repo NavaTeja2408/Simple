@@ -42,7 +42,7 @@ import { IoCloudUploadOutline } from "react-icons/io5";
 import para from "../../assets/para.jpeg";
 import image_insert from "../../assets/img.jpeg";
 import double_para_2 from "../../assets/double_para.jpeg";
-import img_para from "../../assets/img_para.jpeg";
+import img_para from "../../assets/Img_para.jpeg";
 
 const Sidebar = ({
   selected,
