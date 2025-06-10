@@ -627,7 +627,7 @@ const Sidebar = ({
                       : "rgba(172, 172, 172, 1)",
                 }}
               >
-                Layout
+                Design Doc
               </p>
             </div>
             <div

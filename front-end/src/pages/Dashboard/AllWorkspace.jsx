@@ -311,7 +311,11 @@ const AllWorkspace = () => {
                   onClick={() => navigate(`/workspace/${workspace._id}`)}
                 >
                   <h2 className=" text-gray-600 font-semibold overflow-hidden whitespace-nowrap text-ellipsis flex items-center justify-start gap-1">
-                    <span>{workspace.workspaceName}</span>
+                    <span>
+                      {workspace.workspaceName
+                        ? workspace.workspaceName
+                        : "Workspace"}
+                    </span>
                     <span className="z-10">
                       {workspace.favorate ? (
                         <FaStar
@@ -364,7 +368,7 @@ const AllWorkspace = () => {
                     {threeDots === index && (
                       <div
                         ref={blockRef}
-                        className="absolute top-5 -left-20 flex flex-col z-50 bg-white px-2 py-2 w-40 items-center justify-center shadow-md shadow-gray-300"
+                        className="absolute top-5 -left-20 flex flex-col z-20 bg-white px-2 py-2 w-40 items-center justify-center shadow-md shadow-gray-300 "
                       >
                         <p
                           onClick={() => {

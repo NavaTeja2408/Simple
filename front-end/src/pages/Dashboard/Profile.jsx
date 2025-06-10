@@ -150,8 +150,8 @@ const Profile = () => {
 
   return (
     <>
-      <div className="w-full bg-white min-h-[85vh] px-16 pt-8 shadow-lg shadow-gray-300 ">
-        <div className="flex items-center justify-start gap-3 text-xl  ">
+      <div className="w-full bg-white min-h-[90vh] px-16 pt-8 shadow-lg shadow-gray-300 pb-10 overflow-y-auto ">
+        <div className="flex items-center justify-start gap-3 text-xl ml-6  ">
           <FaRegUser /> <h2>Personal Informatin</h2>
         </div>
         <div className="w-full flex flex-col items-center justify-between">

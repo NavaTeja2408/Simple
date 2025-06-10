@@ -27,8 +27,8 @@ const DashboardProposals = () => {
   const [threeDots, setThreeDots] = useState(null);
   const [renameV, setRenameV] = useState("");
   const [rename, setRename] = useState(null);
-  const blockRef = useRef();
-  const buttonRef = useRef();
+  const popUpRef = useRef();
+  const popRef = useRef();
   const [move, setMove] = useState(null);
   const [selected, setSelected] = useState(null);
   const [search, setSearch] = useState("");
@@ -171,17 +171,6 @@ const DashboardProposals = () => {
     }
   };
 
-  const handleClickOutsideBlock = (event) => {
-    if (
-      blockRef.current &&
-      !blockRef.current.contains(event.target) &&
-      buttonRef.current &&
-      !buttonRef.current.contains(event.target)
-    ) {
-      setThreeDots(null);
-    }
-  };
-
   const getProposal = async (id) => {
     try {
       const res = await axios.get(`${databaseUrl}/api/workspace/proposal`, {
@@ -191,6 +180,17 @@ const DashboardProposals = () => {
       console.log(res.data);
     } catch (error) {
       console.error("Error fetching workspaces:", error);
+    }
+  };
+
+  const handleClickOutsideBlock = (event) => {
+    if (
+      popRef.current &&
+      !popRef.current.contains(event.target) &&
+      popUpRef.current &&
+      !popUpRef.current.contains(event.target)
+    ) {
+      setThreeDots(null);
     }
   };
 
@@ -402,36 +402,49 @@ const DashboardProposals = () => {
                         />
                         <div className="relative">
                           <BsThreeDotsVertical
-                            ref={buttonRef}
-                            onClick={() => setThreeDots(index)}
+                            ref={popRef}
+                            onClick={() => {
+                              if (threeDots !== null) {
+                                setThreeDots(null);
+                              } else {
+                                setThreeDots(index);
+                              }
+                            }}
                             className={`${
                               threeDots === index
                                 ? "text-graidient_bottom"
                                 : "text-gray-600"
                             }`}
                           />
-                          {threeDots === index && (
+                          {threeDots !== null && threeDots === index && (
                             <div
-                              ref={blockRef}
+                              ref={popUpRef}
                               className="absolute top-5 -left-20 flex flex-col z-50 bg-white px-2 py-2 w-40 items-center justify-center shadow-md shadow-gray-300"
                             >
                               <p
                                 onClick={() => {
                                   setRename(proposal._id);
                                   setRenameV(proposal.proposalName);
+                                  setThreeDots(null);
                                 }}
                                 className="py-1 px-1 w-full hover:bg-gray-100"
                               >
                                 Rename
                               </p>
                               <p
-                                onClick={() => setMove(proposal._id)}
+                                onClick={() => {
+                                  setMove(proposal._id);
+                                  setThreeDots(null);
+                                }}
                                 className="py-1 px-1 w-full hover:bg-gray-100"
                               >
                                 Move To
                               </p>
                               <p
-                                onClick={() => handleDelete(proposal._id)}
+                                onClick={() => {
+                                  handleDelete(proposal._id);
+                                  setThreeDots(null);
+                                }}
                                 className="py-1 px-1 w-full hover:bg-gray-100"
                               >
                                 Delete

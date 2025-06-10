@@ -8,6 +8,7 @@ import { FaPlus, FaStar, FaRegStar } from "react-icons/fa";
 import { FaRegFolder } from "react-icons/fa";
 import { FaArrowRight } from "react-icons/fa6";
 import { FaRegFileLines } from "react-icons/fa6";
+import { StateManageContext } from "../../context/StateManageContext";
 
 const DashboardHome = () => {
   const { user } = useContext(UserContext);
@@ -98,6 +99,7 @@ const DashboardHome = () => {
       setError("Failed to fetch workspaces. Please try again later.");
     }
   };
+  const { setNewProposal } = useContext(StateManageContext);
 
   return (
     <>
@@ -105,43 +107,59 @@ const DashboardHome = () => {
         <div className="w-full h-[85vh] overflow-auto scrollbar-hide">
           <h1 className=" p-3 text-2xl">Hello {user.username}</h1>
           <div className="grid grid-cols-2 gap-5">
-            <div className="bg-white h-[30vh] w-full rounded-lg flex flex-col justify-between items-center p-3 ">
+            <div className="bg-white h-[30vh] w-full rounded-lg flex flex-col justify-between items-center p-3 relative ">
               <div className="w-full text-left flex items-center justify-start gap-2 text-lg text-gray-700 pl-6 pt-2">
                 <FaRegFolder className="text-gray-500" />
                 <h1>Workspaces</h1>
               </div>
+              <div
+                onClick={() => setNewProposal(true)}
+                className="w-6 h-6 flex items-center justify-center bg-graidient_bottom rounded-[50%] absolute top-4 right-5 text-white cursor-pointer"
+              >
+                <FaPlus className="text-[8px]" />
+              </div>
               <div className="grid grid-cols-2 w-full h-full">
-                {favW.map((workspace, index) => {
-                  return (
-                    <div
-                      key={index}
-                      onClick={() => navigate(`/workspace/${workspace._id}`)}
-                      className=" mt-3 mr-3 placeholder:w-[100%] h-14 px-3 py-2 border border-gray-100 rounded-md flex items-center justify-start gap-2 cursor-pointer "
-                    >
+                {favW.length === 0 ? (
+                  <div className="w-full h-full flex items-center justify-center col-span-2 text-gray-500 ">
+                    Create Workspace to See here
+                  </div>
+                ) : (
+                  favW.map((workspace, index) => {
+                    return (
                       <div
-                        className={`h-10 w-12  p-2 flex items-center justify-center rounded-md shadow-md shadow-gray-300 `}
+                        key={index}
+                        onClick={() => navigate(`/workspace/${workspace._id}`)}
+                        className=" mt-3 mr-3 placeholder:w-[100%] h-14 px-3 py-2 border border-gray-100 rounded-md flex items-center justify-start gap-2 cursor-pointer "
                       >
-                        <FaRegFolder
-                          style={{
-                            color: workspace.workspaceColor,
-                          }}
-                          className=" h-5 w-5"
-                        />
+                        <div
+                          className={`h-10 w-12  p-2 flex items-center justify-center rounded-md shadow-md shadow-gray-300 `}
+                        >
+                          <FaRegFolder
+                            style={{
+                              color: workspace.workspaceColor,
+                            }}
+                            className=" h-5 w-5"
+                          />
+                        </div>
+                        <div className="text-sm flex flex-col w-[90%] ">
+                          <h2 className=" text-gray-600 font-semibold overflow-hidden whitespace-nowrap text-ellipsis flex items-center justify-start gap-1">
+                            <span>{workspace.workspaceName}</span>
+                            <span>
+                              {workspace.favorate ? (
+                                <FaStar className="text-graidient_bottom" />
+                              ) : (
+                                <FaRegStar className="text-gray-500" />
+                              )}
+                            </span>
+                          </h2>
+                          <p className="text-xs text-gray-400">
+                            {workspace.proposals.length} Proposals
+                          </p>
+                        </div>
                       </div>
-                      <div className="text-sm flex flex-col w-[90%] ">
-                        <h2 className=" text-gray-600 font-semibold overflow-hidden whitespace-nowrap text-ellipsis flex items-center justify-start gap-1">
-                          <span>{workspace.workspaceName}</span>
-                          <span>
-                            <FaStar className="text-graidient_bottom" />
-                          </span>
-                        </h2>
-                        <p className="text-xs text-gray-400">
-                          {workspace.proposals.length} Proposals
-                        </p>
-                      </div>
-                    </div>
-                  );
-                })}
+                    );
+                  })
+                )}
               </div>
               <div className="w-full flex items-center justify-end mt-3">
                 <button
@@ -187,40 +205,56 @@ const DashboardHome = () => {
                 </div>
               </div>
             </div>
-            <div className="bg-white h-[70vh] w-full rounded-lg -mt-[10vh] px-6 py-4">
+            <div className="bg-white h-[70vh] w-full rounded-lg -mt-[10vh] px-6 py-4 relative">
               <div className="w-full text-left flex items-center justify-start gap-2 text-lg text-gray-700 ">
                 <FaRegFileLines className="text-gray-500" />
                 <h1>Proposals</h1>
               </div>
+              <div
+                onClick={() => setNewProposal(true)}
+                className="w-6 h-6 flex items-center justify-center bg-graidient_bottom rounded-[50%] absolute top-4 right-5 text-white cursor-pointer"
+              >
+                <FaPlus className="text-[8px]" />
+              </div>
               <div className="flex flex-col items-start justify-start gap-3 w-full">
-                {favorate.map((item, index) => {
-                  return (
-                    <div
-                      key={index}
-                      onClick={() => navigate(`/editor/${item._id}`)}
-                      className=" mt-3 mr-3 w-[100%] h-16 px-3 py-2 border border-gray-100 rounded-md flex items-center justify-start gap-2 cursor-pointer "
-                    >
+                {favorate.length === 0 ? (
+                  <div className="w-full h-full flex items-center justify-center text-sm text-gray-500">
+                    Create Propsals to see here
+                  </div>
+                ) : (
+                  favorate.map((item, index) => {
+                    return (
                       <div
-                        className={`h-10 w-12  p-2 flex items-center justify-center rounded-md shadow-md shadow-gray-300 `}
+                        key={index}
+                        onClick={() => navigate(`/editor/${item._id}`)}
+                        className=" mt-3 mr-3 w-[100%] h-16 px-3 py-2 border border-gray-100 rounded-md flex items-center justify-start gap-2 cursor-pointer "
                       >
-                        <FaRegFileLines className=" h-5 w-5 text-gray-500" />
+                        <div
+                          className={`h-10 w-12  p-2 flex items-center justify-center rounded-md shadow-md shadow-gray-300 `}
+                        >
+                          <FaRegFileLines className=" h-5 w-5 text-gray-500" />
+                        </div>
+                        <div className="text-sm flex flex-col w-[90%] ml-2 ">
+                          <h2 className=" text-gray-600 font-semibold overflow-hidden whitespace-nowrap text-ellipsis flex items-center justify-start gap-1">
+                            <span>{item.proposalName}</span>
+                            <span>
+                              {item.favorate ? (
+                                <FaStar className="text-graidient_bottom" />
+                              ) : (
+                                <FaRegStar className="text-gray-500" />
+                              )}
+                            </span>
+                          </h2>
+                          <p className="text-xs text-gray-400">
+                            <span className="text-xs text-gray-500  ">
+                              Created on {formatDate(item.createdAt)}
+                            </span>
+                          </p>
+                        </div>
                       </div>
-                      <div className="text-sm flex flex-col w-[90%] ml-2 ">
-                        <h2 className=" text-gray-600 font-semibold overflow-hidden whitespace-nowrap text-ellipsis flex items-center justify-start gap-1">
-                          <span>{item.proposalName}</span>
-                          <span>
-                            <FaStar className="text-graidient_bottom" />
-                          </span>
-                        </h2>
-                        <p className="text-xs text-gray-400">
-                          <span className="text-xs text-gray-500  ">
-                            Created on {formatDate(item.createdAt)}
-                          </span>
-                        </p>
-                      </div>
-                    </div>
-                  );
-                })}
+                    );
+                  })
+                )}
               </div>
               <div className="w-full flex items-center justify-end mt-3">
                 <button

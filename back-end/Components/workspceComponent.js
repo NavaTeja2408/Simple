@@ -182,9 +182,10 @@ const getfavorate = async (req, res) => {
 
   try {
     const proposals = await ProposalModel.find({
-      favorate: true,
       Users: user_id,
-    }).limit(5);
+    })
+      .sort({ createdAt: -1 })
+      .limit(5);
 
     return res.status(200).json(proposals);
   } catch (error) {
@@ -202,9 +203,10 @@ const getfavorateW = async (req, res) => {
 
   try {
     const proposals = await WorkspaceModel.find({
-      favorate: true,
       owner: user_id,
-    }).limit(4);
+    })
+      .sort({ createdAt: -1 })
+      .limit(4);
 
     return res.status(200).json(proposals);
   } catch (error) {

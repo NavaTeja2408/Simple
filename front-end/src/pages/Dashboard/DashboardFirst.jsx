@@ -493,7 +493,13 @@ const DashboardFirst = () => {
                         <div className="relative">
                           <BsThreeDotsVertical
                             ref={buttonRef}
-                            onClick={() => setThreeDots(index)}
+                            onClick={() => {
+                              if (threeDots !== null) {
+                                setThreeDots(null);
+                              } else {
+                                setThreeDots(index);
+                              }
+                            }}
                             className={`${
                               threeDots === index
                                 ? "text-graidient_bottom"
@@ -509,19 +515,26 @@ const DashboardFirst = () => {
                                 onClick={() => {
                                   setRename(proposal._id);
                                   setRenameV(proposal.proposalName);
+                                  setThreeDots(null);
                                 }}
                                 className="py-1 px-1 w-full hover:bg-gray-100"
                               >
                                 Rename
                               </p>
                               <p
-                                onClick={() => setMove(proposal._id)}
+                                onClick={() => {
+                                  setMove(proposal._id);
+                                  setThreeDots(null);
+                                }}
                                 className="py-1 px-1 w-full hover:bg-gray-100"
                               >
                                 Move To
                               </p>
                               <p
-                                onClick={() => handleDelete(proposal._id)}
+                                onClick={() => {
+                                  handleDelete(proposal._id);
+                                  setThreeDots(null);
+                                }}
                                 className="py-1 px-1 w-full hover:bg-gray-100"
                               >
                                 Delete

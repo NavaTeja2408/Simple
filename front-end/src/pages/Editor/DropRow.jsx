@@ -175,10 +175,10 @@ const DropRow = ({
     <div
       ref={divRef}
       style={{
-        width: row.type === "brake" ? "100%" : "94%",
+        width: row.type === "brake" ? "103.5%" : "94%",
         minHeight: row.type !== "cover" ? "30px" : "30px",
         marginBottom: "0px",
-        marginLeft: row.type === "brake" ? "0px" : "20px",
+        marginLeft: row.type === "brake" ? "-18px" : "20px",
         marginRight: row.type === "brake" ? "0px" : "7px",
         marginTop: selected === index && index === 0 ? "30px" : "0px",
         paddingBottom: selected === index ? "30px" : "0px",
@@ -522,7 +522,7 @@ const DropRow = ({
           </div>
         ) : row.type === "brake" ? (
           <div
-            className="w-[103%] ml-[-12px]  h-10 flex items-center justify-center   "
+            className="w-[100%]    h-10 flex items-center justify-center   "
             onClick={() => setSelected(index)}
           >
             <div className="w-full h-4 shadow-inner  bg-gray-100"></div>

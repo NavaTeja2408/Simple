@@ -137,7 +137,7 @@ const NewWorkspace = ({
   }, []);
 
   return (
-    <div className="fixed inset-0 bg-transparent bg-opacity-40 flex justify-center items-center z-[1000]">
+    <div className="fixed inset-0 bg-black bg-opacity-20 flex justify-center items-center z-[1000]">
       {/* Popup Content */}
       <div
         style={{

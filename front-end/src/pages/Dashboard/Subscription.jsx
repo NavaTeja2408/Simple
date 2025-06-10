@@ -248,7 +248,7 @@ const Subscription = () => {
               user.subscription !== "shared" ? (
                 <button
                   onClick={() => createSubscription()}
-                  className="w-[90%] text-center py-2 border border-graidient_bottom rounded-sm text-graidient_bottom mt-7 flex items-center gap-2 justify-center"
+                  className="w-[90%] text-center py-2 border border-graidient_bottom rounded-md text-graidient_bottom mt-7 flex items-center gap-2 justify-center"
                 >
                   Start New Plan <FaArrowRight />
                 </button>

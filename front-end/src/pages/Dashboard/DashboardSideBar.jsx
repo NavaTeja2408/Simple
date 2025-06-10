@@ -104,12 +104,15 @@ const DashboardSideBar = ({ setBody }) => {
         </button>
         <button
           onClick={() => navigate("/profile")}
-          className="flex items-center justify-start py-2 pl-8 gap-4 text-start w-full "
+          className="flex items-center justify-start py-2 pl-8 gap-4 pr-2 text-start w-full "
         >
-          <span className="w-7 h-7 flex items-center justify-center  shadow-md shadow-gray-300 rounded-md">
-            <img src={Profile} className="w-4 h-4 text-gray-500" />
+          <span className="w-8 h-8 flex items-center justify-center  shadow-md shadow-gray-300 rounded-md">
+            <img
+              src={user.avatar ? user.avatar : Profile}
+              className="w-7 h-7 rounded-[50%] text-gray-500 "
+            />
           </span>
-          {user?.username}
+          <span className="w-[80%] overflow-hidden">{user?.username}</span>
         </button>
       </div>
       {settings && (
