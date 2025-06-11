@@ -17,12 +17,19 @@ import { FaCheck } from "react-icons/fa";
 import { FaRegFolder } from "react-icons/fa";
 import toast from "react-hot-toast";
 import { StateManageContext } from "../../context/StateManageContext";
+import { RiArrowUpDownLine } from "react-icons/ri";
 
 const DashboardProposals = () => {
   const { user } = useContext(UserContext);
   const { databaseUrl } = useContext(DatabaseContext);
-  const { workspaces, setWorkspaces, proposals, setProposals } =
-    useContext(StateManageContext);
+  const {
+    workspaces,
+    setWorkspaces,
+    proposals,
+    setProposals,
+    sortP,
+    setSortP,
+  } = useContext(StateManageContext);
   const [selLocked, setSelLoacked] = useState([]);
   const [threeDots, setThreeDots] = useState(null);
   const [renameV, setRenameV] = useState("");
@@ -200,6 +207,26 @@ const DashboardProposals = () => {
       document.removeEventListener("mousedown", handleClickOutsideBlock);
     };
   }, []);
+  const [openSort, setOpenSort] = useState(false);
+  const sortButtonRef = useRef();
+  const sortRef = useRef();
+  const handleClickOutsideSort = (event) => {
+    if (
+      sortRef.current &&
+      !sortRef.current.contains(event.target) &&
+      sortButtonRef.current &&
+      !sortButtonRef.current.contains(event.target)
+    ) {
+      setOpenSort(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutsideSort);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutsideSort);
+    };
+  }, []);
   return (
     <>
       {move !== null && (
@@ -276,6 +303,36 @@ const DashboardProposals = () => {
         <div className="flex items-center justify-start mb-6 gap-2 text-xl text-gray-600">
           <FaRegFileLines className="text-gray-600" />
           <h2>Proposals</h2>
+          <span className="relative ml-1" ref={sortButtonRef}>
+            <RiArrowUpDownLine onClick={() => setOpenSort(true)} />
+            {openSort === true && (
+              <div
+                ref={sortRef}
+                className="absolute -top-10 left-7 z-50 flex flex-col p-4 text-xs w-40 bg-white gap-3 shadow-md shadow-gray-300 rounded-md"
+              >
+                <button
+                  onClick={() => setSortP("default")}
+                  className="w-full flex items-center justify-center gap-3"
+                >
+                  All Proposals{" "}
+                  <span> {sortP === "default" && <FaCheck />} </span>
+                </button>
+                <button
+                  onClick={() => setSortP("alp")}
+                  className="w-full flex items-center justify-center gap-3"
+                >
+                  Alphabetical <span> {sortP === "alp" && <FaCheck />}</span>
+                </button>
+                <button
+                  onClick={() => setSortP("recent")}
+                  className="w-full flex items-center justify-center gap-3"
+                >
+                  Reacently Created
+                  <span> {sortP === "recent" && <FaCheck />}</span>
+                </button>
+              </div>
+            )}
+          </span>
         </div>
         <div className="w-full h-[75vh] overflow-y-auto scrollbar-hide relative overflow-x-hidden">
           <table className="auto-table w-full ">
@@ -400,9 +457,8 @@ const DashboardProposals = () => {
                         <FaRegCopy
                           onClick={() => handleDuplicate(proposal._id)}
                         />
-                        <div className="relative">
+                        <div className="relative" ref={popRef}>
                           <BsThreeDotsVertical
-                            ref={popRef}
                             onClick={() => {
                               if (threeDots !== null) {
                                 setThreeDots(null);

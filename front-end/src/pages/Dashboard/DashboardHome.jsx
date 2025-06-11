@@ -175,28 +175,28 @@ const DashboardHome = () => {
                 <h1>Views Overview</h1>
               </div>
               <div className="grid grid-cols-2 gap-3">
-                <div className=" mt-3 mr-3 placeholder:w-[100%] h-24 px-3 py-2 border border-gray-100 rounded-md flex flex-col items-start justify-start gap-2 cursor-pointer ">
+                <div className=" mt-3 mr-3 placeholder:w-[100%] h-[13vh] px-3 py-2 border border-gray-100 rounded-md flex flex-col items-start justify-start gap-2 cursor-pointer ">
                   <h3 className="text-xs text-gray-400">Today</h3>
                   <p className="text-2xl text-gray-600 pl-2">
                     {views?.dailyViews}{" "}
                     <span className="text-sm text-graidient_bottom">views</span>
                   </p>
                 </div>
-                <div className=" mt-3 mr-3 placeholder:w-[100%] h-24 px-3 py-2 border border-gray-100 rounded-md flex flex-col items-start justify-start  gap-2 cursor-pointer ">
+                <div className=" mt-3 mr-3 placeholder:w-[100%] h-[13vh] px-3 py-2 border border-gray-100 rounded-md flex flex-col items-start justify-start  gap-2 cursor-pointer ">
                   <h3 className="text-xs text-gray-400">This Week</h3>
                   <p className="text-2xl text-gray-600 pl-2">
                     {views?.weekViews}{" "}
                     <span className="text-sm text-graidient_bottom">views</span>
                   </p>
                 </div>
-                <div className=" mt-3 mr-3 placeholder:w-[100%] h-24 px-3 py-2 border border-gray-100 rounded-md flex flex-col items-start justify-start  gap-2 cursor-pointer ">
+                <div className=" mt-3 mr-3 placeholder:w-[100%] h-[13vh] px-3 py-2 border border-gray-100 rounded-md flex flex-col items-start justify-start  gap-2 cursor-pointer ">
                   <h3 className="text-xs text-gray-400">Total Views</h3>
                   <p className="text-2xl text-gray-600 pl-2">
                     {views?.totalViews}{" "}
                     <span className="text-sm text-graidient_bottom">views</span>
                   </p>
                 </div>
-                <div className=" mt-3 mr-3 placeholder:w-[100%] h-24 px-3 py-2 border border-gray-100 rounded-md flex flex-col items-start justify-start  gap-2 cursor-pointer ">
+                <div className=" mt-3 mr-3 placeholder:w-[100%]  h-[13vh] px-3 py-2 border border-gray-100 rounded-md flex flex-col items-start justify-start  gap-2 cursor-pointer ">
                   <h3 className="text-xs text-gray-400">Avg Time Spent</h3>
                   <p className="text-2xl text-gray-600 pl-2">
                     {Math.floor(views?.timespent)}{" "}

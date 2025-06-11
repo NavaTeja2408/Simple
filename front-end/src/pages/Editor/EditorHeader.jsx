@@ -278,7 +278,7 @@ const EditorHeader = ({
                 changeRename(name);
                 console.log(name);
               }}
-              style={{ width: `${name.length * 7}px  ` }}
+              style={{ width: `${name.length * 6.7 + 22}px  ` }}
               className="text-sm font-bold flex items-center justify-start gap-2  outline-none   "
             />
 

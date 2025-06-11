@@ -490,9 +490,8 @@ const DashboardFirst = () => {
                         <FaRegCopy
                           onClick={() => handleDuplicate(proposal._id)}
                         />
-                        <div className="relative">
+                        <div className="relative" ref={buttonRef}>
                           <BsThreeDotsVertical
-                            ref={buttonRef}
                             onClick={() => {
                               if (threeDots !== null) {
                                 setThreeDots(null);

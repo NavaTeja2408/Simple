@@ -72,7 +72,13 @@ const Login = () => {
             </p>
           </div>
         </div>
-        <div className="w-[50%] h-[90%] flex flex-col justify-center items-center">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault(); // Prevents page reload
+            handleLogin();
+          }}
+          className="w-[50%] h-[90%] flex flex-col justify-center items-center"
+        >
           <div className="w-full flex items-center justify-center">
             <h1 className="text-2xl mb-10">Welcome back!</h1>
           </div>
@@ -121,7 +127,7 @@ const Login = () => {
               Create new Account?
             </a> */}
             <button
-              onClick={handleLogin}
+              type="submit"
               className="pl-3 pr-3 pt-2 pb-2 mt-2 mb-2 w-[80%]  bg-graidient_bottom text-white rounded-md flex items-center justify-center"
             >
               LOGIN
@@ -155,7 +161,7 @@ const Login = () => {
               </a>
             </div>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );

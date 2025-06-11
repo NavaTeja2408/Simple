@@ -216,17 +216,30 @@ const getfavorateW = async (req, res) => {
 };
 
 const getProposals = async (req, res) => {
-  const { user_id } = req.query;
+  const { user_id, sort } = req.query;
 
   if (!user_id) {
     return res.status(400).json({ message: "User ID is required" });
   }
 
   try {
+    let sortQuery = {};
+
+    if (sort === "alp") {
+      // Sort by title alphabetically (replace 'title' with actual field)
+      sortQuery = { proposalName: 1 };
+    } else if (sort === "recent") {
+      // Sort by most recently created
+      sortQuery = { createdAt: -1 };
+    } else if (sort === "default") {
+      // Custom: sort by `proposalMove.favorate` true first, then recent
+      sortQuery = { favorate: -1, createdAt: -1 };
+    }
+
     const proposals = await ProposalModel.find({
       Users: user_id,
       $or: [{ recycle: false }, { recycle: { $exists: false } }],
-    }).sort({ createdAt: -1 });
+    }).sort(sortQuery);
 
     return res.status(200).json(proposals);
   } catch (error) {

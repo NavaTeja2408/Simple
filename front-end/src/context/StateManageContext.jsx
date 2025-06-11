@@ -20,6 +20,7 @@ export function StateManageContextProvider({ children }) {
   const { databaseUrl } = useContext(DatabaseContext);
   const [proposals, setProposals] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [sortP, setSortP] = useState("default");
 
   useEffect(() => {
     if (user?.id && databaseUrl) {
@@ -46,12 +47,12 @@ export function StateManageContextProvider({ children }) {
     if (user?.id && databaseUrl) {
       getProposals();
     }
-  }, [user?.id, databaseUrl]);
+  }, [user?.id, databaseUrl, sortP]);
 
   const getProposals = async () => {
     try {
       const res = await axios.get(`${databaseUrl}/api/workspace/getproposals`, {
-        params: { user_id: user.id },
+        params: { user_id: user.id, sort: sortP },
       });
 
       setProposals(res.data);
@@ -84,6 +85,8 @@ export function StateManageContextProvider({ children }) {
         setWorkspaces,
         proposals,
         setProposals,
+        sortP,
+        setSortP,
       }}
     >
       {children}
