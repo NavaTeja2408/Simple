@@ -25,7 +25,15 @@ import { CgFileDocument } from "react-icons/cg";
 import { Link } from "react-router-dom";
 import GeneratePDF from "./GeneratePDF";
 import JsonToWord from "./GenerateWord";
-
+import { AiOutlineDownload } from "react-icons/ai";
+import { GrDownload } from "react-icons/gr";
+import { LiaUndoSolid } from "react-icons/lia";
+import { LiaRedoSolid } from "react-icons/lia";
+import { FiUnlock } from "react-icons/fi";
+import { FiLock } from "react-icons/fi";
+import { IoIosNotificationsOutline } from "react-icons/io";
+import { BiDotsVerticalRounded } from "react-icons/bi";
+import { HiOutlineDevicePhoneMobile } from "react-icons/hi2";
 const EditorHeader = ({
   rows,
   id,
@@ -58,6 +66,8 @@ const EditorHeader = ({
   const [name, setName] = useState("");
   const [created, setCreated] = useState("");
   const [changing, setChanging] = useState(false);
+  const [view, setView] = useState(true);
+  const [tool, setTool] = useState(null);
 
   const undo = () => {
     if (rows.length > 0) {
@@ -252,17 +262,57 @@ const EditorHeader = ({
     };
   }, [rows, settings]);
   return (
-    <div className="w-full flex items-center justify-evenly h-16 px-7 border-b-[1px] border-gray-200 shadow-lg be-vietnam-pro-regular ">
-      <div className="flex flex-row w-[40%] items-center justify-start gap-2">
+    <div className="w-full flex items-center justify-evenly h-16 px-7 border-b-[1px] border-gray-200 shadow-lg be-vietnam-pro-regular relative ">
+      {tool === "Manage sharing proposal" && (
+        <div className=" absolute left-[65%] -bottom-2 px-2 bg-gray-600 text-white z-50 text-xs rounded-sm ">
+          {tool}
+        </div>
+      )}
+      {tool === "Undo" && (
+        <div className=" absolute left-[64%] -bottom-1 px-2 bg-gray-600 text-white z-50 text-xs rounded-sm ">
+          {tool}
+        </div>
+      )}
+      {tool === "Redo" && (
+        <div className=" absolute left-[67%] -bottom-1 px-2 bg-gray-600 text-white z-50 text-xs rounded-sm ">
+          {tool}
+        </div>
+      )}
+      {tool === "Notifications" && (
+        <div className=" absolute left-[72%] -bottom-2 px-2 bg-gray-600 text-white z-50 text-xs rounded-sm ">
+          {tool}
+        </div>
+      )}
+      {tool === "More Actions" && (
+        <div className=" absolute left-[76%] -bottom-2 px-2 bg-gray-600 text-white z-50 text-xs rounded-sm ">
+          {tool}
+        </div>
+      )}
+      {tool === "Preview This Document" && (
+        <div className=" absolute left-[81%] -bottom-1 px-2 bg-gray-600 text-white z-50 text-xs rounded-sm ">
+          {tool}
+        </div>
+      )}
+      <div className="flex flex-row w-[50%] items-center justify-start gap-1 relative">
         <img
           onClick={() => navigate("/home")}
           src={logo}
           alt="logo"
-          className="w-[41px] h-[29px] cursor-pointer"
+          onMouseEnter={() => setTool("Go to Dashboard")}
+          onMouseLeave={() => setTool(null)}
+          className="w-[41px] h-[29px] cursor-pointer relative"
         />
-        <img src={Header_editor} alt="something" className="w-7 ml-4" />
-        <div className="w-[90%] flex flex-col gap-0.5 ">
-          <h3 className="text-sm font-bold flex items-center justify-start gap-2 max-w-[45vw] text-ellipsis ">
+        {tool === "Go to Dashboard" && (
+          <div className=" absolute -bottom-4 px-2 bg-gray-600 text-white z-50 text-xs rounded-sm ">
+            {tool}
+          </div>
+        )}
+
+        <div className="h-10 w-[1px] bg-gray-300 ml-2 z-50"></div>
+        <img src={Header_editor} alt="something" className="w-7 ml-3" />
+
+        <div className="w-[90%] flex flex-col ml-1  ">
+          <h3 className="text-sm  flex items-center justify-start gap-1 max-w-[50vw] text-ellipsis   ">
             <input
               type="text"
               value={name}
@@ -272,14 +322,15 @@ const EditorHeader = ({
               onChange={(e) => {
                 setName(e.target.value);
               }}
+              maxLength={65}
               onFocus={() => setChanging(true)}
               onBlur={() => {
                 setChanging(false);
                 changeRename(name);
                 console.log(name);
               }}
-              style={{ width: `${name.length * 6.7 + 22}px  ` }}
-              className="text-sm font-bold flex items-center justify-start gap-2  outline-none   "
+              style={{ width: `${name.length * 6.7 + 18}px  ` }}
+              className="text-sm flex items-center justify-start gap-2  outline-none   "
             />
 
             {saving ? (
@@ -290,40 +341,57 @@ const EditorHeader = ({
               <IoIosCloudDone className="text-graidient_bottom" />
             )}
           </h3>
-          <p className="text-[10px] bg-gray-200 px-2 rounded-lg w-fit">
+          <p className="text-[10px] bg-gray-50 text-gray-700  rounded-lg w-fit">
             Created By {created}
           </p>
         </div>
       </div>
 
-      <div className="w-[60%] flex items-center justify-end gap-4">
+      <div className="w-[60%] flex items-center justify-end gap-3">
         <button
           onClick={undo}
-          className="text-gray-500 bg-gray-100 hover:bg-graidient_bottom p-[7px] rounded-[50%] hover:text-white"
+          className="text-gray-500 bg-gray-100 hover:bg-graidient_bottom p-[7px] rounded-md hover:text-white"
+          onMouseEnter={() => setTool("Undo")}
+          onMouseLeave={() => setTool(null)}
         >
-          <GrUndo className="w-4 h-4  " />
+          <LiaUndoSolid className="w-4 h-4  " />
         </button>
         <button
           onClick={redo}
-          className="text-gray-500 bg-gray-100 hover:bg-graidient_bottom hover:text-white  p-[7px] rounded-[50%] ml-[-10px]"
+          onMouseEnter={() => setTool("Redo")}
+          onMouseLeave={() => setTool(null)}
+          className="text-gray-500 bg-gray-100 hover:bg-graidient_bottom hover:text-white  p-[7px] rounded-md "
         >
-          <GrRedo className="w-4 h-4" />
+          <LiaRedoSolid className="w-4 h-4" />
         </button>
         {/* <button>
           <MdOutlineHistory className="h-6 w-6 text-gray-500" />
         </button> */}
-        <div className="relative">
-          <button onClick={() => setLock(!lock)}>
-            <LuLockKeyholeOpen
-              className={`h-5 w-5 mt-1 ${
-                lock ? "text-graidient_bottom" : "text-gray-500"
-              } `}
-            />
+        <div className=" relative">
+          <button
+            className={`p-2 rounded-md  ${
+              lock === true
+                ? "bg-graidient_bottom text-white"
+                : "bg-gray-100 hover:bg-hover_btn"
+            }  `}
+            onClick={() => setLock(!lock)}
+            onMouseEnter={() => setTool("Manage sharing proposal")}
+            onMouseLeave={() => setTool(null)}
+          >
+            {preview === true ? (
+              <FiLock
+                className={`h-4 w-4 ${lock ? "text-white" : "text-gray-500"} `}
+              />
+            ) : (
+              <FiUnlock
+                className={`h-4 w-4 ${lock ? "text-white" : "text-gray-500"} `}
+              />
+            )}
           </button>{" "}
           {lock && (
             <div
               ref={lockRef}
-              className="bg-white border border-gray-300  w-36 absolute z-10 rounded-lg flex flex-col items-center justify-center gap-1 top-9 right-20 px-3     py-2 shadow-gray-400 shadow-lg"
+              className="bg-white border border-gray-300  w-32 absolute z-10 rounded-lg flex flex-col items-center justify-center gap-1 top-9 right-20 px-3     py-2 shadow-gray-400 shadow-lg"
               style={{
                 left: "50%",
                 transform: "translate(-50%)",
@@ -331,25 +399,25 @@ const EditorHeader = ({
             >
               <button
                 onClick={() => handleLocked(true)}
-                className={`text-sm w-full  flex gap-2 items-center justify-start  pl-1 rounded-md ${
-                  preview ? "bg-graidient_bottom text-white" : "bg-gray-200"
-                } hover:bg-gray-300 `}
+                className={`text-sm w-full  flex gap-2 items-center justify-start  px-2 rounded-md ${
+                  preview ? "bg-graidient_bottom text-white" : "bg-gray-100"
+                } `}
               >
                 <p className=" h-7 flex items-center justify-center gap-2 ">
-                  <LuLockKeyhole />
+                  <FiLock />
                   Locked
                 </p>
               </button>
               <button
                 onClick={() => handleLocked(false)}
-                className={`text-sm flex gap-2 w-full items-center justify-start  pl-1 rounded-md ${
+                className={`text-sm flex gap-2 w-full items-center justify-start  px-2 rounded-md ${
                   preview === false
                     ? "bg-graidient_bottom text-white"
-                    : "bg-gray-200"
-                } hover:bg-gray-300 `}
+                    : "bg-gray-100"
+                }  `}
               >
                 <p className=" h-7 flex items-center justify-center gap-2 ">
-                  <LuLockKeyholeOpen />
+                  <FiUnlock />
                   Unlocked
                 </p>
               </button>
@@ -362,13 +430,19 @@ const EditorHeader = ({
         </button> */}
         <div className="relative">
           <button
-            className="relative"
+            className={`p-2 rounded-md  relative ${
+              notifiacations === true
+                ? "bg-graidient_bottom text-white"
+                : "bg-gray-100 hover:bg-hover_btn"
+            } `}
             onClick={() => setNotification(!notifiacations)}
+            onMouseEnter={() => setTool("Notifications")}
+            onMouseLeave={() => setTool(null)}
           >
-            <div className="h-[6px] w-[6px] bg-graidient_bottom absolute top-[10px] right-[4px] rounded-[50%]"></div>
-            <IoNotificationsOutline
-              className={`h-5 w-5 mt-2  ${
-                notifiacations ? "text-graidient_bottom" : "text-gray-500 "
+            {/* <div className="h-[6px] w-[6px] bg-graidient_bottom absolute top-[10px] right-[4px] rounded-[50%]"></div> */}
+            <IoIosNotificationsOutline
+              className={`h-5 w-5   ${
+                notifiacations ? "text-white" : "text-gray-500 "
               }`}
             />
           </button>
@@ -409,19 +483,23 @@ const EditorHeader = ({
         <div className="relative">
           <button
             ref={parentRef}
-            className="p-2 rounded-[50%] bg-gray-100"
+            className={`p-2 rounded-md  ${
+              menu === true
+                ? "bg-graidient_bottom text-white"
+                : "bg-gray-100 hover:bg-hover_btn"
+            } `}
+            onMouseEnter={() => setTool("More Actions")}
+            onMouseLeave={() => setTool(null)}
             onClick={() => setMenu(!menu)}
           >
-            <BsThreeDotsVertical
-              className={`h-4 w-4 ${
-                menu ? "text-graidient_bottom" : " text-gray-500"
-              }`}
+            <BiDotsVerticalRounded
+              className={`h-4 w-4 ${menu ? "text-white" : " text-gray-500"}`}
             />
           </button>
           {menu && (
             <div
               ref={menuRef}
-              className="bg-white border border-gray-300  w-44 absolute z-10 rounded-lg flex flex-col items-center justify-center gap-1 top-9 right-20     py-3 shadow-gray-400 shadow-lg"
+              className="bg-white border border-gray-300  w-40 absolute z-10 rounded-lg flex flex-col items-center justify-center gap-1 top-9 right-20     py-3 shadow-gray-400 shadow-lg"
               style={{
                 left: "50%",
                 transform: "translate(-50%)",
@@ -429,7 +507,7 @@ const EditorHeader = ({
             >
               <button
                 onClick={handleFavorate}
-                className={`text-sm  flex gap-2 items-center justify-start w-[90%] pl-1 rounded-md ${
+                className={`text-sm  flex gap-2 items-center justify-start w-[90%] px-2 rounded-md ${
                   favorate && "bg-graidient_bottom text-white"
                 }  hover:bg-graidient_bottom hover:text-white`}
               >
@@ -440,7 +518,7 @@ const EditorHeader = ({
               </button>
               <button
                 onClick={() => setMenu(false)}
-                className="text-sm flex gap-2 items-center justify-start w-[90%] pl-1 rounded-md hover:bg-graidient_bottom hover:text-white "
+                className="text-sm flex gap-2 items-center justify-start w-[90%] px-2 rounded-md hover:bg-graidient_bottom hover:text-white "
               >
                 <BsPinAngle className="hover:text-white" />
                 <p className=" h-7 flex items-center justify-center hover:text-white">
@@ -462,12 +540,32 @@ const EditorHeader = ({
         </div>
 
         <div className="h-5 w-[2px] bg-gray-300"></div>
-        <p className="text-graidient_bottom">Preview</p>
-        <button>
-          <RiComputerLine className="w-6 h-5 text-gray-600" />
+        <p
+          onMouseEnter={() => setTool("Preview This Document")}
+          onMouseLeave={() => setTool(null)}
+          className="text-gray-500 cursor-pointer"
+        >
+          Preview
+        </p>
+        <button
+          onClick={() => setView(true)}
+          className={`p-2 rounded-md ${
+            view === true
+              ? "bg-graidient_bottom text-white"
+              : "bg-gray-100  hover:bg-hover_btn"
+          }`}
+        >
+          <RiComputerLine className="w-4 h-4 " />
         </button>
-        <button className="ml-[-10px]">
-          <CiMobile1 className="w-6 h-6 text-gray-600" />
+        <button
+          onClick={() => setView(false)}
+          className={`p-2 rounded-md ml-[-3px] ${
+            view === false
+              ? "bg-graidient_bottom text-white"
+              : "bg-gray-100  hover:bg-hover_btn"
+          }`}
+        >
+          <HiOutlineDevicePhoneMobile className="w-4 h-4 " />
         </button>
         <div className="relative">
           <button
@@ -488,11 +586,11 @@ const EditorHeader = ({
               <h2 className="text-md font-bold">
                 Share & Download Your Proposal
               </h2>
-              <p className="w-[80%] text-xs text-center text-gray-500">
+              <p className="w-[85%] text-xs text-center text-gray-400">
                 Easily share your proposal link or download it in your preferred
                 format.
               </p>
-              <div className="border-[1px] w-[90%] rounded-md border-gray-600 flex items-center justify-between pl-2  gap-2 mt-2">
+              <div className="border-[1px] w-[90%] rounded-md border-gray-200 flex items-center justify-between pl-2  gap-2 mt-2">
                 <Link to={`/view/${id}`}>
                   <p className="text-xs text-blue-600">
                     http://localhost:5173/view
@@ -511,17 +609,19 @@ const EditorHeader = ({
               </div>
               <div
                 onClick={handleGenerateWord}
-                className="border-[1px] rounded-md w-[90%] py-2 border-gray-600 flex items-center justify-start pl-2 cursor-pointer  gap-3 mt-2"
+                className="relative border-[1px] rounded-md w-[90%] py-2 border-gray-200 flex items-center justify-start pl-2 cursor-pointer  gap-3 mt-2"
               >
                 <img src={word} alt="no" />
                 <a className="text-sm text-gray-500 ">Word Document</a>
+                <GrDownload className=" absolute right-3 text-gray-400" />
               </div>
               <div
                 onClick={handleGeneratePdf}
-                className="border-[1px] rounded-md w-[90%] py-2 border-gray-600 flex items-center justify-start pl-2  gap-3 mt-2 cursor-pointer"
+                className="relative border-[1px] rounded-md w-[90%] py-2 border-gray-200 flex items-center justify-start pl-2  gap-3 mt-2 cursor-pointer"
               >
                 <img src={pdf} alt="no" />
                 <a className="text-sm text-gray-500 ">PDF Document</a>
+                <GrDownload className=" absolute right-3 text-gray-400" />
               </div>
             </div>
           )}

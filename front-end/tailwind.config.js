@@ -32,6 +32,7 @@ export default {
         editor_button_bot: "rgba(236 , 236 , 236 , 1)",
         editor_header_button: "rgba(247, 231, 237, 1)",
         sidebar_border: "rgba(152 , 152 , 152 , 1)",
+        hover_btn: "rgba(255, 206, 216, 0.2)",
       },
 
       clipPath: {
