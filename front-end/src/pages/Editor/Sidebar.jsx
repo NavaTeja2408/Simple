@@ -420,6 +420,7 @@ const Sidebar = ({
   const [thirdLevel, setThirdLevel] = useState("");
   const headingRef = useRef(null);
   const [showPicker, setShowPicker] = useState(false);
+  const [tool, setTool] = useState(null);
   const handleClickOutsideHeading = (event) => {
     if (headingRef.current && !headingRef.current.contains(event.target)) {
       setThirdLevel("");
@@ -462,32 +463,42 @@ const Sidebar = ({
   }, []);
   const navigate = useNavigate();
   const renderHeadingLinks = (items, index, prefix = "") => {
-    return items?.flatMap((item, idx) =>
-      (item.type === "heading-one" ||
-        item.type === "heading-two" ||
-        item.type === "heading-three") &&
-      item.children
-        ? item.children.map(
-            (child, childIdx) =>
-              child.text !== "" && (
-                <div className="w-full  text-ellipsis flex items-center justify-start px-1 ">
-                  <FaAngleDoubleLeft className="rotate-180 p-[2px] text-gray-400 mt-1 mr-1 " />
-                  <p
-                    onClick={() => setScrollIndex(index)}
-                    className={`w-[95%] mt-[1px] overflow-hidden text-ellipsis cursor-pointer hover:text-black whitespace-nowrap ${
-                      item.type === "heading-one"
-                        ? "text-gray-700 text-md font-semibold"
-                        : "text-gray-500"
-                    }`}
-                    key={`${index}-${prefix}-${idx}-${childIdx}`}
-                  >
-                    {child.text}
-                  </p>
-                </div>
-              )
-          )
-        : []
-    );
+    return Array.isArray(items)
+      ? items.flatMap((item, idx) => {
+          // Skip if item is not an object
+          if (typeof item !== "object" || item === null) return [];
+
+          const isHeading =
+            item.type === "heading-one" ||
+            item.type === "heading-two" ||
+            item.type === "heading-three";
+
+          if (!isHeading || !Array.isArray(item.children)) return [];
+
+          return item.children.map((child, childIdx) => {
+            if (!child?.text) return null;
+
+            return (
+              <div
+                key={`${index}-${prefix}-${idx}-${childIdx}`}
+                className="w-full text-ellipsis flex items-center justify-start px-1"
+              >
+                <FaAngleDoubleLeft className="rotate-180 p-[2px] text-gray-400 mt-1 mr-1" />
+                <p
+                  onClick={() => setScrollIndex(index)}
+                  className={`w-[95%] mt-[1px] overflow-hidden text-ellipsis cursor-pointer hover:text-black whitespace-nowrap ${
+                    item.type === "heading-one"
+                      ? "text-gray-700 text-md font-semibold"
+                      : "text-gray-500"
+                  }`}
+                >
+                  {child.text}
+                </p>
+              </div>
+            );
+          });
+        })
+      : null;
   };
 
   const handleUpload = async (e) => {
@@ -542,149 +553,153 @@ const Sidebar = ({
         <div className="flex flex-row be-vietnam-pro-regular">
           {" "}
           <div className="w-20 relative h-screen flex flex-col border-r-[1px] gap-2 border-gray-300 pt-2 ">
+            {tool === "Add Elements" && (
+              <div className=" absolute left-[80%] w-24 top-5 px-1 text-center bg-gray-500 text-white z-50 text-xs rounded-sm  ">
+                {tool}
+              </div>
+            )}
+            {tool === "View outline" && (
+              <div className=" absolute left-[80%] w-24 top-[85px] px-1 text-center bg-gray-500 text-white z-50 text-xs rounded-sm  ">
+                {tool}
+              </div>
+            )}
+            {tool === "Design Document" && (
+              <div className=" absolute left-[80%] w-28 top-[145px] px-1 text-center bg-gray-500 text-white z-50 text-xs rounded-sm  ">
+                {tool}
+              </div>
+            )}
+
+            {tool === "Track progress" && (
+              <div className=" absolute left-[80%] w-24 top-[210px] px-1 text-center bg-gray-500 text-white z-50 text-xs rounded-sm  ">
+                {tool}
+              </div>
+            )}
+            {tool === "Version history" && (
+              <div className=" absolute left-[80%] w-24 top-[275px] px-1 text-center bg-gray-500 text-white z-50 text-xs rounded-sm  ">
+                {tool}
+              </div>
+            )}
             <div
               onClick={() => setActive("elements")}
-              className="flex p-1  flex-col w-full h-14 text-[12px] text-gray-500 cursor-pointer items-center justify-center  "
+              className="flex p-1 flex-col w-full h-14 text-[12px] text-gray-500 cursor-pointer items-center justify-center"
+              onMouseEnter={() => setTool("Add Elements")}
+              onMouseLeave={() => setTool(null)}
             >
-              {/* <img src={Elements} alt="plus" className="w-[60%]" /> */}
               <div
-                style={{
-                  backgroundColor:
-                    active === "elements" ||
-                    active === "content-3" ||
-                    active === "table-3" ||
-                    active === "goal-3"
-                      ? "rgba(255, 206, 216, 0.2)"
-                      : "rgba(250, 250, 250, 1)",
-                }}
-                className="p-1 rounded-md "
+                className={`p-1 rounded-md border hover:border-gray-200 ${
+                  ["elements", "content-3", "table-3", "goal-3"].includes(
+                    active
+                  )
+                    ? "border-gray-300 shadow-sm shadow-gray-200"
+                    : "border-white"
+                }`}
               >
-                <IoMdAddCircleOutline className="w-5 h-5" />
+                <IoMdAddCircleOutline
+                  className={`w-5 h-5 ${
+                    ["elements", "content-3", "table-3", "goal-3"].includes(
+                      active
+                    )
+                      ? "text-[#df064e]"
+                      : "text-gray-400"
+                  } hover:text-gray-700`}
+                />
               </div>
 
-              <p
-                style={{
-                  color:
-                    active === "elements" ||
-                    active === "content-3" ||
-                    active === "table-3" ||
-                    active === "goal-3"
-                      ? "rgba(223, 6, 78, 1)"
-                      : "rgba(172, 172, 172, 1)",
-                }}
-              >
-                Elements
-              </p>
+              <p className="text-gray-400">Elements</p>
             </div>
+
             <div
               onClick={() => setActive("outline")}
-              className="flex p-1  flex-col w-full h-14 text-[12px] text-gray-500 cursor-pointer items-center justify-center  "
+              className="flex p-1 flex-col w-full h-14 text-[12px] text-gray-500 cursor-pointer items-center justify-center"
+              onMouseEnter={() => setTool("View outline")}
+              onMouseLeave={() => setTool(null)}
             >
               <div
-                style={{
-                  backgroundColor:
-                    active === "outline"
-                      ? "rgba(255, 206, 216, 0.2)"
-                      : "rgba(250, 250, 250, 1)",
-                }}
-                className="p-1 rounded-md "
+                className={`p-1 rounded-md border hover:border-gray-200 ${
+                  active === "outline"
+                    ? "border-gray-300 shadow-sm shadow-gray-200"
+                    : "border-white"
+                }`}
               >
-                <AiOutlineBars className="w-5 h-5" />
+                <AiOutlineBars
+                  className={`w-5 h-5 ${
+                    active === "outline" ? "text-[#df064e]" : "text-gray-400"
+                  } hover:text-gray-700`}
+                />
               </div>
 
-              <p
-                style={{
-                  color:
-                    active === "outline"
-                      ? "rgba(223, 6, 78, 1)"
-                      : "rgba(172, 172, 172, 1)",
-                }}
-              >
-                Outline
-              </p>
+              <p className="text-gray-400">Outline</p>
             </div>
+
             <div
               onClick={() => setActive("layout")}
-              className="flex p-1  flex-col w-full h-14 text-[12px] text-gray-500 cursor-pointer items-center justify-center  "
+              className="flex p-1 flex-col w-full h-14 text-[12px] text-gray-500 cursor-pointer items-center justify-center"
+              onMouseEnter={() => setTool("Design Document")}
+              onMouseLeave={() => setTool(null)}
             >
               <div
-                style={{
-                  backgroundColor:
-                    active === "layout"
-                      ? "rgba(255, 206, 216, 0.2)"
-                      : "rgba(250, 250, 250, 1)",
-                }}
-                className="p-1 rounded-md "
+                className={`p-1 rounded-md border hover:border-gray-200 ${
+                  active === "layout"
+                    ? "border-gray-300 shadow-sm shadow-gray-200"
+                    : "border-white"
+                }`}
               >
-                <LuLayoutPanelLeft className="w-5 h-5" />
+                <LuLayoutPanelLeft
+                  className={`w-5 h-5 ${
+                    active === "layout" ? "text-[#df064e]" : "text-gray-400"
+                  } hover:text-gray-700`}
+                />
               </div>
 
-              <p
-                style={{
-                  color:
-                    active === "layout"
-                      ? "rgba(223, 6, 78, 1)"
-                      : "rgba(172, 172, 172, 1)",
-                }}
-              >
-                Design Doc
-              </p>
+              <p className="text-gray-400">Design Doc</p>
             </div>
+
             <div
               onClick={() => setActive("tracking")}
-              className="flex p-1  flex-col w-full h-14 text-[12px] text-gray-500 cursor-pointer items-center justify-center  "
+              className="flex p-1 flex-col w-full h-14 text-[12px] text-gray-500 cursor-pointer items-center justify-center"
+              onMouseEnter={() => setTool("Track progress")}
+              onMouseLeave={() => setTool(null)}
             >
               <div
-                style={{
-                  backgroundColor:
-                    active === "tracking"
-                      ? "rgba(255, 206, 216, 0.2)"
-                      : "rgba(250, 250, 250, 1)",
-                }}
-                className="p-1 rounded-md "
+                className={`p-1 rounded-md border hover:border-gray-200 ${
+                  active === "tracking"
+                    ? "border-gray-300 shadow-sm shadow-gray-200"
+                    : "border-white"
+                }`}
               >
-                <HiOutlineDocumentChartBar className="w-5 h-5" />
+                <HiOutlineDocumentChartBar
+                  className={`w-5 h-5 ${
+                    active === "tracking" ? "text-[#df064e]" : "text-gray-400"
+                  } hover:text-gray-700`}
+                />
               </div>
 
-              <p
-                style={{
-                  color:
-                    active === "tracking"
-                      ? "rgba(223, 6, 78, 1)"
-                      : "rgba(172, 172, 172, 1)",
-                }}
-              >
-                Doc Track
-              </p>
+              <p className="text-gray-400">Doc Track</p>
             </div>
 
             <div
               onClick={() => setActive("history")}
-              className="flex p-1  flex-col w-full h-14 text-[12px] text-gray-500 cursor-pointer items-center justify-center  "
+              className="flex p-1 flex-col w-full h-14 text-[12px] text-gray-500 cursor-pointer items-center justify-center"
+              onMouseEnter={() => setTool("Version history")}
+              onMouseLeave={() => setTool(null)}
             >
               <div
-                style={{
-                  backgroundColor:
-                    active === "history"
-                      ? "rgba(255, 206, 216, 0.2)"
-                      : "rgba(250, 250, 250, 1)",
-                }}
-                className="p-1 rounded-md "
+                className={`p-1 rounded-md border hover:border-gray-200 ${
+                  active === "history"
+                    ? "border-gray-300 shadow-sm shadow-gray-200"
+                    : "border-white"
+                }`}
               >
-                <VscHistory className="w-5 h-5" />
+                <VscHistory
+                  className={`w-5 h-5 ${
+                    active === "history" ? "text-[#df064e]" : "text-gray-400"
+                  } hover:text-gray-700`}
+                />
               </div>
 
-              <p
-                style={{
-                  color:
-                    active === "history"
-                      ? "rgba(223, 6, 78, 1)"
-                      : "rgba(172, 172, 172, 1)",
-                }}
-              >
-                History
-              </p>
+              <p className="text-gray-400">History</p>
             </div>
+
             <div className="w-full h-40 absolute bottom-20 pb-5 left-0 flex flex-col items-center justify-end">
               <div className="flex p-1  flex-col w-full h-14 text-[12px] text-gray-500 cursor-pointer items-center justify-center  ">
                 <div className="p-1 rounded-md ">
@@ -702,7 +717,7 @@ const Sidebar = ({
                 >
                   <img
                     src={user.avatar ? user.avatar : profile}
-                    className="w-5 h-5 z-50"
+                    className="w-6 h-6 z-50 rounded-[50%]"
                   />
                 </div>
               </div>

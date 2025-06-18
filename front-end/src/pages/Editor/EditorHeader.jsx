@@ -309,7 +309,11 @@ const EditorHeader = ({
         )}
 
         <div className="h-10 w-[1px] bg-gray-300 ml-2 z-50"></div>
-        <img src={Header_editor} alt="something" className="w-7 ml-3" />
+        <img
+          src={Header_editor}
+          alt="something"
+          className="w-7 ml-3 cursor-pointer opacity-85"
+        />
 
         <div className="w-[90%] flex flex-col ml-1  ">
           <h3 className="text-sm  flex items-center justify-start gap-1 max-w-[50vw] text-ellipsis   ">

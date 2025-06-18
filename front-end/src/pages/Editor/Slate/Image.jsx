@@ -103,9 +103,12 @@ const Image = ({
           ? "justify-between"
           : "justify-center"
       } items-center relative `}
-      onClick={() => setIndexValue(index)}
+      onClick={() => {
+        setIndexValue(index);
+        setSelected(index);
+      }}
     >
-      {selected === index && preview !== true && (
+      {index === indexValue && preview !== true && (
         <div className="absolute top-2 left-[25%] px-3 h-10 bg-white border border-gray-100 shadow-lg shadow-gray-400 flex flex-row items-center space-x-2 p-2 rounded text-sm">
           {/* Hidden file input */}
           <input

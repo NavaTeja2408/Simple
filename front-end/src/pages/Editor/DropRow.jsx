@@ -525,7 +525,9 @@ const DropRow = ({
             className="w-[100%]    h-10 flex items-center justify-center   "
             onClick={() => setSelected(index)}
           >
-            <div className="w-full h-4 shadow-inner  bg-gray-100"></div>
+            <div className="w-full h-4 text-xs text-gray-400 border-b border-dashed border-gray-400 text-center ">
+              Page Break
+            </div>
           </div>
         ) : row.type === "table" ? (
           <div className="w-full  " onClick={() => setSelected(index)}>
@@ -730,7 +732,7 @@ const DropRow = ({
         </div>
       )}
 
-      {selected === index && preview !== true && (
+      {selected === index && preview !== true && row.type !== "cover" && (
         <div
           ref={quickButtonRef}
           onClick={() => setQuickAdd(true)}
