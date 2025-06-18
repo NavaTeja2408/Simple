@@ -10,9 +10,8 @@ const GeneratePDF = async (data, settings) => {
   const pageHeight = doc.internal.pageSize.height;
   const availableWidth = doc.internal.pageSize.width - 10;
   doc.setFont(settings.body);
-  autoTable(doc);
 
-  const renderContent = (content, type) => {
+  const renderContent = (content, type, options) => {
     const pageS = doc.internal.pageSize.width;
     if (type !== "image" && type !== "brake") {
       if (!content) {
@@ -87,15 +86,34 @@ const GeneratePDF = async (data, settings) => {
 
         if (Array.isArray(content) && content.length > 0) {
           const rows = content.map((row) => (Array.isArray(row) ? row : []));
+          const columnCount = Math.max(...rows.map((r) => r.length));
+          const cellWidth =
+            (doc.internal.pageSize.getWidth() - 20) / columnCount;
+          const cellHeight = 10;
+          let startY = currentY;
 
-          doc.autoTable({
-            startY: 10,
-            head: [rows[0] || []],
-            body: rows.slice(1),
-          });
+          for (let rowIndex = 0; rowIndex < rows.length; rowIndex++) {
+            const row = rows[rowIndex];
+            let x = 10; // left margin
 
-          // ✅ Use lastAutoTable.finalY to update currentY
-          currentY = doc.lastAutoTable.finalY + 10;
+            for (let colIndex = 0; colIndex < columnCount; colIndex++) {
+              const text =
+                row[colIndex] !== undefined ? row[colIndex].toString() : "";
+              doc.rect(x, startY, cellWidth, cellHeight); // Draw cell border
+              doc.text(text, x + 2, startY + 7); // Add text
+              x += cellWidth;
+            }
+
+            startY += cellHeight;
+
+            // Check for page overflow
+            if (startY + cellHeight > pageHeight) {
+              doc.addPage();
+              startY = 10;
+            }
+          }
+
+          currentY = startY + 10;
         } else {
           console.warn("Invalid table data:", content);
         }
@@ -758,68 +776,72 @@ const GeneratePDF = async (data, settings) => {
         break;
 
       case "cost":
-        // Check if we need to add a new page
+        doc.setFontSize(12);
         if (currentY + 15 > pageHeight) {
           doc.addPage();
-          currentY = 10; // Reset Y position to top of the new page
+          currentY = 10;
         }
 
-        // Check if optional fields like discount and quantity are present
-        const hasDiscount = content.some((row) => row.discount !== undefined);
-        const hasQuantity = content.some((row) => row.quantity !== undefined);
+        const hasDiscount = options.quantity;
+        const hasQuantity = options.quantity;
 
-        // Define the table headers dynamically based on available data
-        const headers = ["Deliverable", "Price", "Payment Duration", "Amount"]; // Basic columns
+        // Dynamically build headers
+        const headers = ["Deliverable", "Price"];
+        if (hasDiscount) headers.push("Discount");
+        if (hasQuantity) headers.push("Quantity");
+        headers.push("Payment Duration", "Amount");
 
-        // Add optional columns to headers if they exist in any row
-        if (hasDiscount) {
-          headers.splice(2, 0, "Discount"); // Add "Discount" after "Price"
-        }
-        if (hasQuantity) {
-          headers.splice(3, 0, "Quantity"); // Add "Quantity" after "Price" or "Discount"
-        }
-
-        // Construct the table body
+        // Prepare body rows
         const body = content.map((row) => {
-          const rowData = [
-            row.deliverable,
-            row.price,
-            row.paymentDuration,
-            row.amount,
-          ];
-
-          // Add the "Discount" and "Quantity" data if present
-          if (hasDiscount) {
-            rowData.splice(2, 0, row.discount); // Insert discount data
-          }
-          if (hasQuantity) {
-            rowData.splice(3, 0, row.quantity); // Insert quantity data
-          }
-
+          const rowData = [row.deliverable, row.price];
+          if (hasDiscount) rowData.push(row.discount || "");
+          if (hasQuantity) rowData.push(row.quantity || "");
+          rowData.push(row.paymentDuration, row.amount);
           return rowData;
         });
 
-        // Generate the table with dynamic headers and body
-        doc.autoTable({
-          startY: currentY,
-          head: [headers], // Use the dynamic headers array
-          body: body, // Use the dynamically constructed body
+        // Table layout config
+        const colCount = headers.length;
+        const colWidth = (doc.internal.pageSize.getWidth() - 20) / colCount;
+        const rowHeight = 10;
+        let y = currentY;
+
+        // Draw header
+        let x = 10;
+        headers.forEach((header) => {
+          doc.rect(x, y, colWidth, rowHeight);
+          doc.text(header.toString(), x + 2, y + 7);
+          x += colWidth;
+        });
+        y += rowHeight;
+
+        // Draw rows
+        body.forEach((row) => {
+          x = 10;
+          if (y + rowHeight > pageHeight) {
+            doc.addPage();
+            y = 10;
+          }
+
+          row.forEach((cell) => {
+            doc.rect(x, y, colWidth, rowHeight);
+            doc.text(cell !== undefined ? cell.toString() : "", x + 2, y + 7);
+            x += colWidth;
+          });
+          y += rowHeight;
         });
 
-        // Update currentY after generating the table
-        currentY = doc.autoTable.previous.finalY + 10;
-        let value = 0;
-        // Sum all the amounts in the content array
+        // Update currentY
+        currentY = y + 10;
+
+        // Calculate total amount
+        let total = 0;
         content.forEach((item) => {
-          value += item.amount;
+          total += Number(item.amount) || 0;
         });
 
-        // Format the total price (optional, depending on your requirements)
-        const formattedValue = new Intl.NumberFormat().format(value); // Fix to two decimal places (optional)
-
-        // Display the total price in the document
+        const formattedValue = new Intl.NumberFormat().format(total);
         doc.text(`Total Price is $${formattedValue}`, 15, currentY);
-
         break;
 
       case "sign":
@@ -896,9 +918,11 @@ const GeneratePDF = async (data, settings) => {
   // Iterate over all data items
   data.forEach((item) => {
     if (item.type === "double-para") {
-      renderContent(item, item.type);
+      renderContent(item, item.type, {});
+    } else if (item.type === "cost") {
+      renderContent(item.content, item.type, item.options);
     } else {
-      renderContent(item.content, item.type);
+      renderContent(item.content, item.type, {});
     }
 
     currentY += 5;

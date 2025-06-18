@@ -308,7 +308,7 @@ const EditorHeader = ({
           </div>
         )}
 
-        <div className="h-10 w-[1px] bg-gray-300 ml-2 z-50"></div>
+        <div className="h-10 w-[1px] bg-gray-300 ml-[7px] z-50"></div>
         <img
           src={Header_editor}
           alt="something"
@@ -333,7 +333,7 @@ const EditorHeader = ({
                 changeRename(name);
                 console.log(name);
               }}
-              style={{ width: `${name.length * 6.7 + 18}px  ` }}
+              style={{ width: `${name.length * 3 + 35}px  ` }}
               className="text-sm flex items-center justify-start gap-2  outline-none   "
             />
 
