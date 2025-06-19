@@ -51,6 +51,11 @@ import { VscHistory } from "react-icons/vsc";
 import { IoIosHelpCircleOutline } from "react-icons/io";
 import profile from "../../assets/profile.png";
 import { useNavigate } from "react-router-dom";
+import cover_img_1 from "../../assets/cover_1.jpg";
+import cover_img_2 from "../../assets/cover_img_2.jpg";
+import cover_img_3 from "../../assets/cover_img_3.jpg";
+import cover_img_4 from "../../assets/cover_img_4.jpg";
+import cover_img_5 from "../../assets/cover_img_5.jpg";
 
 const Sidebar = ({
   selected,
@@ -417,6 +422,567 @@ const Sidebar = ({
     },
   ];
 
+  const cover_1 = [
+    {
+      id: "030bb67e-f6bb-416d-b9c4-6deea5e7755b",
+      type: "cover",
+      template: 1,
+      content:
+        "https://res.cloudinary.com/dojwaepbj/image/upload/v1750313321/tqlme1qawsr6m0owommp.png",
+      bookmark: false,
+    },
+    {
+      id: "a67d170a-0f57-431a-9dbc-0d509e2bd217",
+      type: "heading",
+      size: "heading-one",
+      content: [
+        {
+          type: "heading-one",
+          align: "center",
+          children: [
+            {
+              text: "Transforming Workflows with Smart Software",
+              bold: true,
+            },
+          ],
+        },
+      ],
+      bookmark: false,
+      textColor: "text-white",
+    },
+    {
+      id: "0b13f7f3-141a-4eea-96b9-8f6c5dac9ea2",
+      type: "input",
+      content: [
+        {
+          type: "paragraph",
+          children: [
+            {
+              text: "A proposal to streamline operations using our SaaS platform",
+            },
+          ],
+          align: "center",
+        },
+      ],
+      bookmark: false,
+      textColor: "text-white",
+    },
+    {
+      id: "c9ec8458-fa78-4b7a-90df-f59520dd9d84",
+      type: "input",
+      content: [
+        { type: "paragraph", children: [{ text: "" }] },
+        { type: "paragraph", children: [{ text: "" }] },
+        { type: "paragraph", children: [{ text: "June 24, 2025" }] },
+      ],
+      bookmark: false,
+      textColor: "text-white",
+    },
+    {
+      id: "2db5f891-cb49-4728-a011-ba4739ab1d24",
+      type: "input",
+      content: [
+        {
+          type: "paragraph",
+          children: [
+            {
+              text: "Discover how our scalable software-as-a-service product helps you automate tasks, ",
+            },
+          ],
+        },
+        {
+          type: "paragraph",
+          children: [
+            {
+              text: "improve team collaboration, and deliver measurable results—fast.",
+            },
+          ],
+        },
+      ],
+      bookmark: false,
+      textColor: "text-white",
+    },
+    {
+      id: "25384be1-8dad-4b9b-9f6e-d0b21a30fb54",
+      type: "image-para",
+      content: [
+        { type: "paragraph", children: [{ text: "" }] },
+        { type: "paragraph", children: [{ text: "" }] },
+        { type: "paragraph", children: [{ text: "" }] },
+        {
+          type: "paragraph",
+          children: [{ text: "Prepared For: John Wick" }],
+        },
+        {
+          type: "paragraph",
+          children: [{ text: "Prepared By: Simple Quotes" }],
+        },
+      ],
+      ImageLink:
+        "https://res.cloudinary.com/dojwaepbj/image/upload/v1750313419/ocwocu3grfgpfqz7gh8t.png",
+      height: "",
+      width: "",
+      align: "left",
+      aliegn: "center",
+      bookmark: false,
+      textColor: "text-white",
+    },
+  ];
+
+  const cover_2 = [
+    {
+      id: "030bb67e-f6bb-416d-b9c4-6deea5e7755b",
+      type: "cover",
+      template: 2,
+      content:
+        "https://res.cloudinary.com/dojwaepbj/image/upload/v1750314535/a50zjpsoarhpidc6ukt6.jpg",
+      bookmark: false,
+    },
+    {
+      id: "a67d170a-0f57-431a-9dbc-0d509e2bd217",
+      type: "heading",
+      size: "heading-one",
+      content: [
+        {
+          type: "heading-one",
+          align: "left",
+          children: [{ text: "", bold: true }],
+        },
+        {
+          type: "heading-one",
+          align: "left",
+          children: [{ bold: true, text: "" }],
+        },
+        {
+          type: "heading-one",
+          align: "left",
+          children: [{ bold: true, text: "Let’s Grow Your Brand Together" }],
+        },
+      ],
+      bookmark: false,
+      textColor: "text-black",
+    },
+    {
+      id: "0b13f7f3-141a-4eea-96b9-8f6c5dac9ea2",
+      type: "input",
+      content: [
+        {
+          type: "paragraph",
+          children: [
+            {
+              text: "Custom marketing strategies designed to boost reach and results",
+            },
+          ],
+          align: "left",
+        },
+        { type: "paragraph", align: "left", children: [{ text: "" }] },
+        { type: "paragraph", align: "left", children: [{ text: "" }] },
+        { type: "paragraph", align: "left", children: [{ text: "" }] },
+      ],
+      bookmark: false,
+      textColor: "text-black",
+    },
+    {
+      id: "c9ec8458-fa78-4b7a-90df-f59520dd9d84",
+      type: "input",
+      content: [
+        { type: "paragraph", children: [{ text: "" }] },
+        { type: "paragraph", children: [{ text: "" }], align: "center" },
+        {
+          type: "paragraph",
+          children: [{ text: "June 24, 2025", bold: true }],
+          align: "left",
+        },
+      ],
+      bookmark: false,
+      textColor: "text-black",
+    },
+    {
+      id: "bda93768-1cf6-464c-b56e-8ab98989d4ad",
+      type: "input",
+      content: [
+        { type: "paragraph", children: [{ text: "" }] },
+        {
+          type: "paragraph",
+          children: [{ text: "Prepared For: John Wick" }],
+        },
+        {
+          type: "paragraph",
+          children: [{ text: "Prepared By: Simple Quotes" }],
+        },
+        { type: "paragraph", children: [{ text: "" }] },
+        { type: "paragraph", children: [{ text: "" }] },
+        { type: "paragraph", children: [{ text: "" }] },
+        { type: "paragraph", children: [{ text: "" }] },
+      ],
+      bookmark: false,
+    },
+    {
+      id: "618e4c72-b7ea-4699-8e18-60215765e10c",
+      type: "image-para",
+      content: [
+        { type: "paragraph", children: [{ text: "" }] },
+        { type: "paragraph", children: [{ text: "" }] },
+        { type: "paragraph", children: [{ text: "" }] },
+        { type: "paragraph", children: [{ text: "+1 123 456 7890" }] },
+        { type: "paragraph", children: [{ text: "www.yourwebsite.com" }] },
+        {
+          type: "paragraph",
+          children: [{ text: "your.email@example.com" }],
+        },
+        {
+          type: "paragraph",
+          children: [{ text: "123 Anywhere St., Any City" }],
+        },
+      ],
+      ImageLink:
+        "https://res.cloudinary.com/dojwaepbj/image/upload/v1750314722/namwstjqzsxobc90jqfi.png",
+      height: "",
+      width: "",
+      align: "left",
+      aliegn: "center",
+      bookmark: false,
+    },
+  ];
+
+  const cover_3 = [
+    {
+      id: "030bb67e-f6bb-416d-b9c4-6deea5e7755b",
+      type: "cover",
+      template: 3,
+      content:
+        "https://res.cloudinary.com/dojwaepbj/image/upload/v1750317872/x6j7yiv33er5gcrkcfz2.png",
+      bookmark: false,
+    },
+    {
+      id: "a67d170a-0f57-431a-9dbc-0d509e2bd217",
+      type: "heading",
+      size: "heading-one",
+      content: [
+        {
+          type: "heading-one",
+          align: "left",
+          children: [{ bold: true, text: "" }],
+        },
+        {
+          type: "heading-one",
+          align: "left",
+          children: [{ bold: true, text: "Innovation That Scales" }],
+        },
+      ],
+      bookmark: false,
+      textColor: "text-gray-700",
+    },
+    {
+      id: "0b13f7f3-141a-4eea-96b9-8f6c5dac9ea2",
+      type: "input",
+      content: [
+        {
+          type: "paragraph",
+          children: [{ text: "Proposal for Strategic Investment in Ohm" }],
+          align: "left",
+        },
+      ],
+      bookmark: false,
+      textColor: "text-gray-700",
+    },
+    {
+      id: "13312e6f-2028-48b3-999b-a001f1fd7da2",
+      type: "input",
+      content: [
+        {
+          type: "paragrapgh-two",
+          children: [
+            {
+              text: "We’re building a smarter, faster future. This proposal outlines ",
+            },
+          ],
+        },
+        {
+          type: "paragrapgh-two",
+          children: [
+            { text: "how our technology addresses real-world problems—" },
+          ],
+        },
+        {
+          type: "paragrapgh-two",
+          children: [{ text: "and why we’re ready to scale." }],
+        },
+      ],
+      bookmark: false,
+      textColor: "text-gray-700",
+    },
+    {
+      id: "c9ec8458-fa78-4b7a-90df-f59520dd9d84",
+      type: "input",
+      content: [
+        {
+          type: "paragraph",
+          children: [{ text: "", bold: true }],
+          align: "left",
+        },
+        {
+          type: "paragraph",
+          align: "left",
+          children: [{ bold: true, text: "" }],
+        },
+        {
+          type: "paragraph",
+          align: "left",
+          children: [{ bold: true, text: "June 24, 2025" }],
+        },
+      ],
+      bookmark: false,
+      textColor: "text-gray-700",
+    },
+    {
+      id: "bda93768-1cf6-464c-b56e-8ab98989d4ad",
+      type: "input",
+      content: [
+        {
+          type: "paragrapgh",
+          children: [{ text: "Prepared For: John Wick" }],
+        },
+        {
+          type: "paragrapgh",
+          children: [{ text: "Prepared By: Brain Quest" }],
+        },
+      ],
+      bookmark: false,
+      textColor: "text-gray-700",
+    },
+    {
+      id: "545b33cc-b403-4b69-8e29-b32b4adce8fb",
+      type: "input",
+      content: [
+        { type: "paragrapgh-two", children: [{ text: "" }] },
+        { type: "paragrapgh-two", children: [{ text: "" }] },
+        { type: "paragrapgh-two", children: [{ text: "" }] },
+        { type: "paragrapgh-two", children: [{ text: "+91 0123456789" }] },
+        {
+          type: "paragrapgh-two",
+          children: [{ text: "www.yourwebsite@gmail.com" }],
+        },
+        {
+          type: "paragrapgh-two",
+          children: [{ text: "yourname@gmail.com" }],
+        },
+        {
+          type: "paragrapgh-two",
+          children: [{ text: "123 xyz road street" }],
+        },
+      ],
+      bookmark: false,
+      textColor: "text-gray-700",
+    },
+  ];
+
+  const cover_4 = [
+    {
+      id: "27866411-41d4-4955-8024-4f7bce5d9578",
+      type: "cover",
+      template: 4,
+      content:
+        "https://res.cloudinary.com/dojwaepbj/image/upload/v1750322585/zcga6w1zwhfbpenqvcpy.png",
+      bookmark: false,
+    },
+    {
+      id: "253d996f-c3b0-46b8-a321-15340ad39822",
+      type: "heading",
+      size: "heading-one",
+      content: [
+        {
+          type: "heading-one",
+          align: "left",
+          children: [{ text: "DESIGN THAT SPEAKS ", bold: true }],
+        },
+        {
+          type: "heading-one",
+          align: "left",
+          children: [{ bold: true, text: "FOR YOUR BRAND" }],
+        },
+      ],
+      bookmark: false,
+    },
+    {
+      id: "36aefd29-6057-40f2-9bbb-903c840fa4f7",
+      type: "input",
+      content: [
+        {
+          type: "paragraph",
+          align: "left",
+          children: [{ text: "Freelance UI/UX Design Services" }],
+        },
+        { type: "paragraph", align: "left", children: [{ text: "" }] },
+      ],
+      bookmark: false,
+    },
+    {
+      id: "a887fa7f-d4fe-43a5-b600-24e9bd11cf78",
+      type: "input",
+      content: [
+        {
+          type: "paragraph",
+          children: [{ text: "📞+91 0123456789" }],
+          align: "left",
+        },
+        {
+          type: "paragraph",
+          children: [{ text: "🌐www.yourwebsite@gmail.com" }],
+          align: "left",
+        },
+        {
+          type: "paragraph",
+          children: [{ text: "📨yourname@gmail.com" }],
+          align: "left",
+        },
+        { type: "paragraph", align: "left", children: [{ text: "" }] },
+        { type: "paragraph", align: "left", children: [{ text: "" }] },
+      ],
+      bookmark: false,
+    },
+    {
+      id: "b93469b7-6093-4cf3-85f8-cd8f6598dd09",
+      type: "image",
+      content:
+        "https://res.cloudinary.com/dojwaepbj/image/upload/v1750323477/uk9tv2qdvbfhozr9eb5b.png",
+      height: "200",
+      width: "25",
+      aliegn: "left",
+      caption: "",
+      discription: "",
+      bookmark: false,
+    },
+  ];
+  const cover_5 = [
+    {
+      id: "dc08dd0f-a4d3-4064-b5da-f6b0a5bcbc64",
+      type: "cover",
+      template: 5,
+      content:
+        "https://res.cloudinary.com/dojwaepbj/image/upload/v1750328199/mjypix7gqovvle5jeh1j.png",
+      bookmark: false,
+    },
+    {
+      id: "8bfc05f3-3984-4747-908c-6694eabf947b",
+      type: "heading",
+      size: "heading-four",
+      content: [
+        {
+          type: "heading-four",
+          align: "left",
+          children: [{ text: "Rimberio co" }],
+        },
+      ],
+      bookmark: false,
+    },
+    {
+      id: "905e4a4b-8a53-4083-913a-8558b902f4dd",
+      type: "heading",
+      size: "heading-one",
+      content: [
+        {
+          type: "heading-one",
+          align: "left",
+          children: [{ text: "BUSINESS PLAN", bold: true }],
+        },
+      ],
+      bookmark: false,
+      textColor: "text-gray-700",
+    },
+    {
+      id: "b61c8f06-6d9d-4e35-b4e3-84baa224702d",
+      type: "heading",
+      size: "heading-five",
+      content: [
+        {
+          type: "heading-five",
+          align: "left",
+          children: [{ text: "Empowering Success," }],
+        },
+        {
+          type: "heading-five",
+          align: "left",
+          children: [{ text: "Igniting Innovation" }],
+        },
+      ],
+      bookmark: false,
+    },
+    {
+      id: "259453f3-3c97-404f-9788-5006034f3154",
+      type: "input",
+      content: [
+        { type: "paragraph", children: [{ text: "", bold: true }] },
+        {
+          type: "paragraph",
+          children: [{ bold: true, text: "" }],
+          align: "left",
+        },
+        {
+          type: "paragraph",
+          children: [{ bold: true, text: "24-06-2025" }],
+          align: "left",
+        },
+        {
+          type: "paragraph",
+          children: [{ bold: true, text: "" }],
+          align: "right",
+        },
+        { type: "paragraph", children: [{ bold: true, text: "" }] },
+      ],
+      bookmark: false,
+    },
+    {
+      id: "efdd0398-bf6d-4e8a-a098-7249835bc0d8",
+      type: "double-para",
+      firstContent: [
+        {
+          type: "paragraph",
+          children: [{ text: "", bold: true }],
+          align: "left",
+        },
+        {
+          type: "paragraph",
+          align: "left",
+          children: [{ bold: true, text: "" }],
+        },
+        {
+          type: "paragraph",
+          align: "left",
+          children: [{ bold: true, text: "Prepared by" }],
+        },
+        {
+          type: "paragraph",
+          align: "left",
+          children: [{ text: "Olivia Wilson" }],
+        },
+      ],
+      secondContent: [
+        {
+          type: "paragraph",
+          children: [{ text: "Rimberio Co" }],
+          align: "right",
+        },
+        {
+          type: "paragraph",
+          children: [{ text: "rimberio@pixelhuee.studio" }],
+          align: "right",
+        },
+        {
+          type: "paragraph",
+          children: [{ text: "+91 98000 44000" }],
+          align: "right",
+        },
+        {
+          type: "paragraph",
+          children: [{ text: "www.pixelhuee.studio" }],
+          align: "right",
+        },
+      ],
+      bookmark: false,
+    },
+  ];
+
   const [thirdLevel, setThirdLevel] = useState("");
   const headingRef = useRef(null);
   const [showPicker, setShowPicker] = useState(false);
@@ -542,6 +1108,36 @@ const Sidebar = ({
     } finally {
       setLoading(false);
       setThirdLevel("");
+    }
+  };
+
+  const insertCoverPage = (value) => {
+    if (rows.length === 0) {
+      setRows([...value]);
+    } else {
+      if (rows[0].type === "cover") {
+        if (rows[0].template !== undefined) {
+          const digit =
+            rows[0].template === 1
+              ? 6
+              : rows[0].template === 2
+              ? 6
+              : rows[0].template === 3
+              ? 7
+              : rows[0].template === 4
+              ? 5
+              : rows[0].template === 5
+              ? 6
+              : 1;
+          const updatedRows = [...value, ...rows.slice(digit)];
+          setRows(updatedRows);
+        } else {
+          const updatedRows = [...value, ...rows.slice(1)];
+          setRows(updatedRows);
+        }
+      } else {
+        setRows([...value, ...rows]);
+      }
     }
   };
 
@@ -1374,7 +1970,7 @@ const Sidebar = ({
             ) : thirdLevel === "cover" ? (
               <div
                 ref={headingRef}
-                className="scrollbar-thin absolute left-0 w-[200px] flex flex-col items-center pt-10 gap-4 h-screen border-r border-gray-300 bg-white z-50 overflow-auto pb-20 text-xs text-gray-400 text-center  "
+                className="scrollbar-thin absolute left-0 w-[200px] flex flex-col items-center pt-10 gap-8 h-screen border-r border-gray-300 bg-white z-50 overflow-auto pb-20 text-xs text-gray-400 text-center  "
               >
                 <div>
                   <input
@@ -1395,6 +1991,31 @@ const Sidebar = ({
                     {loading ? "Loading..." : "Upload Cover Page"}
                   </label>
                 </div>
+                <img
+                  src={cover_img_1}
+                  onClick={() => insertCoverPage(cover_1)}
+                  className="w-[85%] cursor-pointer"
+                />
+                <img
+                  src={cover_img_2}
+                  onClick={() => insertCoverPage(cover_2)}
+                  className="w-[85%] cursor-pointer"
+                />
+                <img
+                  src={cover_img_3}
+                  onClick={() => insertCoverPage(cover_3)}
+                  className="w-[85%] cursor-pointer"
+                />
+                <img
+                  src={cover_img_4}
+                  onClick={() => insertCoverPage(cover_4)}
+                  className="w-[85%] cursor-pointer"
+                />
+                <img
+                  src={cover_img_5}
+                  onClick={() => insertCoverPage(cover_5)}
+                  className="w-[85%] cursor-pointer"
+                />
               </div>
             ) : (
               <div></div>

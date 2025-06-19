@@ -242,6 +242,16 @@ const EditorHeader = ({
   };
   const updateTimeout = useRef(null);
 
+  const spanRef = useRef(null);
+  const [inputWidth, setInputWidth] = useState(50); // initial width
+
+  useEffect(() => {
+    if (spanRef.current) {
+      const spanWidth = spanRef.current.offsetWidth;
+      setInputWidth(spanWidth + 20); // Add padding/margin buffer
+    }
+  }, [name]);
+
   useEffect(() => {
     // Clear any existing timeout when dependencies change
     if (updateTimeout.current) {
@@ -315,37 +325,38 @@ const EditorHeader = ({
           className="w-7 ml-3 cursor-pointer opacity-85"
         />
 
-        <div className="w-[90%] flex flex-col ml-1  ">
-          <h3 className="text-sm  flex items-center justify-start gap-1 max-w-[50vw] text-ellipsis   ">
+        <div className="flex flex-col ml-1">
+          <div className="text-sm flex items-center justify-start">
             <input
               type="text"
               value={name}
-              // onChange={(e) => {
-              //   changeRename(e.target.value);
-              // }}
-              onChange={(e) => {
-                setName(e.target.value);
-              }}
+              onChange={(e) => setName(e.target.value)}
               maxLength={65}
               onFocus={() => setChanging(true)}
               onBlur={() => {
                 setChanging(false);
                 changeRename(name);
-                console.log(name);
               }}
-              style={{ width: `${name.length * 3 + 35}px  ` }}
-              className="text-sm flex items-center justify-start gap-2  outline-none   "
+              style={{ width: `${inputWidth - 10}px` }}
+              className="text-sm outline-none"
             />
+            {/* Hidden span to measure width */}
+            <span
+              ref={spanRef}
+              className="absolute top-[-9999px] left-[-9999px] whitespace-pre text-sm font-normal"
+            >
+              {name || " "}
+            </span>
 
             {saving ? (
               <p className="text-[9px] mt-[3px] text-graidient_bottom">
-                saving
+                Saving...
               </p>
             ) : (
               <IoIosCloudDone className="text-graidient_bottom" />
             )}
-          </h3>
-          <p className="text-[10px] bg-gray-50 text-gray-700  rounded-lg w-fit">
+          </div>
+          <p className="text-[10px] bg-gray-50 text-gray-700 rounded-lg w-fit">
             Created By {created}
           </p>
         </div>
