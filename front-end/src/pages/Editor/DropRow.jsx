@@ -181,7 +181,7 @@ const DropRow = ({
         marginLeft: row.type === "brake" ? "-18px" : "20px",
         marginRight: row.type === "brake" ? "0px" : "7px",
         marginTop: selected === index && index === 0 ? "30px" : "0px",
-        paddingBottom: selected === index ? "30px" : "0px",
+        paddingBottom: selected === index ? "15px" : "0px",
 
         border:
           selected === index && preview !== true
@@ -707,8 +707,10 @@ const DropRow = ({
           </button>
           <button
             onClick={() => {
-              moveRowUp(index);
-              setSelected(index - 1);
+              if (row.type !== "cover") {
+                moveRowUp(index);
+                setSelected(index - 1);
+              }
             }}
             className="  bg-white flex items-center justify-center px-2 py-2 hover:bg-gray-100"
           >
@@ -716,8 +718,10 @@ const DropRow = ({
           </button>
           <button
             onClick={() => {
-              moveRowDown(index);
-              setSelected(index + 1);
+              if (row.type !== "cover") {
+                moveRowDown(index);
+                setSelected(index + 1);
+              }
             }}
             className="  bg-white flex items-center justify-center px-2 py-2 hover:bg-gray-100"
           >

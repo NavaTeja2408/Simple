@@ -56,6 +56,11 @@ import cover_img_2 from "../../assets/cover_img_2.jpg";
 import cover_img_3 from "../../assets/cover_img_3.jpg";
 import cover_img_4 from "../../assets/cover_img_4.jpg";
 import cover_img_5 from "../../assets/cover_img_5.jpg";
+import cost_lv2 from "../../assets/cost_lv2.svg";
+import signn_lv2 from "../../assets/sign_lv2.svg";
+import content_lv2 from "../../assets/content_lv2.svg";
+import cover_lv2 from "../../assets/cover_lv2.svg";
+import sections_lv2 from "../../assets/sections_lv2.svg";
 
 const Sidebar = ({
   selected,
@@ -1359,8 +1364,8 @@ const Sidebar = ({
            gap-4 hover:bg-gray-100 "
                   >
                     <img
-                      src={sections}
-                      className="w-8 rounded-md p-[6px] border border-gray-100 shadow-lg shadow-gray-300"
+                      src={cover_lv2}
+                      className="w-8 h-8 rounded-md p-[4px] border border-gray-100 shadow-lg shadow-gray-300"
                       alt="heading"
                     />
                     <p className="text-sm">Cover Page</p>
@@ -1372,8 +1377,8 @@ const Sidebar = ({
            gap-4 hover:bg-gray-100 "
                   >
                     <img
-                      src={sections}
-                      className="w-8 rounded-md p-[6px] border border-gray-100 shadow-lg shadow-gray-300"
+                      src={sections_lv2}
+                      className="w-8 h-8  rounded-md p-[4px] border border-gray-100 shadow-lg shadow-gray-300"
                       alt="heading"
                     />
                     <p className="text-sm">Sections</p>
@@ -1385,8 +1390,8 @@ const Sidebar = ({
            gap-4 hover:bg-gray-100 "
                   >
                     <img
-                      src={saved}
-                      className="w-8 rounded-md p-[6px] border border-gray-100 shadow-lg shadow-gray-300"
+                      src={content_lv2}
+                      className="w-8 h-8 rounded-md p-[4px] border border-gray-100 shadow-lg shadow-gray-300"
                       alt="heading"
                     />
                     <p className="text-sm">My Content</p>
@@ -1409,8 +1414,8 @@ const Sidebar = ({
            gap-4 hover:bg-gray-100 "
                   >
                     <img
-                      src={cost_v}
-                      className="w-8 rounded-md p-[6px] border border-gray-100 shadow-lg shadow-gray-300"
+                      src={cost_lv2}
+                      className="w-8 h-8 rounded-md p-[4px] border border-gray-100 shadow-lg shadow-gray-300"
                       alt="heading"
                     />
                     <p className="text-sm">Costing</p>
@@ -1422,8 +1427,8 @@ const Sidebar = ({
            gap-4 hover:bg-gray-100 "
                   >
                     <img
-                      src={cost_v}
-                      className="w-8 rounded-md p-[6px] border border-gray-100 shadow-lg shadow-gray-300"
+                      src={cost_lv2}
+                      className="w-8 h-8 rounded-md p-[4px] border border-gray-100 shadow-lg shadow-gray-300"
                       alt="heading"
                     />
                     <p className="text-sm">Price Terms</p>
@@ -1446,8 +1451,8 @@ const Sidebar = ({
            gap-4 hover:bg-gray-100 "
                   >
                     <img
-                      src={Sign_v}
-                      className="w-8 rounded-md p-[6px] border border-gray-100 shadow-lg shadow-gray-300"
+                      src={signn_lv2}
+                      className="w-8 h-8 rounded-md p-[4px] border border-gray-100 shadow-lg shadow-gray-300"
                       alt="heading"
                     />
                     <p className="text-sm">Signiture</p>

@@ -32,7 +32,7 @@ const GeneratePDF = async (data, settings) => {
           content[0]?.children &&
           content[0]?.children[0]?.text
             ? content[0].children[0].text
-            : "No Heading Provided";
+            : "";
         const textSize =
           Array.isArray(content) && content[0]?.children && content[0]?.type
             ? content[0].type
@@ -79,6 +79,7 @@ const GeneratePDF = async (data, settings) => {
         break;
 
       case "table":
+        doc.setFontSize(12);
         if (currentY + 25 > pageHeight) {
           doc.addPage();
           currentY = 10;
@@ -89,28 +90,46 @@ const GeneratePDF = async (data, settings) => {
           const columnCount = Math.max(...rows.map((r) => r.length));
           const cellWidth =
             (doc.internal.pageSize.getWidth() - 20) / columnCount;
-          const cellHeight = 10;
           let startY = currentY;
 
           for (let rowIndex = 0; rowIndex < rows.length; rowIndex++) {
             const row = rows[rowIndex];
             let x = 10; // left margin
+            let maxLines = 1;
+            const wrappedTexts = [];
 
+            // First pass: wrap text and calculate max lines
             for (let colIndex = 0; colIndex < columnCount; colIndex++) {
               const text =
                 row[colIndex] !== undefined ? row[colIndex].toString() : "";
-              doc.rect(x, startY, cellWidth, cellHeight); // Draw cell border
-              doc.text(text, x + 2, startY + 7); // Add text
-              x += cellWidth;
+              const wrapped = doc.splitTextToSize(text, cellWidth - 4);
+              wrappedTexts.push(wrapped);
+              maxLines = Math.max(maxLines, wrapped.length);
             }
 
-            startY += cellHeight;
+            const lineHeight = 7;
+            const cellHeight = maxLines * lineHeight + 2;
 
-            // Check for page overflow
+            // Page break check
             if (startY + cellHeight > pageHeight) {
               doc.addPage();
               startY = 10;
             }
+
+            // Second pass: draw cells and vertically centered text
+            for (let colIndex = 0; colIndex < columnCount; colIndex++) {
+              const wrapped = wrappedTexts[colIndex];
+              doc.rect(x, startY, cellWidth, cellHeight); // Draw cell border
+
+              // Vertical centering
+              const totalTextHeight = wrapped.length * lineHeight;
+              const verticalOffset = (cellHeight - totalTextHeight) / 2;
+              doc.text(wrapped, x + 2, startY + verticalOffset + lineHeight);
+
+              x += cellWidth;
+            }
+
+            startY += cellHeight;
           }
 
           currentY = startY + 10;
@@ -122,7 +141,7 @@ const GeneratePDF = async (data, settings) => {
       case "input":
         if (Array.isArray(content)) {
           content.forEach((block) => {
-            const text = block?.children?.[0]?.text || "No Text Provided";
+            const text = block?.children?.[0]?.text || "";
             const alignment = block?.align?.toLowerCase() || "left";
             const type = block?.type || "paragraph";
 
@@ -133,7 +152,7 @@ const GeneratePDF = async (data, settings) => {
               }
               if (Array.isArray(block?.children)) {
                 block.children.forEach((item, idx) => {
-                  const text = item?.children?.[0]?.text || "No Text Provided";
+                  const text = item?.children?.[0]?.text || "";
                   const alignment = item?.align?.toLowerCase() || "left"; // Default alignment is "left"
 
                   let xPosition = 10; // Default for "left" alignment
@@ -173,7 +192,7 @@ const GeneratePDF = async (data, settings) => {
               }
               if (Array.isArray(block?.children)) {
                 block.children.forEach((item, idx) => {
-                  const text = item?.children?.[0]?.text || "No Text Provided";
+                  const text = item?.children?.[0]?.text || "";
                   const alignment = item?.align?.toLowerCase() || "left"; // Default alignment is "left"
 
                   let xPosition = 10; // Default for "left" alignment
@@ -210,7 +229,7 @@ const GeneratePDF = async (data, settings) => {
                 doc.addPage();
                 currentY = 10;
               }
-              const text = block?.children?.[0]?.text || "No Text Provided";
+              const text = block?.children?.[0]?.text || "";
 
               // Apply custom styling for block quotes
               doc.setFont("Times", "italic"); // Italic font for block quotes

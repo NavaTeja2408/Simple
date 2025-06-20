@@ -6,6 +6,12 @@ import table_side_2 from "../../../assets/table_side_2.png";
 import image_side_2 from "../../../assets/Image_side_2.png";
 import divide from "../../../assets/divide.png";
 import code_side_2 from "../../../assets/code_side_1.png";
+import heading_lv2 from "../../../assets/heading_lv2.svg";
+import paragraph_lv2 from "../../../assets/paragraph_lv2.svg";
+import table_lv2 from "../../../assets/table_lv2.svg";
+import image_lv2 from "../../../assets/image_lv2.svg";
+import devider_lv2 from "../../../assets/devider_lv2.svg";
+import code_lv2 from "../../../assets/code_lv2.svg";
 
 import { FiPlus } from "react-icons/fi";
 const ContentSideBar = ({
@@ -24,7 +30,7 @@ const ContentSideBar = ({
            }`}
       >
         <img
-          src={heading_side}
+          src={heading_lv2}
           className="w-8 rounded-md p-[6px] border border-gray-100 shadow-lg shadow-gray-300"
           alt="heading"
         />
@@ -37,8 +43,8 @@ const ContentSideBar = ({
            gap-4 hover:bg-gray-100 "
       >
         <img
-          src={paragraph_side_2}
-          className="w-8 rounded-md p-[6px] border border-gray-100 shadow-lg shadow-gray-300"
+          src={paragraph_lv2}
+          className="w-8 h-8 rounded-md p-[4px]  border border-gray-100 shadow-lg shadow-gray-300"
           alt="heading"
         />
         <p className="text-sm">Paragraph</p>
@@ -82,8 +88,8 @@ const ContentSideBar = ({
            gap-4 hover:bg-gray-100 "
       >
         <img
-          src={table_side_2}
-          className="w-8 rounded-md p-[6px] border border-gray-100 shadow-lg shadow-gray-300"
+          src={table_lv2}
+          className="w-8 h-8 rounded-md p-[4px] border border-gray-100 shadow-lg shadow-gray-300"
           alt="heading"
         />
         <p className="text-sm">Table</p>
@@ -95,8 +101,8 @@ const ContentSideBar = ({
            gap-4 hover:bg-gray-100 "
       >
         <img
-          src={image_side_2}
-          className="w-8 rounded-md p-[6px] border border-gray-100 shadow-lg shadow-gray-300"
+          src={image_lv2}
+          className="w-8 h-8 rounded-md p-[4px] border border-gray-100 shadow-lg shadow-gray-300"
           alt="heading"
         />
         <p className="text-sm"> Image</p>
@@ -108,8 +114,8 @@ const ContentSideBar = ({
            gap-4 hover:bg-gray-100 "
       >
         <img
-          src={divide}
-          className="w-8 rounded-md p-[6px] border border-gray-100 shadow-lg shadow-gray-300"
+          src={devider_lv2}
+          className="w-8 h-8 rounded-md p-[5px] border border-gray-100 shadow-lg shadow-gray-300"
           alt="heading"
         />
         <p className="text-sm">Divider</p>
@@ -122,8 +128,8 @@ const ContentSideBar = ({
            gap-4 hover:bg-gray-100 "
       >
         <img
-          src={code_side_2}
-          className="w-8 rounded-md p-[6px] border border-gray-100 shadow-lg shadow-gray-300"
+          src={code_lv2}
+          className="w-8 h-8 rounded-md p-[4px]  border border-gray-100 shadow-lg shadow-gray-300"
           alt="heading"
         />
         <p className="text-sm">Code</p>

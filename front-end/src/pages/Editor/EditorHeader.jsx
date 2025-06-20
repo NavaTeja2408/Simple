@@ -308,17 +308,17 @@ const EditorHeader = ({
           onClick={() => navigate("/home")}
           src={logo}
           alt="logo"
-          onMouseEnter={() => setTool("Go to Dashboard")}
-          onMouseLeave={() => setTool(null)}
-          className="w-[41px] h-[29px] cursor-pointer relative"
+          // onMouseEnter={() => setTool("Go to Dashboard")}
+          // onMouseLeave={() => setTool(null)}
+          className="w-[41px] h-[29px] cursor-pointer relative -ml-[6px]"
         />
-        {tool === "Go to Dashboard" && (
+        {/* {tool === "Go to Dashboard" && (
           <div className=" absolute -bottom-4 px-2 bg-gray-600 text-white z-50 text-xs rounded-sm ">
             {tool}
           </div>
-        )}
+        )} */}
 
-        <div className="h-10 w-[1px] bg-gray-300 ml-[7px] z-50"></div>
+        <div className="h-10 w-[1px] bg-gray-300 ml-[12px] z-50"></div>
         <img
           src={Header_editor}
           alt="something"
@@ -384,7 +384,7 @@ const EditorHeader = ({
         </button> */}
         <div className=" relative">
           <button
-            className={`p-2 rounded-md  ${
+            className={`p-[7px] rounded-md  ${
               lock === true
                 ? "bg-graidient_bottom text-white"
                 : "bg-gray-100 hover:bg-hover_btn"
@@ -445,7 +445,7 @@ const EditorHeader = ({
         </button> */}
         <div className="relative">
           <button
-            className={`p-2 rounded-md  relative ${
+            className={`p-[7px] rounded-md  relative ${
               notifiacations === true
                 ? "bg-graidient_bottom text-white"
                 : "bg-gray-100 hover:bg-hover_btn"
@@ -498,7 +498,7 @@ const EditorHeader = ({
         <div className="relative">
           <button
             ref={parentRef}
-            className={`p-2 rounded-md  ${
+            className={`p-[7px] rounded-md  ${
               menu === true
                 ? "bg-graidient_bottom text-white"
                 : "bg-gray-100 hover:bg-hover_btn"
@@ -564,7 +564,7 @@ const EditorHeader = ({
         </p>
         <button
           onClick={() => setView(true)}
-          className={`p-2 rounded-md ${
+          className={`p-[7px] rounded-md ${
             view === true
               ? "bg-graidient_bottom text-white"
               : "bg-gray-100  hover:bg-hover_btn"
@@ -574,7 +574,7 @@ const EditorHeader = ({
         </button>
         <button
           onClick={() => setView(false)}
-          className={`p-2 rounded-md ml-[-3px] ${
+          className={`p-[7px] rounded-md ml-[-3px] ${
             view === false
               ? "bg-graidient_bottom text-white"
               : "bg-gray-100  hover:bg-hover_btn"

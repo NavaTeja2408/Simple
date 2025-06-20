@@ -102,7 +102,7 @@ export const Menu = React.forwardRef(({ className, ...props }, ref) => (
       className,
       css`
         & > * {
-          display: inline-block;
+          display: absolute;
         }
 
         & > * + * {
