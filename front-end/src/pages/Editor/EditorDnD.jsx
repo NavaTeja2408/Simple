@@ -508,7 +508,11 @@ const EditorDnD = () => {
 
         {/* Canvas Section */}
         <div
-          style={{ flex: 1, overflow: "auto", maxHeight: "100vh" }}
+          style={{
+            flex: 1,
+            overflow: "auto",
+            maxHeight: "100vh",
+          }}
           ref={dropCanvasRef}
         >
           <DropCanvas

@@ -125,6 +125,7 @@ export const Toolbar = React.forwardRef(({ className, ...props }, ref) => (
       className,
       css`
     px-1
+    
      `
     )}
   />

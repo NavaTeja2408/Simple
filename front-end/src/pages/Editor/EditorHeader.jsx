@@ -34,6 +34,7 @@ import { FiLock } from "react-icons/fi";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import { HiOutlineDevicePhoneMobile } from "react-icons/hi2";
+import header_menu from "../../assets/header_menu.png";
 const EditorHeader = ({
   rows,
   id,
@@ -310,7 +311,7 @@ const EditorHeader = ({
           alt="logo"
           // onMouseEnter={() => setTool("Go to Dashboard")}
           // onMouseLeave={() => setTool(null)}
-          className="w-[41px] h-[29px] cursor-pointer relative -ml-[6px]"
+          className="w-[40px] h-[30px] cursor-pointer relative -ml-[6px]"
         />
         {/* {tool === "Go to Dashboard" && (
           <div className=" absolute -bottom-4 px-2 bg-gray-600 text-white z-50 text-xs rounded-sm ">
@@ -318,12 +319,15 @@ const EditorHeader = ({
           </div>
         )} */}
 
-        <div className="h-10 w-[1px] bg-gray-300 ml-[12px] z-50"></div>
-        <img
+        <div className="h-10 w-[1px] bg-gray-300 ml-[13px] z-50"></div>
+        {/* <img
           src={Header_editor}
           alt="something"
-          className="w-7 ml-3 cursor-pointer opacity-85"
-        />
+          className="w-7 ml-[8px] cursor-pointer opacity-85"
+        /> */}
+        <div className="w-7 h-7 ml-[8px] cursor-pointer bg-gray-100 rounded-md hover:bg-gray-200 flex items-center justify-center ">
+          <img src={header_menu} />
+        </div>
 
         <div className="flex flex-col ml-1">
           <div className="text-sm flex items-center justify-start">
@@ -337,7 +341,7 @@ const EditorHeader = ({
                 setChanging(false);
                 changeRename(name);
               }}
-              style={{ width: `${inputWidth - 10}px` }}
+              style={{ width: `${inputWidth - 15}px` }}
               className="text-sm outline-none"
             />
             {/* Hidden span to measure width */}
@@ -353,10 +357,10 @@ const EditorHeader = ({
                 Saving...
               </p>
             ) : (
-              <IoIosCloudDone className="text-graidient_bottom" />
+              <IoIosCloudDone className="text-graidient_bottom w-[16px] h-[11px]" />
             )}
           </div>
-          <p className="text-[10px] bg-gray-50 text-gray-700 rounded-lg w-fit">
+          <p className="text-[10px] bg-gray-50 text-gray-700 rounded-lg w-fit cursor-default">
             Created By {created}
           </p>
         </div>

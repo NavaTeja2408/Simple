@@ -175,11 +175,11 @@ const DropRow = ({
     <div
       ref={divRef}
       style={{
-        width: row.type === "brake" ? "103.5%" : "94%",
+        width: row.type === "brake" ? "102.5%" : "98%",
         minHeight: row.type !== "cover" ? "30px" : "30px",
         marginBottom: "0px",
-        marginLeft: row.type === "brake" ? "-18px" : "20px",
-        marginRight: row.type === "brake" ? "0px" : "7px",
+        marginLeft: row.type === "brake" ? "-16px" : "1%",
+        marginRight: row.type === "brake" ? "0px" : "1%",
         marginTop: selected === index && index === 0 ? "30px" : "0px",
         paddingBottom: selected === index ? "15px" : "0px",
 

@@ -24,6 +24,14 @@ import { withHistory } from "slate-history";
 import { Button, Toolbar } from "./comp"; // Your components
 import { FaItalic } from "react-icons/fa";
 import { FaUnderline } from "react-icons/fa";
+import { IoIosArrowDown } from "react-icons/io";
+import { PiTextBBold } from "react-icons/pi";
+import { RxFontItalic } from "react-icons/rx";
+import { PiTextUnderline } from "react-icons/pi";
+import { PiTextStrikethrough } from "react-icons/pi";
+import { BsTextCenter } from "react-icons/bs";
+import { BsTextRight } from "react-icons/bs";
+import { BsTextLeft } from "react-icons/bs";
 
 const LIST_TYPES = ["numbered-list", "bulleted-list"];
 const ALIGN_TYPES = ["left", "center", "right"];
@@ -194,7 +202,19 @@ const MyRichTextEditor = ({
   selected,
   setSelected,
 }) => {
+  const colors = [
+    { class: "text-black", hex: "#000000" },
+    { class: "text-white", hex: "#FFFFFF" },
+    { class: "text-gray-700", hex: "#374151" },
+  ];
+  const alignments = [
+    { name: "left", icon: <BsTextLeft /> },
+    { name: "center", icon: <BsTextCenter /> },
+    { name: "right", icon: <BsTextRight /> },
+  ];
   const [textSize, setTextSize] = useState(size);
+  const [selectedColor, setSelectedColor] = useState(colors[0]);
+  const [open, setOpen] = useState(false);
   const initialValue = [
     {
       type: textSize,
@@ -310,6 +330,49 @@ const MyRichTextEditor = ({
   const toolbarRef = useRef(null);
   const editorRef = useRef(null);
   const moveRef = useRef(null);
+  const colorBtnRef = useRef(null);
+  const colorRef = useRef(null);
+  const alignBtnRef = useRef(null);
+  const alignRef = useRef(null);
+  const [selectedAlign, setSelectedAlign] = useState("left");
+  const [openA, setOpenA] = useState(false);
+
+  // Close menu when clicking outside
+  const handleClickOutsideMenu = (event) => {
+    if (
+      colorBtnRef.current &&
+      !colorBtnRef.current.contains(event.target) &&
+      colorRef.current &&
+      !colorRef.current.contains(event.target)
+    ) {
+      setOpen(false);
+    }
+  };
+
+  const handleClickOutsideAlign = (event) => {
+    if (
+      alignBtnRef.current &&
+      !alignBtnRef.current.contains(event.target) &&
+      alignRef.current &&
+      !alignRef.current.contains(event.target)
+    ) {
+      setOpenA(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutsideAlign);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutsideAlign);
+    };
+  }, []);
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutsideMenu);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutsideMenu);
+    };
+  }, []);
 
   const renderElement = useCallback(
     (props) => <Element {...props} size={size} />,
@@ -374,7 +437,7 @@ const MyRichTextEditor = ({
       >
         {index === selected && preview !== true && (
           <Toolbar
-            className="absolute top-[-40px] shadow-sm shadow-gray-400 left-[26%]  bg-white flex flex-row items-center justify-center  border border-gray-200 rounded-sm  px-3 py-2 "
+            className="absolute top-[-40px] shadow-sm shadow-gray-400 left-[26%]  bg-white flex flex-row items-center justify-center  border border-gray-200 rounded-sm  px-1 py-2 "
             ref={toolbarRef}
             onFocus={() => setIndexValue(index)}
             onBlur={(e) => {
@@ -392,47 +455,9 @@ const MyRichTextEditor = ({
 
             {/* Text Transform Dropdown */}
 
-            <Button
-              onMouseDown={(e) => {
-                e.preventDefault();
-                toggleMark(editor, "bold");
-              }}
-              active={isMarkActive(editor, "bold")}
-            >
-              <FaBold />
-            </Button>
-            <Button
-              onMouseDown={(e) => {
-                e.preventDefault();
-                toggleMark(editor, "italic");
-              }}
-              active={isMarkActive(editor, "italic")}
-            >
-              <FaItalic />
-            </Button>
-            <Button
-              onMouseDown={(e) => {
-                e.preventDefault();
-                toggleMark(editor, "underline");
-              }}
-              className="pt-1"
-              active={isMarkActive(editor, "underline")}
-            >
-              <FaUnderline />
-            </Button>
-            <Button
-              onMouseDown={(e) => {
-                e.preventDefault();
-                toggleMark(editor, "strikethrough");
-              }}
-              active={isMarkActive(editor, "strikethrough")}
-            >
-              <FaStrikethrough />
-            </Button>
-            <div className="h-8 w-[1px] my-[-4px] bg-gray-300"></div>
             <div className="relative my-[-3px] flex flex-row ">
               <select
-                className="border border-gray-200 rounded px-2 bg-white py-1 outline-none"
+                className="  rounded px-1 bg-white py-1 outline-none text-lg  font-semibold text-gray-500"
                 onChange={(e) => {
                   toggleBlock(editor, e.target.value);
                   onSizeChange(e.target.value);
@@ -446,19 +471,9 @@ const MyRichTextEditor = ({
                 <option value="heading-five">H5</option>
                 <option value="heading-six">H6</option>
               </select>
+              <div className="w-[1px] h-8 bg-gray-200 ml-1"></div>
               <select
-                className="border border-gray-200 rounded px-2 ml-2 bg-white py-1 outline-none"
-                onChange={(e) => {
-                  onTextColor(e.target.value);
-                }}
-                defaultValue={"text-black"}
-              >
-                <option value="text-black">B</option>
-                <option value="text-white">W</option>
-                <option value="text-gray-700">G</option>
-              </select>
-              <select
-                className="border  bg-white border-gray-200 rounded px-2 py-1 ml-2 outline-none"
+                className="   bg-white  rounded px-1 py-1 ml-2 outline-none text-lg text-gray-500"
                 onChange={(e) => transformText(editor, e.target.value)}
                 defaultValue=""
               >
@@ -469,35 +484,130 @@ const MyRichTextEditor = ({
                 <option value="lowercase">aa</option>
                 <option value="capitalize">Aa</option>
               </select>
+              <div className="w-[1px] h-8 bg-gray-200 ml-1"></div>
+              <div
+                ref={colorBtnRef}
+                className="relative flex items-center justify-center gap-2 ml-3 "
+              >
+                {/* Selected color button */}
+                <button
+                  className="w-4 h-4 rounded-sm border border-gray-300"
+                  style={{ backgroundColor: selectedColor.hex }}
+                  onClick={() => setOpen((prev) => !prev)}
+                ></button>
+                <IoIosArrowDown
+                  onClick={() => setOpen((prev) => !prev)}
+                  className="text-gray-600 text-sm"
+                />
+
+                {/* Color options */}
+                {open && (
+                  <div
+                    ref={colorRef}
+                    className="absolute top-[79%] z-10 mt-2 flex gap-2 bg-white border border-gray-200 rounded-sm p-2 px-3.5 shadow flex-col left-0"
+                  >
+                    {colors.map((color) => (
+                      <div
+                        key={color.class}
+                        className="w-4 h-4 rounded-sm border cursor-pointer hover:scale-110 transition"
+                        style={{ backgroundColor: color.hex }}
+                        onClick={() => {
+                          setSelectedColor(color);
+                          onTextColor(color.class); // same callback
+                          setOpen(false);
+                        }}
+                      ></div>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
-            <div className="h-8 w-[1px] my-[-4px] bg-gray-300"></div>
+            <div className="w-[1px] h-8 bg-gray-200 "></div>
+
             <Button
               onMouseDown={(e) => {
                 e.preventDefault();
-                toggleAlign(editor, "left");
+                toggleMark(editor, "bold");
               }}
-              active={isAlignActive(editor, "left")}
+              className="flex items-center justify-center text-xl "
+              active={isMarkActive(editor, "bold")}
             >
-              <FaAlignLeft />
+              <PiTextBBold />
             </Button>
             <Button
               onMouseDown={(e) => {
                 e.preventDefault();
-                toggleAlign(editor, "center");
+                toggleMark(editor, "italic");
               }}
-              active={isAlignActive(editor, "center")}
+              className="flex items-center justify-center text-xl"
+              active={isMarkActive(editor, "italic")}
             >
-              <FaAlignCenter />
+              <RxFontItalic />
             </Button>
             <Button
               onMouseDown={(e) => {
                 e.preventDefault();
-                toggleAlign(editor, "right");
+                toggleMark(editor, "underline");
               }}
-              active={isAlignActive(editor, "right")}
+              className="flex items-center justify-center text-xl"
+              active={isMarkActive(editor, "underline")}
             >
-              <FaAlignRight />
+              <PiTextUnderline />
             </Button>
+            <Button
+              onMouseDown={(e) => {
+                e.preventDefault();
+                toggleMark(editor, "strikethrough");
+              }}
+              className="flex items-center justify-center text-xl"
+              active={isMarkActive(editor, "strikethrough")}
+            >
+              <PiTextStrikethrough />
+            </Button>
+            <div className="w-[1px] h-8 bg-gray-200 ml-1"></div>
+            <div
+              ref={alignBtnRef}
+              className="relative flex items-center justify-center gap-2  py-1"
+            >
+              {/* Selected align icon */}
+              <button
+                className="text-gray-700 text-xl"
+                onClick={() => setOpenA((prev) => !prev)}
+              >
+                {alignments.find((a) => a.name === selectedAlign)?.icon}
+              </button>
+              <IoIosArrowDown
+                onClick={() => setOpenA((prev) => !prev)}
+                className="text-gray-500 text-sm  cursor-pointer"
+              />
+
+              {/* Dropdown options */}
+              {openA && (
+                <div
+                  ref={alignRef}
+                  className="absolute top-[75%] z-10 mt-2 bg-white border border-gray-200 rounded-sm p-2 shadow flex-col left-0"
+                >
+                  {alignments.map((align) => (
+                    <button
+                      key={align.name}
+                      className={`text-gray-700 text-xl p-1 hover:bg-gray-100 flex items-center justify-center w-full ${
+                        isAlignActive(editor, align.name)
+                          ? "bg-gray-200 rounded"
+                          : ""
+                      }`}
+                      onMouseDown={(e) => {
+                        e.preventDefault();
+                        toggleAlign(editor, align.name);
+                        setSelectedAlign(align.name);
+                        setOpen(false);
+                      }}
+                    >
+                      {align.icon}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
           </Toolbar>
         )}
 

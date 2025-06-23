@@ -21,6 +21,14 @@ import {
 import { Slate, Editable, withReact } from "slate-react";
 import { withHistory } from "slate-history";
 import { Button, Toolbar } from "./comp"; // Your components
+import { IoIosArrowDown } from "react-icons/io";
+import { PiTextBBold } from "react-icons/pi";
+import { RxFontItalic } from "react-icons/rx";
+import { PiTextUnderline } from "react-icons/pi";
+import { PiTextStrikethrough } from "react-icons/pi";
+import { BsTextCenter } from "react-icons/bs";
+import { BsTextRight } from "react-icons/bs";
+import { BsTextLeft } from "react-icons/bs";
 
 // Block types
 const LIST_TYPES = ["numbered-list", "bulleted-list"];
@@ -325,6 +333,17 @@ const RichTextEditor = ({
   const [choosen, setChoosen] = useState(false);
   const editorRef = useRef(null);
 
+  const colors = [
+    { class: "text-black", hex: "#000000" },
+    { class: "text-white", hex: "#FFFFFF" },
+    { class: "text-gray-700", hex: "#374151" },
+  ];
+  const alignments = [
+    { name: "left", icon: <BsTextLeft /> },
+    { name: "center", icon: <BsTextCenter /> },
+    { name: "right", icon: <BsTextRight /> },
+  ];
+
   const handleClickOutsideAlign = (event) => {
     if (alignRef.current && !alignRef.current.contains(event.target)) {
       setShowAlign(false);
@@ -335,6 +354,52 @@ const RichTextEditor = ({
     document.addEventListener("mousedown", handleClickOutsideAlign);
     return () => {
       document.removeEventListener("mousedown", handleClickOutsideAlign);
+    };
+  }, []);
+
+  const colorBtnRef = useRef(null);
+  const colorRef = useRef(null);
+  const alignBtnRef = useRef(null);
+  const alignBRef = useRef(null);
+  const [selectedAlign, setSelectedAlign] = useState("left");
+  const [openA, setOpenA] = useState(false);
+  const [selectedColor, setSelectedColor] = useState(colors[0]);
+  const [open, setOpen] = useState(false);
+
+  // Close menu when clicking outside
+  const handleClickOutsideMenu = (event) => {
+    if (
+      colorBtnRef.current &&
+      !colorBtnRef.current.contains(event.target) &&
+      colorRef.current &&
+      !colorRef.current.contains(event.target)
+    ) {
+      setOpen(false);
+    }
+  };
+
+  const handleClickOutsideAlign2 = (event) => {
+    if (
+      alignBtnRef.current &&
+      !alignBtnRef.current.contains(event.target) &&
+      alignRef.current &&
+      !alignRef.current.contains(event.target)
+    ) {
+      setOpenA(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutsideAlign2);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutsideAlign2);
+    };
+  }, []);
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutsideMenu);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutsideMenu);
     };
   }, []);
 
@@ -388,7 +453,7 @@ const RichTextEditor = ({
           >
             <div className="relative flex flex-row">
               <select
-                className="border border-gray-200 rounded px-1 bg-white py-1"
+                className="  rounded px-1 bg-white py-1 outline-none text-lg  font-semibold text-gray-500"
                 onChange={(e) => toggleBlock(editor, e.target.value)}
                 defaultValue="paragraph"
               >
@@ -401,17 +466,44 @@ const RichTextEditor = ({
                 <option value="paragrapgh">P1</option>
                 <option value="paragrapgh-two">P2</option>
               </select>
-              <select
-                className="border border-gray-200 rounded  ml-2 bg-white py-1 outline-none"
-                onChange={(e) => {
-                  onTextColor(e.target.value);
-                }}
-                defaultValue={"text-black"}
+              <div className="w-[1px] h-8 bg-gray-200 ml-1"></div>
+              <div
+                ref={colorBtnRef}
+                className="relative flex items-center justify-center gap-2 ml-3 "
               >
-                <option value="text-black">B</option>
-                <option value="text-white">W</option>
-                <option value="text-gray-700">G</option>
-              </select>
+                {/* Selected color button */}
+                <button
+                  className="w-4 h-4 rounded-sm border border-gray-300"
+                  style={{ backgroundColor: selectedColor.hex }}
+                  onClick={() => setOpen((prev) => !prev)}
+                ></button>
+                <IoIosArrowDown
+                  onClick={() => setOpen((prev) => !prev)}
+                  className="text-gray-600 text-sm"
+                />
+
+                {/* Color options */}
+                {open && (
+                  <div
+                    ref={colorRef}
+                    className="absolute top-[79%] z-10 mt-2 flex gap-2 bg-white border border-gray-200 rounded-sm p-2 px-3.5 shadow flex-col left-0 "
+                  >
+                    {colors.map((color) => (
+                      <div
+                        key={color.class}
+                        className="w-4 h-4 rounded-sm border cursor-pointer hover:scale-110 transition"
+                        style={{ backgroundColor: color.hex }}
+                        onClick={() => {
+                          setSelectedColor(color);
+                          onTextColor(color.class); // same callback
+                          setOpen(false);
+                        }}
+                      ></div>
+                    ))}
+                  </div>
+                )}
+              </div>
+              <div className="w-[1px] h-8 bg-gray-200 ml-1"></div>
             </div>
 
             <Button
@@ -420,6 +512,7 @@ const RichTextEditor = ({
                 toggleMark(editor, "bold");
               }}
               active={isMarkActive(editor, "bold")}
+              className="flex items-center justify-center"
             >
               <FaBold />
             </Button>
@@ -428,6 +521,7 @@ const RichTextEditor = ({
                 e.preventDefault();
                 toggleMark(editor, "italic");
               }}
+              className="flex items-center justify-center"
               active={isMarkActive(editor, "italic")}
             >
               <FaItalic />
@@ -437,7 +531,7 @@ const RichTextEditor = ({
                 e.preventDefault();
                 toggleMark(editor, "underline");
               }}
-              className="pt-1"
+              className="flex items-center justify-center pt-[3px]"
               active={isMarkActive(editor, "underline")}
             >
               <FaUnderline />
@@ -447,6 +541,7 @@ const RichTextEditor = ({
                 e.preventDefault();
                 toggleMark(editor, "strikethrough");
               }}
+              className="flex items-center justify-center"
               active={isMarkActive(editor, "strikethrough")}
             >
               <FaStrikethrough />
@@ -456,39 +551,56 @@ const RichTextEditor = ({
                 e.preventDefault();
                 toggleMark(editor, "link");
               }}
+              className="flex items-center justify-center text-lg"
               active={isMarkActive(editor, "link")}
             >
               <IoLink />
             </Button>
 
             <div className="h-8 w-[1px] my-[-4px] bg-gray-300"></div>
-            <Button
-              onMouseDown={(e) => {
-                e.preventDefault();
-                toggleAlign(editor, "left");
-              }}
-              active={isAlignActive(editor, "left")}
+            <div
+              ref={alignBtnRef}
+              className="relative flex items-center justify-center gap-1  py-1"
             >
-              <FaAlignLeft />
-            </Button>
-            <Button
-              onMouseDown={(e) => {
-                e.preventDefault();
-                toggleAlign(editor, "center");
-              }}
-              active={isAlignActive(editor, "center")}
-            >
-              <FaAlignCenter />
-            </Button>
-            <Button
-              onMouseDown={(e) => {
-                e.preventDefault();
-                toggleAlign(editor, "right");
-              }}
-              active={isAlignActive(editor, "right")}
-            >
-              <FaAlignRight />
-            </Button>
+              {/* Selected align icon */}
+              <button
+                className="text-gray-700 text-xl"
+                onClick={() => setOpenA((prev) => !prev)}
+              >
+                {alignments.find((a) => a.name === selectedAlign)?.icon}
+              </button>
+              <IoIosArrowDown
+                onClick={() => setOpenA((prev) => !prev)}
+                className="text-gray-500 text-sm  cursor-pointer"
+              />
+
+              {/* Dropdown options */}
+              {openA && (
+                <div
+                  ref={alignRef}
+                  className="absolute top-[75%] z-10 mt-2 bg-white border border-gray-200 rounded-sm p-2 shadow flex-col left-0"
+                >
+                  {alignments.map((align) => (
+                    <button
+                      key={align.name}
+                      className={`text-gray-700 text-xl p-1 hover:bg-gray-100 flex items-center justify-center w-full ${
+                        isAlignActive(editor, align.name)
+                          ? "bg-gray-200 rounded"
+                          : ""
+                      }`}
+                      onMouseDown={(e) => {
+                        e.preventDefault();
+                        toggleAlign(editor, align.name);
+                        setSelectedAlign(align.name);
+                        setOpen(false);
+                      }}
+                    >
+                      {align.icon}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
 
             <div className="h-8 w-[1px] my-[-4px] bg-gray-300"></div>
 
@@ -499,7 +611,7 @@ const RichTextEditor = ({
               }}
               active={isBlockActive(editor, "bulleted-list")}
             >
-              <MdFormatListBulleted className="h-5" />
+              <MdFormatListBulleted className="text-lg" />
             </Button>
             <Button
               onMouseDown={(e) => {
@@ -508,7 +620,7 @@ const RichTextEditor = ({
               }}
               active={isBlockActive(editor, "numbered-list")}
             >
-              <MdFormatListNumbered className="h-5" />
+              <MdFormatListNumbered className="text-lg" />
             </Button>
           </Toolbar>
         )}
