@@ -1153,7 +1153,7 @@ const Sidebar = ({
       ) : (
         <div className="flex flex-row be-vietnam-pro-regular">
           {" "}
-          <div className="w-20 relative h-screen flex flex-col border-r-[1px] gap-2 border-gray-300 pt-2 ">
+          <div className="w-20 relative h-screen flex flex-col border-r-[1px] gap-2 border-gray-100 shadow-md shadow-gray-300 pt-2 ">
             {tool === "Add Elements" && (
               <div className=" absolute left-[80%] w-24 top-5 px-1 text-center bg-gray-500 text-white z-50 text-xs rounded-sm  ">
                 {tool}

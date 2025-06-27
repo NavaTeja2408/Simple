@@ -18,7 +18,7 @@ export default {
     extend: {
       colors: {
         graidient_top: "#130107",
-        graidient_bottom: "#DF064E",
+        graidient_bottom: "rgba(223, 6, 78, 1)",
         overlap: "#F5F5F5",
         botton_white_text: "#DF064d",
         white_transperent: " rgba(245, 245, 245, 0.97)",
@@ -33,6 +33,7 @@ export default {
         editor_header_button: "rgba(247, 231, 237, 1)",
         sidebar_border: "rgba(152 , 152 , 152 , 1)",
         hover_btn: "rgba(255, 206, 216, 0.2)",
+        hover_dark_btn: "rgba(159, 0, 54, 1)",
       },
 
       clipPath: {

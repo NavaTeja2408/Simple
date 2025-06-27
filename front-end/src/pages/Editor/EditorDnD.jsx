@@ -23,6 +23,7 @@ const EditorDnD = () => {
   const [preview, setPreview] = useState(false);
   const [favorate, setFavorate] = useState(false);
   const [signEdit, setSignEdit] = useState(null);
+  const [createdAt, setCreatedAt] = useState(null);
   const elementRef = useRef();
   const parentRef = useRef();
   const [selected, setSelected] = useState(null);
@@ -78,11 +79,12 @@ const EditorDnD = () => {
         })
         .then((res) => {
           setProposalName(res.data.proposalName);
+          console.log(res.data);
           setRows(res.data.data);
           setSettings(res.data.settings || settings);
-          console.log(res.data.settings);
           setFavorate(res.data.favorate);
           setPreview(res.data.locked);
+          setCreatedAt(res.data.createdAt);
         });
     } catch (error) {
       console.log(error);
@@ -382,6 +384,7 @@ const EditorDnD = () => {
           setFavorate={setFavorate}
           favorate={favorate}
           settings={settings}
+          createdAt={createdAt}
         />
       </div>
 
