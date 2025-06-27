@@ -403,7 +403,7 @@ const EditorHeader = ({
           onMouseEnter={() => setTool("Undo")}
           onMouseLeave={() => setTool(null)}
         >
-          <Undo className={`h-[16px] w-[16px]    `} />
+          <Undo className={`h-[19px] w-[19px]    `} />
         </button>
         <button
           onClick={redo}
@@ -415,7 +415,7 @@ const EditorHeader = ({
               : "text-gray-400"
           }`}
         >
-          <Redo className={`h-[16px] w-[16px] `} />
+          <Redo className={`h-[19px] w-[19px] `} />
         </button>
         <div className="h-16 w-[1px] bg-gray-200 z-50 "></div>
         {/* <button>
@@ -434,10 +434,10 @@ const EditorHeader = ({
           >
             {preview === true ? (
               <LockClosedIcon
-                className={`h-[18px] w-[18px] ${preview ? "text-white " : ""} `}
+                className={`h-[19px] w-[19px] ${preview ? "text-white " : ""} `}
               />
             ) : (
-              <LockOpen1Icon className={`h-[16px] w-[16px]  `} />
+              <LockOpen1Icon className={`h-[19px] w-[19px]  `} />
             )}
           </button>{" "}
           {lock && (
@@ -494,7 +494,7 @@ const EditorHeader = ({
             {/* <div className="h-[6px] w-[6px] bg-graidient_bottom absolute top-[10px] right-[4px] rounded-[50%]"></div> */}
             <Icon
               icon="famicons:notifications-outline"
-              className={`h-[18px] w-[18px]    ${
+              className={`h-[19px] w-[19px]    ${
                 notifiacations ? "text-white" : "hover:text-white "
               }`}
             />
@@ -561,7 +561,7 @@ const EditorHeader = ({
             onClick={handleFavorate}
           >
             <BsPin
-              className={`h-[18px] w-[18px]  ${
+              className={`h-[19px] w-[19px]  ${
                 favorate ? "text-white" : " hover:text-white"
               }`}
             />
