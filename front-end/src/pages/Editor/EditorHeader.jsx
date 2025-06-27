@@ -42,6 +42,7 @@ import { LockClosedIcon } from "@radix-ui/react-icons";
 import { Undo, Redo } from "iconoir-react";
 import { Icon } from "@iconify/react";
 import editor_logo from "../../assets/editor_logo.svg";
+import { BsPin } from "react-icons/bs";
 
 const EditorHeader = ({
   rows,
@@ -394,35 +395,27 @@ const EditorHeader = ({
       <div className="w-[60%] flex items-center justify-end gap-3">
         <button
           onClick={undo}
-          className={`text-gray-500 p-[7px] rounded-md ${
-            rows.length > 0 ? "hover:bg-gray-200" : "none"
+          className={` p-[7px] rounded-md ${
+            rows.length > 0
+              ? "bg-gray-200 hover:bg-graidient_bottom hover:text-white"
+              : "text-gray-400"
           }`}
           onMouseEnter={() => setTool("Undo")}
           onMouseLeave={() => setTool(null)}
         >
-          <Undo
-            className={`h-[16px] w-[16px]  ${
-              rows.length > 0
-                ? "text-graidient_bottom hover:text-gray-600"
-                : "text-gray-400"
-            }  `}
-          />
+          <Undo className={`h-[16px] w-[16px]    `} />
         </button>
         <button
           onClick={redo}
           onMouseEnter={() => setTool("Redo")}
           onMouseLeave={() => setTool(null)}
-          className={`text-gray-500 -ml-2 ${
-            que.length > 0 ? "hover:bg-gray-200" : "none"
-          }  p-[7px] rounded-md `}
+          className={` p-[7px] rounded-md -ml-1.5 ${
+            que.length > 0
+              ? "bg-gray-200 hover:bg-graidient_bottom hover:text-white"
+              : "text-gray-400"
+          }`}
         >
-          <Redo
-            className={`h-[16px] w-[16px]  ${
-              que.length > 0
-                ? "text-graidient_bottom hover:text-gray-600"
-                : "text-gray-400"
-            }  `}
-          />
+          <Redo className={`h-[16px] w-[16px] `} />
         </button>
         <div className="h-16 w-[1px] bg-gray-200 z-50 "></div>
         {/* <button>
@@ -558,7 +551,7 @@ const EditorHeader = ({
         <div className="relative">
           <button
             ref={parentRef}
-            className={`p-[7px] rounded-md text-gray-500 flex items-center justify-center  ${
+            className={`p-[7px] rounded-md text-gray-500 mt-[4px] flex items-center justify-center  ${
               favorate === true
                 ? "bg-graidient_bottom text-white hover:bg-hover_dark_btn"
                 : "hover:bg-graidient_bottom hover:text-white"
@@ -567,8 +560,8 @@ const EditorHeader = ({
             onMouseLeave={() => setTool(null)}
             onClick={handleFavorate}
           >
-            <LuPin
-              className={`h-[18px] w-[18px] ${
+            <BsPin
+              className={`h-[18px] w-[18px]  ${
                 favorate ? "text-white" : " hover:text-white"
               }`}
             />
