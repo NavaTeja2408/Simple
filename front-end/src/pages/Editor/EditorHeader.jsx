@@ -44,6 +44,7 @@ import { Icon } from "@iconify/react";
 import editor_logo from "../../assets/editor_logo.svg";
 import { BsPin } from "react-icons/bs";
 import { StarIcon } from "@radix-ui/react-icons";
+import { IoMdCloudDone } from "react-icons/io";
 
 const EditorHeader = ({
   rows,
@@ -384,7 +385,7 @@ const EditorHeader = ({
                 Saving...
               </p>
             ) : (
-              <IoIosCloudDone className="text-graidient_bottom w-[20px] h-[16px] ml-[3px]" />
+              <IoMdCloudDone className="text-graidient_bottom w-[22px] h-[18px] ml-[3px]" />
             )}
           </div>
           <p className="text-[9px]  text-gray-400 rounded-lg w-fit cursor-default">
