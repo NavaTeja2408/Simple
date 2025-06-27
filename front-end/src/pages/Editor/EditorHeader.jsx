@@ -307,12 +307,12 @@ const EditorHeader = ({
         </div>
       )}
       {tool === "Undo" && (
-        <div className=" absolute left-[70%] -bottom-1 px-2 bg-gray-600 text-white z-50 text-xs rounded-sm ">
+        <div className=" absolute left-[65%] -bottom-1 px-2 bg-gray-600 text-white z-50 text-xs rounded-sm ">
           {tool}
         </div>
       )}
       {tool === "Redo" && (
-        <div className=" absolute left-[71%] -bottom-1 px-2 bg-gray-600 text-white z-50 text-xs rounded-sm ">
+        <div className=" absolute left-[68%] -bottom-1 px-2 bg-gray-600 text-white z-50 text-xs rounded-sm ">
           {tool}
         </div>
       )}
@@ -369,7 +369,7 @@ const EditorHeader = ({
                 changeRename(name);
               }}
               style={{ width: `${inputWidth - 15}px` }}
-              className="text-sm outline-none focus:border-b-[2px] focus:border-graidient_bottom focus:bg-hover_btn px-0.5"
+              className="text-sm outline-none focus:border-b-[2px] focus:border-graidient_bottom focus:bg-hover_btn "
             />
             {/* Hidden span to measure width */}
             <span
@@ -387,7 +387,7 @@ const EditorHeader = ({
               <IoIosCloudDone className="text-graidient_bottom w-[18px] h-[14px] ml-[3px]" />
             )}
           </div>
-          <p className="text-[9px] bg-gray-50 text-gray-700 rounded-lg w-fit cursor-default">
+          <p className="text-[9px]  text-gray-400 rounded-lg w-fit cursor-default">
             By {created} · {formattedDate}
           </p>
         </div>
@@ -418,7 +418,7 @@ const EditorHeader = ({
         >
           <Redo className={`h-[19px] w-[19px] `} />
         </button>
-        <div className="h-16 w-[1px] bg-gray-200 z-50 "></div>
+        <div className="h-16 w-[1px] bg-gray-200 z-20 "></div>
         {/* <button>
           <MdOutlineHistory className="h-6 w-6 text-gray-500" />
         </button> */}
@@ -610,7 +610,7 @@ const EditorHeader = ({
           )}
         </div>
 
-        <div className="h-16 w-[1px] bg-gray-200  z-50 ml-1"></div>
+        <div className="h-16 w-[1px] bg-gray-200  z-20 "></div>
         <p
           onMouseEnter={() => setTool("Preview This Document")}
           onMouseLeave={() => setTool(null)}
@@ -623,7 +623,7 @@ const EditorHeader = ({
           className={`p-[7px] rounded-md ${
             view === true
               ? "bg-graidient_bottom text-white"
-              : "bg-gray-100  hover:bg-hover_btn"
+              : "bg-gray-100  hover:bg-gray-200"
           }`}
         >
           <RiComputerLine className="w-4 h-4 " />
@@ -633,7 +633,7 @@ const EditorHeader = ({
           className={`p-[7px] rounded-md ml-[-3px] ${
             view === false
               ? "bg-graidient_bottom text-white"
-              : "bg-gray-200  hover:bg-hover_btn"
+              : "bg-gray-100 hover:bg-gray-200"
           }`}
         >
           <HiOutlineDevicePhoneMobile className="w-4 h-4 " />
