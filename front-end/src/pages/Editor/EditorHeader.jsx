@@ -368,7 +368,7 @@ const EditorHeader = ({
                 changeRename(name);
               }}
               style={{ width: `${inputWidth - 15}px` }}
-              className="text-sm outline-none focus:border-b-[2px] focus:border-graidient_bottom"
+              className="text-sm outline-none focus:border-b-[2px] focus:border-graidient_bottom focus:bg-hover_btn px-0.5"
             />
             {/* Hidden span to measure width */}
             <span
