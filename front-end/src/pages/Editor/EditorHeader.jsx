@@ -43,6 +43,7 @@ import { Undo, Redo } from "iconoir-react";
 import { Icon } from "@iconify/react";
 import editor_logo from "../../assets/editor_logo.svg";
 import { BsPin } from "react-icons/bs";
+import { StarIcon } from "@radix-ui/react-icons";
 
 const EditorHeader = ({
   rows,
@@ -133,9 +134,9 @@ const EditorHeader = ({
         favorate: favorate === true ? false : true,
       });
       if (favorate === false) {
-        toast.success("Proposal is Pinned");
+        toast.success("Pinned!");
       } else {
-        toast.success("Proposal is Unpinned");
+        toast.success("Unpinned!");
       }
       setFavorate(!favorate);
       setMenu(false);
@@ -156,9 +157,9 @@ const EditorHeader = ({
       console.log(error);
     } finally {
       if (data === true) {
-        toast.success("Proposal is Locked");
+        toast.success("locked!");
       } else {
-        toast.success("Proposal is Unlocked");
+        toast.success("Unlocked!");
       }
     }
   };
@@ -482,7 +483,7 @@ const EditorHeader = ({
         </button> */}
         <div className="relative">
           <button
-            className={`p-[7px] text-gray-500 rounded-md flex items-center justify-center -ml-2 -mr-2  relative ${
+            className={`p-[7px] text-gray-500 rounded-md flex items-center justify-center -ml-1 -mr-1  relative ${
               notifiacations === true
                 ? "bg-graidient_bottom text-white"
                 : " hover:bg-graidient_bottom hover:text-white"
@@ -551,7 +552,7 @@ const EditorHeader = ({
         <div className="relative">
           <button
             ref={parentRef}
-            className={`p-[7px] rounded-md text-gray-500 mt-[4px] flex items-center justify-center  ${
+            className={`p-[7px] rounded-md text-gray-500  flex items-center justify-center  ${
               favorate === true
                 ? "bg-graidient_bottom text-white hover:bg-hover_dark_btn"
                 : "hover:bg-graidient_bottom hover:text-white"
@@ -560,7 +561,7 @@ const EditorHeader = ({
             onMouseLeave={() => setTool(null)}
             onClick={handleFavorate}
           >
-            <BsPin
+            <StarIcon
               className={`h-[19px] w-[19px]  ${
                 favorate ? "text-white" : " hover:text-white"
               }`}
@@ -632,7 +633,7 @@ const EditorHeader = ({
           className={`p-[7px] rounded-md ml-[-3px] ${
             view === false
               ? "bg-graidient_bottom text-white"
-              : "bg-gray-100  hover:bg-hover_btn"
+              : "bg-gray-200  hover:bg-hover_btn"
           }`}
         >
           <HiOutlineDevicePhoneMobile className="w-4 h-4 " />
