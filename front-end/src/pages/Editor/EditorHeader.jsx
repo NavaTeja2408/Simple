@@ -41,6 +41,7 @@ import { LockOpen1Icon } from "@radix-ui/react-icons";
 import { LockClosedIcon } from "@radix-ui/react-icons";
 import { Undo, Redo } from "iconoir-react";
 import { Icon } from "@iconify/react";
+import editor_logo from "../../assets/editor_logo.svg";
 
 const EditorHeader = ({
   rows,
@@ -331,7 +332,7 @@ const EditorHeader = ({
       <div className="flex flex-row w-[50%] items-center justify-start gap-1 relative">
         <img
           onClick={() => navigate("/home")}
-          src={logo}
+          src={editor_logo}
           alt="logo"
           // onMouseEnter={() => setTool("Go to Dashboard")}
           // onMouseLeave={() => setTool(null)}
@@ -402,7 +403,7 @@ const EditorHeader = ({
           <Undo
             className={`h-[16px] w-[16px]  ${
               rows.length > 0
-                ? "text-gray-500 hover:text-gray-600"
+                ? "text-graidient_bottom hover:text-gray-600"
                 : "text-gray-400"
             }  `}
           />
@@ -411,14 +412,14 @@ const EditorHeader = ({
           onClick={redo}
           onMouseEnter={() => setTool("Redo")}
           onMouseLeave={() => setTool(null)}
-          className={`text-gray-500 -ml-3 ${
+          className={`text-gray-500 -ml-2 ${
             que.length > 0 ? "hover:bg-gray-200" : "none"
           }  p-[7px] rounded-md `}
         >
           <Redo
             className={`h-[16px] w-[16px]  ${
               que.length > 0
-                ? "text-gray-500 hover:text-gray-600"
+                ? "text-graidient_bottom hover:text-gray-600"
                 : "text-gray-400"
             }  `}
           />
