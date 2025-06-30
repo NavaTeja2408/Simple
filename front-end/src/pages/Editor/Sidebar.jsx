@@ -61,6 +61,7 @@ import signn_lv2 from "../../assets/sign_lv2.svg";
 import content_lv2 from "../../assets/content_lv2.svg";
 import cover_lv2 from "../../assets/cover_lv2.svg";
 import sections_lv2 from "../../assets/sections_lv2.svg";
+import { FaAngleRight } from "react-icons/fa6";
 
 const Sidebar = ({
   selected,
@@ -1325,12 +1326,12 @@ const Sidebar = ({
             </div>
           </div>
           {active === "elements" ? (
-            <div className="w-[220px] overflow-x-hidden h-screen pr-4 border-r-2 border-gray-200 overflow-auto pb-20 scrollbar-thin  ">
+            <div className="w-[220px] overflow-x-hidden h-screen pr-4 shadow-md shadow-gray-300 overflow-auto pb-20 scrollbar-hide text-lvl_2_txt  ">
               <button
                 className=" p-2 w-full   mx-3  flex  items-center justify-between
            gap-2 "
               >
-                <p className="text-sm text-gray-400">Basics</p>
+                <p className="text-sm text-lvl_2_hed font-semibold">Basics</p>
               </button>
 
               <div className="w-[220px]">
@@ -1355,47 +1356,47 @@ const Sidebar = ({
                   className=" p-2 w-full   mx-3 my-1 flex  items-center justify-between
            gap-2 "
                 >
-                  <p className="text-sm text-gray-400">Assets</p>
+                  <p className="text-sm text-lvl_2_hed font-semibold">Assets</p>
                 </button>
                 <div className="pr-4 w-[220px]">
                   <button
                     onClick={() => setThirdLevel("cover")}
-                    className=" relative p-2 px-3 w-[95%] rounded-lg flex text-gray-500 mx-3  items-center  
+                    className=" relative p-2 px-3 w-[95%] rounded-lg flex  mx-3  items-center  
            gap-4 hover:bg-gray-100 "
                   >
                     <img
                       src={cover_lv2}
-                      className="w-8 h-8 rounded-md p-[4px] border border-gray-100 shadow-lg shadow-gray-300"
+                      className="w-8 h-8 rounded-md p-[4px] border border-gray-100 shadow-md shadow-gray-300"
                       alt="heading"
                     />
                     <p className="text-sm">Cover Page</p>
-                    <MdKeyboardArrowRight className="flex absolute right-4 " />
+                    <FaAngleRight className="flex absolute right-4 text-xs  " />
                   </button>
                   <button
                     onClick={() => setThirdLevel("sections")}
-                    className=" relative p-2 px-3 w-[95%] rounded-lg flex text-gray-500 mx-3  items-center  
+                    className=" relative p-2 px-3 w-[95%] rounded-lg flex  mx-3  items-center  
            gap-4 hover:bg-gray-100 "
                   >
                     <img
                       src={sections_lv2}
-                      className="w-8 h-8  rounded-md p-[4px] border border-gray-100 shadow-lg shadow-gray-300"
+                      className="w-8 h-8  rounded-md p-[4px] border border-gray-100 shadow-md shadow-gray-300"
                       alt="heading"
                     />
                     <p className="text-sm">Sections</p>
-                    <MdKeyboardArrowRight className="flex absolute right-4 " />
+                    <FaAngleRight className="flex absolute right-4 text-xs  " />
                   </button>
                   <button
                     onClick={() => setThirdLevel("saved")}
-                    className=" relative p-2 px-3 w-[95%] rounded-lg flex text-gray-500 mx-3 items-center  
+                    className=" relative p-2 px-3 w-[95%] rounded-lg flex  mx-3 items-center  
            gap-4 hover:bg-gray-100 "
                   >
                     <img
                       src={content_lv2}
-                      className="w-8 h-8 rounded-md p-[4px] border border-gray-100 shadow-lg shadow-gray-300"
+                      className="w-8 h-8 rounded-md p-[4px] border border-gray-100 shadow-md shadow-gray-300"
                       alt="heading"
                     />
                     <p className="text-sm">My Content</p>
-                    <MdKeyboardArrowRight className="flex absolute right-4 " />
+                    <FaAngleRight className="flex absolute right-4 text-xs  " />
                   </button>
                 </div>
               </div>
@@ -1405,17 +1406,19 @@ const Sidebar = ({
                   className=" p-2 w-full   mx-3 my-1 flex  items-center justify-between
            gap-2 "
                 >
-                  <p className="text-sm text-gray-400">Cost Module</p>
+                  <p className="text-sm text-lvl_2_hed font-semibold">
+                    Cost Module
+                  </p>
                 </button>
                 <div className="pr-4 w-[220px]">
                   <button
                     onClick={() => setCostModeule(true)}
-                    className=" relative p-2 px-3 w-[95%] rounded-lg flex text-gray-500 mx-3 items-center  
+                    className=" relative p-2 px-3 w-[95%] rounded-lg flex  mx-3 items-center  
            gap-4 hover:bg-gray-100 "
                   >
                     <img
                       src={cost_lv2}
-                      className="w-8 h-8 rounded-md p-[4px] border border-gray-100 shadow-lg shadow-gray-300"
+                      className="w-8 h-8 rounded-md p-[4px] border border-gray-100 shadow-md shadow-gray-300"
                       alt="heading"
                     />
                     <p className="text-sm">Costing</p>
@@ -1423,12 +1426,12 @@ const Sidebar = ({
                   </button>
                   <button
                     onClick={() => setPriceTerms(true)}
-                    className=" relative p-2 px-3 w-[95%] rounded-lg flex text-gray-500 mx-3  items-center  
+                    className=" relative p-2 px-3 w-[95%] rounded-lg flex  mx-3  items-center  
            gap-4 hover:bg-gray-100 "
                   >
                     <img
                       src={cost_lv2}
-                      className="w-8 h-8 rounded-md p-[4px] border border-gray-100 shadow-lg shadow-gray-300"
+                      className="w-8 h-8 rounded-md p-[4px] border border-gray-100 shadow-md shadow-gray-300"
                       alt="heading"
                     />
                     <p className="text-sm">Price Terms</p>
@@ -1442,17 +1445,17 @@ const Sidebar = ({
                   className=" p-2 w-full   mx-3 my-1 flex  items-center justify-between
            gap-2 "
                 >
-                  <p className="text-sm text-gray-400">Legal</p>
+                  <p className="text-sm text-lvl_2_hed font-semibold">Legal</p>
                 </button>
                 <div className="pr-4 w-[220px]">
                   <button
                     onClick={() => setSign(true)}
-                    className=" relative p-2 px-3 w-[95%] rounded-lg flex text-gray-500 mx-3  items-center  
+                    className=" relative p-2 px-3 w-[95%] rounded-lg flex  mx-3  items-center  
            gap-4 hover:bg-gray-100 "
                   >
                     <img
                       src={signn_lv2}
-                      className="w-8 h-8 rounded-md p-[4px] border border-gray-100 shadow-lg shadow-gray-300"
+                      className="w-8 h-8 rounded-md p-[4px] border border-gray-100 shadow-md shadow-gray-300"
                       alt="heading"
                     />
                     <p className="text-sm">Signiture</p>
@@ -1719,47 +1722,56 @@ const Sidebar = ({
             {thirdLevel === "heading" ? (
               <div
                 ref={headingRef}
-                className="scrollbar-thin absolute left-0 w-[200px] flex flex-col items-center pt-10 gap-4 h-screen border-r border-gray-300 bg-white z-50 overflow-auto pb-20  "
+                className="scrollbar-thin absolute left-0 w-[220px] flex flex-col items-center pt-4 gap-5 h-screen shadow-md shadow-gray-300 bg-white z-50 overflow-auto pb-20 scrollbar-hide  "
               >
                 <div
                   onClick={() => {
                     addHeadingRow("heading-one");
                     setThirdLevel("");
                   }}
-                  className="w-[80%] h-24 p-2 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
+                  className="w-[91%]  py-3 pb-[16px] bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center gap-2 "
                 >
-                  <img className="h-[85%] w-[70%] " src={heading_one} />
-                  <p>H 1</p>
+                  {/* <img className="h-[85%] w-[70%] " src={heading_one} /> */}
+                  <div className="text-[18px] text-lvl_3_img bg-white h-[60px] w-[100px] flex items-center justify-center rounded-md shadow-md shadow-gray-300">
+                    Heading 1
+                  </div>
+                  <p className="text-xs font-semibold text-lvl_3_txt">H1</p>
                 </div>
                 <div
                   onClick={() => {
                     addHeadingRow("heading-two");
                     setThirdLevel("");
                   }}
-                  className="w-[80%] h-24 p-2 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
+                  className="w-[91%] py-3 pb-[16px] bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center gap-2 "
                 >
-                  <img className="h-[85%] w-[70%]" src={heading_one} />
-                  <p>H 2</p>
+                  <div className="text-[16px] text-lvl_3_img bg-white h-[57px] w-[98px] flex items-center justify-center rounded-md shadow-md shadow-gray-300">
+                    Heading 2
+                  </div>
+                  <p className="text-xs font-semibold text-lvl_3_txt">H2</p>
                 </div>
                 <div
                   onClick={() => {
                     addHeadingRow("heading-three");
                     setThirdLevel("");
                   }}
-                  className="w-[80%] h-30 p-2 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
+                  className="w-[91%] h-28 py-3 pb-[16px] bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center gap-3 "
                 >
-                  <img className="h-[85%] w-[70%]" src={heading_one} />
-                  <p>H 3</p>
+                  <div className="text-[14px] text-lvl_3_img bg-white h-[56px] w-[89px] flex items-center justify-center rounded-md shadow-md shadow-gray-300">
+                    Heading 3
+                  </div>
+                  <p className="text-xs font-semibold text-lvl_3_txt">H3</p>
                 </div>
                 <div
                   onClick={() => {
                     addHeadingRow("heading-four");
                     setThirdLevel("");
                   }}
-                  className="w-[80%] h-30 p-2 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
+                  className="w-[91%] h-28 py-3 pb-[16px] gap-3.5 bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center "
                 >
-                  <img className="h-[85%] w-[70%]" src={heading_one} />
-                  <p>H 4</p>
+                  <div className="text-[12px] text-lvl_3_img bg-white h-[51px] w-[85px] flex items-center justify-center rounded-md shadow-md shadow-gray-300">
+                    Heading 4
+                  </div>
+                  <p className="text-xs font-semibold text-lvl_3_txt">H4</p>
                 </div>
 
                 <div
@@ -1767,20 +1779,24 @@ const Sidebar = ({
                     addHeadingRow("heading-five");
                     setThirdLevel("");
                   }}
-                  className="w-[80%] h-30 p-2 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
+                  className="w-[91%] h-28 py-3 pb-[16px] gap-4 bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center "
                 >
-                  <img className="h-[85%] w-[70%]" src={heading_one} />
-                  <p>H 5</p>
+                  <div className="text-[10px] text-lvl_3_img bg-white h-[47px] w-[67px] flex items-center justify-center rounded-md shadow-md shadow-gray-300">
+                    Heading 5
+                  </div>
+                  <p className="text-xs font-semibold text-lvl_3_txt">H5</p>
                 </div>
                 <div
                   onClick={() => {
                     addHeadingRow("heading-six");
                     setThirdLevel("");
                   }}
-                  className="w-[80%] h-30 p-2 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
+                  className="w-[91%] h-40 py-3 pb-[16px] gap-5 bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center "
                 >
-                  <img className="h-[85%] w-[70%]" src={heading_one} />
-                  <p>H 6</p>
+                  <div className="text-[8px] text-lvl_3_img bg-white h-[42px] w-[65px] flex items-center justify-center rounded-md shadow-md shadow-gray-300">
+                    Heading 6
+                  </div>
+                  <p className="text-xs font-semibold text-lvl_3_txt">H6</p>
                 </div>
               </div>
             ) : thirdLevel === "paragraph" ? (

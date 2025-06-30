@@ -322,13 +322,18 @@ const EditorHeader = ({
           {tool}
         </div>
       )}
-      {tool === "More Actions" && (
+      {tool === "More actions" && (
         <div className=" absolute left-[76%] -bottom-2 px-2 bg-gray-600 text-white z-50 text-xs rounded-sm ">
           Pin Document
         </div>
       )}
-      {tool === "Preview This Document" && (
+      {tool === "Preview document" && (
         <div className=" absolute left-[81%] -bottom-1 px-2 bg-gray-600 text-white z-50 text-xs rounded-sm ">
+          {tool}
+        </div>
+      )}
+      {tool === "Mobile view" && (
+        <div className=" absolute left-[87%] -bottom-1 px-2 bg-gray-600 text-white z-50 text-xs rounded-sm ">
           {tool}
         </div>
       )}
@@ -613,7 +618,7 @@ const EditorHeader = ({
 
         <div className="h-16 w-[1px] bg-gray-200  z-20 "></div>
         <p
-          onMouseEnter={() => setTool("Preview This Document")}
+          onMouseEnter={() => setTool("Preview document")}
           onMouseLeave={() => setTool(null)}
           className="text-gray-500 cursor-pointer text-sm"
         >
@@ -631,6 +636,8 @@ const EditorHeader = ({
         </button>
         <button
           onClick={() => setView(false)}
+          onMouseEnter={() => setTool("Mobile view")}
+          onMouseLeave={() => setTool(null)}
           className={`p-[7px] rounded-md ml-[-3px] ${
             view === false
               ? "bg-graidient_bottom text-white"

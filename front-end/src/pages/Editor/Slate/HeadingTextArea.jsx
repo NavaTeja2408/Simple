@@ -128,37 +128,37 @@ const Element = ({ attributes, children, element, size }) => {
   switch (size) {
     case "heading-one":
       return (
-        <h1 className={`w-full text-4xl ${alignment}`} {...attributes}>
+        <h1 className={`w-full text-[2.5em] ${alignment}`} {...attributes}>
           {children}
         </h1>
       );
     case "heading-two":
       return (
-        <h2 className={`text-3xl ${alignment}`} {...attributes}>
+        <h2 className={`text-[2em] ${alignment}`} {...attributes}>
           {children}
         </h2>
       );
     case "heading-three":
       return (
-        <h3 className={`text-2xl ${alignment}`} {...attributes}>
+        <h3 className={`text-[1.75em] ${alignment}`} {...attributes}>
           {children}
         </h3>
       );
     case "heading-four":
       return (
-        <h4 className={`text-xl ${alignment}`} {...attributes}>
+        <h4 className={`text-[1.5em] ${alignment}`} {...attributes}>
           {children}
         </h4>
       );
     case "heading-five":
       return (
-        <h5 className={`text-lg ${alignment}`} {...attributes}>
+        <h5 className={`text-[1.25em] ${alignment}`} {...attributes}>
           {children}
         </h5>
       );
     case "heading-six":
       return (
-        <h6 className={`text-sm ${alignment}`} {...attributes}>
+        <h6 className={`text-[1em] ${alignment}`} {...attributes}>
           {children}
         </h6>
       );

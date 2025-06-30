@@ -34,6 +34,11 @@ export default {
         sidebar_border: "rgba(152 , 152 , 152 , 1)",
         hover_btn: "rgba(255, 206, 216, 0.2)",
         hover_dark_btn: "rgba(159, 0, 54, 1)",
+        lvl_3_bg: "rgba(245, 245, 245, 1)",
+        lvl_3_txt: "rgba(167, 167, 167, 1)",
+        lvl_3_img: "rgba(196, 196, 196, 1)",
+        lvl_2_txt: "rgba(140, 140, 140, 1)",
+        lvl_2_hed: "rgba(167, 164, 164, 1)",
       },
 
       clipPath: {

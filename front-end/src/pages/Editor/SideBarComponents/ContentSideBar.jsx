@@ -12,6 +12,7 @@ import table_lv2 from "../../../assets/table_lv2.svg";
 import image_lv2 from "../../../assets/image_lv2.svg";
 import devider_lv2 from "../../../assets/devider_lv2.svg";
 import code_lv2 from "../../../assets/code_lv2.svg";
+import { FaAngleRight } from "react-icons/fa6";
 
 import { FiPlus } from "react-icons/fi";
 const ContentSideBar = ({
@@ -21,34 +22,34 @@ const ContentSideBar = ({
   thirdLevel,
 }) => {
   return (
-    <div className=" w-[220px]  pr-4  ">
+    <div className=" w-[220px]  pr-4 text-lvl_2_txt  ">
       <button
         onClick={() => setThirdLevel("heading")}
-        className={` relative p-2 px-3 w-[95%] rounded-lg flex text-gray-500 mx-3  items-center  
+        className={` relative p-2 px-3 w-[95%] rounded-lg flex mx-3  items-center  
            gap-4 hover:bg-gray-100 ${
              thirdLevel === "heading" && "bg-gray-100"
            }`}
       >
         <img
           src={heading_lv2}
-          className="w-8 rounded-md p-[6px] border border-gray-100 shadow-lg shadow-gray-300"
+          className="w-8 rounded-md p-[6px]   shadow-md shadow-gray-300"
           alt="heading"
         />
         <p className="text-sm">Heading</p>
-        <MdKeyboardArrowRight className="flex absolute right-4 " />
+        <FaAngleRight className="flex absolute right-4 text-xs  " />
       </button>
       <button
         onClick={() => setThirdLevel("paragraph")}
-        className=" relative p-2 px-3 w-[95%] rounded-lg flex text-gray-500 mx-3  items-center  
+        className=" relative p-2 px-3 w-[95%] rounded-lg flex  mx-3  items-center  
            gap-4 hover:bg-gray-100 "
       >
         <img
           src={paragraph_lv2}
-          className="w-8 h-8 rounded-md p-[4px]  border border-gray-100 shadow-lg shadow-gray-300"
+          className="w-8 h-8 rounded-md p-[4px]   shadow-md shadow-gray-300"
           alt="heading"
         />
         <p className="text-sm">Paragraph</p>
-        <MdKeyboardArrowRight className="flex absolute right-4 " />
+        <FaAngleRight className="flex absolute right-4 text-xs  " />
       </button>
       {/* <button
         onClick={addDoublePara}
@@ -84,38 +85,38 @@ const ContentSideBar = ({
       </button> */}
       <button
         onClick={() => setThirdLevel("table")}
-        className=" relative p-2 px-3 w-[95%] rounded-lg flex text-gray-500 mx-3  items-center  
+        className=" relative p-2 px-3 w-[95%] rounded-lg flex mx-3  items-center  
            gap-4 hover:bg-gray-100 "
       >
         <img
           src={table_lv2}
-          className="w-8 h-8 rounded-md p-[4px] border border-gray-100 shadow-lg shadow-gray-300"
+          className="w-8 h-8 rounded-md p-[4px] shadow-md shadow-gray-300"
           alt="heading"
         />
         <p className="text-sm">Table</p>
-        <MdKeyboardArrowRight className="flex absolute right-4 " />
+        <FaAngleRight className="flex absolute right-4 text-xs  " />
       </button>
       <button
         onClick={() => setThirdLevel("image")}
-        className=" relative p-2 px-3 w-[95%] rounded-lg flex text-gray-500 mx-3  items-center  
+        className=" relative p-2 px-3 w-[95%] rounded-lg flex  mx-3  items-center  
            gap-4 hover:bg-gray-100 "
       >
         <img
           src={image_lv2}
-          className="w-8 h-8 rounded-md p-[4px] border border-gray-100 shadow-lg shadow-gray-300"
+          className="w-8 h-8 rounded-md p-[4px]  shadow-md shadow-gray-300"
           alt="heading"
         />
         <p className="text-sm"> Image</p>
-        <MdKeyboardArrowRight className="flex absolute right-4 " />
+        <FaAngleRight className="flex absolute right-4 text-xs " />
       </button>
       <button
         onClick={addBreakPoint}
-        className=" relative p-2 px-3 w-[95%] rounded-lg flex text-gray-500 mx-3 items-center  
+        className=" relative p-2 px-3 w-[95%] rounded-lg flex  mx-3 items-center  
            gap-4 hover:bg-gray-100 "
       >
         <img
           src={devider_lv2}
-          className="w-8 h-8 rounded-md p-[5px] border border-gray-100 shadow-lg shadow-gray-300"
+          className="w-8 h-8 rounded-md p-[5px] border border-gray-100 shadow-md shadow-gray-300"
           alt="heading"
         />
         <p className="text-sm">Divider</p>
@@ -124,12 +125,12 @@ const ContentSideBar = ({
 
       <button
         onClick={addCodeBlock}
-        className=" relative p-2 px-3 w-[95%] rounded-lg flex text-gray-500 mx-3  items-center  
+        className=" relative p-2 px-3 w-[95%] rounded-lg flex  mx-3  items-center  
            gap-4 hover:bg-gray-100 "
       >
         <img
           src={code_lv2}
-          className="w-8 h-8 rounded-md p-[4px]  border border-gray-100 shadow-lg shadow-gray-300"
+          className="w-8 h-8 rounded-md p-[4px]  border border-gray-100 shadow-md shadow-gray-300"
           alt="heading"
         />
         <p className="text-sm">Code</p>
