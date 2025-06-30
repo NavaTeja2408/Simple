@@ -407,7 +407,7 @@ const MyRichTextEditor = ({
   return (
     <div
       className={` relative w-[100%] p-2 rounded  ${
-        selected === index ? "mt-10" : "mt-2"
+        selected === index ? "mt-1" : "mt-1"
       }`}
       onFocus={() => setSelected(index)}
       onBlur={(e) => {
@@ -437,7 +437,7 @@ const MyRichTextEditor = ({
       >
         {index === selected && preview !== true && (
           <Toolbar
-            className="absolute top-[-40px] shadow-sm shadow-gray-400 left-[26%]  bg-white flex flex-row items-center justify-center  border border-gray-200 rounded-sm  px-1 py-2 "
+            className="absolute -top-14 shadow-sm shadow-gray-400 left-[26%]  bg-white flex flex-row items-center justify-center  border border-gray-200 rounded-sm  px-1 py-2 "
             ref={toolbarRef}
             onFocus={() => setIndexValue(index)}
             onBlur={(e) => {
@@ -479,7 +479,7 @@ const MyRichTextEditor = ({
                 onChange={(e) => transformText(editor, e.target.value)}
                 defaultValue=""
               >
-                <option value="" disabled>
+                <option value="" disabled hidden>
                   Aa
                 </option>
                 <option value="uppercase">AA</option>
@@ -531,40 +531,40 @@ const MyRichTextEditor = ({
                 e.preventDefault();
                 toggleMark(editor, "bold");
               }}
-              className="flex items-center justify-center text-xl "
+              className="flex items-center justify-center  "
               active={isMarkActive(editor, "bold")}
             >
-              <PiTextBBold />
+              <FaBold />
             </Button>
             <Button
               onMouseDown={(e) => {
                 e.preventDefault();
                 toggleMark(editor, "italic");
               }}
-              className="flex items-center justify-center text-xl"
+              className="flex items-center justify-center"
               active={isMarkActive(editor, "italic")}
             >
-              <RxFontItalic />
+              <FaItalic />
             </Button>
             <Button
               onMouseDown={(e) => {
                 e.preventDefault();
                 toggleMark(editor, "underline");
               }}
-              className="flex items-center justify-center text-xl"
+              className="flex items-center justify-center pt-[3px]"
               active={isMarkActive(editor, "underline")}
             >
-              <PiTextUnderline />
+              <FaUnderline />
             </Button>
             <Button
               onMouseDown={(e) => {
                 e.preventDefault();
                 toggleMark(editor, "strikethrough");
               }}
-              className="flex items-center justify-center text-xl"
+              className="flex items-center justify-center"
               active={isMarkActive(editor, "strikethrough")}
             >
-              <PiTextStrikethrough />
+              <FaStrikethrough />
             </Button>
             <div className="w-[1px] h-8 bg-gray-200 ml-1"></div>
             <div

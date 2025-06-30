@@ -187,49 +187,61 @@ const Element = ({ attributes, children, element }) => {
   switch (element.type) {
     case "heading-one":
       return (
-        <h1 className={`text-4xl py-1 font-bold ${alignment}`} {...attributes}>
+        <h1
+          className={`text-[2.5em] py-1 font-bold ${alignment}`}
+          {...attributes}
+        >
           {children}
         </h1>
       );
     case "heading-two":
       return (
-        <h2 className={`text-3xl py-1 font-bold ${alignment}`} {...attributes}>
+        <h2
+          className={`text-[2em] py-1 font-bold ${alignment}`}
+          {...attributes}
+        >
           {children}
         </h2>
       );
     case "heading-three":
       return (
-        <h2 className={`text-2xl py-1 font-bold ${alignment}`} {...attributes}>
+        <h2
+          className={`text-[1.75em] py-1 font-bold ${alignment}`}
+          {...attributes}
+        >
           {children}
         </h2>
       );
     case "heading-four":
       return (
-        <h2 className={`text-xl py-1 font-bold ${alignment}`} {...attributes}>
+        <h2
+          className={`text-[1.5em] py-1 font-bold ${alignment}`}
+          {...attributes}
+        >
           {children}
         </h2>
       );
     case "heading-five":
       return (
-        <h2 className={`text-lg font-bold ${alignment}`} {...attributes}>
+        <h2 className={`text-[1.25em] font-bold ${alignment}`} {...attributes}>
           {children}
         </h2>
       );
     case "heading-six":
       return (
-        <h2 className={`text-sm  ${alignment}`} {...attributes}>
+        <h2 className={`text-[1em]  ${alignment}`} {...attributes}>
           {children}
         </h2>
       );
     case "paragrapgh":
       return (
-        <h2 className={`text-sm ${alignment}`} {...attributes}>
+        <h2 className={`text-[1em] ${alignment}`} {...attributes}>
           {children}
         </h2>
       );
     case "paragrapgh-two":
       return (
-        <h2 className={`text-xs ${alignment}`} {...attributes}>
+        <h2 className={`text-[0.9em] ${alignment}`} {...attributes}>
           {children}
         </h2>
       );
@@ -324,6 +336,7 @@ const RichTextEditor = ({
   textColor,
   selected,
   setSelected,
+  right,
 }) => {
   const editor = useMemo(() => withHistory(withReact(createEditor())), []);
   const [value, setValue] = useState(initialValue);
@@ -408,9 +421,9 @@ const RichTextEditor = ({
 
   return (
     <div
-      className={`relative   w-[100%] ${
-        index === selected ? "pt-14" : "pt-0"
-      }  px-2 rounded overflow-hidden mt-1`}
+      className={` relative w-[100%] p-2 rounded  ${
+        selected === index ? "mt-1" : "mt-1"
+      }`}
       onFocus={() => setSelected(index)}
       onBlur={(e) => {
         // Prevent toolbar from hiding when interacting with the dropdowns
@@ -431,9 +444,11 @@ const RichTextEditor = ({
         value={data}
         onChange={(newValue) => onChange(newValue)}
       >
-        {index === selected && preview !== true && (
+        {index === selected && preview !== true && choosen === true && (
           <Toolbar
-            className="flex flex-row items-center justify-center absolute top-1 shadow-sm shadow-gray-400 left-1 bg-white  border z-50 border-gray-200 rounded-sm  px-3 py-2"
+            className={`absolute -top-14 flex flex-row items-center justify-center  shadow-sm shadow-gray-400 ${
+              right === true ? "-left-32" : "left-3"
+            }  bg-white  border  border-gray-200 rounded-sm  px-3 py-2`}
             ref={toolbarRef}
             onFocus={() => {
               setIndexValue(index);
@@ -455,7 +470,7 @@ const RichTextEditor = ({
               <select
                 className="  rounded px-1 bg-white py-1 outline-none text-lg  font-semibold text-gray-500"
                 onChange={(e) => toggleBlock(editor, e.target.value)}
-                defaultValue="paragraph"
+                defaultValue="paragrapgh"
               >
                 <option value="heading-one">H1</option>
                 <option value="heading-two">H2</option>

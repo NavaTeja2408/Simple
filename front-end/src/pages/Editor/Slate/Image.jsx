@@ -4,6 +4,10 @@ import ImageAlter from "../../../assets/ImageAlter.png";
 import { IoCloudUploadOutline } from "react-icons/io5";
 import { AiOutlineColumnWidth } from "react-icons/ai";
 import { RxText } from "react-icons/rx";
+import { PiAlignLeft } from "react-icons/pi";
+import { PiAlignCenterHorizontalLight } from "react-icons/pi";
+import { PiAlignRight } from "react-icons/pi";
+
 import {
   FaBold,
   FaAlignLeft,
@@ -109,7 +113,7 @@ const Image = ({
       }}
     >
       {index === indexValue && preview !== true && (
-        <div className="absolute top-2 left-[25%] px-3 h-10 bg-white border border-gray-100 shadow-lg shadow-gray-400 flex flex-row items-center space-x-2 p-2 rounded text-sm">
+        <div className="absolute top-2 left-1/2 transform -translate-x-1/2 px-3 h-10 bg-white border border-gray-100 shadow-lg shadow-gray-300 flex flex-row items-center space-x-2 p-2 rounded text-sm">
           {/* Hidden file input */}
           <input
             id={`file-upload-${index}`}
@@ -123,7 +127,7 @@ const Image = ({
           {/* Upload Image Label */}
           <label
             htmlFor={`file-upload-${index}`}
-            className="px-1 py-1 flex items-center justify-center gap-2  text-center rounded cursor-pointer text-xs"
+            className="px-1 py-1 flex items-center justify-center gap-2  text-center rounded cursor-pointer text-xs text-lvl_2_txt"
           >
             <IoCloudUploadOutline />
             {data === "" ? "Upload Image" : "Change Image"}
@@ -131,46 +135,47 @@ const Image = ({
           <div className="w-[1px] h-7 bg-gray-300"></div>
           {/* Width Input */}
           <div className="relative w-fit">
-            <AiOutlineColumnWidth className="absolute left-2 top-1/2 transform -translate-y-1/2 " />
             <select
-              value={selected}
+              value={width}
               onChange={(e) => onWidth(e.target.value)}
-              className="p-1  bg-white outline-none border-[1px] border-gray-200"
+              className="p-1  bg-white outline-none border-[1px] border-gray-200 px-2"
             >
-              <option value="" hidden></option>
-              <option value="100">Container Width</option>
-              <option value="50">50% Width</option>
-              <option value="25">25% Width</option>
+              {/* <option value="" hidden></option> */}
+              <option value="100">Container width</option>
+              <option value="50">50% width</option>
+              <option value="25">25% width</option>
             </select>
           </div>
           <div className="w-[1px] h-7 bg-gray-300"></div>
           <button onClick={() => setCaption(true)}>
             <RxText className="font-bold w-5 h-6" />
           </button>
-          <div className="w-[1px] h-7 bg-gray-300"></div>
-          <div className="flex items-center justify-center gap-4">
-            <button className="ml-1" onClick={() => onAliegn("left")}>
-              <FaAlignLeft
-                className={`${
-                  aliegn === "left" ? "text-black" : "text-gray-400"
-                }`}
-              />
-            </button>
-            <button onClick={() => onAliegn("center")}>
-              <FaAlignCenter
-                className={`${
-                  aliegn === "center" ? "text-black" : "text-gray-400"
-                }`}
-              />
-            </button>
-            <button onClick={() => onAliegn("right")}>
-              <FaAlignRight
-                className={`${
-                  aliegn === "right" ? "text-black" : "text-gray-400"
-                }`}
-              />
-            </button>
-          </div>
+          {width < 100 && <div className="w-[1px] h-7 bg-gray-300"></div>}
+          {width < 100 && (
+            <div className="flex items-center justify-center gap-3">
+              <button className="ml-1" onClick={() => onAliegn("left")}>
+                <PiAlignLeft
+                  className={`text-lg ${
+                    aliegn === "left" ? "text-black" : "text-lvl_2_txt"
+                  }`}
+                />
+              </button>
+              <button onClick={() => onAliegn("center")}>
+                <PiAlignCenterHorizontalLight
+                  className={`text-lg ${
+                    aliegn === "center" ? "text-black" : "text-lvl_2_txt"
+                  }`}
+                />
+              </button>
+              <button onClick={() => onAliegn("right")}>
+                <PiAlignRight
+                  className={`text-lg ${
+                    aliegn === "right" ? "text-black" : "text-lvl_2_txt"
+                  }`}
+                />
+              </button>
+            </div>
+          )}
         </div>
       )}
 

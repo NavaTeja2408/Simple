@@ -84,7 +84,7 @@ const ForDouble = ({
     >
       {/* Settings Panel */}
       {show && preview !== true && (
-        <div className="absolute -top-5 left-10 px-3 h-10 bg-white border border-gray-100 shadow-lg shadow-gray-400 flex flex-row items-center space-x-2 p-2 rounded text-sm z-50">
+        <div className="absolute -top-5 left-1/2 transform -translate-x-1/2 px-3 h-10 w-[65%]  bg-white border border-gray-100 shadow-lg shadow-gray-400 flex flex-row items-center justify-center space-x-2 p-2 rounded text-sm z-50">
           {/* Hidden file input */}
           <input
             id={`file-upload-${index}`}
@@ -96,7 +96,7 @@ const ForDouble = ({
           {/* Upload Image Label */}
           <label
             htmlFor={`file-upload-${index}`}
-            className="px-1 py-1 flex items-center justify-center gap-2 text-center rounded cursor-pointer text-xs"
+            className="px-1 py-1 flex items-center justify-center gap-2 text-center rounded cursor-pointer text-xs text-lvl_2_txt"
           >
             <IoCloudUploadOutline />
             {data === "" ? "Upload Image" : "Change Image"}
@@ -105,19 +105,17 @@ const ForDouble = ({
 
           {/* Width Selector */}
           <div className="relative w-fit">
-            <AiOutlineColumnWidth className="absolute left-2 top-1/2 transform -translate-y-1/2" />
             <select
-              value={""} // Changed from `selected` to `width`
+              value={width} // Changed from `selected` to `width`
               onChange={(e) => onWidth(e.target.value)}
-              className="p-1 bg-white outline-none border-[1px] border-gray-200"
+              className="p-1 bg-white outline-none border-[1px] border-gray-200 px-1"
             >
-              <option value="" hidden></option>
+              {/* <option value="" hidden></option> */}
               <option value="100">Container Width</option>
               <option value="50">50% Width</option>
               <option value="25">25% Width</option>
             </select>
           </div>
-          <div className="w-[1px] h-7 bg-gray-300"></div>
 
           {/* Alignment Buttons */}
         </div>

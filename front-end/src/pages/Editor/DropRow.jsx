@@ -180,7 +180,10 @@ const DropRow = ({
         marginBottom: "0px",
         marginLeft: row.type === "brake" ? "-16px" : "1%",
         marginRight: row.type === "brake" ? "0px" : "1%",
-        marginTop: selected === index && index === 0 ? "30px" : "0px",
+        marginTop:
+          selected === index && index === 0 && preview !== true
+            ? "30px"
+            : "0px",
         paddingBottom: selected === index ? "15px" : "0px",
 
         border:
@@ -270,6 +273,7 @@ const DropRow = ({
             onClick={() => setSelected(index)}
           >
             <RichTextExample
+              right={false}
               index={index}
               indexValue={indexValue}
               setIndexValue={setIndexValue}
@@ -291,6 +295,7 @@ const DropRow = ({
               setSelected={setSelected}
             />
             <RichTextExample
+              right={true}
               index={index}
               indexValue={indexValue}
               setIndexValue={setIndexValue}
@@ -740,7 +745,7 @@ const DropRow = ({
         <div
           ref={quickButtonRef}
           onClick={() => setQuickAdd(true)}
-          className={`absolute -bottom-4 right-[50%] bg-white flex   border border-graidient_bottom text-graidient_bottom items-center justify-center w-10 h-10  rounded-[50%] text-xl cursor-pointer z-[5000]`}
+          className={`absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-white flex   border border-graidient_bottom text-graidient_bottom items-center justify-center w-10 h-10  rounded-[50%] text-xl cursor-pointer z-[5000]`}
         >
           <FiPlus />
         </div>
@@ -748,7 +753,7 @@ const DropRow = ({
       {selected === index && preview !== true && quickAdd === true && (
         <div
           ref={quickRef}
-          className={`absolute bottom-7 right-[47%] bg-white flex flex-col items-center justify-start w-fit h-44 overflow-auto py-3 px-4   cursor-pointer shadow-lg z-[5000] scrollbar-hide `}
+          className="absolute bottom-7 left-1/2 transform -translate-x-1/2 bg-white flex flex-col items-center justify-start w-fit h-44 overflow-auto py-3 px-4 cursor-pointer shadow-lg z-[5000] scrollbar-hide"
         >
           <button
             onClick={() => {

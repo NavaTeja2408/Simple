@@ -1326,7 +1326,12 @@ const Sidebar = ({
             </div>
           </div>
           {active === "elements" ? (
-            <div className="w-[220px] overflow-x-hidden h-screen pr-4 shadow-md shadow-gray-300 overflow-auto pb-20 scrollbar-hide text-lvl_2_txt  ">
+            <div
+              className="w-[220px] overflow-x-hidden h-screen pr-4  overflow-auto pb-20 scrollbar-hide text-lvl_2_txt z-50  "
+              style={{
+                boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.2)",
+              }}
+            >
               <button
                 className=" p-2 w-full   mx-3  flex  items-center justify-between
            gap-2 "
@@ -1722,7 +1727,10 @@ const Sidebar = ({
             {thirdLevel === "heading" ? (
               <div
                 ref={headingRef}
-                className=" absolute left-0 w-[220px] flex flex-col items-center pt-[12px] gap-4 h-screen shadow-md shadow-gray-300 bg-white z-50 overflow-auto pb-20 scrollbar-hide  "
+                className=" absolute left-0 w-[220px] flex flex-col items-center pt-[12px] gap-4 h-screen bg-white z-30 overflow-auto pb-20 scrollbar-hide   "
+                style={{
+                  boxShadow: "5px 0 10px rgba(0, 0, 0, 0.1)",
+                }}
               >
                 <div
                   onClick={() => {
@@ -1820,67 +1828,73 @@ const Sidebar = ({
             ) : thirdLevel === "paragraph" ? (
               <div
                 ref={headingRef}
-                className="scrollbar-thin absolute left-0 w-[200px] flex flex-col items-center pt-14 gap-10 h-screen border-r border-gray-300 bg-white z-50 overflow-auto pb-20  "
+                className=" absolute left-0 w-[220px] flex flex-col items-center pt-[16px] gap-5 h-screen bg-white z-30 overflow-auto pb-20 scrollbar-hide border-r border-gray-100    "
+                style={{
+                  boxShadow: "5px 0 10px rgba(0, 0, 0, 0.1)",
+                }}
               >
                 <div
                   onClick={() => {
                     addInputRow();
                     setThirdLevel("");
                   }}
-                  className="w-[80%] relative h-24 p-1 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
+                  className="w-full flex flex-col justify-center items-center gap-1 cursor-pointer"
                 >
-                  <img className="h-[85%] w-[95%] " src={para} />
-                  <p className="text-gray-500 absolute left-1 top-[-25px] text-sm">
-                    Paragraph
-                  </p>
+                  <div className="w-[90%] relative h-[112px] p-1 bg-lvl_3_bg rounded-md flex flex-col text-gray-500 items-center justify-center ">
+                    <img className="h-[85%] w-[90%] " src={para} />
+                  </div>
+                  <p className="text-lvl_3_txt text-xs">Paragraph</p>
                 </div>
                 <div
                   onClick={() => {
                     addDoublePara();
                     setThirdLevel("");
                   }}
-                  className=" relative w-[80%] h-24 p-1 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
+                  className="w-full flex flex-col justify-center items-center gap-1 cursor-pointer"
                 >
-                  <img className="h-[85%] w-[95%]" src={double_para_2} />
-                  <p className="text-gray-500 absolute left-1 top-[-25px] text-sm">
-                    Double Paragraph
-                  </p>
+                  <div className="w-[90%] relative h-[112px] p-1 bg-lvl_3_bg rounded-md flex flex-col text-gray-500 items-center justify-center ">
+                    <img className="h-[85%] w-[90%]" src={double_para_2} />
+                  </div>
+                  <p className="text-lvl_3_txt text-xs">Double Paragraph</p>
                 </div>
               </div>
             ) : thirdLevel === "image" ? (
               <div
                 ref={headingRef}
-                className="scrollbar-thin absolute left-0 w-[200px] flex flex-col items-center pt-10 gap-10 h-screen border-r border-gray-300 bg-white z-50 overflow-auto pb-20  "
+                className=" absolute left-0 w-[220px] flex flex-col items-center pt-[16px] gap-4 h-screen bg-white z-30 overflow-auto pb-20 scrollbar-hide border-r border-gray-100 "
+                style={{
+                  boxShadow: "5px 0 10px rgba(0, 0, 0, 0.1)",
+                }}
               >
                 <div
                   onClick={() => {
                     addImageRow();
                     setThirdLevel("");
                   }}
-                  className="w-[80%] relative h-24 p-1 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
+                  className="w-full flex flex-col justify-center items-center gap-1 cursor-pointer"
                 >
-                  <img className="h-[85%] w-[95%] " src={image_insert} />
-                  <p className="text-gray-500 absolute left-1 top-[-25px] text-sm">
-                    Image
-                  </p>
+                  <div className="w-[90%] relative h-[112px] p-1 bg-lvl_3_bg rounded-md flex flex-col text-gray-500 items-center justify-center ">
+                    <img className="h-[85%] w-[90%]" src={image_insert} />
+                  </div>
+                  <p className="text-lvl_3_txt text-xs">Image</p>
                 </div>
                 <div
                   onClick={() => {
                     addImageAndParagraph();
                     setThirdLevel("");
                   }}
-                  className=" relative w-[80%] h-24 p-1 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
+                  className="w-full flex flex-col justify-center items-center gap-1 cursor-pointer"
                 >
-                  <img className="h-[85%] w-[95%]" src={img_para} />
-                  <p className="text-gray-500 absolute left-1 top-[-25px] text-sm">
-                    Image & Paragraph
-                  </p>
+                  <div className="w-[90%] relative h-[112px] p-1 bg-lvl_3_bg rounded-md flex flex-col text-gray-500 items-center justify-center ">
+                    <img className="h-[85%] w-[90%]" src={img_para} />
+                  </div>
+                  <p className="text-lvl_3_txt text-xs">Image & Paragraph</p>
                 </div>
               </div>
             ) : thirdLevel === "table" ? (
               <div
                 ref={headingRef}
-                className="scrollbar-thin absolute left-0 w-[200px] flex flex-col items-center pt-10 gap-4 h-screen border-r border-gray-300 bg-white z-50 overflow-auto pb-20 text-xs text-gray-400 text-center  "
+                className="scrollbar-thin absolute left-0 w-[200px] flex flex-col items-center pt-10 gap-5 h-screen border-r border-gray-300 bg-white z-50 overflow-auto pb-20 text-xs text-gray-400 text-center  "
               >
                 <div
                   onClick={() => {
