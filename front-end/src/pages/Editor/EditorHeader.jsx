@@ -563,7 +563,7 @@ const EditorHeader = ({
                 ? "bg-graidient_bottom text-white hover:bg-hover_dark_btn"
                 : "hover:bg-graidient_bottom hover:text-white"
             } `}
-            onMouseEnter={() => setTool("More Actions")}
+            onMouseEnter={() => setTool("More actions")}
             onMouseLeave={() => setTool(null)}
             onClick={handleFavorate}
           >

@@ -177,13 +177,13 @@ const DropRow = ({
       style={{
         width: row.type === "brake" ? "102.5%" : "98%",
         minHeight: row.type !== "cover" ? "30px" : "30px",
-        marginBottom: "0px",
+        marginBottom: "4px",
         marginLeft: row.type === "brake" ? "-16px" : "1%",
         marginRight: row.type === "brake" ? "0px" : "1%",
         marginTop:
           selected === index && index === 0 && preview !== true
             ? "30px"
-            : "0px",
+            : "4px",
         paddingBottom: selected === index ? "15px" : "0px",
 
         border:

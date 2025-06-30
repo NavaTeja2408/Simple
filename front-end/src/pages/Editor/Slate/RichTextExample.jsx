@@ -169,7 +169,7 @@ const initialValue = [
     type: "paragraph",
     children: [
       {
-        text: "This is editable rich text. Try lists, headings, and alignment!",
+        text: "",
       },
     ],
   },

@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
-import ImageAlter from "../../../assets/ImageAlter.png";
+import image_slate from "../../../assets/image_slate.svg";
 
 import { IoCloudUploadOutline } from "react-icons/io5";
 import { AiOutlineColumnWidth } from "react-icons/ai";
@@ -129,7 +129,7 @@ const Image = ({
             htmlFor={`file-upload-${index}`}
             className="px-1 py-1 flex items-center justify-center gap-2  text-center rounded cursor-pointer text-xs text-lvl_2_txt"
           >
-            <IoCloudUploadOutline />
+            <IoCloudUploadOutline className="text-md" />
             {data === "" ? "Upload Image" : "Change Image"}
           </label>
           <div className="w-[1px] h-7 bg-gray-300"></div>
@@ -184,7 +184,7 @@ const Image = ({
         <h1>Uploading the Image...</h1>
       ) : (
         <img
-          src={data ? data : ImageAlter}
+          src={data ? data : image_slate}
           alt="Uploaded"
           style={{
             objectFit: "contain",

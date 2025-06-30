@@ -222,7 +222,7 @@ const MyRichTextEditor = ({
 
       children: [
         {
-          text: "Heading",
+          text: "",
           bold: true,
         },
       ],
