@@ -1722,17 +1722,20 @@ const Sidebar = ({
             {thirdLevel === "heading" ? (
               <div
                 ref={headingRef}
-                className="scrollbar-thin absolute left-0 w-[220px] flex flex-col items-center pt-4 gap-5 h-screen shadow-md shadow-gray-300 bg-white z-50 overflow-auto pb-20 scrollbar-hide  "
+                className=" absolute left-0 w-[220px] flex flex-col items-center pt-[12px] gap-4 h-screen shadow-md shadow-gray-300 bg-white z-50 overflow-auto pb-20 scrollbar-hide  "
               >
                 <div
                   onClick={() => {
                     addHeadingRow("heading-one");
                     setThirdLevel("");
                   }}
-                  className="w-[91%]  py-3 pb-[16px] bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center gap-2 "
+                  className="w-[91%]   py-[14px] bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center gap-2 "
                 >
                   {/* <img className="h-[85%] w-[70%] " src={heading_one} /> */}
-                  <div className="text-[18px] text-lvl_3_img bg-white h-[60px] w-[100px] flex items-center justify-center rounded-md shadow-md shadow-gray-300">
+                  <div
+                    style={{ boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)" }}
+                    className="text-[18px] text-lvl_3_img bg-white h-[60px] w-[100px] flex items-center justify-center rounded-md  "
+                  >
                     Heading 1
                   </div>
                   <p className="text-xs font-semibold text-lvl_3_txt">H1</p>
@@ -1742,9 +1745,12 @@ const Sidebar = ({
                     addHeadingRow("heading-two");
                     setThirdLevel("");
                   }}
-                  className="w-[91%] py-3 pb-[16px] bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center gap-2 "
+                  className="w-[91%]  py-[15px] bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center gap-2 "
                 >
-                  <div className="text-[16px] text-lvl_3_img bg-white h-[57px] w-[98px] flex items-center justify-center rounded-md shadow-md shadow-gray-300">
+                  <div
+                    style={{ boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)" }}
+                    className="text-[16px] text-lvl_3_img bg-white h-[57px] w-[98px] flex items-center justify-center rounded-md "
+                  >
                     Heading 2
                   </div>
                   <p className="text-xs font-semibold text-lvl_3_txt">H2</p>
@@ -1754,9 +1760,12 @@ const Sidebar = ({
                     addHeadingRow("heading-three");
                     setThirdLevel("");
                   }}
-                  className="w-[91%] h-28 py-3 pb-[16px] bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center gap-3 "
+                  className="w-[91%] h-28  py-[15px] bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center gap-3 "
                 >
-                  <div className="text-[14px] text-lvl_3_img bg-white h-[56px] w-[89px] flex items-center justify-center rounded-md shadow-md shadow-gray-300">
+                  <div
+                    style={{ boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)" }}
+                    className="text-[14px] text-lvl_3_img bg-white h-[56px] w-[89px] flex items-center justify-center rounded-md "
+                  >
                     Heading 3
                   </div>
                   <p className="text-xs font-semibold text-lvl_3_txt">H3</p>
@@ -1766,9 +1775,12 @@ const Sidebar = ({
                     addHeadingRow("heading-four");
                     setThirdLevel("");
                   }}
-                  className="w-[91%] h-28 py-3 pb-[16px] gap-3.5 bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center "
+                  className="w-[91%] h-28  py-[15px] gap-3.5 bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center "
                 >
-                  <div className="text-[12px] text-lvl_3_img bg-white h-[51px] w-[85px] flex items-center justify-center rounded-md shadow-md shadow-gray-300">
+                  <div
+                    className="text-[12px] text-lvl_3_img bg-white h-[51px] w-[85px] flex items-center justify-center rounded-md "
+                    style={{ boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)" }}
+                  >
                     Heading 4
                   </div>
                   <p className="text-xs font-semibold text-lvl_3_txt">H4</p>
@@ -1779,9 +1791,12 @@ const Sidebar = ({
                     addHeadingRow("heading-five");
                     setThirdLevel("");
                   }}
-                  className="w-[91%] h-28 py-3 pb-[16px] gap-4 bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center "
+                  className="w-[91%] h-28  py-[16px] gap-4 bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center "
                 >
-                  <div className="text-[10px] text-lvl_3_img bg-white h-[47px] w-[67px] flex items-center justify-center rounded-md shadow-md shadow-gray-300">
+                  <div
+                    className="text-[10px] text-lvl_3_img bg-white h-[47px] w-[67px] flex items-center justify-center rounded-md "
+                    style={{ boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)" }}
+                  >
                     Heading 5
                   </div>
                   <p className="text-xs font-semibold text-lvl_3_txt">H5</p>
@@ -1791,9 +1806,12 @@ const Sidebar = ({
                     addHeadingRow("heading-six");
                     setThirdLevel("");
                   }}
-                  className="w-[91%] h-40 py-3 pb-[16px] gap-5 bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center "
+                  className="w-[91%] h-40 py-[17px] gap-5 bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center "
                 >
-                  <div className="text-[8px] text-lvl_3_img bg-white h-[42px] w-[65px] flex items-center justify-center rounded-md shadow-md shadow-gray-300">
+                  <div
+                    className="text-[8px] text-lvl_3_img bg-white h-[42px] w-[65px] flex items-center justify-center rounded-md "
+                    style={{ boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)" }}
+                  >
                     Heading 6
                   </div>
                   <p className="text-xs font-semibold text-lvl_3_txt">H6</p>

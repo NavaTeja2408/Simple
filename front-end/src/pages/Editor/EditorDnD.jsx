@@ -389,7 +389,7 @@ const EditorDnD = () => {
       </div>
 
       <div
-        className="bg-gray-50 relative"
+        className="bg-canvas_bg relative"
         style={{ display: "flex", height: "95vh" }}
       >
         {move && (

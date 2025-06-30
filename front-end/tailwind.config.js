@@ -38,7 +38,9 @@ export default {
         lvl_3_txt: "rgba(167, 167, 167, 1)",
         lvl_3_img: "rgba(196, 196, 196, 1)",
         lvl_2_txt: "rgba(140, 140, 140, 1)",
-        lvl_2_hed: "rgba(167, 164, 164, 1)",
+        lvl_2_hed: "rgba(140, 140, 140, 1)",
+        lvl_3_sha: "rgba(0, 0, 0, 0.2)",
+        canvas_bg: "rgba(245, 245, 245, 1)",
       },
 
       clipPath: {
