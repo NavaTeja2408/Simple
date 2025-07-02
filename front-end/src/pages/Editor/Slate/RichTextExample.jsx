@@ -457,7 +457,7 @@ const RichTextEditor = ({
           >
             <div className="relative flex flex-row">
               <select
-                className="  rounded px-1 bg-white py-1 outline-none text-lg  font-semibold text-gray-500"
+                className="  rounded px-1 bg-white py-1 outline-none text-md  font-semibold text-gray-500"
                 onChange={(e) => toggleBlock(editor, e.target.value)}
                 defaultValue="paragrapgh"
               >
@@ -483,7 +483,7 @@ const RichTextEditor = ({
                 ></button>
                 <IoIosArrowDown
                   onClick={() => setOpen((prev) => !prev)}
-                  className="text-gray-600 text-sm"
+                  className="text-gray-500 text-sm"
                 />
 
                 {/* Color options */}

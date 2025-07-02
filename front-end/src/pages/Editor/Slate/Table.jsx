@@ -259,26 +259,23 @@ const Table = ({
           ref={toolbarRef}
           className="absolute top-0 left-[30%] flex gap-1 p-2 bg-white shadow-gray-300  shadow-lg rounded-md z-10"
         >
-          <button onClick={() => addRow(row)} className="px-1 py-1 text-sm  ">
-            <img src={tab_add} />
-          </button>
           <button
             onClick={() => addRow(row + 1)}
             className="px-1 py-1 text-sm  "
           >
+            <img src={tab_add} />
+          </button>
+          <button onClick={() => addRow(row)} className="px-1 py-1 text-sm  ">
             <img src={tab_add} className="rotate-180" />
           </button>
           <div className="h-8 w-[1px]  bg-gray-300"></div>
           <button
-            onClick={() => addColumn(col)}
+            onClick={() => addColumn(col + 1)}
             className="px-1 py-1 text-sm -rotate-90  "
           >
             <img src={tab_add} />
           </button>
-          <button
-            onClick={() => addColumn(col + 1)}
-            className="px-1 py-1 text-sm "
-          >
+          <button onClick={() => addColumn(col)} className="px-1 py-1 text-sm ">
             <img src={tab_add} className="rotate-90" />
           </button>
           <div className="h-8 w-[1px]  bg-gray-300"></div>
@@ -435,7 +432,7 @@ const Table = ({
                     setRowH(false);
                   }}
                   onClick={() => deleteRow(row)}
-                  className=" text-sm -rotate-90  "
+                  className=" text-sm rotate-180   "
                 >
                   <img src={tab_del} />
                 </button>
@@ -449,7 +446,7 @@ const Table = ({
                   onClick={() => deleteColumn(col)}
                   className=" text-sm  "
                 >
-                  <img src={tab_del} className="rotate-180 " />
+                  <img src={tab_del} className="-rotate-90 " />
                 </button>
               </div>
             )}
