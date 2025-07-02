@@ -325,6 +325,7 @@ const RichTextEditor = ({
   selected,
   setSelected,
   right,
+  double,
 }) => {
   const editor = useMemo(() => withHistory(withReact(createEditor())), []);
   const [value, setValue] = useState(initialValue);

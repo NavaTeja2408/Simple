@@ -319,7 +319,7 @@ const DropRow = ({
           </div>
         ) : row.type === "image-para" ? (
           <div
-            className="w-full flex flex-row gap-1  "
+            className="w-full flex flex-row  items-center   "
             onClick={() => {
               setSelected(index);
               setSwitchButtons(index);
@@ -328,6 +328,7 @@ const DropRow = ({
             {row.align === undefined || row.align === "left" ? (
               <>
                 <RichTextExample
+                  double={true}
                   index={index}
                   indexValue={indexValue}
                   setIndexValue={setIndexValue}
@@ -351,7 +352,11 @@ const DropRow = ({
                 />
 
                 {switchButton === index && preview !== true && (
-                  <div className="w-[1px] h-30 border-r-[1px] border-dashed border-red-400 ml-4 relative">
+                  <div
+                    className={`w-[3px]          ${
+                      row.height ? `h-[${row.height}px]` : "h-[200px]"
+                    }  border-r-[1px]  border-dashed border-red-400 ml-2 relative z-50`}
+                  >
                     <button
                       ref={buttonRef}
                       onClick={() => {
@@ -438,7 +443,11 @@ const DropRow = ({
                 />
 
                 {switchButton === index && preview !== true && (
-                  <div className="w-[1px] h-30 border-r-[1px] border-dashed border-red-400 ml-4 relative">
+                  <div
+                    className={`w-[3px]          ${
+                      row.height ? `h-[${row.height}px]` : "h-[200px]"
+                    }  border-r-[1px]  border-dashed border-red-400 mr-1 relative z-50`}
+                  >
                     <button
                       ref={buttonRef}
                       onClick={() => {
