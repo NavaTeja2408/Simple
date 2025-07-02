@@ -10,6 +10,13 @@ import { FaItalic } from "react-icons/fa";
 import { FaUnderline } from "react-icons/fa";
 import table_add from "../../../assets/table_add.png";
 import table_delete from "../../../assets/table_delete.png";
+import tab_del from "../../../assets/tab_del.svg";
+import tab_add from "../../../assets/tab_add.svg";
+import { BsTextCenter } from "react-icons/bs";
+import { BsTextRight } from "react-icons/bs";
+import { BsTextLeft } from "react-icons/bs";
+import { IoIosArrowDown } from "react-icons/io";
+import { HiOutlineTrash } from "react-icons/hi";
 
 const Table = ({
   data,
@@ -253,26 +260,26 @@ const Table = ({
           className="absolute top-0 left-[30%] flex gap-1 p-2 bg-white shadow-gray-300  shadow-lg rounded-md z-10"
         >
           <button onClick={() => addRow(row)} className="px-1 py-1 text-sm  ">
-            <img src={table_add} />
+            <img src={tab_add} />
           </button>
           <button
             onClick={() => addRow(row + 1)}
             className="px-1 py-1 text-sm  "
           >
-            <img src={table_add} className="rotate-180" />
+            <img src={tab_add} className="rotate-180" />
           </button>
           <div className="h-8 w-[1px]  bg-gray-300"></div>
           <button
             onClick={() => addColumn(col)}
             className="px-1 py-1 text-sm -rotate-90  "
           >
-            <img src={table_add} />
+            <img src={tab_add} />
           </button>
           <button
             onClick={() => addColumn(col + 1)}
             className="px-1 py-1 text-sm "
           >
-            <img src={table_add} className="rotate-90" />
+            <img src={tab_add} className="rotate-90" />
           </button>
           <div className="h-8 w-[1px]  bg-gray-300"></div>
           <button
@@ -320,16 +327,17 @@ const Table = ({
               } `}
             />
           </button>
-          <div className="h-7 w-[1px] bg-gray-300"></div>
+          <div className="h-8 w-[1px] bg-gray-300"></div>
           <div
             onClick={() => setShowAlign(!showAlign)}
             className="px-1 py-1 flex items-center justify-center relative"
           >
-            <FaAlignCenter />
+            <BsTextLeft className="text-lg" />
+            <IoIosArrowDown className="text-xs " />
             {showAlign && (
               <div
                 ref={alignRef}
-                className="flex absolute top-10 px-2 py-1 rounded-sm  items-center justify-center gap-3 bg-white z-50 "
+                className="flex absolute top-10 px-2 py-1 rounded-sm flex-col  items-center justify-center gap-3 bg-white z-50 "
               >
                 <button
                   onMouseEnter={() => setAlignH(true)}
@@ -345,13 +353,13 @@ const Table = ({
                       onUpdateTextFormat("left");
                     }
                   }}
-                  className={`px-1 py-1 text-sm  ${
+                  className={`px-1 py-1 text-xl  ${
                     colAlign[col] === undefined || colAlign[col] === "left"
-                      ? "text-graidient_bottom"
-                      : "text-gray-500"
+                      ? "bg-gray-200"
+                      : "bg-white"
                   }`}
                 >
-                  <FaAlignLeft />
+                  <BsTextLeft />
                 </button>
                 <button
                   onMouseEnter={() => setAlignH(true)}
@@ -367,13 +375,13 @@ const Table = ({
                       onUpdateTextFormat("center");
                     }
                   }}
-                  className={`px-1 py-1 text-sm  ${
+                  className={`px-1 py-1 text-xl  ${
                     colAlign[col] !== undefined && colAlign[col] === "center"
-                      ? "text-graidient_bottom"
-                      : "text-gray-400"
+                      ? "bg-gray-200"
+                      : "bg-white"
                   } `}
                 >
-                  <FaAlignCenter />
+                  <BsTextCenter />
                 </button>
                 <button
                   onMouseEnter={() => setAlignH(true)}
@@ -389,13 +397,13 @@ const Table = ({
                       onUpdateTextFormat("right");
                     }
                   }}
-                  className={`px-1 py-1 text-sm  ${
+                  className={`px-1 py-1 text-xl  ${
                     colAlign[col] !== undefined && colAlign[col] === "right"
-                      ? "text-graidient_bottom"
-                      : "text-gray-400"
+                      ? "bg-gray-200"
+                      : "bg-white"
                   } `}
                 >
-                  <FaAlignRight />
+                  <BsTextRight />
                 </button>
               </div>
             )}
@@ -410,14 +418,14 @@ const Table = ({
                 // }
                 setDeleteShow(!deleteShow);
               }}
-              className=" relative px-1 py-[1px] text-sm"
+              className=" relative px-1 py-[1px] text-md "
             >
-              <RiDeleteBin6Line />
+              <HiOutlineTrash className="text-gray-500" />
             </button>
             {deleteShow && (
               <div
                 ref={deleteRef}
-                className="absolute top-8 w-16 h-8 gap-2 bg-white px-2 py-1   flex items-center justify-center  rounded-md"
+                className="absolute top-8 w-10 h-fit gap-2 bg-white px-2 py-1   flex flex-col items-center justify-center  rounded-md border border-gray-100"
               >
                 <button
                   onMouseEnter={() => {
@@ -429,7 +437,7 @@ const Table = ({
                   onClick={() => deleteRow(row)}
                   className=" text-sm -rotate-90  "
                 >
-                  <img src={table_delete} />
+                  <img src={tab_del} />
                 </button>
                 <button
                   onMouseEnter={() => {
@@ -441,7 +449,7 @@ const Table = ({
                   onClick={() => deleteColumn(col)}
                   className=" text-sm  "
                 >
-                  <img src={table_delete} className="rotate-180 " />
+                  <img src={tab_del} className="rotate-180 " />
                 </button>
               </div>
             )}

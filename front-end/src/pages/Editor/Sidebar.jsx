@@ -1894,47 +1894,47 @@ const Sidebar = ({
             ) : thirdLevel === "table" ? (
               <div
                 ref={headingRef}
-                className="scrollbar-thin absolute left-0 w-[200px] flex flex-col items-center pt-10 gap-5 h-screen border-r border-gray-300 bg-white z-50 overflow-auto pb-20 text-xs text-gray-400 text-center  "
+                className=" absolute left-0 w-[220px] flex flex-col items-center pt-[16px] gap-4 h-screen bg-white z-30 overflow-auto pb-20 scrollbar-hide border-r border-gray-100 "
               >
                 <div
                   onClick={() => {
                     addTableRow("normal");
                     setThirdLevel("");
                   }}
-                  className="w-[80%] h-24 p-2 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
+                  className="w-[90%] h-[112px] p-2 bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center "
                 >
                   <img className="h-[75%] w-[53%]" src={table_v_1} />
-                  <p>Basic Layout</p>
+                  <p className="text-lvl_2_txt text-xs">Basic</p>
                 </div>
                 <div
                   onClick={() => {
                     addTableRow("alternativerow");
                     setThirdLevel("");
                   }}
-                  className="w-[80%] h-24 p-2 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
+                  className="w-[90%] h-[112px] p-2 bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center "
                 >
                   <img className="h-[75%] w-[53%]" src={table_v_2} />
-                  <p>Aleternative Row Layout</p>
+                  <p className="text-lvl_2_txt text-xs">Aleternative Row</p>
                 </div>
                 <div
                   onClick={() => {
                     addTableRow("alternativecol");
                     setThirdLevel("");
                   }}
-                  className="w-[80%] h-30 p-2 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
+                  className="w-[90%] h-[112px] p-2 bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center "
                 >
                   <img className="h-[75%] w-[53%]" src={table_v_3} />
-                  <p>Aleternative Coloumn Layout</p>
+                  <p className="text-lvl_2_txt text-xs">Aleternative Coloumn</p>
                 </div>
                 <div
                   onClick={() => {
                     addTableRow("toprow");
                     setThirdLevel("");
                   }}
-                  className="w-[80%] h-30 p-2 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
+                  className="w-[90%] h-[112px] p-2 bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center "
                 >
                   <img className="h-[75%] w-[53%]" src={table_v_4} />
-                  <p>Top Row Layout</p>
+                  <p className="text-lvl_2_txt text-xs">Top Row</p>
                 </div>
 
                 <div
@@ -1942,10 +1942,10 @@ const Sidebar = ({
                     addTableRow("leftcol");
                     setThirdLevel("");
                   }}
-                  className="w-[80%] h-30 p-2 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
+                  className="w-[90%] h-[112px] p-2 bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center "
                 >
                   <img className="h-[75%] w-[53%]" src={table_v_5} />
-                  <p>Left Coloumn Layout</p>
+                  <p className="text-lvl_2_txt text-xs">Left Coloumn</p>
                 </div>
               </div>
             ) : thirdLevel === "sections" ? (

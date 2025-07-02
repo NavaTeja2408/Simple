@@ -4,6 +4,7 @@ import image_slate from "../../../assets/image_slate.svg";
 import { IoCloudUploadOutline } from "react-icons/io5";
 import { AiOutlineColumnWidth } from "react-icons/ai";
 import { FaAlignLeft, FaAlignCenter, FaAlignRight } from "react-icons/fa";
+import image_alter from "../../../assets/ImageAlter.png";
 
 const ForDouble = ({
   data,
@@ -127,7 +128,7 @@ const ForDouble = ({
         <h1>Uploading the Image...</h1>
       ) : (
         <img
-          src={data ? data : image_slate}
+          src={data ? data : image_alter}
           alt="Uploaded"
           style={{
             objectFit: "contain",

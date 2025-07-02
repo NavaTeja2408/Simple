@@ -187,43 +187,31 @@ const Element = ({ attributes, children, element }) => {
   switch (element.type) {
     case "heading-one":
       return (
-        <h1
-          className={`text-[2.5em] py-1 font-bold ${alignment}`}
-          {...attributes}
-        >
+        <h1 className={`text-[2.5em] py-1  ${alignment}`} {...attributes}>
           {children}
         </h1>
       );
     case "heading-two":
       return (
-        <h2
-          className={`text-[2em] py-1 font-bold ${alignment}`}
-          {...attributes}
-        >
+        <h2 className={`text-[2em] py-1  ${alignment}`} {...attributes}>
           {children}
         </h2>
       );
     case "heading-three":
       return (
-        <h2
-          className={`text-[1.75em] py-1 font-bold ${alignment}`}
-          {...attributes}
-        >
+        <h2 className={`text-[1.75em] py-1  ${alignment}`} {...attributes}>
           {children}
         </h2>
       );
     case "heading-four":
       return (
-        <h2
-          className={`text-[1.5em] py-1 font-bold ${alignment}`}
-          {...attributes}
-        >
+        <h2 className={`text-[1.5em] py-1 ${alignment}`} {...attributes}>
           {children}
         </h2>
       );
     case "heading-five":
       return (
-        <h2 className={`text-[1.25em] font-bold ${alignment}`} {...attributes}>
+        <h2 className={`text-[1.25em]  ${alignment}`} {...attributes}>
           {children}
         </h2>
       );
@@ -659,11 +647,11 @@ const RichTextEditor = ({
           renderElement={renderElement}
           renderLeaf={renderLeaf}
           placeholder="Click to add paragraph"
-          className={` min-h-[20px] px-2 py-1 outline-none ${textColor} ${
+          className={` min-h-[20px] px-2 outline-none ${textColor} ${
             index === selected && preview !== true
               ? "border-[2px] border-gray-300"
               : "none"
-          } font-${settings.body}`}
+          } font-${settings.body} `}
           readOnly={preview}
         />
       </Slate>

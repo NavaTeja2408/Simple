@@ -9,6 +9,7 @@ import { PiAlignCenterHorizontalLight } from "react-icons/pi";
 import { PiAlignRight } from "react-icons/pi";
 import { MdOutlineZoomOutMap } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
+import image_alter from "../../../assets/ImageAlter.png";
 
 import {
   FaBold,
@@ -196,7 +197,7 @@ const Image = ({
         <h1>Uploading the Image...</h1>
       ) : (
         <img
-          src={data ? data : image_slate}
+          src={data ? data : image_alter}
           alt="Uploaded"
           style={{
             objectFit: "contain",
