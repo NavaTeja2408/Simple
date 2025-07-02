@@ -7,6 +7,8 @@ import { RxText } from "react-icons/rx";
 import { PiAlignLeft } from "react-icons/pi";
 import { PiAlignCenterHorizontalLight } from "react-icons/pi";
 import { PiAlignRight } from "react-icons/pi";
+import { MdOutlineZoomOutMap } from "react-icons/md";
+import { RxCross2 } from "react-icons/rx";
 
 import {
   FaBold,
@@ -39,6 +41,7 @@ const Image = ({
   const [caption, setCaption] = useState(false);
   const [cHeading, setCHeading] = useState("");
   const [cDiscription, setCDisciption] = useState("");
+  const [show, setShow] = useState(null);
 
   // Close menu when clicking outside
   const handleClickOutsideMenu = (event) => {
@@ -113,7 +116,7 @@ const Image = ({
       }}
     >
       {index === indexValue && preview !== true && (
-        <div className="absolute top-2 left-1/2 transform -translate-x-1/2 px-3 h-10 bg-white border border-gray-100 shadow-lg shadow-gray-300 flex flex-row items-center space-x-2 p-2 rounded text-sm">
+        <div className="absolute top-2 left-1/2 transform -translate-x-1/2 px-3 h-10 bg-white border border-gray-100 shadow-md  flex flex-row items-center space-x-2 p-2 rounded text-sm">
           {/* Hidden file input */}
           <input
             id={`file-upload-${index}`}
@@ -174,6 +177,15 @@ const Image = ({
                   }`}
                 />
               </button>
+              {data && (
+                <button onClick={() => setShow(data)}>
+                  <MdOutlineZoomOutMap
+                    className={`text-lg ml-01 ${
+                      aliegn === "right" ? "text-black" : "text-lvl_2_txt"
+                    }`}
+                  />
+                </button>
+              )}
             </div>
           )}
         </div>
@@ -202,13 +214,11 @@ const Image = ({
           settings.body
         }`}
       >
-        {captionH && (
-          <h1 className="text-center text-3xl font-bold">{captionH}</h1>
-        )}
+        {captionH && <h1 className="text-center text-[1em]">{captionH}</h1>}
 
         {discription && (
           <div className="w-full flex items-center justify-center">
-            <p className="text-center text-sm text-gray-600 max-w-[80%] break-words overflow-hidden">
+            <p className="text-center text-[1em] text-gray-500 max-w-[80%] break-words overflow-hidden">
               {discription}
             </p>
           </div>
@@ -267,6 +277,43 @@ const Image = ({
                 Save
               </button>
             </div>
+          </div>
+        </div>
+      )}
+      {show && (
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100vw",
+            height: "100vh",
+            backgroundColor: "rgba(0, 0, 0, 0.8)", // Dim background
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: 9999,
+          }}
+        >
+          <img
+            src={show}
+            alt="Centered Preview"
+            style={{
+              maxWidth: "70%",
+              maxHeight: "70%",
+              borderRadius: "10px",
+              boxShadow: "0 0 20px rgba(255,255,255,0.2)",
+            }}
+          />
+
+          <div
+            className="text-xl p-2 rounded-[50%] text-white absolute top-3 right-3 cursor-pointer"
+            onClick={() => setShow(null)}
+            style={{
+              backgroundColor: "rgba(0, 0, 0, 0.8)",
+            }}
+          >
+            <RxCross2 />
           </div>
         </div>
       )}

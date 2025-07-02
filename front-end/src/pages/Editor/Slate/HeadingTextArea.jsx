@@ -437,7 +437,7 @@ const MyRichTextEditor = ({
       >
         {index === selected && preview !== true && (
           <Toolbar
-            className="absolute -top-14 shadow-sm shadow-gray-400 left-[26%]  bg-white flex flex-row items-center justify-center  border border-gray-200 rounded-sm  px-1 py-2 "
+            className="absolute -top-11  left-[26%]  bg-white flex flex-row items-center justify-center border border-gray-100 shadow-md shadow-gray-300 rounded-md  px-1 py-1 "
             ref={toolbarRef}
             onFocus={() => setIndexValue(index)}
             onBlur={(e) => {
@@ -616,7 +616,7 @@ const MyRichTextEditor = ({
         <Editable
           renderElement={renderElement}
           renderLeaf={renderLeaf}
-          placeholder="Heading"
+          placeholder="Click to add heading"
           style={{
             "--tw-bg-opacity": 0.4,
             backgroundColor:

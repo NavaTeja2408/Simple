@@ -458,6 +458,7 @@ const DropRow = ({
                   </div>
                 )}
                 <RichTextExample
+                  right={true}
                   index={index}
                   indexValue={indexValue}
                   setIndexValue={setIndexValue}

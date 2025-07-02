@@ -284,7 +284,7 @@ const Element = ({ attributes, children, element }) => {
       );
     default:
       return (
-        <p className={` ${alignment}`} {...attributes}>
+        <p className={` text-[1em] ${alignment}`} {...attributes}>
           {children}
         </p>
       );
@@ -312,7 +312,7 @@ const Leaf = ({ attributes, children, leaf }) => {
     <a
       {...attributes}
       href={children.text}
-      className="text-blue-800 cursor-pointer underline font-semibold"
+      className="text-blue-800 cursor-pointer underline "
       onClick={handleLinkClick}
     >
       {children}
@@ -446,9 +446,9 @@ const RichTextEditor = ({
       >
         {index === selected && preview !== true && choosen === true && (
           <Toolbar
-            className={`absolute -top-14 flex flex-row items-center justify-center  shadow-sm shadow-gray-400 ${
+            className={`absolute -top-12 flex flex-row items-center justify-center  shadow-md shadow-gray-300 border border-gray-100 ${
               right === true ? "-left-32" : "left-3"
-            }  bg-white  border  border-gray-200 rounded-sm  px-3 py-2`}
+            }  bg-white  border  border-gray-200 rounded-md  px-3 py-1`}
             ref={toolbarRef}
             onFocus={() => {
               setIndexValue(index);
@@ -658,7 +658,7 @@ const RichTextEditor = ({
           }}
           renderElement={renderElement}
           renderLeaf={renderLeaf}
-          placeholder="Paragraph"
+          placeholder="Click to add paragraph"
           className={` min-h-[20px] px-2 py-1 outline-none ${textColor} ${
             index === selected && preview !== true
               ? "border-[2px] border-gray-300"
