@@ -10,6 +10,10 @@
 
 
 
+
+html, body, #root {
+  height: 100%;
+}
 .signature-text {
   font-family: "Monsieur La Doulaise", serif;
 }

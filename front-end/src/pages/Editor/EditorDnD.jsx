@@ -389,7 +389,7 @@ const EditorDnD = () => {
       </div>
 
       <div
-        className="bg-canvas_bg relative"
+        className="bg-canvas_bg relative  "
         style={{ display: "flex", height: "95vh" }}
       >
         {move && (
@@ -511,10 +511,10 @@ const EditorDnD = () => {
 
         {/* Canvas Section */}
         <div
+          className="flex justify-center overflow-y-auto"
           style={{
             flex: 1,
             overflow: "auto",
-            maxHeight: "100vh",
           }}
           ref={dropCanvasRef}
         >

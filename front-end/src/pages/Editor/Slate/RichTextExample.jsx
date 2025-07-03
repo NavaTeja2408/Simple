@@ -410,8 +410,8 @@ const RichTextEditor = ({
 
   return (
     <div
-      className={` relative w-[100%] p-2 rounded  ${
-        selected === index ? "mt-1" : "mt-1"
+      className={` relative w-[100%] py-0.5 px-2 rounded  ${
+        selected === index ? "mt-0.5" : "mt-0.5"
       }`}
       onFocus={() => setSelected(index)}
       onBlur={(e) => {
@@ -435,7 +435,7 @@ const RichTextEditor = ({
       >
         {index === selected && preview !== true && choosen === true && (
           <Toolbar
-            className={`absolute -top-12 flex flex-row items-center justify-center  shadow-md shadow-gray-300 border border-gray-100 ${
+            className={`absolute z-10 -top-12 flex flex-row items-center justify-center  shadow-md shadow-gray-300 border border-gray-100 ${
               right === true ? "-left-32" : "left-3"
             }  bg-white  border  border-gray-200 rounded-md  px-3 py-1`}
             ref={toolbarRef}
@@ -473,17 +473,17 @@ const RichTextEditor = ({
               <div className="w-[1px] h-8 bg-gray-200 ml-1"></div>
               <div
                 ref={colorBtnRef}
-                className="relative flex items-center justify-center gap-2 ml-3 "
+                className="relative flex items-center justify-center  ml-3 gap-1 "
               >
                 {/* Selected color button */}
                 <button
-                  className="w-4 h-4 rounded-sm border border-gray-300"
+                  className="w-4 h-4 rounded-sm border border-gray-300 "
                   style={{ backgroundColor: selectedColor.hex }}
                   onClick={() => setOpen((prev) => !prev)}
                 ></button>
                 <IoIosArrowDown
                   onClick={() => setOpen((prev) => !prev)}
-                  className="text-gray-500 text-sm"
+                  className="text-gray-500 text-sm cursor-pointer "
                 />
 
                 {/* Color options */}
@@ -649,9 +649,7 @@ const RichTextEditor = ({
           renderLeaf={renderLeaf}
           placeholder="Click to add paragraph"
           className={` min-h-[20px] px-2 outline-none ${textColor} ${
-            index === selected && preview !== true
-              ? "border-[2px] border-gray-300"
-              : "none"
+            index === selected && preview !== true ? "none" : "none"
           } font-${settings.body} `}
           readOnly={preview}
         />

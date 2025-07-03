@@ -153,7 +153,37 @@ const DropRow = ({
     if (!divRef.current) return;
 
     html2canvas(divRef.current).then((canvas) => {
-      canvas.toBlob(
+      const cropAmount = 20; // pixels to crop from each side
+      const padding = 30; // white padding around the cropped image
+      const paddingHeight = 15;
+      const croppedWidth = canvas.width - cropAmount * 2;
+      const croppedHeight = canvas.height - cropAmount * 2;
+
+      // Create a new canvas for cropped + padded result
+      const finalCanvas = document.createElement("canvas");
+      finalCanvas.width = croppedWidth + padding * 2;
+      finalCanvas.height = croppedHeight + paddingHeight * 2;
+
+      const ctx = finalCanvas.getContext("2d");
+
+      // Fill with white background
+      ctx.fillStyle = "white";
+      ctx.fillRect(0, 0, finalCanvas.width, finalCanvas.height);
+
+      // Draw cropped image with padding
+      ctx.drawImage(
+        canvas,
+        cropAmount,
+        cropAmount,
+        croppedWidth,
+        croppedHeight,
+        padding,
+        padding,
+        croppedWidth,
+        croppedHeight
+      );
+
+      finalCanvas.toBlob(
         (blob) => {
           if (blob) {
             const file = new File([blob], "snapshot.jpg", {
@@ -272,50 +302,54 @@ const DropRow = ({
             className="w-full flex flex-row gap-4  "
             onClick={() => setSelected(index)}
           >
-            <RichTextExample
-              right={false}
-              index={index}
-              indexValue={indexValue}
-              setIndexValue={setIndexValue}
-              onChange={(newData) => {
-                const updatedContent = [...rows];
-                updatedContent[index].firstContent = newData;
-                setRows(updatedContent);
-              }}
-              data={row.firstContent}
-              preview={preview}
-              settings={settings}
-              onTextColor={(newData) => {
-                const updatedData = [...rows];
-                updatedData[index].textColor = newData;
-                setRows(updatedData);
-              }}
-              selected={selected}
-              textColor={row.textColor ? row.textColor : "text-black"}
-              setSelected={setSelected}
-            />
-            <RichTextExample
-              right={true}
-              index={index}
-              indexValue={indexValue}
-              setIndexValue={setIndexValue}
-              onChange={(newData) => {
-                const updatedContent = [...rows];
-                updatedContent[index].secondContent = newData;
-                setRows(updatedContent);
-              }}
-              data={row.secondContent}
-              preview={preview}
-              settings={settings}
-              onTextColor={(newData) => {
-                const updatedData = [...rows];
-                updatedData[index].textColor = newData;
-                setRows(updatedData);
-              }}
-              selected={selected}
-              textColor={row.textColor ? row.textColor : "text-black"}
-              setSelected={setSelected}
-            />
+            <div className="w-[50%]">
+              <RichTextExample
+                right={false}
+                index={index}
+                indexValue={indexValue}
+                setIndexValue={setIndexValue}
+                onChange={(newData) => {
+                  const updatedContent = [...rows];
+                  updatedContent[index].firstContent = newData;
+                  setRows(updatedContent);
+                }}
+                data={row.firstContent}
+                preview={preview}
+                settings={settings}
+                onTextColor={(newData) => {
+                  const updatedData = [...rows];
+                  updatedData[index].textColor = newData;
+                  setRows(updatedData);
+                }}
+                selected={selected}
+                textColor={row.textColor ? row.textColor : "text-black"}
+                setSelected={setSelected}
+              />
+            </div>
+            <div className="w-[50%]">
+              <RichTextExample
+                right={true}
+                index={index}
+                indexValue={indexValue}
+                setIndexValue={setIndexValue}
+                onChange={(newData) => {
+                  const updatedContent = [...rows];
+                  updatedContent[index].secondContent = newData;
+                  setRows(updatedContent);
+                }}
+                data={row.secondContent}
+                preview={preview}
+                settings={settings}
+                onTextColor={(newData) => {
+                  const updatedData = [...rows];
+                  updatedData[index].textColor = newData;
+                  setRows(updatedData);
+                }}
+                selected={selected}
+                textColor={row.textColor ? row.textColor : "text-black"}
+                setSelected={setSelected}
+              />
+            </div>
           </div>
         ) : row.type === "image-para" ? (
           <div
@@ -326,30 +360,32 @@ const DropRow = ({
             }}
           >
             {row.align === undefined || row.align === "left" ? (
-              <>
-                <RichTextExample
-                  double={true}
-                  index={index}
-                  indexValue={indexValue}
-                  setIndexValue={setIndexValue}
-                  onChange={(newData) => {
-                    const updatedContent = [...rows];
-                    updatedContent[index].content = newData;
-                    setRows(updatedContent);
-                  }}
-                  data={row.content}
-                  preview={preview}
-                  className="relative"
-                  settings={settings}
-                  onTextColor={(newData) => {
-                    const updatedData = [...rows];
-                    updatedData[index].textColor = newData;
-                    setRows(updatedData);
-                  }}
-                  selected={selected}
-                  textColor={row.textColor ? row.textColor : "text-black"}
-                  setSelected={setSelected}
-                />
+              <div className="w-full flex items-center justify-center">
+                <div className="w-[50%]">
+                  <RichTextExample
+                    double={true}
+                    index={index}
+                    indexValue={indexValue}
+                    setIndexValue={setIndexValue}
+                    onChange={(newData) => {
+                      const updatedContent = [...rows];
+                      updatedContent[index].content = newData;
+                      setRows(updatedContent);
+                    }}
+                    data={row.content}
+                    preview={preview}
+                    className="relative"
+                    settings={settings}
+                    onTextColor={(newData) => {
+                      const updatedData = [...rows];
+                      updatedData[index].textColor = newData;
+                      setRows(updatedData);
+                    }}
+                    selected={selected}
+                    textColor={row.textColor ? row.textColor : "text-black"}
+                    setSelected={setSelected}
+                  />
+                </div>
 
                 {switchButton === index && preview !== true && (
                   <div
@@ -375,72 +411,75 @@ const DropRow = ({
                     </button>
                   </div>
                 )}
-
-                <ForDouble
-                  onWidth={(newData) => {
-                    const updatedContent = [...rows];
-                    updatedContent[index].width = newData;
-                    setRows(updatedContent);
-                  }}
-                  onAliegn={(newData) => {
-                    const updatedContent = [...rows];
-                    updatedContent[index].aliegn = newData;
-                    setRows(updatedContent);
-                  }}
-                  aliegn={row.aliegn ? row.aliegn : "center"}
-                  width={row.width ? row.width : "50"}
-                  index={index}
-                  indexValue={indexValue}
-                  setIndexValue={setIndexValue}
-                  preview={preview}
-                  data={row.ImageLink}
-                  selected={selected}
-                  onUpdate={(newData) => {
-                    const updatedContent = [...rows];
-                    updatedContent[index].ImageLink = newData;
-                    setRows(updatedContent);
-                  }}
-                  onHeight={(newData) => {
-                    const updatedContent = [...rows];
-                    updatedContent[index].height = newData;
-                    setRows(updatedContent);
-                  }}
-                  height={row.height ? row.height : "200"}
-                />
-              </>
+                <div className="w-[50%]">
+                  <ForDouble
+                    onWidth={(newData) => {
+                      const updatedContent = [...rows];
+                      updatedContent[index].width = newData;
+                      setRows(updatedContent);
+                    }}
+                    onAliegn={(newData) => {
+                      const updatedContent = [...rows];
+                      updatedContent[index].aliegn = newData;
+                      setRows(updatedContent);
+                    }}
+                    aliegn={row.aliegn ? row.aliegn : "center"}
+                    width={row.width ? row.width : "50"}
+                    index={index}
+                    indexValue={indexValue}
+                    setIndexValue={setIndexValue}
+                    preview={preview}
+                    data={row.ImageLink}
+                    selected={selected}
+                    onUpdate={(newData) => {
+                      const updatedContent = [...rows];
+                      updatedContent[index].ImageLink = newData;
+                      setRows(updatedContent);
+                    }}
+                    onHeight={(newData) => {
+                      const updatedContent = [...rows];
+                      updatedContent[index].height = newData;
+                      setRows(updatedContent);
+                    }}
+                    height={row.height ? row.height : "200"}
+                  />
+                </div>
+              </div>
             ) : (
-              <>
-                <ForDouble
-                  onWidth={(newData) => {
-                    const updatedContent = [...rows];
-                    updatedContent[index].width = newData;
-                    setRows(updatedContent);
-                  }}
-                  onAliegn={(newData) => {
-                    const updatedContent = [...rows];
-                    updatedContent[index].aliegn = newData;
-                    setRows(updatedContent);
-                  }}
-                  aliegn={row.aliegn ? row.aliegn : "center"}
-                  width={row.width ? row.width : "50"}
-                  index={index}
-                  indexValue={indexValue}
-                  setIndexValue={setIndexValue}
-                  preview={preview}
-                  data={row.ImageLink}
-                  onUpdate={(newData) => {
-                    const updatedContent = [...rows];
-                    updatedContent[index].ImageLink = newData;
-                    setRows(updatedContent);
-                  }}
-                  onHeight={(newData) => {
-                    const updatedContent = [...rows];
-                    updatedContent[index].height = newData;
-                    setRows(updatedContent);
-                  }}
-                  height={row.height ? row.height : "200"}
-                  selected={selected}
-                />
+              <div className="w-full flex items-center justify-center">
+                <div className="w-[50%]">
+                  <ForDouble
+                    onWidth={(newData) => {
+                      const updatedContent = [...rows];
+                      updatedContent[index].width = newData;
+                      setRows(updatedContent);
+                    }}
+                    onAliegn={(newData) => {
+                      const updatedContent = [...rows];
+                      updatedContent[index].aliegn = newData;
+                      setRows(updatedContent);
+                    }}
+                    aliegn={row.aliegn ? row.aliegn : "center"}
+                    width={row.width ? row.width : "50"}
+                    index={index}
+                    indexValue={indexValue}
+                    setIndexValue={setIndexValue}
+                    preview={preview}
+                    data={row.ImageLink}
+                    onUpdate={(newData) => {
+                      const updatedContent = [...rows];
+                      updatedContent[index].ImageLink = newData;
+                      setRows(updatedContent);
+                    }}
+                    onHeight={(newData) => {
+                      const updatedContent = [...rows];
+                      updatedContent[index].height = newData;
+                      setRows(updatedContent);
+                    }}
+                    height={row.height ? row.height : "200"}
+                    selected={selected}
+                  />
+                </div>
 
                 {switchButton === index && preview !== true && (
                   <div
@@ -466,30 +505,32 @@ const DropRow = ({
                     </button>
                   </div>
                 )}
-                <RichTextExample
-                  right={true}
-                  index={index}
-                  indexValue={indexValue}
-                  setIndexValue={setIndexValue}
-                  onChange={(newData) => {
-                    const updatedContent = [...rows];
-                    updatedContent[index].content = newData;
-                    setRows(updatedContent);
-                  }}
-                  onTextColor={(newData) => {
-                    const updatedData = [...rows];
-                    updatedData[index].textColor = newData;
-                    setRows(updatedData);
-                  }}
-                  textColor={row.textColor ? row.textColor : "text-black"}
-                  data={row.content}
-                  preview={preview}
-                  selected={selected}
-                  className="relative"
-                  settings={settings}
-                  setSelected={setSelected}
-                />
-              </>
+                <div className="w-[50%]">
+                  <RichTextExample
+                    right={true}
+                    index={index}
+                    indexValue={indexValue}
+                    setIndexValue={setIndexValue}
+                    onChange={(newData) => {
+                      const updatedContent = [...rows];
+                      updatedContent[index].content = newData;
+                      setRows(updatedContent);
+                    }}
+                    onTextColor={(newData) => {
+                      const updatedData = [...rows];
+                      updatedData[index].textColor = newData;
+                      setRows(updatedData);
+                    }}
+                    textColor={row.textColor ? row.textColor : "text-black"}
+                    data={row.content}
+                    preview={preview}
+                    selected={selected}
+                    className="relative"
+                    settings={settings}
+                    setSelected={setSelected}
+                  />
+                </div>
+              </div>
             )}
           </div>
         ) : row.type === "image" ? (

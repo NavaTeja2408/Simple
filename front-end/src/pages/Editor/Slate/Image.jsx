@@ -10,6 +10,7 @@ import { PiAlignRight } from "react-icons/pi";
 import { MdOutlineZoomOutMap } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
 import image_alter from "../../../assets/ImageAlter.png";
+import { TfiReload } from "react-icons/tfi";
 
 import {
   FaBold,
@@ -133,7 +134,12 @@ const Image = ({
             htmlFor={`file-upload-${index}`}
             className="px-1 py-1 flex items-center justify-center gap-2  text-center rounded cursor-pointer text-xs text-lvl_2_txt"
           >
-            <IoCloudUploadOutline className="text-md" />
+            {data === "" ? (
+              <IoCloudUploadOutline className="text-md" />
+            ) : (
+              <TfiReload className="text-md" />
+            )}
+
             {data === "" ? "Upload Image" : "Change Image"}
           </label>
           <div className="w-[1px] h-7 bg-gray-300"></div>
@@ -142,7 +148,7 @@ const Image = ({
             <select
               value={width}
               onChange={(e) => onWidth(e.target.value)}
-              className="p-1  bg-white outline-none border-[1px] border-gray-200 px-2"
+              className="p-1  bg-white outline-none border-[1px] border-gray-200 px-2 text-xs text-lvl_2_txt"
             >
               {/* <option value="" hidden></option> */}
               <option value="100">Container width</option>
@@ -194,7 +200,7 @@ const Image = ({
 
       {/* Image Display */}
       {loading ? (
-        <h1>Uploading the Image...</h1>
+        <h1 className="text-lvl_2_txt">Uploading the Image...</h1>
       ) : (
         <img
           src={data ? data : image_alter}

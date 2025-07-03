@@ -218,7 +218,7 @@ const MyRichTextEditor = ({
   const initialValue = [
     {
       type: textSize,
-      align: "center",
+      align: "left",
 
       children: [
         {
@@ -406,8 +406,8 @@ const MyRichTextEditor = ({
 
   return (
     <div
-      className={` relative w-[100%] p-2 rounded  ${
-        selected === index ? "mt-1" : "mt-1"
+      className={` relative z-10 w-[100%] py-0.5 px-2 rounded  ${
+        selected === index ? "mt-0.5" : "mt-0.5"
       }`}
       onFocus={() => setSelected(index)}
       onBlur={(e) => {
@@ -626,11 +626,7 @@ const MyRichTextEditor = ({
           }}
           className={` relative min-h-[20px] ${textColor}   px-2 py-1 outline-none   font-${
             settings.heading
-          } ${
-            index === selected && preview !== true
-              ? "border-[2px] border-gray-300"
-              : "none"
-          }`}
+          } ${index === selected && preview !== true ? "none" : "none"}`}
           readOnly={preview}
         />
         {settings.theme !== 0 && (

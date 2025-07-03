@@ -65,6 +65,8 @@ const EditorHeader = ({
   createdAt,
 }) => {
   const [saving, setSaving] = useState(false);
+  const [isDisabledL, setIsDisabledL] = useState(false);
+  const [isDisabledF, setIsDisabledF] = useState(false);
   const [headerName, setHeaderName] = useState(proposalName);
   const [notifiacations, setNotification] = useState(false);
   const [lock, setLock] = useState(false);
@@ -130,6 +132,7 @@ const EditorHeader = ({
 
   const handleFavorate = async () => {
     try {
+      setIsDisabledF(true);
       await axios.put(`${databaseUrl}/api/editor/favorate`, {
         id: id,
         favorate: favorate === true ? false : true,
@@ -143,11 +146,14 @@ const EditorHeader = ({
       setMenu(false);
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsDisabledF(false);
     }
   };
 
   const handleLocked = async (data) => {
     try {
+      setIsDisabledL(true);
       await axios.put(`${databaseUrl}/api/editor/locked`, {
         id: id,
         preview: data,
@@ -162,6 +168,7 @@ const EditorHeader = ({
       } else {
         toast.success("Unlocked!");
       }
+      setIsDisabledL(false);
     }
   };
 
@@ -301,7 +308,7 @@ const EditorHeader = ({
     };
   }, [rows, settings]);
   return (
-    <div className="w-full flex items-center justify-evenly h-16 px-7 border-b-[1px] border-gray-200 shadow-lg shadow-gray-700 be-vietnam-pro-regular relative ">
+    <div className="w-full flex items-center justify-evenly h-16 px-7 border-b-[1px] border-gray-200 shadow-sm shadow-gray-300 be-vietnam-pro-regular relative ">
       {tool === "Manage sharing proposal" && (
         <div className=" absolute left-[65%] -bottom-2 px-2 bg-gray-600 text-white z-50 text-xs rounded-sm ">
           {tool}
@@ -342,15 +349,15 @@ const EditorHeader = ({
           onClick={() => navigate("/home")}
           src={editor_logo}
           alt="logo"
-          // onMouseEnter={() => setTool("Go to Dashboard")}
-          // onMouseLeave={() => setTool(null)}
+          onMouseEnter={() => setTool("Go to Dashboard")}
+          onMouseLeave={() => setTool(null)}
           className="w-[40px] h-[30px] cursor-pointer relative -ml-[6px]"
         />
-        {/* {tool === "Go to Dashboard" && (
+        {tool === "Go to Dashboard" && (
           <div className=" absolute -bottom-4 px-2 bg-gray-600 text-white z-50 text-xs rounded-sm ">
             {tool}
           </div>
-        )} */}
+        )}
 
         <div className="h-16 w-[1px] bg-gray-200 ml-[13px] z-50"></div>
         {/* <img
@@ -393,7 +400,7 @@ const EditorHeader = ({
               <IoMdCloudDone className="text-graidient_bottom w-[22px] h-[18px] ml-[3px]" />
             )}
           </div>
-          <p className="text-[9px]  text-gray-400 rounded-lg w-fit cursor-default">
+          <p className="text-[10px]  text-gray-400 rounded-lg w-fit cursor-default">
             By {created} · {formattedDate}
           </p>
         </div>
@@ -430,14 +437,15 @@ const EditorHeader = ({
         </button> */}
         <div className=" relative">
           <button
-            className={`p-[7px] rounded-md text-gray-500 flex items-center justify-center  ${
-              preview === true
+            className={`p-[7px] rounded-md text-gray-500 flex items-center justify-center ${
+              preview
                 ? "bg-graidient_bottom text-white hover:bg-hover_dark_btn"
                 : " hover:bg-graidient_bottom hover:text-white"
-            }  `}
+            } ${isDisabledL ? "opacity-50 cursor-not-allowed" : ""}`}
             onClick={() => handleLocked(!preview)}
             onMouseEnter={() => setTool("Manage sharing proposal")}
             onMouseLeave={() => setTool(null)}
+            disabled={isDisabledL}
           >
             {preview === true ? (
               <LockClosedIcon
@@ -446,7 +454,7 @@ const EditorHeader = ({
             ) : (
               <LockOpen1Icon className={`h-[19px] w-[19px]  `} />
             )}
-          </button>{" "}
+          </button>
           {lock && (
             <div
               ref={lockRef}
@@ -562,10 +570,11 @@ const EditorHeader = ({
               favorate === true
                 ? "bg-graidient_bottom text-white hover:bg-hover_dark_btn"
                 : "hover:bg-graidient_bottom hover:text-white"
-            } `}
+            } ${isDisabledF ? "opacity-50 cursor-not-allowed" : ""} `}
             onMouseEnter={() => setTool("More actions")}
             onMouseLeave={() => setTool(null)}
             onClick={handleFavorate}
+            disabled={isDisabledF}
           >
             <StarIcon
               className={`h-[19px] w-[19px]  ${

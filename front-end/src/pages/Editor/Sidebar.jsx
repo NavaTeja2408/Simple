@@ -264,6 +264,87 @@ const Sidebar = ({
     ],
   };
 
+  const section_3_row = {
+    id: "081abde6-a028-401b-80cb-5db02c44a317",
+    type: "input",
+    content: [
+      {
+        type: "heading-two",
+        children: [
+          {
+            text: "Executive Summary",
+            bold: true,
+          },
+        ],
+      },
+      {
+        type: "paragraph",
+        children: [
+          {
+            text: "Your Executive Summary is the snapshot of your proposal or business plan.",
+          },
+        ],
+      },
+      {
+        type: "paragraph",
+        children: [
+          {
+            text: "Use it to clearly explain where your company is today, where you’re headed, and why you’ll succeed.",
+          },
+        ],
+      },
+      {
+        type: "paragraph",
+        children: [
+          {
+            text: "",
+          },
+        ],
+      },
+      {
+        type: "paragraph",
+        children: [
+          {
+            text: "Briefly describe the problem you’re solving and the need in your market. Support your points with key insights or data, and show exactly how your solution fits in and adds value.",
+          },
+        ],
+      },
+      {
+        type: "paragraph",
+        children: [
+          {
+            text: "",
+          },
+        ],
+      },
+      {
+        type: "paragraph",
+        children: [
+          {
+            text: "👉 Tip: Always keep your audience in mind — are you writing this for your team, a new client, or an investor? Focus on what they care about most.",
+          },
+        ],
+      },
+      {
+        type: "paragraph",
+        children: [
+          {
+            text: "",
+          },
+        ],
+      },
+      {
+        type: "paragraph",
+        children: [
+          {
+            text: "Use this section to grab attention, build confidence, and set the tone for everything that follows.",
+          },
+        ],
+      },
+    ],
+    bookmark: false,
+  };
+
   const page_1_row = [
     {
       id: "5a5d11fd-4811-470b-91fb-8222b82734d3",
@@ -1727,7 +1808,7 @@ const Sidebar = ({
             {thirdLevel === "heading" ? (
               <div
                 ref={headingRef}
-                className=" absolute left-0 w-[220px] flex flex-col items-center pt-[12px] gap-4 h-screen bg-white z-30 overflow-auto pb-20 scrollbar-hide   "
+                className=" absolute left-0 w-[220px] flex flex-col items-center pt-[16px] gap-[16px] h-screen bg-white z-30 overflow-auto pb-20 scrollbar-hide   "
                 style={{
                   boxShadow: "5px 0 10px rgba(0, 0, 0, 0.1)",
                 }}
@@ -1828,7 +1909,7 @@ const Sidebar = ({
             ) : thirdLevel === "paragraph" ? (
               <div
                 ref={headingRef}
-                className=" absolute left-0 w-[220px] flex flex-col items-center pt-[16px] gap-5 h-screen bg-white z-30 overflow-auto pb-20 scrollbar-hide border-r border-gray-100    "
+                className=" absolute left-0 w-[220px] flex flex-col items-center pt-[16px] gap-[16px] h-screen bg-white z-30 overflow-auto pb-20 scrollbar-hide border-r border-gray-100    "
                 style={{
                   boxShadow: "5px 0 10px rgba(0, 0, 0, 0.1)",
                 }}
@@ -1840,10 +1921,10 @@ const Sidebar = ({
                   }}
                   className="w-full flex flex-col justify-center items-center gap-1 cursor-pointer"
                 >
-                  <div className="w-[90%] relative h-[112px] p-1 bg-lvl_3_bg rounded-md flex flex-col text-gray-500 items-center justify-center ">
-                    <img className="h-[85%] w-[90%] " src={para} />
+                  <div className="w-[91%] relative h-[112px] p-1 bg-lvl_3_bg rounded-md flex flex-col text-gray-500 items-center justify-center gap-2 ">
+                    <img className="h-[63%] w-[75%] " src={para} />
+                    <p className="text-lvl_3_txt text-xs">Paragraph</p>
                   </div>
-                  <p className="text-lvl_3_txt text-xs">Paragraph</p>
                 </div>
                 <div
                   onClick={() => {
@@ -1852,16 +1933,16 @@ const Sidebar = ({
                   }}
                   className="w-full flex flex-col justify-center items-center gap-1 cursor-pointer"
                 >
-                  <div className="w-[90%] relative h-[112px] p-1 bg-lvl_3_bg rounded-md flex flex-col text-gray-500 items-center justify-center ">
-                    <img className="h-[85%] w-[90%]" src={double_para_2} />
+                  <div className="w-[91%] relative h-[112px] p-1 bg-lvl_3_bg rounded-md flex flex-col text-gray-500 items-center justify-center gap-2 ">
+                    <img className="h-[63%] w-[75%] " src={double_para_2} />
+                    <p className="text-lvl_3_txt text-xs">Double Paragraph</p>
                   </div>
-                  <p className="text-lvl_3_txt text-xs">Double Paragraph</p>
                 </div>
               </div>
             ) : thirdLevel === "image" ? (
               <div
                 ref={headingRef}
-                className=" absolute left-0 w-[220px] flex flex-col items-center pt-[16px] gap-4 h-screen bg-white z-30 overflow-auto pb-20 scrollbar-hide border-r border-gray-100 "
+                className=" absolute left-0 w-[220px] flex flex-col items-center pt-[16px] gap-[16px] h-screen bg-white z-30 overflow-auto pb-20 scrollbar-hide border-r border-gray-100 "
                 style={{
                   boxShadow: "5px 0 10px rgba(0, 0, 0, 0.1)",
                 }}
@@ -1873,10 +1954,10 @@ const Sidebar = ({
                   }}
                   className="w-full flex flex-col justify-center items-center gap-1 cursor-pointer"
                 >
-                  <div className="w-[90%] relative h-[112px] p-1 bg-lvl_3_bg rounded-md flex flex-col text-gray-500 items-center justify-center ">
-                    <img className="h-[85%] w-[90%]" src={image_insert} />
+                  <div className="w-[91%] relative h-[112px] p-1 bg-lvl_3_bg rounded-md flex flex-col text-gray-500 items-center justify-center gap-2 ">
+                    <img className="h-[63%] w-[75%] " src={image_insert} />
+                    <p className="text-lvl_3_txt text-xs">Image</p>
                   </div>
-                  <p className="text-lvl_3_txt text-xs">Image</p>
                 </div>
                 <div
                   onClick={() => {
@@ -1885,10 +1966,10 @@ const Sidebar = ({
                   }}
                   className="w-full flex flex-col justify-center items-center gap-1 cursor-pointer"
                 >
-                  <div className="w-[90%] relative h-[112px] p-1 bg-lvl_3_bg rounded-md flex flex-col text-gray-500 items-center justify-center ">
-                    <img className="h-[85%] w-[90%]" src={img_para} />
+                  <div className="w-[91%] relative h-[112px] p-1 bg-lvl_3_bg rounded-md flex flex-col text-gray-500 items-center justify-center gap-2 ">
+                    <img className="h-[63%] w-[75%] " src={img_para} />
+                    <p className="text-lvl_3_txt text-xs">Image & Paragraph</p>
                   </div>
-                  <p className="text-lvl_3_txt text-xs">Image & Paragraph</p>
                 </div>
               </div>
             ) : thirdLevel === "table" ? (
@@ -1901,7 +1982,7 @@ const Sidebar = ({
                     addTableRow("normal");
                     setThirdLevel("");
                   }}
-                  className="w-[90%] h-[112px] p-2 bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center "
+                  className="w-[91%] h-[112px] p-2 bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center "
                 >
                   <img className="h-[75%] w-[53%]" src={table_v_1} />
                   <p className="text-lvl_2_txt text-xs">Basic</p>
@@ -1911,7 +1992,7 @@ const Sidebar = ({
                     addTableRow("alternativerow");
                     setThirdLevel("");
                   }}
-                  className="w-[90%] h-[112px] p-2 bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center "
+                  className="w-[91%] h-[112px] p-2 bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center "
                 >
                   <img className="h-[75%] w-[53%]" src={table_v_2} />
                   <p className="text-lvl_2_txt text-xs">Aleternative Row</p>
@@ -1921,7 +2002,7 @@ const Sidebar = ({
                     addTableRow("alternativecol");
                     setThirdLevel("");
                   }}
-                  className="w-[90%] h-[112px] p-2 bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center "
+                  className="w-[91%] h-[112px] p-2 bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center "
                 >
                   <img className="h-[75%] w-[53%]" src={table_v_3} />
                   <p className="text-lvl_2_txt text-xs">Aleternative Coloumn</p>
@@ -1931,7 +2012,7 @@ const Sidebar = ({
                     addTableRow("toprow");
                     setThirdLevel("");
                   }}
-                  className="w-[90%] h-[112px] p-2 bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center "
+                  className="w-[91%] h-[112px] p-2 bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center "
                 >
                   <img className="h-[75%] w-[53%]" src={table_v_4} />
                   <p className="text-lvl_2_txt text-xs">Top Row</p>
@@ -1942,7 +2023,7 @@ const Sidebar = ({
                     addTableRow("leftcol");
                     setThirdLevel("");
                   }}
-                  className="w-[90%] h-[112px] p-2 bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center "
+                  className="w-[91%] h-[112px] p-2 bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center "
                 >
                   <img className="h-[75%] w-[53%]" src={table_v_5} />
                   <p className="text-lvl_2_txt text-xs">Left Coloumn</p>
@@ -1951,25 +2032,37 @@ const Sidebar = ({
             ) : thirdLevel === "sections" ? (
               <div
                 ref={headingRef}
-                className="scrollbar-thin absolute left-0 w-[200px] flex flex-col items-center pt-10 gap-4 h-screen border-r border-gray-300 bg-white z-50 overflow-auto pb-20 text-xs text-gray-400 text-center  "
+                className=" absolute left-0 w-[220px] flex flex-col items-center pt-[16px] gap-[16px] h-screen bg-white z-30 overflow-auto pb-20 scrollbar-hide border-r border-gray-100    "
               >
                 <div
                   onClick={() => {
                     setRows([...rows, section_1_row]);
                     setThirdLevel("");
                   }}
-                  className="w-[85%] h-26 p-1 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
+                  className="w-[91%]  bg-lvl_3_bg py-[10px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
                 >
-                  <img className="h-[100%] w-[100%]" src={sections_1} />
+                  <img className=" w-[85%]" src={sections_1} />
+                  <p className="text-lvl_3_txt text-xs">Terms & Conditions</p>
                 </div>
                 <div
                   onClick={() => {
                     setRows([...rows, section_2_row]);
                     setThirdLevel("");
                   }}
-                  className="w-[85%] h-26 p-1 bg-gray-100 rounded-md flex flex-col text-gray-500 items-center justify-center "
+                  className="w-[91%]  bg-lvl_3_bg py-[10px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
                 >
-                  <img className="h-[100%] w-[100%]" src={section_2} />
+                  <img className=" w-[85%]" src={section_2} />
+                  <p className="text-lvl_3_txt text-xs">Double paragraph</p>
+                </div>
+                <div
+                  onClick={() => {
+                    setRows([...rows, section_3_row]);
+                    setThirdLevel("");
+                  }}
+                  className="w-[91%]  bg-lvl_3_bg py-[10px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
+                >
+                  <img className=" w-[85%]" src={section_2} />
+                  <p className="text-lvl_3_txt text-xs">Executive Summary</p>
                 </div>
               </div>
             ) : thirdLevel === "pages" ? (
@@ -1990,14 +2083,14 @@ const Sidebar = ({
             ) : thirdLevel === "saved" ? (
               <div
                 ref={headingRef}
-                className=" scrollbar-thin absolute left-0 w-[200px] flex flex-col  items-center pt-4  h-screen border-r border-gray-300 bg-white z-50 overflow-auto pb-20  "
+                className=" absolute left-0 w-[220px] flex flex-col items-center pt-[16px] gap-[16px] h-screen bg-white z-30 overflow-auto pb-20 scrollbar-hide border-r border-gray-100    "
               >
                 {user?.goals ? (
                   user.goals?.map((item, index) => {
                     return (
                       <div
                         key={index}
-                        className="my-3 w-[95%] bg-gray-100 p-2 flex flex-col items-center justify-center gap-2"
+                        className="w-[91%] bg-lvl_3_bg py-[10px] flex flex-col items-center justify-center gap-2"
                         onClick={() => {
                           setRows([...rows, ...item.data]);
                           setThirdLevel("");
@@ -2007,10 +2100,10 @@ const Sidebar = ({
                           <img
                             src={item.link}
                             alt="No Imahe"
-                            className="w-full rounded-md "
+                            className="w-[90%] rounded-md shadow-md shadow-gray-300 "
                           />
                         )}
-                        <p className="text-sm text-gray-500">
+                        <p className="text-lvl_3_txt text-xs">
                           {item.goalModuleName}
                         </p>
                       </div>

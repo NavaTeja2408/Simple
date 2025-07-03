@@ -5,6 +5,7 @@ import { IoCloudUploadOutline } from "react-icons/io5";
 import { AiOutlineColumnWidth } from "react-icons/ai";
 import { FaAlignLeft, FaAlignCenter, FaAlignRight } from "react-icons/fa";
 import image_alter from "../../../assets/ImageAlter.png";
+import { TfiReload } from "react-icons/tfi";
 
 const ForDouble = ({
   data,
@@ -86,7 +87,7 @@ const ForDouble = ({
     >
       {/* Settings Panel */}
       {show && preview !== true && (
-        <div className="absolute -top-5 left-1/2 transform -translate-x-1/2 px-3 h-10 w-[65%]  bg-white border border-gray-100 shadow-lg shadow-gray-400 flex flex-row items-center justify-center space-x-2 p-2 rounded text-sm z-50">
+        <div className="absolute -top-5 left-1/2 transform -translate-x-1/2 px-3 h-10 w-fit  bg-white border border-gray-100 shadow-lg shadow-gray-400 flex flex-row items-center justify-center space-x-2  rounded text-sm z-50">
           {/* Hidden file input */}
           <input
             id={`file-upload-${index}`}
@@ -98,9 +99,13 @@ const ForDouble = ({
           {/* Upload Image Label */}
           <label
             htmlFor={`file-upload-${index}`}
-            className="px-1 py-1 flex items-center justify-center gap-2 text-center rounded cursor-pointer text-xs text-lvl_2_txt"
+            className="px-1 py-1 flex items-center justify-center gap-1 text-center rounded cursor-pointer text-xs text-lvl_2_txt w-28"
           >
-            <IoCloudUploadOutline className="text-md" />
+            {data === "" ? (
+              <IoCloudUploadOutline className="text-md" />
+            ) : (
+              <TfiReload className="text-md" />
+            )}
             {data === "" ? "Upload Image" : "Change Image"}
           </label>
           <div className="w-[1px] h-7 bg-gray-300"></div>
@@ -110,7 +115,7 @@ const ForDouble = ({
             <select
               value={width} // Changed from `selected` to `width`
               onChange={(e) => onWidth(e.target.value)}
-              className="p-1 bg-white outline-none border-[1px] border-gray-200 px-1"
+              className="p-1 bg-white outline-none border-[1px] border-gray-200 px-1 text-lvl_2_txt text-xs "
             >
               {/* <option value="" hidden></option> */}
               <option value="100">Container Width</option>
@@ -125,15 +130,14 @@ const ForDouble = ({
 
       {/* Image Display */}
       {loading ? (
-        <h1>Uploading the Image...</h1>
+        <h1 className="text-lvl_2_txt">Uploading the Image...</h1>
       ) : (
         <img
           src={data ? data : image_alter}
           alt="Uploaded"
           style={{
             objectFit: "contain",
-            height: `${height}px`,
-            width: `${width}%`, // Width is controlled dynamically
+            width: `${width}%`,
           }}
           onClick={() => setShow(true)} // Show menu when clicking the image
         />

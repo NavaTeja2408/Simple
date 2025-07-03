@@ -118,14 +118,13 @@ const DropCanvas = ({
   return (
     <div
       style={{
-        width: "96%",
+        width: "94%",
         minHeight: "85vh",
         position: "relative",
         paddingTop: "30px",
         paddingBottom: "30px",
-        padding: "15px",
       }}
-      className=" m-7 mb-20 bg-white shadow-lg shadow-gray-300     "
+      className=" mt-7 my mb-20 bg-white shadow-lg shadow-gray-300 h-fit py-[15px]     "
     >
       {/* Render rows */}
       {rows.map((row, index) => (
