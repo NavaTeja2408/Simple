@@ -234,7 +234,7 @@ const Table = ({
 
   return (
     <div
-      className={` w-full flex items-center justify-center py-5   rounded-lg  font-${settings.body} `}
+      className={` w-full flex items-center justify-center py-2   rounded-lg  font-${settings.body} `}
       style={{
         marginTop: selected === index ? "40px" : "10px",
       }}
@@ -455,7 +455,7 @@ const Table = ({
       )}
 
       <table
-        className="w-[95%] border-collapse relative "
+        className="w-[98%] border-collapse relative table-auto "
         ref={buttonRef}
         onFocus={() => setShow(true)}
       >
@@ -524,24 +524,26 @@ const Table = ({
               {rows.map((cell, colIndex) => (
                 <td
                   key={colIndex}
-                  className={`text-center relative   ${
-                    rowIndex === rowIndexs
-                      ? "bg-red-100"
-                      : colIndex === colIndexs - 1
-                      ? "bg-red-100"
-                      : alignH === true && col === colIndex
-                      ? "bg-red-100"
-                      : rowH === true && row === rowIndex
-                      ? "bg-red-100"
-                      : colH === true && col === colIndex
+                  className={`text-center relative ${
+                    rowIndex === rowIndexs ||
+                    colIndex === colIndexs - 1 ||
+                    (alignH === true && col === colIndex) ||
+                    (rowH === true && row === rowIndex) ||
+                    (colH === true && col === colIndex)
                       ? "bg-red-100"
                       : getBackgroundColor(design, colIndex, rowIndex)
-                  } border-[2px] border-gray-400  `}
+                  } border-[2px] border-gray-400`}
                 >
                   {preview ? (
                     <p>{cell}</p>
                   ) : (
                     <textarea
+                      ref={(el) => {
+                        if (el) {
+                          el.style.height = "auto";
+                          el.style.height = `${el.scrollHeight}px`;
+                        }
+                      }}
                       value={cell}
                       onFocus={() => {
                         setCol(colIndex);
@@ -552,49 +554,32 @@ const Table = ({
                         newData[rowIndex][colIndex] = e.target.value;
                         onUpdate(newData);
                       }}
-                      className={`w-full  ${
-                        rowIndex === rowIndexs
-                          ? "bg-red-100"
-                          : colIndex === colIndexs - 1
-                          ? "bg-red-100"
-                          : alignH === true && col === colIndex
-                          ? "bg-red-100"
-                          : rowH === true && row === rowIndex
-                          ? "bg-red-100"
-                          : colH === true && col === colIndex
-                          ? "bg-red-100"
-                          : getBackgroundColor(design, colIndex, rowIndex)
-                      } p-1      ${
-                        colAlign[colIndex] !== undefined &&
-                        colAlign[colIndex] === "center"
-                          ? "text-center"
-                          : colAlign[colIndex] !== undefined &&
-                            colAlign[colIndex] === "right"
-                          ? "text-end"
-                          : colAlign[colIndex] !== undefined &&
-                            colAlign[colIndex] === "left"
-                          ? "text-start"
-                          : "text-start"
-                      } ${
-                        Array.isArray(boldAll) &&
-                        boldAll[rowIndex] &&
-                        boldAll[rowIndex][colIndex]
-                          ? "font-extrabold"
-                          : "font-normal"
-                      }  ${
-                        Array.isArray(italicAll) &&
-                        italicAll[rowIndex] &&
-                        italicAll[rowIndex][colIndex]
-                          ? "italic"
-                          : ""
-                      } 
-                      ${
-                        Array.isArray(underlineAll) &&
-                        underlineAll[rowIndex] &&
-                        underlineAll[rowIndex][colIndex]
-                          ? "underline"
-                          : ""
-                      }  focus:outline-none resize-none overflow-hidden `}
+                      className={`w-full resize-none p-1
+                     ${
+                       rowIndex === rowIndexs ||
+                       colIndex === colIndexs - 1 ||
+                       (alignH === true && col === colIndex) ||
+                       (rowH === true && row === rowIndex) ||
+                       (colH === true && col === colIndex)
+                         ? "bg-red-100"
+                         : getBackgroundColor(design, colIndex, rowIndex)
+                     }
+                     ${
+                       colAlign[colIndex] === "center"
+                         ? "text-center"
+                         : colAlign[colIndex] === "right"
+                         ? "text-end"
+                         : "text-start"
+                     }
+                     ${
+                       boldAll?.[rowIndex]?.[colIndex]
+                         ? "font-extrabold"
+                         : "font-normal"
+                     }
+                     ${italicAll?.[rowIndex]?.[colIndex] ? "italic" : ""}
+                     ${underlineAll?.[rowIndex]?.[colIndex] ? "underline" : ""}
+                     focus:outline-none overflow-hidden
+                   `}
                       rows={1}
                       onInput={(e) => {
                         e.target.style.height = "auto";

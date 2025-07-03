@@ -62,6 +62,15 @@ import content_lv2 from "../../assets/content_lv2.svg";
 import cover_lv2 from "../../assets/cover_lv2.svg";
 import sections_lv2 from "../../assets/sections_lv2.svg";
 import { FaAngleRight } from "react-icons/fa6";
+import para_2 from "../../assets/para_lvl2_2.svg";
+import double_2 from "../../assets/double_para_lv2.svg";
+import image_2 from "../../assets/img_lvl2_2.svg";
+import image_p_2 from "../../assets/img_para_lvl2_2.svg";
+import section_11 from "../../assets/section_11.png";
+import section_12 from "../../assets/section_12.png";
+import section_13 from "../../assets/section_13.png";
+import section_14 from "../../assets/section_14.png";
+import section_15 from "../../assets/section_15.jpg";
 
 const Sidebar = ({
   selected,
@@ -84,187 +93,338 @@ const Sidebar = ({
 }) => {
   const [loading, setLoading] = useState(false);
   const { user } = useContext(UserContext);
-  const section_1_row = {
-    id: "f3bb0c8f-c949-4cec-af2b-148bc7aa191c",
-    type: "double-para",
-    firstContent: [
-      { type: "heading-three", children: [{ text: "" }], align: "center" },
-      { type: "heading-three", align: "center", children: [{ text: "" }] },
-      { type: "heading-three", align: "center", children: [{ text: "" }] },
-      { type: "heading-three", align: "center", children: [{ text: "" }] },
-      { type: "heading-three", align: "center", children: [{ text: "" }] },
-      {
-        type: "heading-one",
-        align: "center",
-        children: [{ text: "Terms & Conditions" }],
-      },
-      { type: "heading-three", align: "center", children: [{ text: "" }] },
-      { type: "heading-three", align: "center", children: [{ text: "" }] },
-      { type: "heading-three", align: "center", children: [{ text: "" }] },
-      { type: "heading-three", align: "center", children: [{ text: "" }] },
-      { type: "heading-three", align: "center", children: [{ text: "" }] },
-    ],
-    secondContent: [
-      {
-        type: "bulleted-list",
-        children: [
-          {
-            type: "list-item",
-            children: [
-              {
-                text: "By using [Your Website/App Name], you agree to these terms.",
-              },
-            ],
-          },
-          {
-            type: "list-item",
-            children: [
-              {
-                text: "If you do not agree, please do not use our services.",
-              },
-            ],
-          },
-          {
-            type: "list-item",
-            children: [
-              {
-                text: "You must be 18 years or older (or meet the legal age in your country).",
-              },
-            ],
-          },
-          {
-            type: "list-item",
-            children: [
-              {
-                text: "By using our services, you confirm that you meet these requirements.",
-              },
-            ],
-          },
-          {
-            type: "list-item",
-            children: [
-              {
-                text: "You may need to create an account to access certain features.",
-              },
-            ],
-          },
-          {
-            type: "list-item",
-            children: [
-              {
-                text: "You are responsible for keeping your login details secure.",
-              },
-            ],
-          },
-          {
-            type: "list-item",
-            children: [
-              {
-                text: "We can suspend or terminate accounts at our discretion.",
-              },
-            ],
-          },
-          {
-            type: "list-item",
-            children: [
-              { text: "Do not use our services for illegal activities." },
-            ],
-          },
-          {
-            type: "list-item",
-            children: [
-              { text: "Do not interfere with or disrupt our services." },
-            ],
-          },
+  const section_3_row = [
+    {
+      id: "9e671f88-bd20-45e7-90e5-af5cea534dec",
+      type: "heading",
+      size: "heading-three",
+      content: [
+        {
+          type: "heading-three",
+          align: "left",
+          children: [
+            {
+              text: "Board Meeting Notes",
+              bold: true,
+            },
+          ],
+        },
+      ],
+      bookmark: false,
+    },
+    {
+      id: "f18b35c1-9d7e-4579-bdbf-6ecad4df90d7",
+      type: "heading",
+      size: "heading-six",
+      content: [
+        {
+          type: "heading-five",
+          align: "left",
+          children: [
+            {
+              bold: true,
+              text: "Company Name",
+            },
+          ],
+        },
+      ],
+      bookmark: false,
+    },
+    {
+      id: "901d6c68-dffd-4d9c-8cd6-9859f789171e",
+      type: "table",
+      design: "leftcol",
+      content: [
+        ["Date", "[Add Date]"],
+        ["Time", "[Add Time]"],
+        ["Location", "[Add Location]"],
+        ["Audio / Video Replay", "[Add Link]"],
+        ["Meeting Agenda", "[Add Link]"],
+      ],
+      boldAll: [
+        [false, false],
+        [false, false],
+        [false, false],
+        [false, false],
+        [false, false],
+      ],
+      underlineAll: [
+        [false, false],
+        [false, false],
+        [false, false],
+        [false, false],
+        [false, false],
+      ],
+      italicAll: [
+        [false, false],
+        [false, false],
+        [false, false],
+        [false, false],
+        [false, false],
+      ],
+      textFormat: "left",
+      bookmark: false,
+    },
+  ];
+
+  const section_4_row = [
+    {
+      id: "c2bb1e50-20c1-41ca-abb5-2ce4dc33502b",
+      type: "input",
+      content: [
+        {
+          type: "heading-two",
+          children: [
+            {
+              text: "Attendees",
+              bold: true,
+            },
+          ],
+        },
+      ],
+      bookmark: false,
+    },
+    {
+      id: "8b780c9e-9bb0-493a-bcab-7482d41fab9c",
+      type: "table",
+      design: "alternativecol",
+      content: [
+        ["Role", "Name", "Role", "Name"],
+        ["Founder & CEO", "[Add Name]", "VP of Operations", "[Add Name]"],
+        ["Finance Director", "[Add Name]", "HR Director", "[Add Name]"],
+        ["Product Lead", "[Add Name]", "Legal Advisor", "[Add Name]"],
+        ["Marketing Head", "[Add Name]", "Head of Partnerships", "[Add Name]"],
+        [
+          "Technology Lead",
+          "[Add Name]",
+          "Sustainability Manager",
+          "[Add Name]",
         ],
-      },
-    ],
-  };
+      ],
+      boldAll: [
+        [true, true, true, true],
+        [false, false, false, false],
+        [false, false, false, false],
+        [false, false, false, false],
+        [false, false, false, false],
+        [false, false, false, false],
+      ],
+      underlineAll: [
+        [false, false, false, false],
+        [false, false, false, false],
+        [false, false, false, false],
+        [false, false, false, false],
+        [false, false, false, false],
+        [false, false, false, false],
+      ],
+      italicAll: [
+        [false, false, false, false],
+        [false, false, false, false],
+        [false, false, false, false],
+        [false, false, false, false],
+        [false, false, false, false],
+        [false, false, false, false],
+      ],
+      textFormat: "left",
+      bookmark: true,
+    },
+  ];
+
+  const section_5_row = [
+    {
+      id: "d60e5f1c-204e-4a77-8714-c834d037d2d1",
+      type: "heading",
+      size: "heading-three",
+      content: [
+        {
+          type: "heading-three",
+          align: "left",
+          children: [
+            {
+              text: "Key Strategic Initiatives",
+              bold: true,
+            },
+          ],
+        },
+      ],
+      bookmark: false,
+    },
+    {
+      id: "d5ba026f-6670-43a0-b267-94c8b640b381",
+      type: "table",
+      design: "normal",
+      content: [
+        ["Strategic Focus", "Status Update"],
+        [
+          "Entering New Regions",
+          "The team recently expanded operations into two additional regions, receiving encouraging early feedback from local customers.\nHurdles: Stronger-than-expected competition has created extra demand for targeted marketing campaigns to build market share.",
+        ],
+        [
+          "New Product Development",
+          "Our innovation team is advancing a new product range, \nwith prototypes now in the final testing phase.\nHurdles: Supply chain issues for certain components have delayed the rollout timeline, requiring updates to the launch plan.",
+        ],
+        [
+          "Efficiency & Cost Savings",
+          "Multiple efficiency measures have been rolled out, resulting in significant reductions in operating costs.\nHurdles: Some staff have raised concerns about how these changes affect daily workflows, so ongoing communication and support are in place.",
+        ],
+      ],
+      boldAll: [
+        [true, true],
+        [false, false],
+        [false, false],
+        [false, false],
+      ],
+      underlineAll: [
+        [false, false],
+        [false, false],
+        [false, false],
+        [false, false],
+      ],
+      italicAll: [
+        [false, false],
+        [false, false],
+        [false, false],
+        [false, false],
+      ],
+      textFormat: "left",
+      bookmark: false,
+    },
+  ];
 
   const section_2_row = {
-    id: "83f157c5-66cd-465b-99c6-c9202804ee70",
-    type: "double-para",
-    firstContent: [
-      { type: "heading-three", children: [{ text: "" }], align: "center" },
-      { type: "heading-three", align: "center", children: [{ text: "" }] },
-      { type: "heading-three", align: "center", children: [{ text: "" }] },
-      { type: "heading-three", align: "center", children: [{ text: "" }] },
-      { type: "heading-three", align: "center", children: [{ text: "" }] },
+    id: "5864692a-4859-4b18-babe-7c4b866a60f1",
+    type: "input",
+    content: [
       {
-        type: "heading-one",
-        align: "center",
-        children: [{ text: "Main Heading" }],
+        type: "heading-two",
+        children: [
+          {
+            text: "Business Overview & Key Objectives",
+            bold: true,
+          },
+        ],
       },
-      { type: "heading-three", align: "center", children: [{ text: "" }] },
-      { type: "heading-three", align: "center", children: [{ text: "" }] },
-      { type: "heading-three", align: "center", children: [{ text: "" }] },
-      { type: "heading-three", align: "center", children: [{ text: "" }] },
-      { type: "heading-three", align: "center", children: [{ text: "" }] },
-    ],
-    secondContent: [
-      { type: "heading-two", children: [{ text: "Sub Heading:" }] },
+      {
+        type: "paragrapgh",
+        children: [
+          {
+            text: "Use this section to describe your industry and where your business fits in.",
+          },
+        ],
+      },
+      {
+        type: "paragrapgh",
+        children: [
+          {
+            text: "Include relevant market research, trends, and key stats to show the opportunity and potential growth in your space. Highlight any products, new developments, or shifts in the market that support your business plan.",
+          },
+        ],
+      },
+      {
+        type: "paragrapgh",
+        children: [
+          {
+            text: "",
+          },
+        ],
+      },
+      {
+        type: "paragrapgh",
+        children: [
+          {
+            text: "Key Objectives",
+          },
+        ],
+      },
+      {
+        type: "paragrapgh",
+        children: [
+          {
+            text: "Break down your goals into short-term, mid-term, and long-term milestones. These might include:",
+          },
+        ],
+      },
+      {
+        type: "paragrapgh",
+        children: [
+          {
+            text: "",
+          },
+        ],
+      },
       {
         type: "bulleted-list",
         children: [
           {
-            type: "bulleted-list",
+            type: "list-item",
             children: [
               {
-                type: "list-item",
-                children: [
-                  {
-                    text: "By using [Your Website/App Name], you agree to these terms.",
-                  },
-                ],
+                text: "New product launches",
               },
+            ],
+          },
+          {
+            type: "list-item",
+            children: [
               {
-                type: "list-item",
-                children: [
-                  {
-                    text: "If you do not agree, please do not use our services.",
-                  },
-                ],
+                text: "Customer growth targets",
               },
+            ],
+          },
+          {
+            type: "list-item",
+            children: [
               {
-                type: "list-item",
-                children: [
-                  {
-                    text: "You must be 18 years or older (or meet the legal age in your country).",
-                  },
-                ],
+                text: "Hiring plans",
               },
+            ],
+          },
+          {
+            type: "list-item",
+            children: [
               {
-                type: "list-item",
-                children: [
-                  {
-                    text: "By using our services, you confirm that you meet these requirements.",
-                  },
-                ],
-              },
-              {
-                type: "list-item",
-                children: [
-                  {
-                    text: "You may need to create an account to access certain features.",
-                  },
-                ],
-              },
-              {
-                type: "list-item",
-                children: [
-                  {
-                    text: "You are responsible for keeping your login details secure.",
-                  },
-                ],
+                text: "Revenue projections",
               },
             ],
           },
         ],
       },
+      {
+        type: "paragrapgh",
+        children: [
+          {
+            text: "",
+          },
+        ],
+      },
+      {
+        type: "paragrapgh",
+        children: [
+          {
+            text: "Office expansion or entering new markets",
+          },
+        ],
+      },
+      {
+        type: "paragrapgh",
+        children: [
+          {
+            text: "",
+          },
+        ],
+      },
+      {
+        type: "paragrapgh",
+        children: [
+          {
+            text: "👉 Tip: Clear goals make your plan stronger and more credible. For extra tips, check out the linked article below for practical advice and examples.",
+          },
+        ],
+      },
     ],
+    bookmark: false,
   };
-
-  const section_3_row = {
+  const section_1_row = {
     id: "081abde6-a028-401b-80cb-5db02c44a317",
     type: "input",
     content: [
@@ -1235,7 +1395,10 @@ const Sidebar = ({
       ) : (
         <div className="flex flex-row be-vietnam-pro-regular">
           {" "}
-          <div className="w-20 relative h-screen flex flex-col border-r-[1px] gap-2 border-gray-100 shadow-md shadow-gray-300 pt-2 ">
+          <div
+            style={{ height: "calc(100vh - 65px)" }}
+            className="w-20 relative flex flex-col border-r-[1px] gap-2 border-gray-100 shadow-md shadow-gray-300 pt-2 "
+          >
             {tool === "Add Elements" && (
               <div className=" absolute left-[80%] w-24 top-5 px-1 text-center bg-gray-500 text-white z-50 text-xs rounded-sm  ">
                 {tool}
@@ -1383,7 +1546,7 @@ const Sidebar = ({
               <p className="text-gray-400">History</p>
             </div>
 
-            <div className="w-full h-40 absolute bottom-20 pb-5 left-0 flex flex-col items-center justify-end">
+            <div className="w-full h-40 absolute bottom-10 pb-0 left-0 flex flex-col items-center justify-end">
               <div className="flex p-1  flex-col w-full h-14 text-[12px] text-gray-500 cursor-pointer items-center justify-center  ">
                 <div className="p-1 rounded-md ">
                   <IoIosHelpCircleOutline className="w-5 h-5" />
@@ -1408,9 +1571,10 @@ const Sidebar = ({
           </div>
           {active === "elements" ? (
             <div
-              className="w-[220px] overflow-x-hidden h-screen pr-4  overflow-auto pb-20 scrollbar-hide text-lvl_2_txt z-50  "
+              className="w-[220px] overflow-x-hidden  pr-4  overflow-auto pb-20 scrollbar-hide text-lvl_2_txt z-50  "
               style={{
                 boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.2)",
+                height: "calc(100vh - 65px)",
               }}
             >
               <button
@@ -1576,7 +1740,10 @@ const Sidebar = ({
           </button> */}
             </div>
           ) : active === "outline" ? (
-            <div className="w-[220px] h-screen pr-4 border-r-2 border-gray-200  pb-10 scrollbar-thin flex flex-col">
+            <div
+              style={{ height: "calc(100vh - 65px)" }}
+              className="w-[220px]  pr-4 border-r-2 border-gray-200  pb-10 scrollbar-thin flex flex-col"
+            >
               <p className="w-full text-start p-2 px-2 text-gray-400 mb-1 ">
                 Outline
               </p>
@@ -1601,7 +1768,10 @@ const Sidebar = ({
             </div>
           ) : active === "layout" ? (
             <div className="flex flex-row">
-              <div className=" w-[220px] h-screen px-4 py-4 border-r-2 border-gray-200  pb-20 scrollbar-thin flex flex-col overflow-y-scroll overflow-x-hidden  ">
+              <div
+                style={{ height: "calc(100vh - 65px)" }}
+                className=" w-[220px] px-4 py-4 border-r-2 border-gray-200  pb-20 scrollbar-thin flex flex-col overflow-y-scroll overflow-x-hidden  "
+              >
                 <h3 className="text-lg text-gray-800 font-semibold ">
                   Typography
                 </h3>
@@ -1783,7 +1953,10 @@ const Sidebar = ({
                   </div>
                 </div>
               </div>
-              <div className="relative w-[1px] h-screen">
+              <div
+                style={{ height: "calc(100vh - 65px)" }}
+                className="relative w-[1px]"
+              >
                 {showPicker && (
                   <div
                     ref={colorRef}
@@ -1804,13 +1977,17 @@ const Sidebar = ({
           ) : (
             <div> </div>
           )}
-          <div className="w-[1px] h-screen bg-gray-100 relative ">
+          <div
+            style={{ height: "calc(100vh - 65px)" }}
+            className="w-[1px]  bg-gray-100 relative "
+          >
             {thirdLevel === "heading" ? (
               <div
                 ref={headingRef}
-                className=" absolute left-0 w-[220px] flex flex-col items-center pt-[16px] gap-[16px] h-screen bg-white z-30 overflow-auto pb-20 scrollbar-hide   "
+                className=" absolute left-0 w-[220px] flex flex-col items-center pt-[16px] gap-[16px]  bg-white z-30 overflow-auto pb-20 scrollbar-hide   "
                 style={{
                   boxShadow: "5px 0 10px rgba(0, 0, 0, 0.1)",
+                  height: "calc(100vh - 65px)",
                 }}
               >
                 <div
@@ -1909,9 +2086,10 @@ const Sidebar = ({
             ) : thirdLevel === "paragraph" ? (
               <div
                 ref={headingRef}
-                className=" absolute left-0 w-[220px] flex flex-col items-center pt-[16px] gap-[16px] h-screen bg-white z-30 overflow-auto pb-20 scrollbar-hide border-r border-gray-100    "
+                className=" absolute left-0 w-[220px] flex flex-col items-center pt-[16px] gap-[16px]  bg-white z-30 overflow-auto pb-20 scrollbar-hide border-r border-gray-100    "
                 style={{
                   boxShadow: "5px 0 10px rgba(0, 0, 0, 0.1)",
+                  height: "calc(100vh - 65px)",
                 }}
               >
                 <div
@@ -1922,7 +2100,13 @@ const Sidebar = ({
                   className="w-full flex flex-col justify-center items-center gap-1 cursor-pointer"
                 >
                   <div className="w-[91%] relative h-[112px] p-1 bg-lvl_3_bg rounded-md flex flex-col text-gray-500 items-center justify-center gap-2 ">
-                    <img className="h-[63%] w-[75%] " src={para} />
+                    <img
+                      style={{
+                        boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
+                      }}
+                      className=" rounded-md "
+                      src={para_2}
+                    />
                     <p className="text-lvl_3_txt text-xs">Paragraph</p>
                   </div>
                 </div>
@@ -1934,7 +2118,13 @@ const Sidebar = ({
                   className="w-full flex flex-col justify-center items-center gap-1 cursor-pointer"
                 >
                   <div className="w-[91%] relative h-[112px] p-1 bg-lvl_3_bg rounded-md flex flex-col text-gray-500 items-center justify-center gap-2 ">
-                    <img className="h-[63%] w-[75%] " src={double_para_2} />
+                    <img
+                      style={{
+                        boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
+                      }}
+                      className=" rounded-md "
+                      src={double_2}
+                    />
                     <p className="text-lvl_3_txt text-xs">Double Paragraph</p>
                   </div>
                 </div>
@@ -1942,9 +2132,10 @@ const Sidebar = ({
             ) : thirdLevel === "image" ? (
               <div
                 ref={headingRef}
-                className=" absolute left-0 w-[220px] flex flex-col items-center pt-[16px] gap-[16px] h-screen bg-white z-30 overflow-auto pb-20 scrollbar-hide border-r border-gray-100 "
+                className=" absolute left-0 w-[220px] flex flex-col items-center pt-[16px] gap-[16px]  bg-white z-30 overflow-auto pb-20 scrollbar-hide border-r border-gray-100 "
                 style={{
                   boxShadow: "5px 0 10px rgba(0, 0, 0, 0.1)",
+                  height: "calc(100vh - 65px)",
                 }}
               >
                 <div
@@ -1955,7 +2146,13 @@ const Sidebar = ({
                   className="w-full flex flex-col justify-center items-center gap-1 cursor-pointer"
                 >
                   <div className="w-[91%] relative h-[112px] p-1 bg-lvl_3_bg rounded-md flex flex-col text-gray-500 items-center justify-center gap-2 ">
-                    <img className="h-[63%] w-[75%] " src={image_insert} />
+                    <img
+                      style={{
+                        boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
+                      }}
+                      className="rounded-md "
+                      src={image_2}
+                    />
                     <p className="text-lvl_3_txt text-xs">Image</p>
                   </div>
                 </div>
@@ -1967,7 +2164,13 @@ const Sidebar = ({
                   className="w-full flex flex-col justify-center items-center gap-1 cursor-pointer"
                 >
                   <div className="w-[91%] relative h-[112px] p-1 bg-lvl_3_bg rounded-md flex flex-col text-gray-500 items-center justify-center gap-2 ">
-                    <img className="h-[63%] w-[75%] " src={img_para} />
+                    <img
+                      style={{
+                        boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
+                      }}
+                      className=" rounded-md "
+                      src={image_p_2}
+                    />
                     <p className="text-lvl_3_txt text-xs">Image & Paragraph</p>
                   </div>
                 </div>
@@ -1975,7 +2178,11 @@ const Sidebar = ({
             ) : thirdLevel === "table" ? (
               <div
                 ref={headingRef}
-                className=" absolute left-0 w-[220px] flex flex-col items-center pt-[16px] gap-4 h-screen bg-white z-30 overflow-auto pb-20 scrollbar-hide border-r border-gray-100 "
+                style={{
+                  boxShadow: "5px 0 10px rgba(0, 0, 0, 0.1)",
+                  height: "calc(100vh - 65px)",
+                }}
+                className=" absolute left-0 w-[220px] flex flex-col items-center pt-[16px] gap-4  bg-white z-30 overflow-auto pb-20 scrollbar-hide border-r border-gray-100 "
               >
                 <div
                   onClick={() => {
@@ -2032,43 +2239,103 @@ const Sidebar = ({
             ) : thirdLevel === "sections" ? (
               <div
                 ref={headingRef}
-                className=" absolute left-0 w-[220px] flex flex-col items-center pt-[16px] gap-[16px] h-screen bg-white z-30 overflow-auto pb-20 scrollbar-hide border-r border-gray-100    "
+                style={{
+                  boxShadow: "5px 0 10px rgba(0, 0, 0, 0.1)",
+                  height: "calc(100vh - 65px)",
+                }}
+                className=" absolute left-0 w-[220px] flex flex-col items-center pt-[16px] gap-[16px]  bg-white z-30 overflow-auto pb-20 scrollbar-hide border-r border-gray-100    "
               >
                 <div
                   onClick={() => {
                     setRows([...rows, section_1_row]);
                     setThirdLevel("");
                   }}
-                  className="w-[91%]  bg-lvl_3_bg py-[10px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
+                  className="w-[91%]  bg-lvl_3_bg py-[16px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
                 >
-                  <img className=" w-[85%]" src={sections_1} />
-                  <p className="text-lvl_3_txt text-xs">Terms & Conditions</p>
+                  <img
+                    className=" w-[85%]"
+                    src={section_11}
+                    style={{
+                      boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
+                    }}
+                  />
+                  <p className="text-lvl_3_txt text-xs">Executive Summary</p>
                 </div>
                 <div
                   onClick={() => {
                     setRows([...rows, section_2_row]);
                     setThirdLevel("");
                   }}
-                  className="w-[91%]  bg-lvl_3_bg py-[10px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
+                  className="w-[91%]  bg-lvl_3_bg py-[16px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
                 >
-                  <img className=" w-[85%]" src={section_2} />
-                  <p className="text-lvl_3_txt text-xs">Double paragraph</p>
+                  <img
+                    className=" w-[85%]"
+                    src={section_12}
+                    style={{
+                      boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
+                    }}
+                  />
+                  <p className="text-lvl_3_txt text-xs">Business Overview</p>
                 </div>
                 <div
                   onClick={() => {
-                    setRows([...rows, section_3_row]);
+                    setRows([...rows, ...section_3_row]);
                     setThirdLevel("");
                   }}
-                  className="w-[91%]  bg-lvl_3_bg py-[10px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
+                  className="w-[91%]  bg-lvl_3_bg py-[16px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
                 >
-                  <img className=" w-[85%]" src={section_2} />
-                  <p className="text-lvl_3_txt text-xs">Executive Summary</p>
+                  <img
+                    className=" w-[85%]"
+                    src={section_13}
+                    style={{
+                      boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
+                    }}
+                  />
+                  <p className="text-lvl_3_txt text-xs">Board Meeting Notes</p>
+                </div>
+                <div
+                  onClick={() => {
+                    setRows([...rows, ...section_4_row]);
+                    setThirdLevel("");
+                  }}
+                  className="w-[91%]  bg-lvl_3_bg py-[16px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
+                >
+                  <img
+                    className=" w-[85%]"
+                    src={section_14}
+                    style={{
+                      boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
+                    }}
+                  />
+                  <p className="text-lvl_3_txt text-xs">Attendees</p>
+                </div>
+                <div
+                  onClick={() => {
+                    setRows([...rows, ...section_5_row]);
+                    setThirdLevel("");
+                  }}
+                  className="w-[91%]  bg-lvl_3_bg py-[16px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
+                >
+                  <img
+                    className=" w-[85%]"
+                    src={section_15}
+                    style={{
+                      boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
+                    }}
+                  />
+                  <p className="text-lvl_3_txt text-xs">
+                    Key Strategic Initiatives
+                  </p>
                 </div>
               </div>
             ) : thirdLevel === "pages" ? (
               <div
                 ref={headingRef}
-                className=" scrollbar-thinabsolute left-0 w-[200px] flex flex-col items-center pt-10 gap-4 h-screen border-r border-gray-300 bg-white z-50 overflow-auto pb-20 text-xs text-gray-400 text-center  "
+                style={{
+                  boxShadow: "5px 0 10px rgba(0, 0, 0, 0.1)",
+                  height: "calc(100vh - 65px)",
+                }}
+                className=" scrollbar-thinabsolute left-0 w-[200px] flex flex-col items-center pt-10 gap-4 border-r border-gray-300 bg-white z-50 overflow-auto pb-20 text-xs text-gray-400 text-center  "
               >
                 <div
                   onClick={() => {
@@ -2083,7 +2350,11 @@ const Sidebar = ({
             ) : thirdLevel === "saved" ? (
               <div
                 ref={headingRef}
-                className=" absolute left-0 w-[220px] flex flex-col items-center pt-[16px] gap-[16px] h-screen bg-white z-30 overflow-auto pb-20 scrollbar-hide border-r border-gray-100    "
+                style={{
+                  boxShadow: "5px 0 10px rgba(0, 0, 0, 0.1)",
+                  height: "calc(100vh - 65px)",
+                }}
+                className=" absolute left-0 w-[220px] flex flex-col items-center pt-[16px] gap-[16px] bg-white z-30 overflow-auto pb-20 scrollbar-hide border-r border-gray-100    "
               >
                 {user?.goals ? (
                   user.goals?.map((item, index) => {
@@ -2116,7 +2387,11 @@ const Sidebar = ({
             ) : thirdLevel === "cover" ? (
               <div
                 ref={headingRef}
-                className="scrollbar-thin absolute left-0 w-[200px] flex flex-col items-center pt-10 gap-8 h-screen border-r border-gray-300 bg-white z-50 overflow-auto pb-20 text-xs text-gray-400 text-center  "
+                style={{
+                  boxShadow: "5px 0 10px rgba(0, 0, 0, 0.1)",
+                  height: "calc(100vh - 65px)",
+                }}
+                className="scrollbar-thin absolute left-0 w-[200px] flex flex-col items-center pt-10 gap-8 border-r border-gray-300 bg-white z-50 overflow-auto pb-20 text-xs text-gray-400 text-center  "
               >
                 <div>
                   <input

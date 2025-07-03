@@ -149,15 +149,23 @@ const DropRow = ({
     }
   };
 
-  const captureImage = () => {
+  const captureImage = (value) => {
     if (!divRef.current) return;
 
     html2canvas(divRef.current).then((canvas) => {
-      const cropAmount = 20; // pixels to crop from each side
-      const padding = 30; // white padding around the cropped image
+      let cropTop = 20;
+      let cropBottom = 20;
+
+      if (value === "table") {
+        cropTop = 65; // custom crop for table
+      }
+
+      const cropLeftRight = 20; // crop from left and right
+      const padding = 30;
       const paddingHeight = 15;
-      const croppedWidth = canvas.width - cropAmount * 2;
-      const croppedHeight = canvas.height - cropAmount * 2;
+
+      const croppedWidth = canvas.width - cropLeftRight * 2;
+      const croppedHeight = canvas.height - cropTop - cropBottom;
 
       // Create a new canvas for cropped + padded result
       const finalCanvas = document.createElement("canvas");
@@ -173,14 +181,14 @@ const DropRow = ({
       // Draw cropped image with padding
       ctx.drawImage(
         canvas,
-        cropAmount,
-        cropAmount,
-        croppedWidth,
-        croppedHeight,
-        padding,
-        padding,
-        croppedWidth,
-        croppedHeight
+        cropLeftRight, // source x
+        cropTop, // source y
+        croppedWidth, // source width
+        croppedHeight, // source height
+        padding, // destination x
+        paddingHeight, // destination y
+        croppedWidth, // destination width
+        croppedHeight // destination height
       );
 
       finalCanvas.toBlob(
@@ -747,7 +755,7 @@ const DropRow = ({
         >
           <button
             onClick={() => {
-              captureImage();
+              captureImage(row.type);
               setBookmark(index);
             }}
             disabled={!!row.bookmark}

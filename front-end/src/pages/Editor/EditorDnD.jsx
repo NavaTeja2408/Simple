@@ -366,7 +366,7 @@ const EditorDnD = () => {
 
   return (
     <DndProvider backend={HTML5Backend}>
-      <div className="w-full ">
+      <div className="w-full  ">
         <EditorHeader
           share={share}
           setShare={setShare}
@@ -390,7 +390,7 @@ const EditorDnD = () => {
 
       <div
         className="bg-canvas_bg relative  "
-        style={{ display: "flex", height: "95vh" }}
+        style={{ display: "flex", height: "calc(100vh - 65px)" }}
       >
         {move && (
           <div className="fixed inset-0 bg-opacity-40 flex justify-center bg-black items-center z-50">

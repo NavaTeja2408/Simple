@@ -308,7 +308,7 @@ const EditorHeader = ({
     };
   }, [rows, settings]);
   return (
-    <div className="w-full flex items-center justify-evenly h-16 px-7 border-b-[1px] border-gray-200 shadow-sm shadow-gray-300 be-vietnam-pro-regular relative ">
+    <div className="w-full flex items-center justify-evenly h-[64px] px-7 border-b-[1px] border-gray-200 shadow-sm shadow-gray-300 be-vietnam-pro-regular relative ">
       {tool === "Manage sharing proposal" && (
         <div className=" absolute left-[65%] -bottom-2 px-2 bg-gray-600 text-white z-50 text-xs rounded-sm ">
           {tool}

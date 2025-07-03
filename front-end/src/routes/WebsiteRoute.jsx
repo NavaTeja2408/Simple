@@ -49,7 +49,7 @@ const WebsiteRoute = () => {
         <Route
           path="/editor/:id"
           element={
-            <div className="w-full h-screen overflow-y-hidden">
+            <div className="w-full h-screen flex flex-col ">
               <EditorDnD />
             </div>
           }
