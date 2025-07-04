@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { IoCloudUploadOutline } from "react-icons/io5";
 import { TfiReload } from "react-icons/tfi";
 import { Icon } from "@iconify/react";
-
+import Slider from "@mui/material/Slider";
 const CoverPageSlate = ({
   index,
   indexValue,
@@ -13,9 +13,18 @@ const CoverPageSlate = ({
   preview,
   darkness,
   onChangeDark,
+  bright,
+  onChangeBright,
 }) => {
   const [loading, setLoading] = useState(false);
+  const buttonRef = useRef();
+  const toolbarRef = useRef();
   const [temp, setTemp] = useState(0);
+  const [value, setValue] = useState(50); // For single-value slider
+
+  const handleChange = (val) => {
+    setValue(val);
+  };
 
   const [show, setShow] = useState(false);
   const handleUpload = async (e) => {
@@ -54,12 +63,31 @@ const CoverPageSlate = ({
     }
   };
 
+  const handleClickOutsideShare = (event) => {
+    if (
+      buttonRef.current &&
+      !buttonRef.current.contains(event.target) &&
+      toolbarRef.current &&
+      !toolbarRef.current.contains(event.target)
+    ) {
+      setShow(false);
+    }
+  };
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutsideShare);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutsideShare);
+    };
+  }, []);
+
   return (
     <div>
       <img
         src={url}
         style={{
-          filter: `brightness(${Math.max(0, 1 - darkness * 0.01)})`,
+          filter: `brightness(${
+            bright === 1 ? 1 + darkness * 0.01 : 1 - darkness * 0.01
+          })`,
           objectFit: "contain",
         }}
       />
@@ -85,7 +113,7 @@ const CoverPageSlate = ({
             </label>
           </div>
           <div className="h-7 w-[1px] bg-gray-300"></div>
-          <input
+          {/* <input
             type="number"
             className="appearance-none 
             [&::-webkit-outer-spin-button]:appearance-none 
@@ -95,11 +123,66 @@ const CoverPageSlate = ({
             border border-gray-300 rounded-md px-2 py-1 w-12"
             value={darkness}
             onChange={(e) => onChangeDark(e.target.value)}
-          />
+          /> */}
 
-          <button className="relative">
+          <button
+            ref={buttonRef}
+            onClick={() => setShow(true)}
+            className="relative"
+          >
             <Icon icon="mdi:square-opacity" width="20" height="20" />
           </button>
+          {show && (
+            <div
+              ref={toolbarRef}
+              className="w-fit h-8 bg-white border border-gray-100 shadow-md  flex flex-row items-center space-x-2 p-2 rounded text-sm absolute top-10 left-20 px-4 "
+            >
+              <Slider
+                value={darkness}
+                aria-label="Default"
+                onChange={(e) => onChangeDark(e.target.value)}
+                valueLabelDisplay="none"
+                sx={{
+                  width: 150,
+                  color: "rgba(223, 6, 78, 1)",
+                  "& .MuiSlider-thumb": {
+                    backgroundColor: "rgba(223, 6, 78, 1)",
+                    boxShadow: "none",
+                    "&:hover, &.Mui-focusVisible, &.Mui-active": {
+                      boxShadow: "none",
+                    },
+                  },
+                  "& .MuiSlider-track": {
+                    backgroundColor: "rgba(223, 6, 78, 1)",
+                    border: "none", // removes default border
+                  },
+                  "& .MuiSlider-rail": {
+                    backgroundColor: "#e0e0e0",
+                  },
+                }}
+              />
+              <div className="flex items-center justify-center bg-gray-50 border-gray-100">
+                <input
+                  type="text"
+                  min="0"
+                  max="100"
+                  value={darkness}
+                  onChange={(e) => onChangeDark(Number(e.target.value))}
+                  className=" w-14 py-1 text-center outline-none appearance-none "
+                />
+              </div>
+              <div className="-ml-1 flex gap-2 items-center">
+                <div
+                  className="w-4 h-4 bg-black cursor-pointer"
+                  onClick={() => onChangeBright(0)}
+                ></div>
+                <div
+                  className="w-4 h-4 bg-white border border-gray-300 cursor-pointer"
+                  onClick={() => onChangeBright(1)}
+                ></div>
+              </div>
+            </div>
+          )}
         </div>
       )}
     </div>

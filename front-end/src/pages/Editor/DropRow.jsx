@@ -749,6 +749,12 @@ const DropRow = ({
                 updatedContent[0].dark = newData;
                 setRows(updatedContent);
               }}
+              bright={row.bright ? row.bright : 0}
+              onChangeBright={(newData) => {
+                const updatedContent = [...rows];
+                updatedContent[0].bright = newData;
+                setRows(updatedContent);
+              }}
               preview={preview}
             />
           </div>
