@@ -2088,7 +2088,7 @@ const Sidebar = ({
           </div>
           {active === "elements" ? (
             <div
-              className="w-[220px] overflow-x-hidden  pr-4  overflow-auto pb-20 scrollbar-hide text-lvl_2_txt z-50  "
+              className="w-[220px] overflow-x-hidden  pr-4  overflow-auto pb-[16px] scrollbar-hide text-lvl_2_txt z-50  "
               style={{
                 boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.2)",
                 height: "calc(100vh - 65px)",
@@ -3023,7 +3023,7 @@ const Sidebar = ({
                 }}
                 className=" absolute left-0 w-[220px] flex flex-col items-center pt-[16px] gap-[16px] bg-white z-30 overflow-auto pb-20 scrollbar-hide border-r border-gray-100    "
               >
-                <div>
+                <div className="w-full flex items-center justify-center">
                   <input
                     id={`file-upload`}
                     type="file"
@@ -3036,7 +3036,7 @@ const Sidebar = ({
                   {/* Upload Image Label */}
                   <label
                     htmlFor={`file-upload`}
-                    className="px-1 py-1 flex items-center justify-center gap-2  text-center rounded cursor-pointer text-xs"
+                    className="w-[88%] py-2 flex items-center justify-center gap-2  text-center rounded cursor-pointer text-xs bg-graidient_bottom text-white hover:bg-gradient_darker"
                   >
                     <IoCloudUploadOutline />
                     {loading ? "Loading..." : "Upload Cover Page"}

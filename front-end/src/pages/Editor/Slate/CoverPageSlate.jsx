@@ -93,7 +93,7 @@ const CoverPageSlate = ({
         }}
       />
       {index === selected && preview !== true && (
-        <div className="absolute top-2 left-1/2 transform -translate-x-1/2 px-3 h-10 bg-white border border-gray-100 shadow-md  flex flex-row items-center space-x-2 p-2 rounded text-sm">
+        <div className="absolute top-2 left-1/2 transform -translate-x-1/2 px-3 h-10 bg-white border border-gray-100 shadow-md  flex flex-row items-center space-x-2 p-2 rounded text-sm z-30">
           <div>
             <input
               id={`file-upload`}
@@ -136,7 +136,7 @@ const CoverPageSlate = ({
           {show && (
             <div
               ref={toolbarRef}
-              className="w-fit h-8 bg-white border border-gray-100 shadow-md  flex flex-row items-center space-x-2 p-2 rounded text-sm absolute top-10 left-20 px-4 "
+              className="w-fit h-8 bg-white border border-gray-100 shadow-md  flex flex-row items-center space-x-2 p-2 rounded text-sm absolute top-10 left-20 px-4 z-40 "
             >
               <Slider
                 value={darkness}
