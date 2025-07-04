@@ -411,7 +411,7 @@ const EditorHeader = ({
           onClick={undo}
           className={` p-[7px] rounded-md ${
             rows.length > 0
-              ? "bg-gray-200 hover:bg-graidient_bottom hover:text-white"
+              ? "bg-gray-200 hover:bg-graidient_bottom hover:text-white active:bg-gradient_darker"
               : "text-gray-400"
           }`}
           onMouseEnter={() => setTool("Undo")}
@@ -425,7 +425,7 @@ const EditorHeader = ({
           onMouseLeave={() => setTool(null)}
           className={` p-[7px] rounded-md -ml-1.5 ${
             que.length > 0
-              ? "bg-gray-200 hover:bg-graidient_bottom hover:text-white"
+              ? "bg-gray-200 hover:bg-graidient_bottom hover:text-white active:bg-gradient_darker"
               : "text-gray-400"
           }`}
         >
@@ -497,7 +497,7 @@ const EditorHeader = ({
         </button> */}
         <div className="relative">
           <button
-            className={`p-[7px] text-gray-500 rounded-md flex items-center justify-center -ml-1 -mr-1  relative ${
+            className={`p-[7px] text-gray-500 rounded-md flex items-center justify-center -ml-1 -mr-1  relative active:bg-gradient_darker ${
               notifiacations === true
                 ? "bg-graidient_bottom text-white"
                 : " hover:bg-graidient_bottom hover:text-white"
@@ -635,7 +635,7 @@ const EditorHeader = ({
         </p>
         <button
           onClick={() => setView(true)}
-          className={`p-[7px] rounded-md ${
+          className={`p-[7px] rounded-md active:bg-gradient_darker ${
             view === true
               ? "bg-graidient_bottom text-white"
               : "bg-gray-100  hover:bg-gray-200"
@@ -649,7 +649,7 @@ const EditorHeader = ({
           onMouseLeave={() => setTool(null)}
           className={`p-[7px] rounded-md ml-[-3px] ${
             view === false
-              ? "bg-graidient_bottom text-white"
+              ? "bg-graidient_bottom text-white active:bg-gradient_darker"
               : "bg-gray-100 hover:bg-gray-200"
           }`}
         >
@@ -661,7 +661,7 @@ const EditorHeader = ({
               setShare(!share);
               setMenu(false);
             }}
-            className="bg-footer_gradient_bot text-white px-4 rounded-md py-2 text-center text-sm flex gap-1 items-center justify-center"
+            className="bg-footer_gradient_bot text-white px-4 rounded-md py-2 text-center text-sm flex gap-1 items-center justify-center active:bg-gradient_darker"
           >
             <FaRegShareSquare className="w-3 h-3" />
             Share

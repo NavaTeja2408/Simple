@@ -98,8 +98,8 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-gray-700 bg-opacity-50 flex justify-center items-center z-50">
-      <div className="bg-white rounded-lg shadow-lg   max-w-6xl w-full transition-all transform scale-105 ">
+    <div className="fixed inset-0 bg-black bg-opacity-20 flex items-center justify-center p-4 z-[1000]">
+      <div className="bg-white rounded-lg shadow-lg   max-w-6xl w-full transition-all transform   ">
         <div className="w-full flex flex-col items-center justify-center mt-6 border-b-[5px] border-gray-100">
           <h1 className="text-md font-bold text-gray-700">Add Cost Module</h1>
           <p className="text-sm text-gray-500 mb-6">

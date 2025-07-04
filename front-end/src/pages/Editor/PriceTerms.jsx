@@ -68,7 +68,7 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
     percentage && value ? "60%" : percentage || value ? "80%" : "90%";
 
   return (
-    <div className="fixed inset-0 bg-gray-700 bg-opacity-50 flex justify-center items-center z-50">
+    <div className="fixed inset-0 bg-black bg-opacity-20 flex items-center justify-center p-4 z-[1000]">
       <div className="bg-white rounded-lg shadow-lg  max-w-3xl w-full transition-all transform scale-105 ">
         <div className="w-full flex flex-col items-center justify-center mt-6 border-b-[5px] border-gray-100">
           <h1 className="text-md font-bold text-gray-700">Add Price Terms</h1>

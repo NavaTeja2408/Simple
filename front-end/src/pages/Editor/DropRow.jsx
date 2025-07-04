@@ -161,8 +161,8 @@ const DropRow = ({
       }
 
       const cropLeftRight = 20; // crop from left and right
-      const padding = 30;
-      const paddingHeight = 15;
+      const padding = 55;
+      const paddingHeight = 30;
 
       const croppedWidth = canvas.width - cropLeftRight * 2;
       const croppedHeight = canvas.height - cropTop - cropBottom;
@@ -804,7 +804,7 @@ const DropRow = ({
         <div
           ref={quickButtonRef}
           onClick={() => setQuickAdd(true)}
-          className={`absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-white flex   border border-graidient_bottom text-graidient_bottom items-center justify-center w-10 h-10  rounded-[50%] text-xl cursor-pointer z-[5000]`}
+          className={`absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-white flex   border border-graidient_bottom text-graidient_bottom items-center justify-center w-10 h-10  rounded-[50%] text-xl cursor-pointer z-50`}
         >
           <FiPlus />
         </div>

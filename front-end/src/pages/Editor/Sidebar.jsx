@@ -71,6 +71,18 @@ import section_12 from "../../assets/section_12.png";
 import section_13 from "../../assets/section_13.png";
 import section_14 from "../../assets/section_14.png";
 import section_15 from "../../assets/section_15.jpg";
+import s_1 from "../../assets/s_1.png";
+import s_2 from "../../assets/s_2.png";
+import s_3 from "../../assets/s_3.png";
+import s_4 from "../../assets/s_4.png";
+import s_5 from "../../assets/s_5.png";
+import s_6 from "../../assets/s_6.png";
+import s_7 from "../../assets/s_7.png";
+import s_8 from "../../assets/s_8.png";
+import s_9 from "../../assets/s_9.png";
+import s_10 from "../../assets/s_10.png";
+import s_11 from "../../assets/s_11.png";
+import s_12 from "../../assets/s_12.png";
 
 const Sidebar = ({
   selected,
@@ -504,6 +516,500 @@ const Sidebar = ({
     ],
     bookmark: false,
   };
+
+  const section_6_row = [
+    {
+      id: "9dd6f157-1ab8-4c93-aa3c-486672903269",
+      type: "heading",
+      size: "heading-three",
+      content: [
+        {
+          type: "heading-three",
+          align: "left",
+          children: [
+            {
+              bold: true,
+              text: "Why Choose Us",
+            },
+          ],
+        },
+      ],
+      bookmark: false,
+    },
+    {
+      id: "38f7e5ae-4afd-4569-b610-2be1816bd8f9",
+      type: "double-para",
+      firstContent: [
+        {
+          type: "heading-four",
+          children: [
+            {
+              text: "Proven Results",
+            },
+          ],
+        },
+        {
+          type: "paragraph",
+          children: [
+            {
+              text: "",
+            },
+          ],
+        },
+        {
+          type: "paragraph",
+          children: [
+            {
+              text: "We aim to shape a future where [industry] is smarter, more sustainable, and accessible to everyone. We believe in pushing boundaries and setting new standards for innovation. Our vision is to lead by example — inspiring progress through responsible practices, cutting-edge solutions, and a commitment to positive change for communities and the planet. By rethinking what’s possible today, we lay the foundation for a better tomorrow.",
+            },
+          ],
+        },
+      ],
+      secondContent: [
+        {
+          type: "heading-four",
+          children: [
+            {
+              text: "Trusted Partner",
+            },
+          ],
+        },
+        {
+          type: "paragraph",
+          children: [
+            {
+              text: "",
+            },
+          ],
+        },
+        {
+          type: "paragraph",
+          children: [
+            {
+              text: "Our mission is simple — to empower our clients with practical solutions that solve real problems, drive growth, and make a meaningful impact in their markets. We deliver results through collaboration, creativity, and a relentless focus on quality. Every project we take on is driven by our promise to add measurable value, build lasting partnerships, and help our clients stay ahead in a changing world. We exist to make your goals achievable and your vision a reality.",
+            },
+          ],
+        },
+      ],
+      bookmark: false,
+    },
+    {
+      id: "0da91996-daf8-4330-b53a-b788ef036d43",
+      type: "input",
+      content: [
+        {
+          type: "paragraph",
+          children: [
+            {
+              text: "",
+            },
+          ],
+        },
+        {
+          type: "paragraph",
+          children: [
+            {
+              text: "Together, our vision and mission guide every decision we make and every project we deliver.",
+              italic: true,
+            },
+          ],
+        },
+      ],
+      bookmark: false,
+      textColor: "text-gray-700",
+    },
+  ];
+
+  const section_7_row = [
+    {
+      id: "89a097a7-bbe2-47c8-84f7-a8ca712eaa96",
+      type: "image-para",
+      content: [
+        {
+          type: "heading-three",
+          children: [
+            {
+              text: "Our Leader",
+            },
+          ],
+        },
+        {
+          type: "paragraph",
+          children: [
+            {
+              text: "",
+            },
+          ],
+        },
+        {
+          type: "paragraph",
+          children: [
+            {
+              text: "Our president has 10 years' experience in this industry. He is dedicated to upholding our company values and delivering the greatest possible experience to our partners.",
+            },
+          ],
+        },
+      ],
+      ImageLink:
+        "https://res.cloudinary.com/dojwaepbj/image/upload/v1751524012/znj80secde9wcg1igvde.jpg",
+      height: "",
+      width: "50",
+      align: "left",
+      aliegn: "center",
+      bookmark: true,
+    },
+  ];
+
+  const section_8_row = [
+    {
+      id: "9547e1ed-51b8-4c41-b6f0-2516122ff976",
+      type: "image-para",
+      content: [
+        {
+          type: "heading-three",
+          children: [
+            {
+              text: "Account Executive",
+            },
+          ],
+        },
+        {
+          type: "paragraph",
+          children: [
+            {
+              text: "I am , and I will be your assigned point of contact at all times. I can be reached via phone or email at Link",
+            },
+          ],
+        },
+        {
+          type: "paragraph",
+          children: [
+            {
+              text: "",
+            },
+          ],
+        },
+      ],
+      ImageLink:
+        "https://res.cloudinary.com/dojwaepbj/image/upload/v1751524250/ee17xmlv7thzvmgcesrz.jpg",
+      height: "",
+      width: "50",
+      align: "right",
+      aliegn: "center",
+      bookmark: true,
+    },
+  ];
+
+  const section_9_row = [
+    {
+      id: "f1bb13aa-7e22-4af7-ac4f-de119a8bee98",
+      type: "image-para",
+      content: [
+        {
+          type: "heading-four",
+          children: [
+            {
+              text: "",
+            },
+          ],
+        },
+        {
+          type: "heading-four",
+          children: [
+            {
+              text: "",
+            },
+          ],
+        },
+        {
+          type: "heading-four",
+          children: [
+            {
+              text: "Bringing Ideas to Life",
+            },
+          ],
+        },
+        {
+          type: "heading-four",
+          children: [
+            {
+              bold: true,
+              text: "",
+            },
+          ],
+        },
+        {
+          type: "paragraph",
+          children: [
+            {
+              text: "An image can say more than words — that’s why we pair our proposals with visuals that capture your vision, highlight your goals, and tell your story at a glance. Whether it’s a product photo, project snapshot, or team moment, we make sure every image supports what we stand for: clarity, impact, and real results.",
+            },
+          ],
+        },
+        {
+          type: "paragraph",
+          children: [
+            {
+              text: "",
+            },
+          ],
+        },
+        {
+          type: "paragraph",
+          children: [
+            {
+              text: "",
+            },
+          ],
+        },
+        {
+          type: "paragraph",
+          children: [
+            {
+              text: "",
+            },
+          ],
+        },
+        {
+          type: "paragraph",
+          children: [
+            {
+              text: "",
+            },
+          ],
+        },
+        {
+          type: "paragraph",
+          children: [
+            {
+              text: "",
+            },
+          ],
+        },
+        {
+          type: "paragraph",
+          children: [
+            {
+              text: "",
+            },
+          ],
+        },
+      ],
+      ImageLink:
+        "https://res.cloudinary.com/dojwaepbj/image/upload/v1751548925/wxgrms9rzfsmkvlnij0w.jpg",
+      height: "",
+      width: "100",
+      align: "right",
+      aliegn: "center",
+      bookmark: false,
+    },
+  ];
+
+  const section_10_row = [
+    {
+      id: "826b123b-c8c1-4347-b8cf-1c7b9ac4d205",
+      type: "heading",
+      size: "heading-three",
+      content: [
+        {
+          type: "heading-three",
+          align: "left",
+          children: [
+            {
+              text: "",
+              bold: true,
+            },
+          ],
+        },
+        {
+          type: "heading-three",
+          align: "left",
+          children: [
+            {
+              bold: true,
+              text: "",
+            },
+          ],
+        },
+        {
+          type: "heading-three",
+          align: "left",
+          children: [
+            {
+              bold: true,
+              text: "Costing ",
+            },
+          ],
+        },
+      ],
+      bookmark: false,
+    },
+    {
+      id: "16135c8d-4632-4246-ae8e-07821e16dd6d",
+      type: "cost",
+      content: [
+        {
+          deliverable: "Website Design",
+          price: 1500,
+          discount: 0,
+          quantity: 1,
+          paymentDuration: "Monthly",
+          amount: 1500,
+        },
+        {
+          deliverable: "Development & Integration",
+          price: 2000,
+          quantity: 1,
+          amount: 2000,
+        },
+        {
+          deliverable: "Monthly Hosting (12 months)",
+          price: 50,
+          quantity: 12,
+          amount: 600,
+        },
+        {
+          deliverable: "SEO Optimization",
+          price: 300,
+          quantity: 2,
+          amount: 600,
+        },
+        {
+          deliverable: "Maintenance & Support (6 mo.)",
+          price: 200,
+          quantity: 6,
+          amount: 1200,
+        },
+      ],
+      options: {
+        discount: true,
+        quantity: true,
+        currency: true,
+        tax: true,
+      },
+      bookmark: false,
+      values: {
+        discount: "5",
+        tax: "12",
+      },
+    },
+  ];
+
+  const section_11_row = [
+    {
+      id: "759b7a24-a023-4469-a517-0cb845cd7de3",
+      type: "heading",
+      size: "heading-three",
+      content: [
+        {
+          type: "heading-three",
+          align: "left",
+          children: [
+            {
+              bold: true,
+              text: "",
+            },
+          ],
+        },
+        {
+          type: "heading-three",
+          align: "left",
+          children: [
+            {
+              bold: true,
+              text: "Price Terms 1",
+            },
+          ],
+        },
+      ],
+      bookmark: false,
+    },
+    {
+      id: "780bf7bb-f711-4cd7-9f05-2f9b28b7615b",
+      type: "price",
+      content: [
+        {
+          deliverable: "Project Planning & Research",
+          percentage: 15,
+          value: 1500,
+        },
+        {
+          deliverable: "Design & Development",
+          percentage: 40,
+          value: 4000,
+        },
+        {
+          deliverable: "Testing & Quality Assurance",
+          percentage: 20,
+          value: 2000,
+        },
+        {
+          deliverable: "Deployment & Launch",
+          percentage: 15,
+          value: 1500,
+        },
+        {
+          deliverable: "Project Management & Support",
+          percentage: 10,
+          value: 1000,
+        },
+      ],
+      options: {
+        percentage: true,
+        value: true,
+        currency: "$",
+      },
+      bookmark: false,
+    },
+  ];
+
+  const section_12_row = [
+    {
+      id: "8936edc5-ba5d-4ce6-b18e-32b89b8ba6c0",
+      type: "heading",
+      size: "heading-three",
+      content: [
+        {
+          type: "heading-three",
+          align: "left",
+          children: [
+            {
+              bold: true,
+              text: "Price Terms 2",
+            },
+          ],
+        },
+      ],
+      bookmark: false,
+    },
+    {
+      id: "6256560e-34fe-4f57-95b8-391f8733a737",
+      type: "price",
+      content: [
+        {
+          deliverable: "Website Design",
+          percentage: 50,
+          value: 5000,
+        },
+        {
+          deliverable: "SEO & Marketing",
+          percentage: 30,
+          value: 3000,
+        },
+        {
+          deliverable: "Maintenance",
+          percentage: 20,
+          value: 2000,
+        },
+      ],
+      options: {
+        percentage: true,
+        value: true,
+        currency: "$",
+      },
+      bookmark: false,
+    },
+  ];
 
   const page_1_row = [
     {
@@ -1995,7 +2501,7 @@ const Sidebar = ({
                     addHeadingRow("heading-one");
                     setThirdLevel("");
                   }}
-                  className="w-[91%]   py-[14px] bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center gap-2 "
+                  className="w-[88%]   py-[14px] bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center gap-2 "
                 >
                   {/* <img className="h-[85%] w-[70%] " src={heading_one} /> */}
                   <div
@@ -2011,7 +2517,7 @@ const Sidebar = ({
                     addHeadingRow("heading-two");
                     setThirdLevel("");
                   }}
-                  className="w-[91%]  py-[15px] bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center gap-2 "
+                  className="w-[88%]  py-[15px] bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center gap-2 "
                 >
                   <div
                     style={{ boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)" }}
@@ -2026,7 +2532,7 @@ const Sidebar = ({
                     addHeadingRow("heading-three");
                     setThirdLevel("");
                   }}
-                  className="w-[91%] h-28  py-[15px] bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center gap-3 "
+                  className="w-[88%] h-28  py-[15px] bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center gap-3 "
                 >
                   <div
                     style={{ boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)" }}
@@ -2041,7 +2547,7 @@ const Sidebar = ({
                     addHeadingRow("heading-four");
                     setThirdLevel("");
                   }}
-                  className="w-[91%] h-28  py-[15px] gap-3.5 bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center "
+                  className="w-[88%] h-28  py-[15px] gap-3.5 bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center "
                 >
                   <div
                     className="text-[12px] text-lvl_3_img bg-white h-[51px] w-[85px] flex items-center justify-center rounded-md "
@@ -2057,7 +2563,7 @@ const Sidebar = ({
                     addHeadingRow("heading-five");
                     setThirdLevel("");
                   }}
-                  className="w-[91%] h-28  py-[16px] gap-4 bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center "
+                  className="w-[88%] h-28  py-[16px] gap-4 bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center "
                 >
                   <div
                     className="text-[10px] text-lvl_3_img bg-white h-[47px] w-[67px] flex items-center justify-center rounded-md "
@@ -2072,7 +2578,7 @@ const Sidebar = ({
                     addHeadingRow("heading-six");
                     setThirdLevel("");
                   }}
-                  className="w-[91%] h-40 py-[17px] gap-5 bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center "
+                  className="w-[88%] h-40 py-[17px] gap-5 bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center "
                 >
                   <div
                     className="text-[8px] text-lvl_3_img bg-white h-[42px] w-[65px] flex items-center justify-center rounded-md "
@@ -2099,7 +2605,7 @@ const Sidebar = ({
                   }}
                   className="w-full flex flex-col justify-center items-center gap-1 cursor-pointer"
                 >
-                  <div className="w-[91%] relative h-[112px] p-1 bg-lvl_3_bg rounded-md flex flex-col text-gray-500 items-center justify-center gap-2 ">
+                  <div className="w-[88%] relative h-[112px] p-1 bg-lvl_3_bg rounded-md flex flex-col text-gray-500 items-center justify-center gap-2 ">
                     <img
                       style={{
                         boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
@@ -2117,7 +2623,7 @@ const Sidebar = ({
                   }}
                   className="w-full flex flex-col justify-center items-center gap-1 cursor-pointer"
                 >
-                  <div className="w-[91%] relative h-[112px] p-1 bg-lvl_3_bg rounded-md flex flex-col text-gray-500 items-center justify-center gap-2 ">
+                  <div className="w-[88%] relative h-[112px] p-1 bg-lvl_3_bg rounded-md flex flex-col text-gray-500 items-center justify-center gap-2 ">
                     <img
                       style={{
                         boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
@@ -2145,7 +2651,7 @@ const Sidebar = ({
                   }}
                   className="w-full flex flex-col justify-center items-center gap-1 cursor-pointer"
                 >
-                  <div className="w-[91%] relative h-[112px] p-1 bg-lvl_3_bg rounded-md flex flex-col text-gray-500 items-center justify-center gap-2 ">
+                  <div className="w-[88%] relative h-[112px] p-1 bg-lvl_3_bg rounded-md flex flex-col text-gray-500 items-center justify-center gap-2 ">
                     <img
                       style={{
                         boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
@@ -2163,7 +2669,7 @@ const Sidebar = ({
                   }}
                   className="w-full flex flex-col justify-center items-center gap-1 cursor-pointer"
                 >
-                  <div className="w-[91%] relative h-[112px] p-1 bg-lvl_3_bg rounded-md flex flex-col text-gray-500 items-center justify-center gap-2 ">
+                  <div className="w-[88%] relative h-[112px] p-1 bg-lvl_3_bg rounded-md flex flex-col text-gray-500 items-center justify-center gap-2 ">
                     <img
                       style={{
                         boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
@@ -2189,7 +2695,7 @@ const Sidebar = ({
                     addTableRow("normal");
                     setThirdLevel("");
                   }}
-                  className="w-[91%] h-[112px] p-2 bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center "
+                  className="w-[88%] h-[112px] p-2 bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center "
                 >
                   <img className="h-[75%] w-[53%]" src={table_v_1} />
                   <p className="text-lvl_2_txt text-xs">Basic</p>
@@ -2199,7 +2705,7 @@ const Sidebar = ({
                     addTableRow("alternativerow");
                     setThirdLevel("");
                   }}
-                  className="w-[91%] h-[112px] p-2 bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center "
+                  className="w-[88%] h-[112px] p-2 bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center "
                 >
                   <img className="h-[75%] w-[53%]" src={table_v_2} />
                   <p className="text-lvl_2_txt text-xs">Aleternative Row</p>
@@ -2209,7 +2715,7 @@ const Sidebar = ({
                     addTableRow("alternativecol");
                     setThirdLevel("");
                   }}
-                  className="w-[91%] h-[112px] p-2 bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center "
+                  className="w-[88%] h-[112px] p-2 bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center "
                 >
                   <img className="h-[75%] w-[53%]" src={table_v_3} />
                   <p className="text-lvl_2_txt text-xs">Aleternative Coloumn</p>
@@ -2219,7 +2725,7 @@ const Sidebar = ({
                     addTableRow("toprow");
                     setThirdLevel("");
                   }}
-                  className="w-[91%] h-[112px] p-2 bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center "
+                  className="w-[88%] h-[112px] p-2 bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center "
                 >
                   <img className="h-[75%] w-[53%]" src={table_v_4} />
                   <p className="text-lvl_2_txt text-xs">Top Row</p>
@@ -2230,7 +2736,7 @@ const Sidebar = ({
                     addTableRow("leftcol");
                     setThirdLevel("");
                   }}
-                  className="w-[91%] h-[112px] p-2 bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center "
+                  className="w-[88%] h-[112px] p-2 bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center "
                 >
                   <img className="h-[75%] w-[53%]" src={table_v_5} />
                   <p className="text-lvl_2_txt text-xs">Left Coloumn</p>
@@ -2245,87 +2751,200 @@ const Sidebar = ({
                 }}
                 className=" absolute left-0 w-[220px] flex flex-col items-center pt-[16px] gap-[16px]  bg-white z-30 overflow-auto pb-20 scrollbar-hide border-r border-gray-100    "
               >
+                <p className="text-lvl_2_txt w-full text-left text-sm px-[16px]">
+                  Paragraph
+                </p>
                 <div
                   onClick={() => {
                     setRows([...rows, section_1_row]);
                     setThirdLevel("");
                   }}
-                  className="w-[91%]  bg-lvl_3_bg py-[16px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
+                  className="w-[88%]  bg-lvl_3_bg py-[16px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
                 >
                   <img
-                    className=" w-[85%]"
-                    src={section_11}
+                    className=" w-[85%] rounded-md"
+                    src={s_1}
                     style={{
                       boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
                     }}
                   />
-                  <p className="text-lvl_3_txt text-xs">Executive Summary</p>
                 </div>
                 <div
                   onClick={() => {
                     setRows([...rows, section_2_row]);
                     setThirdLevel("");
                   }}
-                  className="w-[91%]  bg-lvl_3_bg py-[16px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
+                  className="w-[88%]  bg-lvl_3_bg py-[16px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
                 >
                   <img
-                    className=" w-[85%]"
-                    src={section_12}
+                    className=" w-[85%] rounded-md"
+                    src={s_2}
                     style={{
                       boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
                     }}
                   />
-                  <p className="text-lvl_3_txt text-xs">Business Overview</p>
                 </div>
+                <div
+                  onClick={() => {
+                    setRows([...rows, ...section_6_row]);
+                    setThirdLevel("");
+                  }}
+                  className="w-[88%]  bg-lvl_3_bg py-[16px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
+                >
+                  <img
+                    className=" w-[85%] rounded-md"
+                    src={s_6}
+                    style={{
+                      boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
+                    }}
+                  />
+                </div>
+
+                <p className="text-lvl_2_txt w-full text-left text-sm px-[16px]">
+                  Tables
+                </p>
+
                 <div
                   onClick={() => {
                     setRows([...rows, ...section_3_row]);
                     setThirdLevel("");
                   }}
-                  className="w-[91%]  bg-lvl_3_bg py-[16px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
+                  className="w-[88%]  bg-lvl_3_bg py-[16px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
                 >
                   <img
-                    className=" w-[85%]"
-                    src={section_13}
+                    className=" w-[85%] rounded-md"
+                    src={s_3}
                     style={{
                       boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
                     }}
                   />
-                  <p className="text-lvl_3_txt text-xs">Board Meeting Notes</p>
                 </div>
                 <div
                   onClick={() => {
                     setRows([...rows, ...section_4_row]);
                     setThirdLevel("");
                   }}
-                  className="w-[91%]  bg-lvl_3_bg py-[16px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
+                  className="w-[88%]  bg-lvl_3_bg py-[16px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
                 >
                   <img
-                    className=" w-[85%]"
-                    src={section_14}
+                    className=" w-[85%] rounded-md"
+                    src={s_4}
                     style={{
                       boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
                     }}
                   />
-                  <p className="text-lvl_3_txt text-xs">Attendees</p>
                 </div>
                 <div
                   onClick={() => {
                     setRows([...rows, ...section_5_row]);
                     setThirdLevel("");
                   }}
-                  className="w-[91%]  bg-lvl_3_bg py-[16px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
+                  className="w-[88%]  bg-lvl_3_bg py-[16px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
                 >
                   <img
-                    className=" w-[85%]"
-                    src={section_15}
+                    className=" w-[85%] rounded-md"
+                    src={s_5}
                     style={{
                       boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
                     }}
                   />
-                  <p className="text-lvl_3_txt text-xs">
-                    Key Strategic Initiatives
-                  </p>
+                </div>
+                <p className="text-lvl_2_txt w-full text-left text-sm px-[16px]">
+                  Image & Content
+                </p>
+
+                <div
+                  onClick={() => {
+                    setRows([...rows, ...section_7_row]);
+                    setThirdLevel("");
+                  }}
+                  className="w-[88%]  bg-lvl_3_bg py-[16px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
+                >
+                  <img
+                    className=" w-[85%] rounded-md"
+                    src={s_7}
+                    style={{
+                      boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
+                    }}
+                  />
+                </div>
+                <div
+                  onClick={() => {
+                    setRows([...rows, ...section_8_row]);
+                    setThirdLevel("");
+                  }}
+                  className="w-[88%]  bg-lvl_3_bg py-[16px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
+                >
+                  <img
+                    className=" w-[85%] rounded-md"
+                    src={s_8}
+                    style={{
+                      boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
+                    }}
+                  />
+                </div>
+                <div
+                  onClick={() => {
+                    setRows([...rows, ...section_9_row]);
+                    setThirdLevel("");
+                  }}
+                  className="w-[88%]  bg-lvl_3_bg py-[16px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
+                >
+                  <img
+                    className=" w-[85%] rounded-md"
+                    src={s_9}
+                    style={{
+                      boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
+                    }}
+                  />
+                </div>
+                <p className="text-lvl_2_txt w-full text-left text-sm px-[16px]">
+                  Pricing
+                </p>
+                <div
+                  onClick={() => {
+                    setRows([...rows, ...section_10_row]);
+                    setThirdLevel("");
+                  }}
+                  className="w-[88%]  bg-lvl_3_bg py-[16px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
+                >
+                  <img
+                    className=" w-[85%] rounded-md"
+                    src={s_10}
+                    style={{
+                      boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
+                    }}
+                  />
+                </div>
+                <div
+                  onClick={() => {
+                    setRows([...rows, ...section_11_row]);
+                    setThirdLevel("");
+                  }}
+                  className="w-[88%]  bg-lvl_3_bg py-[16px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
+                >
+                  <img
+                    className=" w-[85%] rounded-md"
+                    src={s_11}
+                    style={{
+                      boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
+                    }}
+                  />
+                </div>
+                <div
+                  onClick={() => {
+                    setRows([...rows, ...section_12_row]);
+                    setThirdLevel("");
+                  }}
+                  className="w-[88%]  bg-lvl_3_bg py-[16px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
+                >
+                  <img
+                    className=" w-[85%] rounded-md"
+                    src={s_12}
+                    style={{
+                      boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
+                    }}
+                  />
                 </div>
               </div>
             ) : thirdLevel === "pages" ? (
@@ -2361,7 +2980,7 @@ const Sidebar = ({
                     return (
                       <div
                         key={index}
-                        className="w-[91%] bg-lvl_3_bg py-[10px] flex flex-col items-center justify-center gap-2"
+                        className="w-[88%] bg-lvl_3_bg py-[15px] flex flex-col items-center justify-center gap-2"
                         onClick={() => {
                           setRows([...rows, ...item.data]);
                           setThirdLevel("");
@@ -2371,12 +2990,12 @@ const Sidebar = ({
                           <img
                             src={item.link}
                             alt="No Imahe"
-                            className="w-[90%] rounded-md shadow-md shadow-gray-300 "
+                            style={{
+                              boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
+                            }}
+                            className="w-[85%] rounded-md "
                           />
                         )}
-                        <p className="text-lvl_3_txt text-xs">
-                          {item.goalModuleName}
-                        </p>
                       </div>
                     );
                   })
@@ -2391,7 +3010,7 @@ const Sidebar = ({
                   boxShadow: "5px 0 10px rgba(0, 0, 0, 0.1)",
                   height: "calc(100vh - 65px)",
                 }}
-                className="scrollbar-thin absolute left-0 w-[200px] flex flex-col items-center pt-10 gap-8 border-r border-gray-300 bg-white z-50 overflow-auto pb-20 text-xs text-gray-400 text-center  "
+                className=" absolute left-0 w-[220px] flex flex-col items-center pt-[16px] gap-[16px] bg-white z-30 overflow-auto pb-20 scrollbar-hide border-r border-gray-100    "
               >
                 <div>
                   <input
@@ -2415,27 +3034,27 @@ const Sidebar = ({
                 <img
                   src={cover_img_1}
                   onClick={() => insertCoverPage(cover_1)}
-                  className="w-[85%] cursor-pointer"
+                  className="w-[88%] cursor-pointer"
                 />
                 <img
                   src={cover_img_2}
                   onClick={() => insertCoverPage(cover_2)}
-                  className="w-[85%] cursor-pointer"
+                  className="w-[88%] cursor-pointer"
                 />
                 <img
                   src={cover_img_3}
                   onClick={() => insertCoverPage(cover_3)}
-                  className="w-[85%] cursor-pointer"
+                  className="w-[88%] cursor-pointer"
                 />
                 <img
                   src={cover_img_4}
                   onClick={() => insertCoverPage(cover_4)}
-                  className="w-[85%] cursor-pointer"
+                  className="w-[88%] cursor-pointer"
                 />
                 <img
                   src={cover_img_5}
                   onClick={() => insertCoverPage(cover_5)}
-                  className="w-[85%] cursor-pointer"
+                  className="w-[88%] cursor-pointer"
                 />
               </div>
             ) : (
