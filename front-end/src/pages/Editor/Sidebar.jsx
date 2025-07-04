@@ -2501,7 +2501,7 @@ const Sidebar = ({
             {thirdLevel === "heading" ? (
               <div
                 ref={headingRef}
-                className=" absolute left-0 w-[220px] flex flex-col items-center pt-[16px] gap-[16px]  bg-white z-30 overflow-auto pb-20 scrollbar-hide   "
+                className=" absolute left-0 w-[220px] flex flex-col items-center pt-[16px] gap-[16px]  bg-white z-30 overflow-auto pb-[16px] scrollbar-hide   "
                 style={{
                   boxShadow: "5px 0 10px rgba(0, 0, 0, 0.1)",
                   height: "calc(100vh - 65px)",
@@ -2649,7 +2649,7 @@ const Sidebar = ({
             ) : thirdLevel === "image" ? (
               <div
                 ref={headingRef}
-                className=" absolute left-0 w-[220px] flex flex-col items-center pt-[16px] gap-[16px]  bg-white z-30 overflow-auto pb-20 scrollbar-hide border-r border-gray-100 "
+                className=" absolute left-0 w-[220px] flex flex-col items-center pt-[16px] gap-[16px]  bg-white z-30 overflow-auto pb-[16px] scrollbar-hide border-r border-gray-100 "
                 style={{
                   boxShadow: "5px 0 10px rgba(0, 0, 0, 0.1)",
                   height: "calc(100vh - 65px)",
@@ -2699,7 +2699,7 @@ const Sidebar = ({
                   boxShadow: "5px 0 10px rgba(0, 0, 0, 0.1)",
                   height: "calc(100vh - 65px)",
                 }}
-                className=" absolute left-0 w-[220px] flex flex-col items-center pt-[16px] gap-4  bg-white z-30 overflow-auto pb-20 scrollbar-hide border-r border-gray-100 "
+                className=" absolute left-0 w-[220px] flex flex-col items-center pt-[16px] gap-4  bg-white z-30 overflow-auto pb-[16px] scrollbar-hide border-r border-gray-100 "
               >
                 <div
                   onClick={() => {
@@ -2760,7 +2760,7 @@ const Sidebar = ({
                   boxShadow: "5px 0 10px rgba(0, 0, 0, 0.1)",
                   height: "calc(100vh - 65px)",
                 }}
-                className=" absolute left-0 w-[220px] flex flex-col items-center pt-[16px] gap-[16px]  bg-white z-30 overflow-auto pb-20 scrollbar-hide border-r border-gray-100    "
+                className=" absolute left-0 w-[220px] flex flex-col items-center pt-[16px] gap-[16px]  bg-white z-30 overflow-auto pb-[16px] scrollbar-hide border-r border-gray-100    "
               >
                 <p className="text-lvl_2_txt w-full text-left text-sm px-[16px]">
                   Paragraph
