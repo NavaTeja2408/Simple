@@ -81,10 +81,11 @@ const CoverPageSlate = ({
   }, []);
 
   return (
-    <div>
+    <div className="w-full">
       <img
         src={url}
         style={{
+          width: "100%",
           filter: `brightness(${
             bright === 1 ? 1 + darkness * 0.01 : 1 - darkness * 0.01
           })`,
