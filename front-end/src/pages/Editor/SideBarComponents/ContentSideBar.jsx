@@ -22,7 +22,7 @@ const ContentSideBar = ({
   thirdLevel,
 }) => {
   return (
-    <div className=" w-[220px]  pr-4 text-lvl_2_txt  ">
+    <div className=" w-[220px]  pr-2 text-lvl_2_txt  ">
       <button
         onClick={() => setThirdLevel("heading")}
         className={` relative p-2 px-3 w-[95%] rounded-lg flex mx-3  items-center  

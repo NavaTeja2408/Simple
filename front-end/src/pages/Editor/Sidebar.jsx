@@ -2125,7 +2125,7 @@ const Sidebar = ({
                 >
                   <p className="text-sm text-lvl_2_hed font-semibold">Assets</p>
                 </button>
-                <div className="pr-4 w-[220px]">
+                <div className="pr-2 w-[220px]">
                   <button
                     onClick={() => setThirdLevel("cover")}
                     className=" relative p-2 px-3 w-[95%] rounded-lg flex  mx-3  items-center  
@@ -2177,7 +2177,7 @@ const Sidebar = ({
                     Cost Module
                   </p>
                 </button>
-                <div className="pr-4 w-[220px]">
+                <div className="pr-2 w-[220px]">
                   <button
                     onClick={() => setCostModeule(true)}
                     className=" relative p-2 px-3 w-[95%] rounded-lg flex  mx-3 items-center  
