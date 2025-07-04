@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { IoCloudUploadOutline } from "react-icons/io5";
+import { TfiReload } from "react-icons/tfi";
+import { Icon } from "@iconify/react";
 
 const CoverPageSlate = ({
   index,
@@ -9,8 +11,13 @@ const CoverPageSlate = ({
   url,
   onChange,
   preview,
+  darkness,
+  onChangeDark,
 }) => {
   const [loading, setLoading] = useState(false);
+  const [temp, setTemp] = useState(0);
+
+  const [show, setShow] = useState(false);
   const handleUpload = async (e) => {
     const file = e.target.files[0];
     if (!file) {
@@ -49,9 +56,14 @@ const CoverPageSlate = ({
 
   return (
     <div className="w-[104%] h-[100vh] ml-[-2%]   absolute top-0  ">
-      <img src={url} />
+      <img
+        src={url}
+        style={{
+          filter: `brightness(${Math.max(0, 1 - darkness * 0.01)})`,
+        }}
+      />
       {index === selected && preview !== true && (
-        <div className="w-[20%] absolute top-0 shadow-lg h-10 ml-[40%] bg-white flex justify-center items-center gap-4 ">
+        <div className="absolute top-2 left-1/2 transform -translate-x-1/2 px-3 h-10 bg-white border border-gray-100 shadow-md  flex flex-row items-center space-x-2 p-2 rounded text-sm">
           <div>
             <input
               id={`file-upload`}
@@ -65,12 +77,28 @@ const CoverPageSlate = ({
             {/* Upload Image Label */}
             <label
               htmlFor={`file-upload`}
-              className="px-1 py-1 flex items-center justify-center gap-2  text-center rounded cursor-pointer "
+              className="px-1 py-1 flex items-center justify-center gap-2  text-center rounded cursor-pointer text-sm text-lvl_2_txt "
             >
-              <IoCloudUploadOutline />
-              {loading ? "Loading ..." : "upload image"}
+              <TfiReload className="text-md" />
+              {loading ? "Loading ..." : "Change image"}
             </label>
           </div>
+          <div className="h-7 w-[1px] bg-gray-300"></div>
+          <input
+            type="number"
+            className="appearance-none 
+            [&::-webkit-outer-spin-button]:appearance-none 
+            [&::-webkit-inner-spin-button]:appearance-none 
+            [&::-webkit-inner-spin-button]:m-0
+            focus:outline-none
+            border border-gray-300 rounded-md px-2 py-1 w-12"
+            value={darkness}
+            onChange={(e) => onChangeDark(e.target.value)}
+          />
+
+          <button className="relative">
+            <Icon icon="mdi:square-opacity" width="20" height="20" />
+          </button>
         </div>
       )}
     </div>

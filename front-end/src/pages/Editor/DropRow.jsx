@@ -738,6 +738,12 @@ const DropRow = ({
                 updatedContent[0].content = newData;
                 setRows(updatedContent);
               }}
+              darkness={row.dark ? row.dark : 0}
+              onChangeDark={(newData) => {
+                const updatedContent = [...rows];
+                updatedContent[0].dark = newData;
+                setRows(updatedContent);
+              }}
               preview={preview}
             />
           </div>

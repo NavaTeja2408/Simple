@@ -255,6 +255,8 @@ const EditorDnD = () => {
         type: "cover",
         content: url,
         bookmark: false,
+        dark: 0,
+        bright: 0,
       },
       ...prevRows,
     ]);

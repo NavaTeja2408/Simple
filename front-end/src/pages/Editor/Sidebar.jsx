@@ -1179,6 +1179,9 @@ const Sidebar = ({
     {
       id: "030bb67e-f6bb-416d-b9c4-6deea5e7755b",
       type: "cover",
+      dark: 0,
+      bright: 0,
+
       template: 1,
       content:
         "https://res.cloudinary.com/dojwaepbj/image/upload/v1750313321/tqlme1qawsr6m0owommp.png",
@@ -1287,6 +1290,8 @@ const Sidebar = ({
       id: "030bb67e-f6bb-416d-b9c4-6deea5e7755b",
       type: "cover",
       template: 2,
+      dark: 0,
+      bright: 0,
       content:
         "https://res.cloudinary.com/dojwaepbj/image/upload/v1750314535/a50zjpsoarhpidc6ukt6.jpg",
       bookmark: false,
@@ -1403,6 +1408,8 @@ const Sidebar = ({
       id: "030bb67e-f6bb-416d-b9c4-6deea5e7755b",
       type: "cover",
       template: 3,
+      dark: 0,
+      bright: 0,
       content:
         "https://res.cloudinary.com/dojwaepbj/image/upload/v1750317872/x6j7yiv33er5gcrkcfz2.png",
       bookmark: false,
@@ -1535,6 +1542,8 @@ const Sidebar = ({
       id: "27866411-41d4-4955-8024-4f7bce5d9578",
       type: "cover",
       template: 4,
+      dark: 0,
+      bright: 0,
       content:
         "https://res.cloudinary.com/dojwaepbj/image/upload/v1750322585/zcga6w1zwhfbpenqvcpy.png",
       bookmark: false,
@@ -1612,6 +1621,8 @@ const Sidebar = ({
       id: "dc08dd0f-a4d3-4064-b5da-f6b0a5bcbc64",
       type: "cover",
       template: 5,
+      dark: 0,
+      bright: 0,
       content:
         "https://res.cloudinary.com/dojwaepbj/image/upload/v1750328199/mjypix7gqovvle5jeh1j.png",
       bookmark: false,
@@ -2899,7 +2910,7 @@ const Sidebar = ({
                   />
                 </div>
                 <p className="text-lvl_2_txt w-full text-left text-sm px-[16px]">
-                  Pricing
+                  Cost module
                 </p>
                 <div
                   onClick={() => {
