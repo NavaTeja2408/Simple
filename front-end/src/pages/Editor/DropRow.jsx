@@ -219,7 +219,10 @@ const DropRow = ({
         marginLeft: row.type === "brake" ? "-45px" : "1%",
         marginRight: row.type === "brake" ? "0px" : "1%",
         marginTop:
-          selected === index && index === 0 && preview !== true
+          selected === index &&
+          index === 0 &&
+          preview !== true &&
+          row.type !== "cover"
             ? "30px"
             : "4px",
         paddingBottom: selected === index ? "15px" : "0px",
@@ -234,7 +237,9 @@ const DropRow = ({
         alignItems: "center",
         flexDirection: "column",
       }}
-      className="relative bg-transparent"
+      className={` ${
+        row.type === "cover" ? "absolute top-0 left-0 " : "relative"
+      } bg-transparent`}
     >
       {/* Render row's content */}
       <div className="w-full">

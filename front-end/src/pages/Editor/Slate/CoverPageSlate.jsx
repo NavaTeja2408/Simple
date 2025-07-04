@@ -55,11 +55,12 @@ const CoverPageSlate = ({
   };
 
   return (
-    <div className="w-[104%] h-[100vh] ml-[-2%]   absolute top-0  ">
+    <div>
       <img
         src={url}
         style={{
           filter: `brightness(${Math.max(0, 1 - darkness * 0.01)})`,
+          objectFit: "contain",
         }}
       />
       {index === selected && preview !== true && (
