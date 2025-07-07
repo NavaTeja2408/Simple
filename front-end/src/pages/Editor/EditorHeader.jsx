@@ -86,7 +86,21 @@ const EditorHeader = ({
   const date = new Date(createdAt);
 
   const day = String(date.getDate()).padStart(2, "0");
-  const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are 0-indexed
+  const monthNames = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  const month = monthNames[date.getMonth()];
   const year = date.getFullYear();
   const formattedDate = `${day}-${month}-${year}`;
   const undo = () => {
@@ -298,7 +312,7 @@ const EditorHeader = ({
     updateTimeout.current = setTimeout(() => {
       updateProposal(); // Execute only once after rows/settings stop changing
       updateTimeout.current = null; // Reset reference after execution
-    }, 4000);
+    }, 3000);
 
     // Cleanup timeout when component unmounts
     return () => {
@@ -517,7 +531,7 @@ const EditorHeader = ({
           {notifiacations && (
             <div
               ref={bellRef}
-              className="bg-white border border-gray-100 p-5 w-[450px] absolute z-10 rounded-lg flex flex-col items-center justify-center gap-1 top-12 right-20    px-2 py-3 shadow-gray-400 shadow-lg"
+              className="bg-white border border-gray-100 p-5 w-[450px] absolute z-[6000] rounded-lg flex flex-col items-center justify-center gap-1 top-12 right-20    px-2 py-3 shadow-gray-400 shadow-lg"
               style={{
                 left: "50%",
                 transform: "translate(-50%)",
@@ -669,7 +683,7 @@ const EditorHeader = ({
           {share && (
             <div
               ref={shareRef}
-              className="bg-white border border-gray-300 p-5 w-80 absolute top-10 z-10 right-0 rounded-lg flex flex-col items-center justify-center gap-1"
+              className="bg-white border border-gray-300 p-5 w-80 absolute top-10 z-[6000] right-0 rounded-lg flex flex-col items-center justify-center gap-1 "
             >
               <h2 className="text-md font-bold">
                 Share & Download Your Proposal

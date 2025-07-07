@@ -77,7 +77,7 @@ const ForDouble = ({
   return (
     <div
       ref={divRef}
-      className={`w-full mt-4 min-h-[30px] flex ${
+      className={`w-full mt-1 min-h-[30px] flex ${
         aliegn === "left"
           ? "justify-start"
           : aliegn === "right"

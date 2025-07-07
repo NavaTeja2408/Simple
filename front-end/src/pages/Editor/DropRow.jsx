@@ -46,6 +46,7 @@ const DropRow = ({
   addBreakPoint,
   addTableRow,
   addCodeBlock,
+  addLineSpace,
 }) => {
   const [{ isOver }, drop] = useDrop(() => ({
     accept: "TEXT", // Accepts draggable text items
@@ -759,7 +760,12 @@ const DropRow = ({
             />
           </div>
         ) : (
-          <span>Empty Row</span>
+          <div
+            onClick={() => setSelected(index)}
+            className="w-full h-[60px] flex items-center justify-center text-xs text-gray-500"
+          >
+            {selected === index && "Line Space"}
+          </div>
         )}
       </div>
 
@@ -950,6 +956,14 @@ const DropRow = ({
             className="py-1.5 w-full px-3 hover:bg-gray-100 text-start"
           >
             Page Break
+          </button>
+          <button
+            onClick={() => {
+              addLineSpace(selected + 1);
+            }}
+            className="py-1.5 w-full px-3 hover:bg-gray-100 text-start"
+          >
+            Line Space
           </button>
         </div>
       )}

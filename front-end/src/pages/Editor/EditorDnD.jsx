@@ -262,6 +262,16 @@ const EditorDnD = () => {
     ]);
     setSelected("cover");
   };
+  const addLineSpace = (index) => {
+    setRows((prevRows) => [
+      ...prevRows.slice(0, index), // Rows before the index
+      {
+        id: uuidv4(),
+        type: "line",
+      },
+      ...prevRows.slice(index), // Rows after the index
+    ]);
+  };
 
   const addBreakPoint = (index = null) => {
     if (index !== null && index >= 0 && index <= rows.length) {
@@ -537,6 +547,7 @@ const EditorDnD = () => {
             addBreakPoint={addBreakPoint}
             addTableRow={addTableRow}
             addCodeBlock={addCodeBlock}
+            addLineSpace={addLineSpace}
           />
         </div>
       </div>

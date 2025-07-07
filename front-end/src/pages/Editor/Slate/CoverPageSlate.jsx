@@ -86,10 +86,14 @@ const CoverPageSlate = ({
         src={url}
         style={{
           width: "100%",
-          filter: `brightness(${
-            bright === 1 ? 1 + darkness * 0.01 : 1 - darkness * 0.01
-          })`,
           objectFit: "contain",
+          ...(bright === 1
+            ? {
+                opacity: 1 - darkness * 0.01, // decrease opacity
+              }
+            : {
+                filter: `brightness(${1 - darkness * 0.01})`, // decrease brightness
+              }),
         }}
       />
       {index === selected && preview !== true && (
@@ -174,11 +178,19 @@ const CoverPageSlate = ({
               </div>
               <div className="-ml-1 flex gap-2 items-center">
                 <div
-                  className="w-4 h-4 bg-black cursor-pointer"
+                  className={`w-4 h-4 bg-black cursor-pointer ${
+                    bright === 1
+                      ? "border border-black"
+                      : "border border-graidient_bottom"
+                  }`}
                   onClick={() => onChangeBright(0)}
                 ></div>
                 <div
-                  className="w-4 h-4 bg-white border border-gray-300 cursor-pointer"
+                  className={`w-4 h-4 bg-white cursor-pointer ${
+                    bright !== 1
+                      ? "border border-gray-300"
+                      : "border border-graidient_bottom"
+                  }`}
                   onClick={() => onChangeBright(1)}
                 ></div>
               </div>

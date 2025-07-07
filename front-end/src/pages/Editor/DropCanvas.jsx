@@ -21,6 +21,7 @@ const DropCanvas = ({
   addBreakPoint,
   addTableRow,
   addCodeBlock,
+  addLineSpace,
 }) => {
   const [bookmark, setBookmark] = useState(null);
   const [snapshotLink, setSnapshotLink] = useState("");
@@ -115,14 +116,11 @@ const DropCanvas = ({
       console.log(error);
     }
   };
+
   return (
     <div
-      style={{
-        width: "94%",
-        minHeight: "230vh",
-        position: "relative",
-      }}
-      className=" mt-10 my mb-20 bg-white shadow-lg shadow-gray-300 h-fit py-10 px-12    "
+      className="canvas mt-10 my mb-20 bg-white shadow-lg shadow-gray-300 h-fit py-10 px-12"
+      style={{ width: "1050px", minHeight: "230vh", position: "relative" }}
     >
       {/* Render rows */}
       {rows.map((row, index) => (
@@ -154,6 +152,7 @@ const DropCanvas = ({
             addBreakPoint={addBreakPoint}
             addTableRow={addTableRow}
             addCodeBlock={addCodeBlock}
+            addLineSpace={addLineSpace}
           />
         </div>
       ))}
