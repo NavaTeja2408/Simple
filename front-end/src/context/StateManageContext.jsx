@@ -21,6 +21,9 @@ export function StateManageContextProvider({ children }) {
   const [proposals, setProposals] = useState([]);
   const [loading, setLoading] = useState(false);
   const [sortP, setSortP] = useState("default");
+  const [undo, setUndo] = useState([]);
+  const [redo, setRedo] = useState([]);
+  const [redoA, setRedoA] = useState(false);
 
   useEffect(() => {
     if (user?.id && databaseUrl) {
@@ -87,6 +90,12 @@ export function StateManageContextProvider({ children }) {
         setProposals,
         sortP,
         setSortP,
+        undo,
+        setUndo,
+        redo,
+        setRedo,
+        redoA,
+        setRedoA,
       }}
     >
       {children}

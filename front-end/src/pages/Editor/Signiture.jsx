@@ -1,14 +1,16 @@
 import React, { useContext, useState } from "react";
 import { StateManageContext } from "../../context/StateManageContext";
+import { UserContext } from "../../context/UserContext";
 
 const Signature = ({ addSign, rows, setRows }) => {
   const { setSign, signEdit, setSignEdit } = useContext(StateManageContext);
+  const { user } = useContext(UserContext);
   const [temp, setTemp] = useState(
     signEdit !== null
       ? rows[signEdit].content
       : [
           {
-            proposedName: "",
+            proposedName: user.username,
             signed: true,
           },
           {
@@ -25,7 +27,7 @@ const Signature = ({ addSign, rows, setRows }) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center z-50">
+    <div className="fixed inset-0 bg-black bg-opacity-20 flex items-center justify-center p-4 z-[1000]">
       {/* Popup Content */}
       <div className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-lg transition-all transform scale-105">
         {/* Header */}
@@ -54,10 +56,10 @@ const Signature = ({ addSign, rows, setRows }) => {
               onChange={(e) =>
                 handleInputChange(0, "proposedName", e.target.value)
               }
-              className="mt-2 w-full px-4 py-2 border border-gray-300 rounded-lg text-gray-800 shadow-sm focus:ring-blue-500 focus:border-blue-500"
+              className="mt-2 w-full px-4 py-2 border border-gray-300 rounded-lg text-gray-800 shadow-sm outline-none"
               placeholder="E.g: Jhon"
             />
-            <p className="text-xs p-2">
+            <p className="text-[11px] p-2">
               By clicking <span className="text-graidient_bottom"> Save</span>,
               you agree to electronically sign this proposal and accept its
               terms. This signature is legally binding, just like a handwritten
@@ -79,7 +81,7 @@ const Signature = ({ addSign, rows, setRows }) => {
               onChange={(e) =>
                 handleInputChange(1, "acceptedName", e.target.value)
               }
-              className="mt-2 w-full px-4 py-2 border border-gray-300 rounded-lg text-gray-800 shadow-sm focus:ring-blue-500 focus:border-blue-500"
+              className="mt-2 w-full px-4 py-2 border border-gray-300 rounded-lg text-gray-800 shadow-sm outline-none"
               placeholder="E.g: Jhon"
             />
           </div>

@@ -10994,6 +10994,7 @@ const Sidebar = ({
         if (rows[0].template !== undefined) {
           const digit = rows[0].template;
           const remainingRows = rows.slice(digit);
+          console.log(remainingRows);
 
           // Prepend `value` to the remaining rows
           const updatedRows = [...value, ...remainingRows];

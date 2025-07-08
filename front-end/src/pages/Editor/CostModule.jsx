@@ -12,11 +12,11 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
       : [
           {
             deliverable: "",
-            price: 0,
-            discount: 0,
-            quantity: 1,
+            price: null,
+            discount: null,
+            quantity: null,
             paymentDuration: "Monthly",
-            amount: 0,
+            amount: null,
           },
         ]
   );
@@ -94,7 +94,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
 
   const calculateFinalAmount = () => {
     const total = calculateTotalAmount();
-    return total - calculateDiscountedAmount() - calculateTaxAmount();
+    return total - calculateDiscountedAmount() + calculateTaxAmount();
   };
 
   return (
@@ -109,7 +109,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
         <div className="flex flex-row mt-4 border-b-[3px] border-gray-100 ">
           {/* Table */}
           <div className=" w-[75%] bg-gray-50 ">
-            <div className="flex items-center pb-3 pl-4 border-b-[5px] border-gray-100 mb-2 gap-4">
+            <div className="flex items-center pb-3 pl-4 border-b-[5px] border-gray-100 mb-2 gap-4 relative">
               {/* Currency Dropdown */}
               <div className="flex items-center px-2 py-1 rounded-md bg-gray-100 gap-2">
                 <label
@@ -160,12 +160,16 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                   />
                   Tax
                 </label>
+                <div className=" absolute top-3 right-4 text-gray-600 text-sm">
+                  <p>Total Services: {temp.length}</p>
+                </div>
               </div>
             </div>
             <table className="w-[95%] ml-2 table-auto text-xs border-collapse rounded-md bg-gray-50 mt-3 block   h-[170px] overflow-y-auto scrollbar-thin">
               <thead className="sticky top-0 bg-gray-50 z-[5000]">
                 <tr>
-                  <th className=" px-4 py-2 w-96 text-left">
+                  <th className="  py-2  text-center  w-16">S No.</th>
+                  <th className=" px-4 py-2 w-80 text-left">
                     Services/Products
                   </th>
                   {quantity && (
@@ -183,11 +187,12 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                 {temp.map((row, index) => (
                   <tr
                     key={index}
-                    className="hover:bg-gray-50 border border-b-[13px]  border-gray-100 bg-white h-16  "
+                    className="hover:bg-gray-50 border border-b-[13px]  border-gray-100 bg-white h-16   "
                   >
+                    <td className="px-4">{index + 1}</td>
                     <td
                       className={`pr-8 px-2 py-1 relative ${
-                        quantity ? "w-[60%]" : "w-[78%]"
+                        quantity ? "w-[55%]" : "w-[78%]"
                       } ${dropdown === index ? "pb-10" : "pb-1"}`}
                     >
                       <div className="relative">
@@ -203,11 +208,11 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                               e.target.value
                             )
                           }
-                          className="w-full border border-gray-300 bg-gray-50 rounded px-2 py-2"
+                          className="w-full border border-gray-300 bg-gray-50 rounded px-2 py-2 outline-none"
                           placeholder="Deliverable"
                         />
                         {dropdown !== null && index === dropdown && (
-                          <div className="absolute top-full left-0 w-full bg-white border border-gray-300 rounded-md shadow-md max-h-16 overflow-y-auto scrollbar-thin">
+                          <div className="absolute top-full  left-0 w-full bg-white border border-gray-300 rounded-md shadow-md max-h-16 overflow-y-auto scrollbar-thin">
                             {list
                               .filter((item) =>
                                 item
@@ -240,6 +245,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                         <input
                           type="number"
                           value={row.price}
+                          placeholder="Price"
                           onChange={(e) =>
                             handleInputChange(
                               index,
@@ -247,7 +253,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                               parseFloat(e.target.value)
                             )
                           }
-                          className="w-full border border-gray-300 bg-gray-50  rounded px-2 py-1 no-spinner"
+                          className="w-full border border-gray-300 bg-gray-50  rounded px-2 py-2 no-spinner outline-none text-center"
                         />
                       </td>
                     )}
@@ -257,6 +263,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                         <input
                           type="number"
                           value={row.quantity}
+                          placeholder="Qnt"
                           onChange={(e) =>
                             handleInputChange(
                               index,
@@ -264,7 +271,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                               parseInt(e.target.value)
                             )
                           }
-                          className="w-full border border-gray-300 bg-gray-50 rounded px-2 py-1 no-spinner"
+                          className="w-full border border-gray-300 bg-gray-50 rounded px-2 py-2 no-spinner outline-none text-center"
                         />
                       </td>
                     )}
@@ -273,6 +280,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                       <input
                         type="number"
                         value={row.amount}
+                        placeholder="Amount"
                         onChange={(e) =>
                           handleInputChange(
                             index,
@@ -281,7 +289,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                           )
                         }
                         readOnly={quantity}
-                        className="w-full border border-gray-300 bg-gray-50 rounded px-2 py-1 no-spinner text-right"
+                        className="w-full border border-gray-300 bg-gray-50 rounded px-2 py-2 no-spinner text-right outline-none"
                       />
                     </td>
                     <td className=" px-2 py-2 text-center">

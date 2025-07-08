@@ -7,14 +7,16 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
   const { setPriceTerms, priceTermsEdit, setPriceTermsEdit } =
     useContext(StateManageContext);
 
+  const [total, setTotal] = useState(null);
+
   const [temp, setTemp] = useState(
     priceTermsEdit !== null
       ? rows[priceTermsEdit].content
       : [
           {
             deliverable: "",
-            percentage: 0,
-            value: 0,
+            percentage: null,
+            value: null,
           },
         ]
   );
@@ -43,13 +45,46 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
     const updatedTemp = [...temp];
     updatedTemp[index][key] = value;
 
-    if (key === "percentage" || key === "value") {
-      const price = updatedTemp[index].percentage || 0;
-      const quantity = updatedTemp[index].value || 0;
+    if (total == null) {
+      setTemp(updatedTemp);
+      return;
+    }
+
+    if (key === "percentage") {
+      const numericPercentage = parseFloat(value) || 0;
+      const calculatedValue = (numericPercentage / 100) * total;
+      updatedTemp[index]["value"] = parseFloat(calculatedValue.toFixed(2));
+    } else {
+      const numericValue = parseFloat(value) || 0;
+      const calculatedPercentage =
+        total !== 0 ? (numericValue / total) * 100 : 0;
+      updatedTemp[index]["percentage"] = parseFloat(
+        calculatedPercentage.toFixed(2)
+      );
     }
 
     setTemp(updatedTemp);
   };
+
+  const [dropdown, setDropdown] = useState(null);
+  const list = [
+    // "UI/UX Design",
+    // "Devlopment",
+    // "Production",
+    // "Full Stack",
+    // "Manifacturing",
+    // "Quality",
+    // "Meterial",
+    "Advance",
+    "Milestone 1",
+    "Milestone 2",
+    "Milestone 3",
+    "Milestone 4",
+    "Milestone 5",
+    "Full payment",
+    "Devlopment phase",
+    "Design phase",
+  ];
 
   const handleDeleteRow = (index) => {
     setTemp(temp.filter((_, i) => i !== index));
@@ -65,14 +100,14 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
   };
 
   const width =
-    percentage && value ? "60%" : percentage || value ? "80%" : "90%";
+    percentage && value ? "50%" : percentage || value ? "70%" : "90%";
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-20 flex items-center justify-center p-4 z-[1000]">
       <div className="bg-white rounded-lg shadow-lg  max-w-3xl w-full transition-all transform scale-105 ">
-        <div className="w-full flex flex-col items-center justify-center mt-6 border-b-[5px] border-gray-100">
+        <div className="w-full flex flex-col items-center justify-center mt-4 border-b-[5px] border-gray-100">
           <h1 className="text-md font-bold text-gray-700">Add Price Terms</h1>
-          <p className="text-sm text-gray-500 mb-6">
+          <p className="text-sm text-gray-500 mb-4">
             Drag & Set your cost for your proposal
           </p>
         </div>
@@ -103,14 +138,7 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
 
               {/* Checkboxes */}
               <div className="flex items-center gap-4 ">
-                <label
-                  style={{
-                    border: percentage
-                      ? "1px solid rgba(223 , 6 , 78 , 1)"
-                      : "none",
-                  }}
-                  className="flex bg-gray-100 px-2 py-1 rounded-md items-center text-sm font-semibold text-gray-600"
-                >
+                <label className="flex bg-gray-100 px-2 py-1 rounded-md items-center text-sm font-semibold text-gray-600">
                   <input
                     type="checkbox"
                     checked={percentage}
@@ -119,12 +147,7 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
                   />
                   Percentage
                 </label>
-                <label
-                  style={{
-                    border: value ? "1px solid rgba(223 , 6 , 78 , 1)" : "none",
-                  }}
-                  className="flex bg-gray-100 px-2 py-1 rounded-md items-center text-sm font-semibold text-gray-600"
-                >
+                <label className="flex bg-gray-100 px-2 py-1 rounded-md items-center text-sm font-semibold text-gray-600">
                   <input
                     type="checkbox"
                     checked={value}
@@ -133,16 +156,28 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
                   />
                   Value
                 </label>
+                <div className="flex justify-center items-center text-sm gap-2 ml-20">
+                  <label className="text-gray-600">Total: </label>
+                  <input
+                    type="number"
+                    placeholder="Total"
+                    min={0}
+                    value={total}
+                    onChange={(e) => setTotal(e.target.value)}
+                    className="w-32 border border-gray-300 bg-gray-50 rounded px-2 py-1 font-normal text-sm outline-none no-spinner"
+                  />
+                </div>
               </div>
             </div>
             <table className="w-[95%] ml-2 text-xs border-collapse rounded-md bg-gray-50 mt-3 block max-h-[250px] overflow-y-auto">
-              <thead className="sticky top-0 bg-gray-50">
+              <thead className="sticky top-0 bg-gray-50 z-[10000]">
                 <tr>
+                  <th className="  py-2  text-center  w-16">S No.</th>
                   <th className={` px-4 py-2 w-[${width}] text-left`}>
                     Services/Products
                   </th>
                   {percentage && (
-                    <th className=" px-2 py-2 text-center">Percentage</th>
+                    <th className="  py-2 text-center ">Percentage</th>
                   )}
                   {value && <th className=" px-2 py-2 text-center">Value</th>}
 
@@ -155,10 +190,13 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
                     key={index}
                     className="hover:bg-gray-50 border border-b-[13px]  border-gray-100 bg-white  "
                   >
-                    <td className={` pr-8 px-2 py-1 w-[${width}]`}>
+                    <td className="px-4">{index + 1}</td>
+                    <td className={` pr-8 px-2 py-1 w-[${width}] relative`}>
                       <input
                         type="text"
                         value={row.deliverable}
+                        onFocus={() => setDropdown(index)}
+                        onBlur={() => setDropdown(null)} // Delay closing
                         onChange={(e) =>
                           handleInputChange(
                             index,
@@ -166,16 +204,38 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
                             e.target.value
                           )
                         }
-                        className="w-full border border-gray-300 bg-gray-50 rounded px-2 py-2"
+                        className="w-full border border-gray-300 bg-gray-50 rounded px-2 py-2 outline-none"
                         placeholder="Deliverable"
                       />
+                      {dropdown !== null && index === dropdown && (
+                        <div className="absolute top-[80%] z-[100000]  left-2 w-[90%] bg-white border border-gray-300 rounded-md shadow-md max-h-16 overflow-y-auto scrollbar-thin">
+                          {list
+                            .filter((item) =>
+                              item
+                                .toLowerCase()
+                                .includes(temp[index].deliverable.toLowerCase())
+                            )
+                            .map((item, i) => (
+                              <div
+                                key={i}
+                                onMouseDown={() =>
+                                  handleInputChange(index, "deliverable", item)
+                                }
+                                className="p-2 hover:bg-gray-100 cursor-pointer"
+                              >
+                                {item}
+                              </div>
+                            ))}
+                        </div>
+                      )}
                     </td>
 
                     {percentage && (
-                      <td className=" px-2 py-2 ">
+                      <td className=" px-2 py-2 w-32 ">
                         <input
                           type="number"
                           value={row.percentage}
+                          placeholder="%"
                           onChange={(e) =>
                             handleInputChange(
                               index,
@@ -183,16 +243,19 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
                               parseFloat(e.target.value)
                             )
                           }
+                          min={0}
                           max={100}
-                          className="w-full border border-gray-300 bg-gray-50 rounded px-2 py-1"
+                          className="w-full border border-gray-300 bg-gray-50 rounded px-2 py-2 outline-none no-spinner"
                         />
                       </td>
                     )}
                     {value && (
-                      <td className=" px-2 py-2 flex flex-row items-center justify-center gap-1 font-bold w-36  text-md">
+                      <td className=" px-2 py-2 flex flex-row items-center justify-center gap-1 font-bold w-32  text-md">
                         {currency}
                         <input
                           type="number"
+                          placeholder="value"
+                          min={0}
                           value={row.value}
                           onChange={(e) =>
                             handleInputChange(
@@ -201,7 +264,7 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
                               parseInt(e.target.value)
                             )
                           }
-                          className="w-full border border-gray-300 bg-gray-50 rounded px-2 py-1 font-normal text-sm"
+                          className="w-full border border-gray-300 bg-gray-50 rounded px-2 py-2 font-normal text-sm outline-none no-spinner"
                         />
                       </td>
                     )}
@@ -209,7 +272,7 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
                     <td className=" px-2 py-2 text-center">
                       <button
                         onClick={() => handleDeleteRow(index)}
-                        className="px-2 py-2 rounded-md text-red-500 hover:text-red-700 bg-editor_header_button"
+                        className="px-2 py-2 rounded-md text-red-500 hover:text-red-700 "
                       >
                         <MdOutlineDelete className="text-lg" />
                       </button>

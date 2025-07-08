@@ -65,6 +65,7 @@ const EditorDnD = () => {
     setPriceTerms,
     costModule,
     setCostModeule,
+    setUndo,
   } = useContext(StateManageContext);
 
   useEffect(() => {
@@ -85,6 +86,8 @@ const EditorDnD = () => {
           setFavorate(res.data.favorate);
           setPreview(res.data.locked);
           setCreatedAt(res.data.createdAt);
+
+          setUndo((prevUndo) => [res.data.data]);
         });
     } catch (error) {
       console.log(error);

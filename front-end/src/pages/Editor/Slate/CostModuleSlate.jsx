@@ -25,7 +25,12 @@ const CostModuleSlate = ({ index, rows, selected, settings, preview }) => {
   const { setCostModeule, setCostMouleEdit } = useContext(StateManageContext);
 
   return (
-    <div className={`p-7 py-6 relative font-${settings.body}`}>
+    <div className={`p-3 relative font-${settings.body} text-[1em]`}>
+      <h1
+        className={`w-full flex items-center justify-start text-[1.75em] font-${settings.heading} font-bold mb-4 pl-1 `}
+      >
+        Cost Module
+      </h1>
       {selected !== null && preview !== true && (
         <button
           onClick={() => {
@@ -77,37 +82,35 @@ const CostModuleSlate = ({ index, rows, selected, settings, preview }) => {
           ))}
         </tbody>
       </table>
-      <div className="mt-2 pt-4 px-4">
-        <div className="flex justify-end items-center gap-16">
-          <span className=" font-semibold">Total Amount:</span>
-          <span className=" font-semibold">
-            ${calculateTotalAmount().toFixed(2)}
-          </span>
+      <div className="mt-2 pt-4 px-2">
+        <div className="flex justify-between items-center gap-16">
+          <span className=" w-48 text-left">Total Amount:</span>
+          <span>${calculateTotalAmount().toFixed(2)}</span>
         </div>
         {rows.options.discount && (
-          <div className="flex justify-end items-center gap-12">
-            <span className=" font-semibold">
-              Discount: {rows.values?.discount}%
-            </span>
-            <span className=" font-semibold">
+          <div className="flex justify-between items-center gap-12">
+            <span className=" w-48 text-left">Discount:</span>
+            <span>{rows.values?.discount}% </span>
+            <span>
               {rows.options.currency}
               {calculateDiscountedAmount().toFixed(2)}
             </span>
           </div>
         )}
         {rows.options.tax && (
-          <div className="flex justify-end items-center gap-10">
-            <span className=" font-semibold">Tax: {rows.values?.tax}%</span>
-            <span className=" font-semibold">
+          <div className="flex justify-between items-center gap-10">
+            <span className=" w-48 text-left">Tax:</span>
+            <span>{rows.values?.tax}% </span>
+            <span>
               {rows.options.currency}
               {calculateTaxAmount().toFixed(2)}
             </span>
           </div>
         )}
 
-        <div className="flex justify-end items-cente gap-16 ">
-          <span className=" font-semibold ">Payable Amount:</span>
-          <span className=" font-semibold">
+        <div className="flex justify-between items-cente gap-16 ">
+          <span className=" w-48 text-left">Payable Amount:</span>
+          <span className=" ">
             {rows.options.currency}
             {calculatePayableAmount().toFixed(2)}
           </span>
