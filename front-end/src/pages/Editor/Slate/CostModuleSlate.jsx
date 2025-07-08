@@ -19,7 +19,7 @@ const CostModuleSlate = ({ index, rows, selected, settings, preview }) => {
 
   const calculatePayableAmount = () => {
     const total = calculateTotalAmount();
-    return total - calculateDiscountedAmount() - calculateTaxAmount(); // Subtract 10% discount
+    return total - calculateDiscountedAmount() + calculateTaxAmount(); // Subtract 10% discount
   };
 
   const { setCostModeule, setCostMouleEdit } = useContext(StateManageContext);
