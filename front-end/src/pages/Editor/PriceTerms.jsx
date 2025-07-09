@@ -35,8 +35,8 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
       ...temp,
       {
         deliverable: "",
-        percentage: null,
-        value: null,
+        percentage: 0,
+        value: 0,
       },
     ]);
   };
@@ -103,7 +103,7 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
     percentage && value ? "50%" : percentage || value ? "70%" : "90%";
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-20 flex items-center justify-center p-4 z-[1000] be-vietnam-pro-regular">
+    <div className="fixed inset-0 bg-black bg-opacity-20 flex items-center justify-center p-4 z-[1000]">
       <div className="bg-white rounded-lg shadow-lg  max-w-3xl w-full transition-all transform scale-105 ">
         <div className="w-full flex flex-col items-center justify-center mt-4 border-b-[5px] border-gray-100">
           <h1 className="text-md font-bold text-gray-700">Add Price Terms</h1>
@@ -235,7 +235,7 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
                         <input
                           type="number"
                           value={row.percentage}
-                          placeholder="%"
+                          placeholder="Percentage"
                           onChange={(e) =>
                             handleInputChange(
                               index,
@@ -245,7 +245,7 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
                           }
                           min={0}
                           max={100}
-                          className="w-full border border-gray-300 bg-gray-50 rounded px-2 py-2 outline-none no-spinner focus:border-gray-400"
+                          className="w-full border border-gray-300 bg-gray-50 rounded px-2 py-2 outline-none no-spinner focus:border-gray-400 text-center"
                         />
                       </td>
                     )}

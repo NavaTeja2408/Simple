@@ -36,7 +36,7 @@ const SignRow = ({ index, rows, content, onChange, selected }) => {
               updatedData[0].signed = true;
               onChange(updatedData);
             }}
-            className="px-6 py-2  text-white rounded-sm bg-graidient_bottom"
+            className="px-6 py-2  text-white rounded-md bg-graidient_bottom "
           >
             Sign Proposal
           </button>
@@ -60,7 +60,7 @@ const SignRow = ({ index, rows, content, onChange, selected }) => {
               updatedData[1].signed = true;
               onChange(updatedData);
             }}
-            className="px-6 py-2  text-white rounded-sm bg-graidient_bottom "
+            className="px-6 py-2  text-white rounded-md bg-graidient_bottom  "
           >
             Sign Proposal
           </button>

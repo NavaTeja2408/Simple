@@ -774,6 +774,12 @@ const DropRow = ({
                 setRows(updatedContent);
               }}
               preview={preview}
+              height={row.height ? row.height : 690}
+              onChangeHeight={(newData) => {
+                const updatedContent = [...rows];
+                updatedContent[0].height = newData;
+                setRows(updatedContent);
+              }}
             />
           </div>
         ) : (

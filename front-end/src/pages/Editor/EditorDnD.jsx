@@ -260,6 +260,7 @@ const EditorDnD = () => {
         bookmark: false,
         dark: 0,
         bright: 0,
+        height: 690,
       },
       ...prevRows,
     ]);

@@ -1231,6 +1231,7 @@ const Sidebar = ({
       bookmark: false,
       dark: 67,
       template: 8,
+      height: 1380,
     },
     {
       id: "a67d170a-0f57-431a-9dbc-0d509e2bd2172e",
@@ -1664,6 +1665,7 @@ const Sidebar = ({
         "https://res.cloudinary.com/dojwaepbj/image/upload/v1751872990/mmanncgnhumy9tgwrphy.png",
       bookmark: false,
       template: 6,
+      height: 1380,
     },
     {
       id: "a67d170a-0f57-431a-9dbc-0d509e2bd217e3qf3",
@@ -2099,6 +2101,7 @@ const Sidebar = ({
         "https://res.cloudinary.com/dojwaepbj/image/upload/v1751873104/c97q37xiujkpkel1alj6.png",
       bookmark: false,
       template: 7,
+      height: 1380,
     },
     {
       id: "a67d170a-0f57-431a-9dbc-0d509e2bd217",
@@ -2560,6 +2563,7 @@ const Sidebar = ({
         "https://res.cloudinary.com/dojwaepbj/image/upload/v1751873357/u6ppoelyl2dtun4vs81r.png",
       bookmark: false,
       template: 8,
+      height: 1380,
     },
     {
       id: "a67d170a-0f57-431a-9dbc-0d509e2bd21723423",
@@ -3066,6 +3070,7 @@ const Sidebar = ({
         "https://res.cloudinary.com/dojwaepbj/image/upload/v1751873497/ch4temyh5b0afjr1gfvv.png",
       bookmark: false,
       template: 5,
+      height: 1380,
     },
     {
       id: "253d996f-c3b0-46b8-a321-15340ad39822",
@@ -3530,6 +3535,7 @@ const Sidebar = ({
       bright: 1,
       dark: 4,
       template: 9,
+      height: 1380,
     },
     {
       id: "8bfc05f3-3984-4747-908c-6694eabf947b",
@@ -4006,6 +4012,7 @@ const Sidebar = ({
       content:
         "https://res.cloudinary.com/dojwaepbj/image/upload/v1751874918/tk4xdnjpb76elmby2h6v.png",
       bookmark: false,
+      height: 1380,
     },
     {
       id: "37570ee6-afa5-4115-955a-7a825b4f8242",
@@ -4562,6 +4569,7 @@ const Sidebar = ({
         "https://res.cloudinary.com/dojwaepbj/image/upload/v1751875250/tqyl5mgvigojpj6kkcqz.png",
       bookmark: false,
       template: 8,
+      height: 1380,
     },
     {
       id: "8bfc05f3-3984-4747-908c-6694eabf947b",
@@ -5053,6 +5061,7 @@ const Sidebar = ({
         "https://res.cloudinary.com/dojwaepbj/image/upload/v1751876086/xgat9c8w1vktcxelx0ws.png",
       bookmark: false,
       template: 7,
+      height: 1380,
     },
     {
       id: "3653ea9b-a146-4744-93be-a2a2db3c5786",
@@ -5586,6 +5595,7 @@ const Sidebar = ({
         "https://res.cloudinary.com/dojwaepbj/image/upload/v1751876325/eluuwarffz16oknz3j6w.png",
       bookmark: false,
       template: 5,
+      height: 1380,
     },
     {
       id: "366454c5-de9a-4080-a4b3-6ccbbcb68e1f",
@@ -6082,6 +6092,7 @@ const Sidebar = ({
       dark: 0,
       bright: 1,
       template: 6,
+      height: 1380,
     },
     {
       id: "27c2cb15-9ec2-4171-874f-544b323a7bc1",
@@ -6573,6 +6584,7 @@ const Sidebar = ({
         "https://res.cloudinary.com/dojwaepbj/image/upload/v1751876544/ln9qhxzf6zjxp9ndwiht.png",
       bookmark: false,
       template: 6,
+      height: 1380,
     },
     {
       id: "acc5f515-18dd-4b05-9013-ae51bc28a89b",
@@ -7070,6 +7082,7 @@ const Sidebar = ({
         "https://res.cloudinary.com/dojwaepbj/image/upload/v1751876692/jrqikuuelz7ok5ofqyw4.png",
       bookmark: false,
       template: 4,
+      height: 1380,
     },
     {
       id: "acc5f515-18dd-4b05-9013-ae51bc28a89b",
@@ -7561,6 +7574,7 @@ const Sidebar = ({
       bookmark: false,
       bright: 1,
       dark: 0,
+      height: 1380,
     },
     {
       id: "8bfc05f3-3984-4747-908c-6694eabf947b",
@@ -8065,6 +8079,7 @@ const Sidebar = ({
       dark: 0,
       bright: 0,
       template: 7,
+      height: 1380,
     },
     {
       id: "5684e6f5-47f6-4bf1-9095-20402ec48154",
@@ -8454,6 +8469,7 @@ const Sidebar = ({
       dark: 0,
       bright: 0,
       template: 6,
+      height: 1380,
     },
     {
       id: "31beafc0-e659-4400-a060-9c0b584f83da",
@@ -8918,6 +8934,7 @@ const Sidebar = ({
       dark: 0,
       bright: 0,
       template: 7,
+      height: 1380,
     },
     {
       id: "747bcc60-4788-4b81-bdd4-4c486409eb8f",
@@ -9383,6 +9400,7 @@ const Sidebar = ({
       dark: 0,
       bright: 0,
       template: 6,
+      height: 1380,
     },
     {
       id: "d1b7d054-f8d2-4b20-935c-51addb322950",
@@ -9836,6 +9854,7 @@ const Sidebar = ({
       dark: 18,
       bright: 0,
       template: 7,
+      height: 1380,
     },
     {
       id: "d1b7d054-f8d2-4b20-935c-51addb322950",
@@ -10270,6 +10289,7 @@ const Sidebar = ({
       dark: 0,
       bright: 0,
       template: 7,
+      height: 1380,
     },
     {
       id: "6c8006db-4963-4a91-aaaa-02ebdd93c512",
@@ -10712,6 +10732,7 @@ const Sidebar = ({
       bookmark: false,
       dark: 67,
       template: 8,
+      height: 690,
     },
     {
       id: "a67d170a-0f57-431a-9dbc-0d509e2bd217weqdqew",
@@ -10940,6 +10961,7 @@ const Sidebar = ({
         "https://res.cloudinary.com/dojwaepbj/image/upload/v1751983256/qkpncci2rl1syeqadm7n.png",
       bookmark: false,
       template: 6,
+      height: 690,
     },
     {
       id: "a67d170a-0f57-431a-9dbc-0d509e2bd217ewqdqwe",
@@ -11183,6 +11205,7 @@ const Sidebar = ({
         "https://res.cloudinary.com/dojwaepbj/image/upload/v1751983340/n5jbrqor9f0vqzc5cmlb.png",
       bookmark: false,
       template: 7,
+      height: 690,
     },
     {
       id: "a67d170a-0f57-431a-9dbc-0d509e2bd217dewcefv",
@@ -11411,6 +11434,7 @@ const Sidebar = ({
         "https://res.cloudinary.com/dojwaepbj/image/upload/v1751983476/r4uqxegysmapa0vxumza.png",
       bookmark: false,
       template: 8,
+      height: 690,
     },
     {
       id: "a67d170a-0f57-431a-9dbc-0d509e2bd217dcewwedc",
@@ -11648,6 +11672,7 @@ const Sidebar = ({
         "https://res.cloudinary.com/dojwaepbj/image/upload/v1751983593/rn3djoook47omfpdxgqn.png",
       bookmark: false,
       template: 5,
+      height: 690,
     },
     {
       id: "253d996f-c3b0-46b8-a321-15340ad39822dqcwadc",
@@ -11875,6 +11900,7 @@ const Sidebar = ({
       bright: 1,
       dark: 4,
       template: 9,
+      height: 690,
     },
     {
       id: "8bfc05f3-3984-4747-908c-6694eabf947bwcdwecwecd",
@@ -12133,6 +12159,7 @@ const Sidebar = ({
       content:
         "https://res.cloudinary.com/dojwaepbj/image/upload/v1751983875/usctxnou2svleh3qqwm9.png",
       bookmark: false,
+      height: 690,
     },
     {
       id: "37570ee6-afa5-4115-955a-7a825b4f8242sdcsdc",
@@ -12345,6 +12372,7 @@ const Sidebar = ({
         "https://res.cloudinary.com/dojwaepbj/image/upload/v1751983989/dhfqu0kmay4nf5aqcjea.png",
       bookmark: false,
       template: 8,
+      height: 690,
     },
     {
       id: "8bfc05f3-3984-4747-908c-6694eabf947bsvsfv",
@@ -12593,6 +12621,7 @@ const Sidebar = ({
         "https://res.cloudinary.com/dojwaepbj/image/upload/v1751984072/uy9muumxueknktmwkasa.png",
       bookmark: false,
       template: 7,
+      height: 690,
     },
     {
       id: "3653ea9b-a146-4744-93be-a2a2db3asdcasdcc5786",
@@ -12872,6 +12901,7 @@ const Sidebar = ({
         "https://res.cloudinary.com/dojwaepbj/image/upload/v1751984191/la8s10a59wk7t0e36rfd.png",
       bookmark: false,
       template: 5,
+      height: 690,
     },
     {
       id: "366454c5-de9a-4080-a4b3-6ccbbcb68e1fwfvfsds",
@@ -13095,6 +13125,7 @@ const Sidebar = ({
       dark: 0,
       bright: 1,
       template: 6,
+      height: 690,
     },
     {
       id: "27c2cb15-9ec2-4171-874f-544b323a7bc1sdvsdfvsdfv",
@@ -13323,6 +13354,7 @@ const Sidebar = ({
         "https://res.cloudinary.com/dojwaepbj/image/upload/v1751984978/tqqoiex2en0scdqtidjk.png",
       bookmark: false,
       template: 6,
+      height: 690,
     },
     {
       id: "acc5f515-18dd-4b05-9013-ae51bc28a89bsdsfv",
@@ -13531,6 +13563,7 @@ const Sidebar = ({
         "https://res.cloudinary.com/dojwaepbj/image/upload/v1751985108/sgvvgfkibeutz5r6meem.png",
       bookmark: false,
       template: 4,
+      height: 690,
     },
     {
       id: "acc5f515-18dd-4b05-9013-ae51bc28a89b",
@@ -13767,6 +13800,7 @@ const Sidebar = ({
       bookmark: false,
       bright: 1,
       dark: 0,
+      height: 690,
     },
     {
       id: "8bfc05f3-3984-4747-908c-6694eabf947bdfvsfv",
@@ -14006,6 +14040,7 @@ const Sidebar = ({
       dark: 0,
       bright: 0,
       template: 7,
+      height: 690,
     },
     {
       id: "5684e6f5-47f6-4bf1-9095-20402ec48154qdcewdc",
@@ -14213,6 +14248,7 @@ const Sidebar = ({
       dark: 0,
       bright: 0,
       template: 6,
+      height: 690,
     },
     {
       id: "31beafc0-e659-4400-a060-9c0b584f83dawedcw",
@@ -14442,6 +14478,7 @@ const Sidebar = ({
       dark: 0,
       bright: 0,
       template: 7,
+      height: 690,
     },
     {
       id: "747bcc60-4788-4b81-bdd4-4c486409eb8fascas",
@@ -14672,6 +14709,7 @@ const Sidebar = ({
       dark: 0,
       bright: 0,
       template: 6,
+      height: 690,
     },
     {
       id: "d1b7d054-f8d2-4b20-935c-51addb322950asdcd",
@@ -14906,6 +14944,7 @@ const Sidebar = ({
       dark: 18,
       bright: 0,
       template: 7,
+      height: 690,
     },
     {
       id: "d1b7d054-f8d2-4b20-935c-51addb32dsaca2950",
@@ -15115,6 +15154,7 @@ const Sidebar = ({
       bookmark: false,
       dark: 14,
       template: 7,
+      height: 690,
     },
     {
       id: "6c8006db-4963-4a91-aaaa-02ebdd9casdc3c512",
@@ -16580,7 +16620,7 @@ const Sidebar = ({
                   boxShadow: "5px 0 10px rgba(0, 0, 0, 0.1)",
                   height: "calc(100vh - 65px)",
                 }}
-                className=" absolute left-0 w-[220px] flex flex-col items-center pt-[16px] gap-[16px] bg-white z-30 overflow-auto pb-20 scrollbar-hide border-r border-gray-100    "
+                className=" absolute left-0 w-[220px] flex flex-col items-center pt-[16px] gap-[16px] bg-white z-30 overflow-auto pb-[16px] scrollbar-hide border-r border-gray-100    "
               >
                 <div className="w-full flex items-center justify-center">
                   <input
@@ -16597,7 +16637,7 @@ const Sidebar = ({
                     htmlFor={`file-upload`}
                     className="w-[88%] py-2 flex items-center justify-center gap-2  text-center rounded cursor-pointer text-xs bg-graidient_bottom text-white hover:bg-gradient_darker"
                   >
-                    <IoCloudUploadOutline />
+                    <IoCloudUploadOutline className="text-sm" />
                     {loading ? "Loading..." : "Upload Cover Page"}
                   </label>
                 </div>
@@ -16607,93 +16647,93 @@ const Sidebar = ({
                 <img
                   src={cover_1_21}
                   onClick={() => insertCoverPage(cover_21)}
-                  className="w-[88%] cursor-pointer"
+                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
                 />
                 <img
                   src={cover_1_22}
                   onClick={() => insertCoverPage(cover_22)}
-                  className="w-[88%] cursor-pointer"
+                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
                 />
                 <img
                   src={cover_1_23}
                   onClick={() => insertCoverPage(cover_23)}
-                  className="w-[88%] cursor-pointer"
+                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
                 />
                 <img
                   src={cover_1_24}
                   onClick={() => insertCoverPage(cover_24)}
-                  className="w-[88%] cursor-pointer"
+                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
                 />
                 <img
                   src={cover_1_25}
                   onClick={() => insertCoverPage(cover_25)}
-                  className="w-[88%] cursor-pointer"
+                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
                 />
                 <img
                   src={cover_1_26}
                   onClick={() => insertCoverPage(cover_26)}
-                  className="w-[88%] cursor-pointer"
+                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
                 />
                 <img
                   src={cover_1_27}
                   onClick={() => insertCoverPage(cover_27)}
-                  className="w-[88%] cursor-pointer"
+                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
                 />
                 <img
                   src={cover_1_28}
                   onClick={() => insertCoverPage(cover_28)}
-                  className="w-[88%] cursor-pointer"
+                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
                 />
 
                 <img
                   src={cover_1_29}
                   onClick={() => insertCoverPage(cover_29)}
-                  className="w-[88%] cursor-pointer"
+                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
                 />
                 <img
                   src={cover_1_30}
                   onClick={() => insertCoverPage(cover_30)}
-                  className="w-[88%] cursor-pointer"
+                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
                 />
                 <img
                   src={cover_1_31}
                   onClick={() => insertCoverPage(cover_31)}
-                  className="w-[88%] cursor-pointer"
+                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
                 />
                 <img
                   src={cover_1_32}
                   onClick={() => insertCoverPage(cover_32)}
-                  className="w-[88%] cursor-pointer"
+                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
                 />
                 <img
                   src={cover_1_34}
                   onClick={() => insertCoverPage(cover_34)}
-                  className="w-[88%] cursor-pointer"
+                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
                 />
                 <img
                   src={cover_1_35}
                   onClick={() => insertCoverPage(cover_35)}
-                  className="w-[88%] cursor-pointer"
+                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
                 />
                 <img
                   src={cover_1_36}
                   onClick={() => insertCoverPage(cover_36)}
-                  className="w-[88%] cursor-pointer"
+                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
                 />
                 <img
                   src={cover_1_37}
                   onClick={() => insertCoverPage(cover_37)}
-                  className="w-[88%] cursor-pointer"
+                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
                 />
                 <img
                   src={cover_1_38}
                   onClick={() => insertCoverPage(cover_38)}
-                  className="w-[88%] cursor-pointer"
+                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
                 />
                 <img
                   src={cover_1_39}
                   onClick={() => insertCoverPage(cover_39)}
-                  className="w-[88%] cursor-pointer"
+                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
                 />
                 <img
                   src={cover_1_40}
@@ -16706,98 +16746,98 @@ const Sidebar = ({
                 <img
                   src={cover_1_1}
                   onClick={() => insertCoverPage(cover_1)}
-                  className="w-[88%] cursor-pointer"
+                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
                 />
                 <img
                   src={cover_1_2}
                   onClick={() => insertCoverPage(cover_2)}
-                  className="w-[88%] cursor-pointer"
+                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
                 />
                 <img
                   src={cover_1_3}
                   onClick={() => insertCoverPage(cover_3)}
-                  className="w-[88%] cursor-pointer"
+                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
                 />
                 <img
                   src={cover_1_4}
                   onClick={() => insertCoverPage(cover_4)}
-                  className="w-[88%] cursor-pointer"
+                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
                 />
                 <img
                   src={cover_1_5}
                   onClick={() => insertCoverPage(cover_5)}
-                  className="w-[88%] cursor-pointer"
+                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
                 />
                 <img
                   src={cover_1_6}
                   onClick={() => insertCoverPage(cover_6)}
-                  className="w-[88%] cursor-pointer"
+                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
                 />
                 <img
                   src={cover_1_7}
                   onClick={() => insertCoverPage(cover_7)}
-                  className="w-[88%] cursor-pointer"
+                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
                 />
                 <img
                   src={cover_1_8}
                   onClick={() => insertCoverPage(cover_8)}
-                  className="w-[88%] cursor-pointer"
+                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
                 />
 
                 <img
                   src={cover_1_9}
                   onClick={() => insertCoverPage(cover_9)}
-                  className="w-[88%] cursor-pointer"
+                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
                 />
                 <img
                   src={cover_1_10}
                   onClick={() => insertCoverPage(cover_10)}
-                  className="w-[88%] cursor-pointer"
+                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
                 />
                 <img
                   src={cover_1_11}
                   onClick={() => insertCoverPage(cover_11)}
-                  className="w-[88%] cursor-pointer"
+                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
                 />
                 <img
                   src={cover_1_13}
                   onClick={() => insertCoverPage(cover_13)}
-                  className="w-[88%] cursor-pointer"
+                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
                 />
                 <img
                   src={cover_1_14}
                   onClick={() => insertCoverPage(cover_14)}
-                  className="w-[88%] cursor-pointer"
+                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
                 />
                 <img
                   src={cover_1_15}
                   onClick={() => insertCoverPage(cover_15)}
-                  className="w-[88%] cursor-pointer"
+                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
                 />
                 <img
                   src={cover_1_16}
                   onClick={() => insertCoverPage(cover_16)}
-                  className="w-[88%] cursor-pointer"
+                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
                 />
                 <img
                   src={cover_1_17}
                   onClick={() => insertCoverPage(cover_17)}
-                  className="w-[88%] cursor-pointer"
+                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
                 />
                 <img
                   src={cover_1_18}
                   onClick={() => insertCoverPage(cover_18)}
-                  className="w-[88%] cursor-pointer"
+                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
                 />
                 <img
                   src={cover_1_19}
                   onClick={() => insertCoverPage(cover_19)}
-                  className="w-[88%] cursor-pointer"
+                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
                 />
                 <img
                   src={cover_1_20}
                   onClick={() => insertCoverPage(cover_20)}
-                  className="w-[88%] cursor-pointer"
+                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
                 />
               </div>
             ) : (

@@ -3,18 +3,22 @@ import { IoCloudUploadOutline } from "react-icons/io5";
 import { TfiReload } from "react-icons/tfi";
 import { Icon } from "@iconify/react";
 import Slider from "@mui/material/Slider";
+
 const CoverPageSlate = ({
   index,
   indexValue,
   setIndexValue,
   selected,
   url,
+
   onChange,
   preview,
   darkness,
   onChangeDark,
   bright,
   onChangeBright,
+  onChangeHeight,
+  height,
 }) => {
   const [loading, setLoading] = useState(false);
   const buttonRef = useRef();
@@ -86,7 +90,9 @@ const CoverPageSlate = ({
         src={url}
         style={{
           width: "100%",
-          objectFit: "contain",
+          objectFit: "cover",
+          position: "center",
+          height: `${height}px`,
           ...(bright === 1
             ? {
                 opacity: 1 - darkness * 0.01, // decrease opacity
@@ -113,7 +119,7 @@ const CoverPageSlate = ({
               htmlFor={`file-upload`}
               className="px-1 py-1 flex items-center justify-center gap-2  text-center rounded cursor-pointer text-sm text-lvl_2_txt "
             >
-              <TfiReload className="text-md" />
+              <Icon icon="hugeicons:exchange-01" width="17" height="17" />
               {loading ? "Loading ..." : "Change image"}
             </label>
           </div>
@@ -137,6 +143,29 @@ const CoverPageSlate = ({
           >
             <Icon icon="mdi:square-opacity" width="20" height="20" />
           </button>
+          <Icon
+            icon="fluent:document-fit-20-regular"
+            width="20"
+            height="20"
+            onClick={() => onChangeHeight(1380)}
+            className={`${
+              height === 1380
+                ? "text-black bg-gray-200 rounded-sm"
+                : "text-lvl_2_txt"
+            } cursor-pointer`}
+          />
+          <Icon
+            icon="material-symbols-light:aspect-ratio-outline-rounded"
+            width="20"
+            height="20"
+            onClick={() => onChangeHeight(690)}
+            className={`${
+              height === 690
+                ? "text-black bg-gray-200 rounded-sm"
+                : "text-lvl_2_txt"
+            } cursor-pointer`}
+          />
+
           {show && (
             <div
               ref={toolbarRef}

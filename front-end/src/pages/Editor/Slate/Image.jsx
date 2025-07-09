@@ -215,7 +215,7 @@ const Image = ({
             objectFit: "contain",
             width: `${width}%`,
           }}
-          crossorigin="anonymous"
+          crossOrigin="anonymous"
         />
       )}
       <div
