@@ -318,7 +318,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
           {/* Total */}
           <div className=" pl-7 pr-6 w-[25%] ">
             <div className="flex flex-col justify-between ">
-              <h3 className="font-bold">Cost Break Down:</h3>
+              <h3 className="">Cost Break Down:</h3>
               <div className="flex flex-col w-full mt-5 gap-2">
                 <div className="w-full flex flex-row justify-between">
                   <span className="text-sm text-gray-600 ">Total:</span>
@@ -329,20 +329,20 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                 </div>
                 {discount && (
                   <div className="w-full flex flex-row justify-between">
-                    <span className="text-sm text-gray-600 flex flex-row items-center justify-center ">
+                    <span className="text-sm text-gray-600 flex flex-row items-center justify-center w-16 ">
                       Discount:{" "}
-                      <div className="ml-1 flex flex-row items-center justify-center bg-gray-100 rounded-sm border border-gray-200">
-                        <input
-                          className="bg-gray-100 outline-none w-8 no-spinner px-1 rounded-md text-center"
-                          value={values.discount}
-                          type="number"
-                          onChange={(e) =>
-                            setvalues({ ...values, discount: e.target.value })
-                          }
-                        />
-                        %
-                      </div>
                     </span>
+                    <div className=" flex flex-row items-center justify-center  rounded-md border border-gray-300">
+                      <input
+                        className=" outline-none w-10 no-spinner px-1 rounded-md text-center"
+                        value={values.discount}
+                        type="number"
+                        onChange={(e) =>
+                          setvalues({ ...values, discount: e.target.value })
+                        }
+                      />
+                      %
+                    </div>
                     <span className="text-sm">
                       {currency}
                       {Math.abs(calculateDiscountedAmount().toFixed(2))}
@@ -352,20 +352,20 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
 
                 {tax && (
                   <div className="w-full flex flex-row justify-between">
-                    <span className="text-sm text-gray-600 flex flex-row items-center justify-center ">
+                    <span className="text-sm text-gray-600 flex flex-row items-center justify-start w-16 ">
                       Tax:{" "}
-                      <div className="ml-1 flex flex-row items-center justify-center bg-gray-100 rounded-sm border border-gray-200">
-                        <input
-                          className="bg-gray-100 outline-none w-8 no-spinner px-1 rounded-md text-center"
-                          value={values.tax}
-                          type="number"
-                          onChange={(e) =>
-                            setvalues({ ...values, tax: e.target.value })
-                          }
-                        />
-                        %
-                      </div>
                     </span>
+                    <div className=" flex flex-row items-center justify-center  rounded-md border border-gray-300">
+                      <input
+                        className=" outline-none w-10 no-spinner px-1 rounded-md text-center"
+                        value={values.tax}
+                        type="number"
+                        onChange={(e) =>
+                          setvalues({ ...values, tax: e.target.value })
+                        }
+                      />
+                      %
+                    </div>
                     <span className="text-sm">
                       {currency}
                       {Math.abs(calculateTaxAmount().toFixed(2))}
@@ -376,7 +376,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                 <div>
                   <div className="w-full flex flex-row justify-between">
                     <span className="text-sm text-gray-600 ">
-                      Payable Amount:
+                      Final Amount:
                     </span>
                     <span className="text-sm">
                       {currency}
