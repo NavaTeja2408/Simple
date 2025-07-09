@@ -90,7 +90,9 @@ const CostModuleSlate = ({ index, rows, selected, settings, preview }) => {
         {rows.options.discount && (
           <div className="flex justify-between items-center gap-12">
             <span className=" w-48 text-left">Discount:</span>
-            <span>{rows.values?.discount}% </span>
+            <span className="w-24 flex items-center justify-start">
+              {rows.values?.discount}%{" "}
+            </span>
             <span>
               {rows.options.currency}
               {calculateDiscountedAmount().toFixed(2)}
@@ -100,7 +102,9 @@ const CostModuleSlate = ({ index, rows, selected, settings, preview }) => {
         {rows.options.tax && (
           <div className="flex justify-between items-center gap-10">
             <span className=" w-48 text-left">Tax:</span>
-            <span>{rows.values?.tax}% </span>
+            <span className="w-24 flex items-center justify-start">
+              {rows.values?.tax}%{" "}
+            </span>
             <span>
               {rows.options.currency}
               {calculateTaxAmount().toFixed(2)}

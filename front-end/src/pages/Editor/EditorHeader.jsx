@@ -111,6 +111,21 @@ const EditorHeader = ({
     }
   };
 
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if ((event.ctrlKey || event.metaKey) && event.key === "z") {
+        event.preventDefault(); // prevent default undo behavior
+        undo();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
   const getDetails = async () => {
     try {
       const res = await axios.get(`${databaseUrl}/api/editor/details`, {

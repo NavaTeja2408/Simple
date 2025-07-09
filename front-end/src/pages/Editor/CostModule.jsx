@@ -53,9 +53,9 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
       ...temp,
       {
         deliverable: "",
-        price: 0,
-        quantity: 1,
-        amount: 0,
+        price: null,
+        quantity: null,
+        amount: null,
       },
     ]);
   };
@@ -98,7 +98,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-20 flex items-center justify-center p-4 z-[1000]">
+    <div className="fixed inset-0 bg-black bg-opacity-20 flex items-center justify-center p-4 z-[1000] be-vietnam-pro-regular">
       <div className="bg-white rounded-lg shadow-lg   max-w-6xl w-full transition-all transform   ">
         <div className="w-full flex flex-col items-center justify-center mt-6 border-b-[5px] border-gray-100">
           <h1 className="text-md font-bold text-gray-700">Add Cost Module</h1>
@@ -106,7 +106,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
             Drag & Set your cost for your proposal
           </p>
         </div>
-        <div className="flex flex-row mt-4 border-b-[3px] border-gray-100 ">
+        <div className="flex flex-row mt-4 border-b-[3px] border-gray-100  ">
           {/* Table */}
           <div className=" w-[75%] bg-gray-50 ">
             <div className="flex items-center pb-3 pl-4 border-b-[5px] border-gray-100 mb-2 gap-4 relative">
@@ -132,7 +132,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
               </div>
 
               {/* Checkboxes */}
-              <div className="flex items-center gap-4 ">
+              <div className="flex items-center gap-4  ">
                 <label className="flex bg-gray-100 px-2 py-1 rounded-md items-center text-sm font-semibold text-gray-600">
                   <input
                     type="checkbox"
@@ -165,7 +165,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                 </div>
               </div>
             </div>
-            <table className="w-[95%] ml-2 table-auto text-xs border-collapse rounded-md bg-gray-50 mt-3 block   h-[170px] overflow-y-auto scrollbar-thin">
+            <table className="w-[95%] ml-2 table-auto text-xs border-collapse rounded-md bg-lvl_3_bg mt-3 block   h-[170px] overflow-y-auto scrollbar-thin pl-3">
               <thead className="sticky top-0 bg-gray-50 z-[5000]">
                 <tr>
                   <th className="  py-2  text-center  w-16">S No.</th>
@@ -187,7 +187,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                 {temp.map((row, index) => (
                   <tr
                     key={index}
-                    className="hover:bg-gray-50 border border-b-[13px]  border-gray-100 bg-white h-16   "
+                    className="hover:bg-gray-50 border border-b-[13px]  border-gray-100 bg-white h-16 rounded-md   "
                   >
                     <td className="px-4">{index + 1}</td>
                     <td
@@ -208,7 +208,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                               e.target.value
                             )
                           }
-                          className="w-full border border-gray-300 bg-gray-50 rounded px-2 py-2 outline-none"
+                          className="w-full border border-gray-300 bg-gray-50 rounded px-2 py-2 outline-none focus:border-gray-400"
                           placeholder="Deliverable"
                         />
                         {dropdown !== null && index === dropdown && (
@@ -253,7 +253,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                               parseFloat(e.target.value)
                             )
                           }
-                          className="w-full border border-gray-300 bg-gray-50  rounded px-2 py-2 no-spinner outline-none text-center"
+                          className="w-full border border-gray-300 bg-gray-50  rounded px-2 py-2 no-spinner outline-none text-center focus:border-gray-400"
                         />
                       </td>
                     )}
@@ -271,7 +271,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                               parseInt(e.target.value)
                             )
                           }
-                          className="w-full border border-gray-300 bg-gray-50 rounded px-2 py-2 no-spinner outline-none text-center"
+                          className="w-full border border-gray-300 bg-gray-50 rounded px-2 py-2 no-spinner outline-none text-center focus:border-gray-400"
                         />
                       </td>
                     )}
@@ -289,7 +289,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                           )
                         }
                         readOnly={quantity}
-                        className="w-full border border-gray-300 bg-gray-50 rounded px-2 py-2 no-spinner text-right outline-none"
+                        className="w-full border border-gray-300 bg-gray-50 rounded px-2 py-2 no-spinner text-right outline-none focus:border-gray-400"
                       />
                     </td>
                     <td className=" px-2 py-2 text-center">
@@ -427,7 +427,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
               setCostMouleEdit(null);
               setCostModeule(false);
             }}
-            className="px-4 py-2 bg-graidient_bottom text-white rounded-md hover:bg-shadow_Bottom"
+            className="bg-footer_gradient_bot text-white px-4 rounded-md py-2 text-center text-sm flex gap-1 items-center justify-center hover:bg-hover_dark_btn active:bg-gradient_darker"
           >
             Save
           </button>

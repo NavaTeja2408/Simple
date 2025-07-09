@@ -27,7 +27,7 @@ const Signature = ({ addSign, rows, setRows }) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-20 flex items-center justify-center p-4 z-[1000]">
+    <div className="fixed inset-0 bg-black bg-opacity-20 flex items-center justify-center p-4 z-[1000] be-vietnam-pro-regular ">
       {/* Popup Content */}
       <div className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-lg transition-all transform scale-105">
         {/* Header */}
@@ -56,7 +56,7 @@ const Signature = ({ addSign, rows, setRows }) => {
               onChange={(e) =>
                 handleInputChange(0, "proposedName", e.target.value)
               }
-              className="mt-2 w-full px-4 py-2 border border-gray-300 rounded-lg text-gray-800 shadow-sm outline-none"
+              className="mt-2 w-full px-4 py-2 border border-gray-300 rounded-lg text-gray-800 shadow-sm outline-none text-sm"
               placeholder="E.g: Jhon"
             />
             <p className="text-[11px] p-2">
@@ -81,7 +81,7 @@ const Signature = ({ addSign, rows, setRows }) => {
               onChange={(e) =>
                 handleInputChange(1, "acceptedName", e.target.value)
               }
-              className="mt-2 w-full px-4 py-2 border border-gray-300 rounded-lg text-gray-800 shadow-sm outline-none"
+              className="mt-2 w-full px-4 py-2 border border-gray-300 rounded-lg text-gray-800 shadow-sm outline-none text-sm"
               placeholder="E.g: Jhon"
             />
           </div>
@@ -94,7 +94,7 @@ const Signature = ({ addSign, rows, setRows }) => {
               setSign(false);
               setSignEdit(null);
             }}
-            className="px-6 py-3 bg-gray-100 text-gray-700 rounded-lg font-medium hover:bg-gray-300 hover:shadow-md transition-all"
+            className="px-4 py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-300"
           >
             Cancel
           </button>
@@ -110,7 +110,7 @@ const Signature = ({ addSign, rows, setRows }) => {
               }
               setSign(false);
             }}
-            className="px-6 py-3 bg-graidient_bottom text-white rounded-lg font-medium  hover:shadow-md transition-all"
+            className="px-4 py-2 bg-graidient_bottom text-white rounded-md hover:bg-gradient_darker"
           >
             Save
           </button>

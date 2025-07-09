@@ -120,11 +120,11 @@ const DropCanvas = ({
   return (
     <div
       className="canvas mt-10 my mb-20 bg-white shadow-lg shadow-gray-300 h-fit py-10 px-12"
-      style={{ width: "1050px", minHeight: "230vh", position: "relative" }}
+      style={{ width: "1000px", minHeight: "230vh", position: "relative" }}
     >
       {/* Render rows */}
       {rows.map((row, index) => (
-        <div key={index} ref={(el) => (rowRefs.current[index] = el)}>
+        <div key={index + 99978789} ref={(el) => (rowRefs.current[index] = el)}>
           <DropRow
             key={row.id || index}
             row={row}

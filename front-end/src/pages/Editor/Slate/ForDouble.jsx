@@ -139,6 +139,7 @@ const ForDouble = ({
             objectFit: "contain",
             width: `${width}%`,
           }}
+          crossOrigin="anonymous"
           onClick={() => setShow(true)} // Show menu when clicking the image
         />
       )}

@@ -35,8 +35,8 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
       ...temp,
       {
         deliverable: "",
-        percentage: 0,
-        value: 0,
+        percentage: null,
+        value: null,
       },
     ]);
   };
@@ -103,7 +103,7 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
     percentage && value ? "50%" : percentage || value ? "70%" : "90%";
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-20 flex items-center justify-center p-4 z-[1000]">
+    <div className="fixed inset-0 bg-black bg-opacity-20 flex items-center justify-center p-4 z-[1000] be-vietnam-pro-regular">
       <div className="bg-white rounded-lg shadow-lg  max-w-3xl w-full transition-all transform scale-105 ">
         <div className="w-full flex flex-col items-center justify-center mt-4 border-b-[5px] border-gray-100">
           <h1 className="text-md font-bold text-gray-700">Add Price Terms</h1>
@@ -204,7 +204,7 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
                             e.target.value
                           )
                         }
-                        className="w-full border border-gray-300 bg-gray-50 rounded px-2 py-2 outline-none"
+                        className="w-full border border-gray-300 bg-gray-50 rounded px-2 py-2 outline-none focus:border-gray-400"
                         placeholder="Deliverable"
                       />
                       {dropdown !== null && index === dropdown && (
@@ -245,7 +245,7 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
                           }
                           min={0}
                           max={100}
-                          className="w-full border border-gray-300 bg-gray-50 rounded px-2 py-2 outline-none no-spinner"
+                          className="w-full border border-gray-300 bg-gray-50 rounded px-2 py-2 outline-none no-spinner focus:border-gray-400"
                         />
                       </td>
                     )}
@@ -264,7 +264,7 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
                               parseInt(e.target.value)
                             )
                           }
-                          className="w-full border border-gray-300 bg-gray-50 rounded px-2 py-2 font-normal text-sm outline-none no-spinner"
+                          className="w-full border border-gray-300 bg-gray-50 rounded px-2 py-2 font-normal text-sm outline-none no-spinner focus:border-gray-400"
                         />
                       </td>
                     )}
@@ -272,7 +272,7 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
                     <td className=" px-2 py-2 text-center">
                       <button
                         onClick={() => handleDeleteRow(index)}
-                        className="px-2 py-2 rounded-md text-red-500 hover:text-red-700 "
+                        className="px-2 py-2 rounded-md text-gray-500 hover:text-graidient_bottom"
                       >
                         <MdOutlineDelete className="text-lg" />
                       </button>

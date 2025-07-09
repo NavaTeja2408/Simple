@@ -157,7 +157,13 @@ const Image = ({
             </select>
           </div>
           <div className="w-[1px] h-7 bg-gray-300"></div>
-          <button onClick={() => setCaption(true)}>
+          <button
+            onClick={() => {
+              setCaption(true);
+              setCHeading(captionH);
+              setCDisciption(discription);
+            }}
+          >
             <RxText className="font-bold w-5 h-6" />
           </button>
           {width < 100 && <div className="w-[1px] h-7 bg-gray-300"></div>}
@@ -209,6 +215,7 @@ const Image = ({
             objectFit: "contain",
             width: `${width}%`,
           }}
+          crossorigin="anonymous"
         />
       )}
       <div

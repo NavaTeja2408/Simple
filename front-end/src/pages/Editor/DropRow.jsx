@@ -150,10 +150,28 @@ const DropRow = ({
     }
   };
 
-  const captureImage = (value) => {
+  const captureImage = async (value) => {
     if (!divRef.current) return;
 
-    html2canvas(divRef.current).then((canvas) => {
+    // Step 1: Wait for all <img> elements inside divRef to fully load
+    const images = divRef.current.querySelectorAll("img");
+    const loadPromises = Array.from(images).map((img) => {
+      if (img.complete) return Promise.resolve();
+      return new Promise((resolve) => {
+        img.onload = img.onerror = resolve;
+      });
+    });
+
+    await Promise.all(loadPromises);
+
+    // Step 2: Capture the div using html2canvas with cross-origin support
+    html2canvas(divRef.current, {
+      useCORS: true,
+      allowTaint: false,
+      scrollY: -window.scrollY, // optional, to avoid scroll-based artifacts
+      backgroundColor: null, // preserve transparency
+    }).then((canvas) => {
+      // Step 3: Define crop and padding values
       let cropTop = 20;
       let cropBottom = 20;
 
@@ -161,44 +179,44 @@ const DropRow = ({
         cropTop = 65; // custom crop for table
       }
 
-      const cropLeftRight = 20; // crop from left and right
+      const cropLeftRight = 20;
       const padding = 55;
       const paddingHeight = 30;
 
       const croppedWidth = canvas.width - cropLeftRight * 2;
       const croppedHeight = canvas.height - cropTop - cropBottom;
 
-      // Create a new canvas for cropped + padded result
+      // Step 4: Create final canvas with padding and background
       const finalCanvas = document.createElement("canvas");
       finalCanvas.width = croppedWidth + padding * 2;
       finalCanvas.height = croppedHeight + paddingHeight * 2;
 
       const ctx = finalCanvas.getContext("2d");
 
-      // Fill with white background
       ctx.fillStyle = "white";
       ctx.fillRect(0, 0, finalCanvas.width, finalCanvas.height);
 
-      // Draw cropped image with padding
+      // Step 5: Draw cropped portion of original canvas into final canvas
       ctx.drawImage(
         canvas,
-        cropLeftRight, // source x
-        cropTop, // source y
-        croppedWidth, // source width
-        croppedHeight, // source height
-        padding, // destination x
-        paddingHeight, // destination y
-        croppedWidth, // destination width
-        croppedHeight // destination height
+        cropLeftRight,
+        cropTop,
+        croppedWidth,
+        croppedHeight,
+        padding,
+        paddingHeight,
+        croppedWidth,
+        croppedHeight
       );
 
+      // Step 6: Convert final canvas to Blob and upload
       finalCanvas.toBlob(
         (blob) => {
           if (blob) {
             const file = new File([blob], "snapshot.jpg", {
               type: "image/jpeg",
             });
-            handleUpload(file);
+            handleUpload(file); // your upload function
           }
         },
         "image/jpeg",
@@ -206,7 +224,6 @@ const DropRow = ({
       );
     });
   };
-
   const [selected, setSelected] = useState(null);
   const [quickAdd, setQuickAdd] = useState(false);
 
