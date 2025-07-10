@@ -351,7 +351,7 @@ const EditorDnD = () => {
     ]);
     setSign(false);
   };
-  const addCostModule = (arr, options, values) => {
+  const addCostModule = (arr, options, values, heading) => {
     setRows((prevRows) => [
       ...prevRows,
       {
@@ -361,11 +361,12 @@ const EditorDnD = () => {
         options: options,
         bookmark: false,
         values: values,
+        heading: heading,
       },
     ]);
     setCostModeule(false);
   };
-  const addPriceTerms = (arr, options) => {
+  const addPriceTerms = (arr, options, heading) => {
     setRows((prevRows) => [
       ...prevRows,
       {
@@ -374,6 +375,7 @@ const EditorDnD = () => {
         content: arr,
         options: options,
         bookmark: false,
+        heading: heading,
       },
     ]);
     setPriceTerms(false);

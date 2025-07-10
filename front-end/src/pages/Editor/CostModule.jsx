@@ -1,9 +1,12 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useRef } from "react";
 import { MdOutlineDelete } from "react-icons/md";
 import { FaPlus } from "react-icons/fa";
 import { StateManageContext } from "../../context/StateManageContext";
 
 const CostModule = ({ addCostModule, rows, setRows }) => {
+  const scrollableDivRef = useRef(null);
+  const [heading, setHeading] = useState("Cost Module");
+
   const { setCostModeule, setCostMouleEdit, costModuleEdit } =
     useContext(StateManageContext);
   const [temp, setTemp] = useState(
@@ -44,8 +47,8 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
   );
   const [values, setvalues] = useState({
     discount:
-      costModuleEdit !== null ? rows[costModuleEdit].values.discount : 0,
-    tax: costModuleEdit !== null ? rows[costModuleEdit].values.tax : 0,
+      costModuleEdit !== null ? rows[costModuleEdit].values.discount : null,
+    tax: costModuleEdit !== null ? rows[costModuleEdit].values.tax : null,
   });
 
   const handleAddRow = () => {
@@ -58,6 +61,10 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
         amount: null,
       },
     ]);
+    const div = scrollableDivRef.current;
+    if (div) {
+      div.scrollTop = div.scrollHeight; // Scroll to bottom
+    }
   };
 
   const handleInputChange = (index, key, value) => {
@@ -99,19 +106,28 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-20 flex items-center justify-center p-4 z-[1000] be-vietnam-pro-regular">
-      <div className="bg-white rounded-lg shadow-lg   max-w-6xl w-full transition-all transform   ">
-        <div className="w-full flex flex-col items-center justify-center mt-6 border-b-[5px] border-gray-100">
+      <div className="bg-white rounded-lg shadow-lg   max-w-6xl  w-full transition-all transform   ">
+        <div className="w-full flex flex-col items-center justify-center mt-4 border-b-[2px] border-gray-200">
           <h1 className="text-md font-bold text-gray-700">Add Cost Module</h1>
-          <p className="text-sm text-gray-500 mb-6">
+          <p className="text-sm text-gray-500 mb-4">
             Drag & Set your cost for your proposal
           </p>
         </div>
-        <div className="flex flex-row mt-4 border-b-[3px] border-gray-100  ">
+        <div className="flex flex-row  border-b-[3px] border-gray-100  ">
           {/* Table */}
-          <div className=" w-[75%] bg-gray-50 ">
-            <div className="flex items-center pb-3 pl-4 border-b-[5px] border-gray-100 mb-2 gap-4 relative">
+          <div className=" w-[75%]  ">
+            <div className="w-full px-6 py-2">
+              <input
+                type="text"
+                placeholder="Title"
+                value={heading}
+                onChange={(e) => setHeading(e.target.value)}
+                className=" py-1 outline-none focus:border-b focus:border-gray-300 text-sm"
+              />
+            </div>
+            <div className="flex items-center pb-3 pl-4 border-b-[2px] border-gray-200 mb-2 gap-4 relative">
               {/* Currency Dropdown */}
-              <div className="flex items-center px-2 py-1 rounded-md bg-gray-100 gap-2">
+              <div className="flex items-center px-2 py-1 rounded-md  gap-2">
                 <label
                   htmlFor="currency"
                   className="text-sm font-semibold  text-gray-600"
@@ -165,21 +181,29 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                 </div>
               </div>
             </div>
-            <table className="w-[95%] ml-2 table-auto text-xs border-collapse rounded-md bg-lvl_3_bg mt-3 block   h-[170px] overflow-y-auto scrollbar-thin pl-3">
-              <thead className="sticky top-0 bg-gray-50 z-[5000]">
-                <tr>
-                  <th className="  py-2  text-center  w-16">S No.</th>
-                  <th className=" px-4 py-2 w-80 text-left">
+            <table
+              ref={scrollableDivRef}
+              className="w-[97%] ml-2 table-auto text-xs border-collapse rounded-md  mt-3 block   h-[230px] overflow-y-scroll scrollbar-hide pl-3 z-[100000]"
+            >
+              <thead className="sticky top-0  z-[5000] bg-white">
+                <tr className=" ">
+                  <th className=" px-4 py-2 w-80 text-left font-semibold">
                     Services/Products
                   </th>
                   {quantity && (
-                    <th className=" px-2 py-2 text-center">Unit Price</th>
+                    <th className=" px-2 py-2 text-center font-semibold">
+                      Unit Price
+                    </th>
                   )}
 
                   {quantity && (
-                    <th className=" px-2 py-2 text-center">Quantity</th>
+                    <th className=" px-2 py-2 text-center font-semibold">
+                      Quantity
+                    </th>
                   )}
-                  <th className=" px-2 py-2 text-center">Amount</th>
+                  <th className=" px-2 py-2 text-center font-semibold">
+                    Amount
+                  </th>
                   <th className="  text-center"></th>
                 </tr>
               </thead>
@@ -187,9 +211,8 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                 {temp.map((row, index) => (
                   <tr
                     key={index}
-                    className="hover:bg-gray-50 border border-b-[13px]  border-gray-100 bg-white h-16 rounded-md   "
+                    className="hover:bg-gray-50 border border-gray-200 bg-white h-16 rounded-md   "
                   >
-                    <td className="px-4">{index + 1}</td>
                     <td
                       className={`pr-8 px-2 py-1 relative ${
                         quantity ? "w-[55%]" : "w-[78%]"
@@ -212,7 +235,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                           placeholder="Deliverable"
                         />
                         {dropdown !== null && index === dropdown && (
-                          <div className="absolute top-full  left-0 w-full bg-white border border-gray-300 rounded-md shadow-md max-h-16 overflow-y-auto scrollbar-thin">
+                          <div className="absolute top-full  left-0 w-full bg-white border border-gray-300 rounded-md shadow-md h-24 overflow-y-auto scrollbar-thin z-[100000]">
                             {list
                               .filter((item) =>
                                 item
@@ -304,7 +327,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                 ))}
               </tbody>
             </table>
-            <div className="w-[95%] flex text-sm items-end justify-end bg-gray-50 ml-2">
+            <div className="w-[97%] flex text-sm items-end justify-end  ml-2 z-30">
               <button
                 onClick={handleAddRow}
                 className=" flex felx-row items-center justify-center gap-2 px-4 py-2 text-graidient_bottom   rounded-md mb-2 "
@@ -316,12 +339,12 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
           </div>
 
           {/* Total */}
-          <div className=" pl-7 pr-6 w-[25%] ">
+          <div className=" pl-7 pr-6 pt-6 w-[25%] ">
             <div className="flex flex-col justify-between ">
-              <h3 className="">Cost Break Down:</h3>
+              <h3 className="text-[14px]">Cost Break Down</h3>
               <div className="flex flex-col w-full mt-5 gap-2">
                 <div className="w-full flex flex-row justify-between">
-                  <span className="text-sm text-gray-600 ">Total:</span>
+                  <span className="text-sm text-gray-500 ">Total</span>
                   <span className="text-sm">
                     {currency}
                     {calculateTotalAmount().toFixed(2)}
@@ -329,19 +352,19 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                 </div>
                 {discount && (
                   <div className="w-full flex flex-row justify-between">
-                    <span className="text-sm text-gray-600 flex flex-row items-center justify-center w-16 ">
-                      Discount:{" "}
+                    <span className="text-sm text-gray-500 flex flex-row items-center justify-center w-16  ">
+                      Discount{" "}
                     </span>
                     <div className=" flex flex-row items-center justify-center  rounded-md border border-gray-300">
                       <input
-                        className=" outline-none w-10 no-spinner px-1 rounded-md text-center"
+                        className=" outline-none w-10 no-spinner px-1 rounded-md text-center text-xs"
                         value={values.discount}
                         type="number"
                         onChange={(e) =>
                           setvalues({ ...values, discount: e.target.value })
                         }
                       />
-                      %
+                      <span className="text-gray-500">%</span>
                     </div>
                     <span className="text-sm">
                       {currency}
@@ -352,19 +375,19 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
 
                 {tax && (
                   <div className="w-full flex flex-row justify-between">
-                    <span className="text-sm text-gray-600 flex flex-row items-center justify-start w-16 ">
-                      Tax:{" "}
+                    <span className="text-sm text-gray-500 flex flex-row items-center justify-start w-16 ">
+                      Tax{" "}
                     </span>
                     <div className=" flex flex-row items-center justify-center  rounded-md border border-gray-300">
                       <input
-                        className=" outline-none w-10 no-spinner px-1 rounded-md text-center"
+                        className=" outline-none w-10 no-spinner px-1 rounded-md text-center text-xs"
                         value={values.tax}
                         type="number"
                         onChange={(e) =>
                           setvalues({ ...values, tax: e.target.value })
                         }
                       />
-                      %
+                      <span className="text-gray-500">%</span>
                     </div>
                     <span className="text-sm">
                       {currency}
@@ -375,9 +398,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
 
                 <div>
                   <div className="w-full flex flex-row justify-between">
-                    <span className="text-sm text-gray-600 ">
-                      Final Amount:
-                    </span>
+                    <span className="text-sm text-gray-500 ">Final Amount</span>
                     <span className="text-sm">
                       {currency}
                       {calculateFinalAmount().toFixed(2)}
@@ -389,13 +410,13 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
           </div>
         </div>
 
-        <div className="mt-6 mb-5 mr-5 flex justify-end gap-4">
+        <div className="mt-3 mb-5 mr-5 flex justify-end gap-4">
           <button
             onClick={() => {
               setCostMouleEdit(null);
               setCostModeule(false);
             }}
-            className="px-4 py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-300"
+            className="px-4 py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-300 text-sm"
           >
             Cancel
           </button>
@@ -421,13 +442,14 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                     currency: currency,
                     tax: tax,
                   },
-                  values
+                  values,
+                  heading
                 );
               }
               setCostMouleEdit(null);
               setCostModeule(false);
             }}
-            className="bg-footer_gradient_bot text-white px-4 rounded-md py-2 text-center text-sm flex gap-1 items-center justify-center hover:bg-hover_dark_btn active:bg-gradient_darker"
+            className="bg-footer_gradient_bot text-white px-4 rounded-md py-2 text-center text-sm flex gap-1 items-center justify-center hover:bg-hover_dark_btn active:bg-gradient_darker "
           >
             Save
           </button>

@@ -29,7 +29,7 @@ const CostModuleSlate = ({ index, rows, selected, settings, preview }) => {
       <h1
         className={`w-full flex items-center justify-start text-[1.75em] font-${settings.heading} font-bold mb-4 pl-1 `}
       >
-        Cost Module
+        {rows.heading}
       </h1>
       {selected !== null && preview !== true && (
         <button
@@ -44,8 +44,8 @@ const CostModuleSlate = ({ index, rows, selected, settings, preview }) => {
       )}
       <table className="w-full border border-gray-300 rounded-sm">
         <thead className="">
-          <tr className="bg-gray-100 text-center">
-            <th className="border border-r-gray-200 px-2 py-2 text-center w-[65%]">
+          <tr className="bg-gray-100 text-left px-2">
+            <th className="border border-r-gray-200 px-2 py-2 text-left w-[65%]">
               Deliverables
             </th>
             {rows.options.quantity && (
@@ -63,7 +63,7 @@ const CostModuleSlate = ({ index, rows, selected, settings, preview }) => {
         <tbody>
           {rows.content?.map((row, index) => (
             <tr key={index}>
-              <td className="border px-2 py-1">{row.deliverable}</td>
+              <td className="border px-2 text-left  py-1">{row.deliverable}</td>
               {rows.options.quantity && (
                 <td className="border px-2 py-1">
                   {rows.options.currency}
@@ -84,15 +84,19 @@ const CostModuleSlate = ({ index, rows, selected, settings, preview }) => {
       </table>
       <div className="mt-2 pt-4 px-2">
         <div className="flex justify-between items-center gap-16">
-          <span className=" w-48 text-left">Total Amount:</span>
+          <span className=" w-48 text-left">Total Amount</span>
           <span>${calculateTotalAmount().toFixed(2)}</span>
         </div>
         {rows.options.discount && (
           <div className="flex justify-between items-center gap-12">
-            <span className=" w-48 text-left">Discount:</span>
-            <span className="w-24 flex items-center justify-start">
-              {rows.values?.discount}%{" "}
+            <span className=" w-48 text-left flex">
+              Discount ({" "}
+              <span className=" flex items-center justify-start">
+                {rows.values?.discount}%{" "}
+              </span>
+              )
             </span>
+
             <span>
               {rows.options.currency}
               {calculateDiscountedAmount().toFixed(2)}
@@ -101,10 +105,14 @@ const CostModuleSlate = ({ index, rows, selected, settings, preview }) => {
         )}
         {rows.options.tax && (
           <div className="flex justify-between items-center gap-10">
-            <span className=" w-48 text-left">Tax:</span>
-            <span className="w-24 flex items-center justify-start">
-              {rows.values?.tax}%{" "}
+            <span className=" w-48 text-left flex">
+              Tax (
+              <span className=" flex items-center justify-start">
+                {rows.values?.tax}%
+              </span>
+              )
             </span>
+
             <span>
               {rows.options.currency}
               {calculateTaxAmount().toFixed(2)}
@@ -113,7 +121,7 @@ const CostModuleSlate = ({ index, rows, selected, settings, preview }) => {
         )}
 
         <div className="flex justify-between items-cente gap-16 ">
-          <span className=" w-48 text-left">Payable Amount:</span>
+          <span className=" w-48 text-left">Payable Amount</span>
           <span className=" ">
             {rows.options.currency}
             {calculatePayableAmount().toFixed(2)}

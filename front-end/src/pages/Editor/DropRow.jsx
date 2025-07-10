@@ -741,6 +741,11 @@ const DropRow = ({
               rows={row}
               selected={selected}
               preview={preview}
+              onChangeHeading={(newData) => {
+                const updatedContent = [...rows];
+                updatedContent[index].heading = newData;
+                setRows(updatedContent);
+              }}
             />
           </div>
         ) : row.type === "cover" ? (

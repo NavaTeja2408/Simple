@@ -130,6 +130,7 @@ import cover_1_37 from "../../assets/cover_1_37.png";
 import cover_1_38 from "../../assets/cover_1_38.png";
 import cover_1_39 from "../../assets/cover_1_39.png";
 import cover_1_40 from "../../assets/cover_1_40.png";
+import { IoIosArrowDown } from "react-icons/io";
 
 const Sidebar = ({
   selected,
@@ -151,6 +152,7 @@ const Sidebar = ({
   preview,
 }) => {
   const [loading, setLoading] = useState(false);
+  const [openCover, setOpenCover] = useState("");
   const { user } = useContext(UserContext);
   const section_3_row = [
     {
@@ -16641,204 +16643,233 @@ const Sidebar = ({
                     {loading ? "Loading..." : "Upload Cover Page"}
                   </label>
                 </div>
-                <p className="text-lvl_2_txt w-full text-left text-sm px-[16px]">
+                <p
+                  onClick={() => {
+                    if (openCover === "half") {
+                      setOpenCover("");
+                    } else {
+                      setOpenCover("half");
+                    }
+                  }}
+                  className="text-lvl_2_txt w-full text-left text-sm px-[16px] cursor-pointer flex justify-between items-center"
+                >
                   Half Page
+                  <IoIosArrowDown />
                 </p>
-                <img
-                  src={cover_1_21}
-                  onClick={() => insertCoverPage(cover_21)}
-                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
-                />
-                <img
-                  src={cover_1_22}
-                  onClick={() => insertCoverPage(cover_22)}
-                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
-                />
-                <img
-                  src={cover_1_23}
-                  onClick={() => insertCoverPage(cover_23)}
-                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
-                />
-                <img
-                  src={cover_1_24}
-                  onClick={() => insertCoverPage(cover_24)}
-                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
-                />
-                <img
-                  src={cover_1_25}
-                  onClick={() => insertCoverPage(cover_25)}
-                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
-                />
-                <img
-                  src={cover_1_26}
-                  onClick={() => insertCoverPage(cover_26)}
-                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
-                />
-                <img
-                  src={cover_1_27}
-                  onClick={() => insertCoverPage(cover_27)}
-                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
-                />
-                <img
-                  src={cover_1_28}
-                  onClick={() => insertCoverPage(cover_28)}
-                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
-                />
+                {openCover === "half" && (
+                  <div className="w-full flex flex-col items-center  gap-[16px] transition-all duration-500 ease-out opacity-0 animate-fadeIn ">
+                    <img
+                      src={cover_1_21}
+                      onClick={() => insertCoverPage(cover_21)}
+                      className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
+                    />
+                    <img
+                      src={cover_1_22}
+                      onClick={() => insertCoverPage(cover_22)}
+                      className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
+                    />
+                    <img
+                      src={cover_1_23}
+                      onClick={() => insertCoverPage(cover_23)}
+                      className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
+                    />
+                    <img
+                      src={cover_1_24}
+                      onClick={() => insertCoverPage(cover_24)}
+                      className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
+                    />
+                    <img
+                      src={cover_1_25}
+                      onClick={() => insertCoverPage(cover_25)}
+                      className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
+                    />
+                    <img
+                      src={cover_1_26}
+                      onClick={() => insertCoverPage(cover_26)}
+                      className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
+                    />
+                    <img
+                      src={cover_1_27}
+                      onClick={() => insertCoverPage(cover_27)}
+                      className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
+                    />
+                    <img
+                      src={cover_1_28}
+                      onClick={() => insertCoverPage(cover_28)}
+                      className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
+                    />
 
-                <img
-                  src={cover_1_29}
-                  onClick={() => insertCoverPage(cover_29)}
-                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
-                />
-                <img
-                  src={cover_1_30}
-                  onClick={() => insertCoverPage(cover_30)}
-                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
-                />
-                <img
-                  src={cover_1_31}
-                  onClick={() => insertCoverPage(cover_31)}
-                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
-                />
-                <img
-                  src={cover_1_32}
-                  onClick={() => insertCoverPage(cover_32)}
-                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
-                />
-                <img
-                  src={cover_1_34}
-                  onClick={() => insertCoverPage(cover_34)}
-                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
-                />
-                <img
-                  src={cover_1_35}
-                  onClick={() => insertCoverPage(cover_35)}
-                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
-                />
-                <img
-                  src={cover_1_36}
-                  onClick={() => insertCoverPage(cover_36)}
-                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
-                />
-                <img
-                  src={cover_1_37}
-                  onClick={() => insertCoverPage(cover_37)}
-                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
-                />
-                <img
-                  src={cover_1_38}
-                  onClick={() => insertCoverPage(cover_38)}
-                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
-                />
-                <img
-                  src={cover_1_39}
-                  onClick={() => insertCoverPage(cover_39)}
-                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
-                />
-                <img
-                  src={cover_1_40}
-                  onClick={() => insertCoverPage(cover_40)}
-                  className="w-[88%] cursor-pointer"
-                />
-                <p className="text-lvl_2_txt w-full text-left text-sm px-[16px]">
+                    <img
+                      src={cover_1_29}
+                      onClick={() => insertCoverPage(cover_29)}
+                      className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
+                    />
+                    <img
+                      src={cover_1_30}
+                      onClick={() => insertCoverPage(cover_30)}
+                      className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
+                    />
+                    <img
+                      src={cover_1_31}
+                      onClick={() => insertCoverPage(cover_31)}
+                      className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
+                    />
+                    <img
+                      src={cover_1_32}
+                      onClick={() => insertCoverPage(cover_32)}
+                      className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
+                    />
+                    <img
+                      src={cover_1_34}
+                      onClick={() => insertCoverPage(cover_34)}
+                      className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
+                    />
+                    <img
+                      src={cover_1_35}
+                      onClick={() => insertCoverPage(cover_35)}
+                      className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
+                    />
+                    <img
+                      src={cover_1_36}
+                      onClick={() => insertCoverPage(cover_36)}
+                      className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
+                    />
+                    <img
+                      src={cover_1_37}
+                      onClick={() => insertCoverPage(cover_37)}
+                      className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
+                    />
+                    <img
+                      src={cover_1_38}
+                      onClick={() => insertCoverPage(cover_38)}
+                      className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
+                    />
+                    <img
+                      src={cover_1_39}
+                      onClick={() => insertCoverPage(cover_39)}
+                      className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
+                    />
+                    <img
+                      src={cover_1_40}
+                      onClick={() => insertCoverPage(cover_40)}
+                      className="w-[88%] cursor-pointer"
+                    />
+                  </div>
+                )}
+
+                <p
+                  onClick={() => {
+                    if (openCover === "full") {
+                      setOpenCover("");
+                    } else {
+                      setOpenCover("full");
+                    }
+                  }}
+                  className="text-lvl_2_txt w-full text-left text-sm px-[16px] cursor-pointer flex justify-between items-center"
+                >
                   Full Page
+                  <IoIosArrowDown />
                 </p>
-                <img
-                  src={cover_1_1}
-                  onClick={() => insertCoverPage(cover_1)}
-                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
-                />
-                <img
-                  src={cover_1_2}
-                  onClick={() => insertCoverPage(cover_2)}
-                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
-                />
-                <img
-                  src={cover_1_3}
-                  onClick={() => insertCoverPage(cover_3)}
-                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
-                />
-                <img
-                  src={cover_1_4}
-                  onClick={() => insertCoverPage(cover_4)}
-                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
-                />
-                <img
-                  src={cover_1_5}
-                  onClick={() => insertCoverPage(cover_5)}
-                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
-                />
-                <img
-                  src={cover_1_6}
-                  onClick={() => insertCoverPage(cover_6)}
-                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
-                />
-                <img
-                  src={cover_1_7}
-                  onClick={() => insertCoverPage(cover_7)}
-                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
-                />
-                <img
-                  src={cover_1_8}
-                  onClick={() => insertCoverPage(cover_8)}
-                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
-                />
+                {openCover === "full" && (
+                  <div className="w-full flex flex-col items-center  gap-[16px] transition-all duration-500 ease-out opacity-0 animate-fadeIn ">
+                    <img
+                      src={cover_1_1}
+                      onClick={() => insertCoverPage(cover_1)}
+                      className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
+                    />
+                    <img
+                      src={cover_1_2}
+                      onClick={() => insertCoverPage(cover_2)}
+                      className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
+                    />
+                    <img
+                      src={cover_1_3}
+                      onClick={() => insertCoverPage(cover_3)}
+                      className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
+                    />
+                    <img
+                      src={cover_1_4}
+                      onClick={() => insertCoverPage(cover_4)}
+                      className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
+                    />
+                    <img
+                      src={cover_1_5}
+                      onClick={() => insertCoverPage(cover_5)}
+                      className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
+                    />
+                    <img
+                      src={cover_1_6}
+                      onClick={() => insertCoverPage(cover_6)}
+                      className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
+                    />
+                    <img
+                      src={cover_1_7}
+                      onClick={() => insertCoverPage(cover_7)}
+                      className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
+                    />
+                    <img
+                      src={cover_1_8}
+                      onClick={() => insertCoverPage(cover_8)}
+                      className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
+                    />
 
-                <img
-                  src={cover_1_9}
-                  onClick={() => insertCoverPage(cover_9)}
-                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
-                />
-                <img
-                  src={cover_1_10}
-                  onClick={() => insertCoverPage(cover_10)}
-                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
-                />
-                <img
-                  src={cover_1_11}
-                  onClick={() => insertCoverPage(cover_11)}
-                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
-                />
-                <img
-                  src={cover_1_13}
-                  onClick={() => insertCoverPage(cover_13)}
-                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
-                />
-                <img
-                  src={cover_1_14}
-                  onClick={() => insertCoverPage(cover_14)}
-                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
-                />
-                <img
-                  src={cover_1_15}
-                  onClick={() => insertCoverPage(cover_15)}
-                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
-                />
-                <img
-                  src={cover_1_16}
-                  onClick={() => insertCoverPage(cover_16)}
-                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
-                />
-                <img
-                  src={cover_1_17}
-                  onClick={() => insertCoverPage(cover_17)}
-                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
-                />
-                <img
-                  src={cover_1_18}
-                  onClick={() => insertCoverPage(cover_18)}
-                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
-                />
-                <img
-                  src={cover_1_19}
-                  onClick={() => insertCoverPage(cover_19)}
-                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
-                />
-                <img
-                  src={cover_1_20}
-                  onClick={() => insertCoverPage(cover_20)}
-                  className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
-                />
+                    <img
+                      src={cover_1_9}
+                      onClick={() => insertCoverPage(cover_9)}
+                      className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
+                    />
+                    <img
+                      src={cover_1_10}
+                      onClick={() => insertCoverPage(cover_10)}
+                      className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
+                    />
+                    <img
+                      src={cover_1_11}
+                      onClick={() => insertCoverPage(cover_11)}
+                      className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
+                    />
+                    <img
+                      src={cover_1_13}
+                      onClick={() => insertCoverPage(cover_13)}
+                      className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
+                    />
+                    <img
+                      src={cover_1_14}
+                      onClick={() => insertCoverPage(cover_14)}
+                      className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
+                    />
+                    <img
+                      src={cover_1_15}
+                      onClick={() => insertCoverPage(cover_15)}
+                      className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
+                    />
+                    <img
+                      src={cover_1_16}
+                      onClick={() => insertCoverPage(cover_16)}
+                      className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
+                    />
+                    <img
+                      src={cover_1_17}
+                      onClick={() => insertCoverPage(cover_17)}
+                      className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
+                    />
+                    <img
+                      src={cover_1_18}
+                      onClick={() => insertCoverPage(cover_18)}
+                      className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
+                    />
+                    <img
+                      src={cover_1_19}
+                      onClick={() => insertCoverPage(cover_19)}
+                      className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
+                    />
+                    <img
+                      src={cover_1_20}
+                      onClick={() => insertCoverPage(cover_20)}
+                      className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
+                    />
+                  </div>
+                )}
               </div>
             ) : (
               <div></div>

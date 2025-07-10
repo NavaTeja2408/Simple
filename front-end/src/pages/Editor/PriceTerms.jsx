@@ -4,6 +4,7 @@ import { FaPlus } from "react-icons/fa";
 import { StateManageContext } from "../../context/StateManageContext";
 
 const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
+  const [heading, setHeading] = useState("Cost Module");
   const { setPriceTerms, priceTermsEdit, setPriceTermsEdit } =
     useContext(StateManageContext);
 
@@ -105,17 +106,27 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-20 flex items-center justify-center p-4 z-[1000]">
       <div className="bg-white rounded-lg shadow-lg  max-w-3xl w-full transition-all transform scale-105 ">
-        <div className="w-full flex flex-col items-center justify-center mt-4 border-b-[5px] border-gray-100">
+        <div className="w-full flex flex-col items-center justify-center mt-4 border-b-[2px] border-gray-200">
           <h1 className="text-md font-bold text-gray-700">Add Price Terms</h1>
           <p className="text-sm text-gray-500 mb-4">
             Drag & Set your cost for your proposal
           </p>
         </div>
-        <div className="mt-4 border-b-[3px] border-gray-100 ">
+        <div className="mt-2 border-b-[3px] border-gray-100 ">
           {/* Table */}
-          <div className=" w-full bg-gray-50 ">
-            <div className="flex items-center pb-3 pl-4 border-b-[5px] border-gray-100 mb-2 gap-4">
+          <div className=" w-full ">
+            {/* <div className="w-full px-6 mt-1 mb-2 ">
+              <input
+                type="text"
+                placeholder="Title"
+                value={heading}
+                onChange={(e) => setHeading(e.target.value)}
+                className=" py-1 outline-none focus:border-b focus:border-gray-300 text-sm"
+              />
+            </div> */}
+            <div className="flex items-center pb-3 pl-4 border-b-[2px] border-gray-200 mb-2 gap-4">
               {/* Currency Dropdown */}
+
               <div className="flex items-center px-2 py-1 rounded-md bg-gray-100 gap-2">
                 <label
                   htmlFor="currency"
@@ -156,7 +167,7 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
                   />
                   Value
                 </label>
-                <div className="flex justify-center items-center text-sm gap-2 ml-20">
+                <div className="flex justify-center items-center text-sm gap-2 ml-32">
                   <label className="text-gray-600">Total: </label>
                   <input
                     type="number"
@@ -172,7 +183,7 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
             <table className="w-[95%] ml-2 text-xs border-collapse rounded-md bg-gray-50 mt-3 block max-h-[250px] overflow-y-auto">
               <thead className="sticky top-0 bg-gray-50 z-[10000]">
                 <tr>
-                  <th className="  py-2  text-center  w-16">S No.</th>
+                  <th className="  py-2  text-center  w-7"></th>
                   <th className={` px-4 py-2 w-[${width}] text-left`}>
                     Services/Products
                   </th>
@@ -190,7 +201,7 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
                     key={index}
                     className="hover:bg-gray-50 border border-b-[13px]  border-gray-100 bg-white  "
                   >
-                    <td className="px-4">{index + 1}</td>
+                    <td className="px-4"></td>
                     <td className={` pr-8 px-2 py-1 w-[${width}] relative`}>
                       <input
                         type="text"
@@ -299,7 +310,7 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
               setPriceTermsEdit(null);
               setPriceTerms(false);
             }}
-            className="px-4 py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-300"
+            className="px-4 py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-300 text-sm"
           >
             Cancel
           </button>
@@ -324,7 +335,7 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
               setPriceTermsEdit(null);
               setPriceTerms(false);
             }}
-            className="px-4 py-2 bg-graidient_bottom text-white rounded-md hover:bg-shadow_Bottom"
+            className="px-4 py-2 bg-graidient_bottom text-white rounded-md hover:bg-gradient_darker text-sm"
           >
             Save
           </button>
