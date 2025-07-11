@@ -47,7 +47,8 @@ export default {
         heightlet_text: "#525252",
         non_active_text: "#8C8C8C",
         non_active_text_2: " #CBCBCB",
-        backgrounds: "#FAFAFA",
+
+        backgrounds: "#F5F5F5",
         highlight: " #EEEEEE",
         border_clr: "#E0E0E0",
         secondary: "#C80544",

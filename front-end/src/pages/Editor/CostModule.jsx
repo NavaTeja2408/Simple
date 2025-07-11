@@ -417,7 +417,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
           </div>
         </div>
 
-        <div className="mt-3 mb-5 mr-5 flex justify-end gap-4">
+        <div className="mt-4 mb-4 mr-6 flex justify-end gap-4">
           <button
             onClick={() => {
               setCostMouleEdit(null);

@@ -129,7 +129,7 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
             <div className="flex items-center pb-3 pl-4 border-b-[2px] border-gray-200 mb-2 gap-4">
               {/* Currency Dropdown */}
 
-              <div className="flex items-center px-2 py-1 rounded-md bg-gray-100 gap-2">
+              <div className="flex items-center px-2 py-1 rounded-md  gap-2">
                 <label
                   htmlFor="currency"
                   className="text-sm font-semibold  text-active_text "
@@ -140,7 +140,7 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
                   id="currency"
                   value={currency}
                   onChange={(e) => setCurrency(e.target.value)}
-                  className="border bg-backgrounds border-gray-100 rounded px-2 py-1 text-sm outline-none "
+                  className="border bg-backgrounds border-gray-100 rounded px-2 py-1 text-sm outline-none text-active_text "
                 >
                   <option value="$">USD ($)</option>
                   <option value="€">EUR (€)</option>
@@ -151,7 +151,7 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
 
               {/* Checkboxes */}
               <div className="flex items-center gap-4 ">
-                <label className="flex bg-backgrounds px-2 py-1 rounded-md items-center text-sm font-semibold text-">
+                <label className="flex bg-backgrounds px-2 py-1 rounded-md items-center text-sm text-active_text">
                   <input
                     type="checkbox"
                     checked={percentage}
@@ -160,7 +160,7 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
                   />
                   Percentage
                 </label>
-                <label className="flex bg-backgrounds px-2 py-1 rounded-md items-center text-sm font-semibold text-gray-600">
+                <label className="flex bg-backgrounds px-2 py-1 rounded-md items-center text-sm text-active_text">
                   <input
                     type="checkbox"
                     checked={value}
@@ -186,13 +186,21 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
               <thead className="sticky top-0  z-[10000]">
                 <tr>
                   <th className="  py-2  text-center  w-7"></th>
-                  <th className={` px-4 py-2 w-[${width}] text-left`}>
+                  <th
+                    className={` px-4 py-2 w-[${width}] text-left text-sm font-normal`}
+                  >
                     Services/Products
                   </th>
                   {percentage && (
-                    <th className="  py-2 text-center ">Percentage</th>
+                    <th className="  py-2 text-center text-sm font-normal ">
+                      Percentage
+                    </th>
                   )}
-                  {value && <th className=" px-2 py-2 text-center">Value</th>}
+                  {value && (
+                    <th className=" px-2 py-2 text-center text-sm font-normal">
+                      Value
+                    </th>
+                  )}
 
                   <th className="  text-center"></th>
                 </tr>
