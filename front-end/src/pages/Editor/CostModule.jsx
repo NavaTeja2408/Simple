@@ -107,13 +107,13 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-20 flex items-center justify-center p-4 z-[1000] be-vietnam-pro-regular">
       <div className="bg-white rounded-lg shadow-lg   max-w-6xl  w-full transition-all transform   ">
-        <div className="w-full flex flex-col items-center justify-center mt-4 border-b-[2px] border-border_clr">
+        <div className="w-full flex flex-col items-center justify-center mt-4 border-b-[1px] border-border_clr">
           <h1 className="text-md font-bold text-gray-700">Add Cost Module</h1>
           <p className="text-sm text-gray-500 mb-4">
             Set your cost for your proposal
           </p>
         </div>
-        <div className="flex flex-row  border-b-[3px] border-border-border_clr  ">
+        <div className="flex flex-row  border-b-[1px] border-border_clr  ">
           {/* Table */}
           <div className=" w-[75%]  ">
             {/* <div className="w-full px-6 py-2">
@@ -125,7 +125,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                 className=" py-1 outline-none border-b border-b-300 focus:border-gray-400 text-sm"
               />
             </div> */}
-            <div className="flex items-center pb-3 pl-4 border-b-[2px] border-border_clr mb-2 gap-4 relative pt-3">
+            <div className="flex items-center pb-3 pl-4 border-b-[1px] border-border_clr mb-2 gap-4 relative pt-3">
               {/* Currency Dropdown */}
               <div className="flex items-center px-2 py-1 rounded-md  gap-2">
                 <label
