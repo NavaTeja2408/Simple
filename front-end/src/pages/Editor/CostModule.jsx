@@ -189,21 +189,21 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
             >
               <thead className="sticky top-0  z-[5000] bg-white">
                 <tr className=" ">
-                  <th className=" px-4 py-2 w-80 text-left font-semibold text-active_text text-sm">
+                  <th className=" px-4 py-2 w-80 text-left font-normal text-active_text text-sm">
                     Services/Products
                   </th>
                   {quantity && (
-                    <th className=" px-2 py-2 text-center font-semibold text-active_text text-sm">
+                    <th className=" px-2 py-2 text-center  font-normal  text-active_text text-sm">
                       Unit Price
                     </th>
                   )}
 
                   {quantity && (
-                    <th className=" px-2 py-2 text-center font-semibold text-active_text text-sm">
+                    <th className=" px-2 py-2 text-center  font-normal  text-active_text text-sm">
                       Quantity
                     </th>
                   )}
-                  <th className=" px-2 py-2 text-center font-semibold text-active_text text-sm">
+                  <th className=" px-2 py-2 text-center  font-normal  text-active_text text-sm">
                     Amount
                   </th>
                   <th className="  text-center"></th>
@@ -233,7 +233,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                               e.target.value
                             )
                           }
-                          className="w-full border border-border_clr bg-backgrounds rounded px-2 py-2 outline-none "
+                          className="w-full border border-border_clr bg-backgrounds rounded px-2 py-2 outline-none text-active_text "
                           placeholder="Deliverable"
                         />
                         {dropdown !== null && index === dropdown && (
@@ -278,7 +278,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                               parseFloat(e.target.value)
                             )
                           }
-                          className="w-full border border-border_clr bg-backgrounds  rounded px-2 py-2 no-spinner outline-none text-center focus:border-gray-400"
+                          className="w-full border border-border_clr bg-backgrounds  rounded px-2 py-2 no-spinner outline-none text-center focus:border-gray-400 text-active_text "
                         />
                       </td>
                     )}
@@ -296,7 +296,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                               parseInt(e.target.value)
                             )
                           }
-                          className="w-full border border-border_clr bg-backgrounds rounded px-2 py-2 no-spinner outline-none text-center focus:border-gray-400"
+                          className="w-full border border-border_clr bg-backgrounds rounded px-2 py-2 no-spinner outline-none text-center focus:border-gray-400 text-active_text "
                         />
                       </td>
                     )}
@@ -314,7 +314,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                           )
                         }
                         readOnly={quantity}
-                        className="w-full border border-border_clr bg-backgrounds rounded px-2 py-2 no-spinner text-right outline-none focus:border-gray-400"
+                        className="w-full border border-border_clr bg-backgrounds rounded px-2 py-2 no-spinner text-right outline-none focus:border-gray-400 text-active_text "
                       />
                     </td>
                     <td className=" px-2 py-2 text-center">
@@ -341,10 +341,12 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
           </div>
 
           {/* Total */}
-          <div className=" pl-7 pr-6 pt-6 w-[25%] border-l-[1px] border-border_clr ">
+          <div className=" pl-7 pr-6 pt-5 w-[25%] border-l-[1px] border-border_clr ">
             <div className="flex flex-col justify-between ">
-              <h3 className="text-[14px] text-active_text">Cost Break Down</h3>
-              <div className="flex flex-col w-full mt-5 gap-2">
+              <h3 className="text-sm text-active_text font-semibold">
+                Cost Break Down
+              </h3>
+              <div className="flex flex-col w-full mt-11 gap-2">
                 <div className="w-full flex flex-row justify-between">
                   <span className="text-sm text-gray-500 ">Total</span>
                   <span className="text-sm">
