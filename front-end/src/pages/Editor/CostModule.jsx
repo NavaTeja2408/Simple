@@ -185,10 +185,15 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
             </div>
             <table
               ref={scrollableDivRef}
-              className="w-[97%] ml-2 table-auto text-xs border-collapse rounded-md  mt-3 block   h-[230px] overflow-y-scroll scrollbar-hide pl-3 z-[100000]"
+              className="w-[97%] ml-2 table-auto text-xs border-collapse rounded-md  mt-3 block   h-[230px] overflow-y-scroll pl-3 z-[100000] pb-1"
             >
-              <thead className="sticky top-0  z-[5000] bg-white">
-                <tr className=" ">
+              <thead
+                className="sticky top-0 z-50  "
+                style={{
+                  backgroundColor: "#FFFFFF",
+                }}
+              >
+                <tr className="w-[102%] z-50 ">
                   <th className=" px-4 py-2 w-80 text-left font-normal text-active_text text-sm">
                     Services/Products
                   </th>
@@ -213,12 +218,12 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                 {temp.map((row, index) => (
                   <tr
                     key={index}
-                    className="hover:bg-gray-50 border border-border_clr bg-white h-16 rounded-md   "
+                    className="hover:bg-gray-50 border-[1px] border-border_clr bg-white h-16 rounded-md   "
                   >
                     <td
                       className={`pr-8 px-2 py-1 relative ${
                         quantity ? "w-[55%]" : "w-[78%]"
-                      } ${dropdown === index ? "pb-10" : "pb-1"}`}
+                      } ${dropdown === index ? "pb-1" : "pb-1"}`}
                     >
                       <div className="relative">
                         <input
@@ -356,7 +361,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                 </div>
                 {discount && (
                   <div className="w-full flex flex-row justify-between">
-                    <span className="text-sm text-non_active_text flex flex-row items-center justify-center w-14  ">
+                    <span className="text-sm text-non_active_text flex flex-row items-center justify-start w-14  ">
                       Discount{" "}
                     </span>
                     <div className=" flex flex-row items-center justify-center  rounded-md">
@@ -370,7 +375,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                           setvalues({ ...values, discount: e.target.value })
                         }
                       />
-                      <span className="text-non_active_text">%</span>
+                      <span className="text-heightlet_text">%</span>
                     </div>
                     <span className="text-sm text-active_text">
                       {currency}
@@ -393,7 +398,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                           setvalues({ ...values, tax: e.target.value })
                         }
                       />
-                      <span className="text-gray-500">%</span>
+                      <span className="text-heightlet_text">%</span>
                     </div>
                     <span className="text-sm text-active_text">
                       {currency}
@@ -403,7 +408,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                 )}
                 <div>
                   <div className="w-full flex flex-row justify-between">
-                    <span className="text-sm text-non_active_text ">
+                    <span className="text-sm text-non_active_text flex justify-start ">
                       Final Amount
                     </span>
                     <span className="text-sm text-active_text">

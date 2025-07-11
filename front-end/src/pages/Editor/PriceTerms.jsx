@@ -101,7 +101,7 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
   };
 
   const width =
-    percentage && value ? "50%" : percentage || value ? "70%" : "90%";
+    percentage && value ? "55%" : percentage || value ? "70%" : "90%";
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-20 flex items-center justify-center p-4 z-[1000]">
@@ -183,7 +183,7 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
               </div>
             </div>
             <table className="w-[96%] ml-4 text-xs border-collapse rounded-md  mt-3 block max-h-[250px] overflow-y-auto">
-              <thead className="sticky top-0  z-[10000]">
+              <thead className="sticky top-0  z-[10000] ">
                 <tr>
                   <th className="  py-2  text-center  w-7"></th>
                   <th

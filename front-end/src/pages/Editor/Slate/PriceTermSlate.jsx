@@ -23,11 +23,11 @@ const PriceTermSlate = ({ index, rows, selected, settings, preview }) => {
     <div
       className={`w-full flex flex-col min-h-[100px] p-3 font-${settings.body}`}
     >
-      <h1
+      {/* <h1
         className={`w-full flex items-center justify-start text-[1.75em] font-${settings.heading} font-bold mb-4 pl-1 `}
       >
         Price Terms
-      </h1>
+      </h1> */}
       {selected !== null && preview !== true && (
         <button
           onClick={() => {
