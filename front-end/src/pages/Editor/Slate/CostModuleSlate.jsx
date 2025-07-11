@@ -25,7 +25,7 @@ const CostModuleSlate = ({ index, rows, selected, settings, preview }) => {
   const { setCostModeule, setCostMouleEdit } = useContext(StateManageContext);
 
   return (
-    <div className={`p-3 relative font-${settings.body} text-[1em]  `}>
+    <div className={`p-3 relative font-${settings.body} text-[1em]   `}>
       {/* <h1
         className={`w-full flex items-center justify-start text-[1.75em] font-${settings.heading} font-bold mb-4 pl-1 `}
       >
@@ -84,16 +84,16 @@ const CostModuleSlate = ({ index, rows, selected, settings, preview }) => {
           ))}
         </tbody>
       </table>
-      <div className="mt-2 pt-4 px-2 text-heightlet_text">
+      <div className="mt-2 pt-4 px-2 text-active_text">
         <div className="flex justify-between items-center gap-16">
           <span className=" w-48 text-left">Total Amount</span>
-          <span>
+          <span className="text-heightlet_text">
             {rows.options.currency ? rows.options.currency : "$"}
             {calculateTotalAmount().toFixed(2)}
           </span>
         </div>
         {rows.options.discount && (
-          <div className="flex justify-between items-center gap-12">
+          <div className="flex justify-between items-center gap-12 mt-[3px]">
             <span className=" w-48 text-left flex">
               Discount{" "}
               <span className="text-non_active_text flex ml-2">
@@ -105,14 +105,14 @@ const CostModuleSlate = ({ index, rows, selected, settings, preview }) => {
               </span>
             </span>
 
-            <span>
+            <span className="text-heightlet_text">
               {rows.options.currency ? rows.options.currency : "$"}
               {calculateDiscountedAmount().toFixed(2)}
             </span>
           </div>
         )}
         {rows.options.tax && (
-          <div className="flex justify-between items-center gap-10">
+          <div className="flex justify-between items-center gap-10 mt-[3px]">
             <span className=" w-48 text-left flex">
               Tax{" "}
               <span className="text-non_active_text flex ml-2">
@@ -125,16 +125,16 @@ const CostModuleSlate = ({ index, rows, selected, settings, preview }) => {
               </span>
             </span>
 
-            <span>
+            <span className="text-heightlet_text">
               {rows.options.currency ? rows.options.currency : "$"}
               {calculateTaxAmount().toFixed(2)}
             </span>
           </div>
         )}
 
-        <div className="flex justify-between items-cente gap-16 ">
-          <span className=" w-48 text-left">Payable Amount</span>
-          <span className=" ">
+        <div className="flex justify-between items-cente gap-16 mt-[3px] ">
+          <span className=" w-48 text-left">Total Payable Amount</span>
+          <span className="text-heightlet_text">
             {rows.options.currency ? rows.options.currency : "$"}
             {calculatePayableAmount().toFixed(2)}
           </span>

@@ -32,10 +32,10 @@ const Signature = ({ addSign, rows, setRows }) => {
       <div className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-lg transition-all transform scale-105">
         {/* Header */}
         <div className="mb-8 text-center">
-          <h2 className="text-lg font-bold text-gray-800">
+          <h2 className="text-lg font-bold text-active_text">
             Add Signature Details
           </h2>
-          <p className="text-xs text-gray-500">
+          <p className="text-xs text-non_active_text">
             Provide the names for proposal and acceptance.
           </p>
         </div>
@@ -45,7 +45,7 @@ const Signature = ({ addSign, rows, setRows }) => {
           <div>
             <label
               htmlFor="proposedName"
-              className="block text-sm font-medium text-gray-600"
+              className="block text-sm font-normal text-active_text"
             >
               Your Name
             </label>
@@ -56,7 +56,7 @@ const Signature = ({ addSign, rows, setRows }) => {
               onChange={(e) =>
                 handleInputChange(0, "proposedName", e.target.value)
               }
-              className="mt-2 w-full px-4 py-2 border border-gray-300 rounded-lg text-gray-800 shadow-sm outline-none text-sm"
+              className="mt-2 w-full px-4 py-2 border border-gray-300 rounded-lg text-active_text shadow-sm outline-none text-sm hover:border-active_text focus:border-active_text"
               placeholder="E.g: Jhon"
             />
             <p className="text-[11px] p-2">
@@ -70,7 +70,7 @@ const Signature = ({ addSign, rows, setRows }) => {
           <div>
             <label
               htmlFor="acceptedName"
-              className="block text-sm font-medium text-gray-600"
+              className="block text-sm  text-active_text"
             >
               Client's Name
             </label>
@@ -81,7 +81,7 @@ const Signature = ({ addSign, rows, setRows }) => {
               onChange={(e) =>
                 handleInputChange(1, "acceptedName", e.target.value)
               }
-              className="mt-2 w-full px-4 py-2 border border-gray-300 rounded-lg text-gray-800 shadow-sm outline-none text-sm"
+              className="mt-2 w-full px-4 py-2 border border-gray-300 rounded-lg text-active_text shadow-sm outline-none text-sm hover:border-active_text focus:border-active_text"
               placeholder="E.g: Jhon"
             />
           </div>

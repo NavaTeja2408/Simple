@@ -238,7 +238,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                               e.target.value
                             )
                           }
-                          className="w-full border border-border_clr bg-backgrounds rounded px-2 py-2 outline-none text-active_text "
+                          className="w-full border-[1px] border-border_clr bg-backgrounds rounded px-2 py-2 outline-none text-active_text hover:border-active_text focus:border-active_text "
                           placeholder="Deliverable"
                         />
                         {dropdown !== null && index === dropdown && (
@@ -283,7 +283,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                               parseFloat(e.target.value)
                             )
                           }
-                          className="w-full border border-border_clr bg-backgrounds  rounded px-2 py-2 no-spinner outline-none text-center focus:border-gray-400 text-active_text "
+                          className="w-full border-[1px] border-border_clr bg-backgrounds  rounded px-2 py-2 no-spinner outline-none text-center hover:border-active_text focus:border-active_text text-active_text "
                         />
                       </td>
                     )}
@@ -301,7 +301,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                               parseInt(e.target.value)
                             )
                           }
-                          className="w-full border border-border_clr bg-backgrounds rounded px-2 py-2 no-spinner outline-none text-center focus:border-gray-400 text-active_text "
+                          className="w-full border-[1px] border-border_clr bg-backgrounds rounded px-2 py-2 no-spinner outline-none text-center focus:border-active_text hover:border-active_text text-active_text "
                         />
                       </td>
                     )}
@@ -319,7 +319,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                           )
                         }
                         readOnly={quantity}
-                        className="w-full border border-border_clr bg-backgrounds rounded px-2 py-2 no-spinner text-right outline-none focus:border-gray-400 text-active_text "
+                        className="w-full border-[1px] border-border_clr bg-backgrounds rounded px-2 py-2 no-spinner text-right outline-none focus:border-active_text hover:border-active_text text-active_text "
                       />
                     </td>
                     <td className=" px-2 py-2 text-center">

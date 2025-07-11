@@ -36,8 +36,8 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
       ...temp,
       {
         deliverable: "",
-        percentage: 0,
-        value: 0,
+        percentage: null,
+        value: null,
       },
     ]);
   };
@@ -126,7 +126,7 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
                 className=" py-1 outline-none focus:border-b focus:border-gray-300 text-sm"
               />
             </div> */}
-            <div className="flex items-center pb-3 pl-4 border-b-[2px] border-gray-200 mb-2 gap-4">
+            <div className="flex items-center pb-3 pl-4 border-b-[1px] border-border_clr mb-2 gap-4">
               {/* Currency Dropdown */}
 
               <div className="flex items-center px-2 py-1 rounded-md  gap-2">
@@ -140,7 +140,7 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
                   id="currency"
                   value={currency}
                   onChange={(e) => setCurrency(e.target.value)}
-                  className="border bg-backgrounds border-gray-100 rounded px-2 py-1 text-sm outline-none text-active_text "
+                  className="border bg-backgrounds border-gray-100 rounded px-2 py-1 outline-none text-active_text text-sm "
                 >
                   <option value="$">USD ($)</option>
                   <option value="€">EUR (€)</option>
@@ -151,7 +151,7 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
 
               {/* Checkboxes */}
               <div className="flex items-center gap-4 ">
-                <label className="flex bg-backgrounds px-2 py-1 rounded-md items-center text-sm text-active_text">
+                <label className="flex bg-backgrounds px-2 py-1 rounded-md items-center text-sm text-active_text ">
                   <input
                     type="checkbox"
                     checked={percentage}
@@ -169,25 +169,27 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
                   />
                   Value
                 </label>
-                <div className="flex justify-center items-center text-sm gap-2 ml-[135px]">
-                  <label className="text-gray-600">Total: </label>
+                <div className="flex justify-center items-center text-sm gap-2 ml-[170px]">
+                  <label className="text-active_text font-semibold">
+                    Total:{" "}
+                  </label>
                   <input
                     type="number"
                     placeholder="Total"
                     min={0}
                     value={total}
                     onChange={(e) => setTotal(e.target.value)}
-                    className="w-32 border border-gray-300 bg-backgrounds rounded px-2 py-1 font-normal text-sm outline-none no-spinner"
+                    className="w-24 border border-gray-300 bg-backgrounds rounded px-2 py-1 font-normal text-sm outline-none no-spinner"
                   />
                 </div>
               </div>
             </div>
-            <table className="w-[96%] ml-4 text-xs border-collapse rounded-md  mt-3 block max-h-[250px] overflow-y-auto">
-              <thead className="sticky top-0  z-[10000] ">
+            <table className="w-[96%] ml-4 text-xs border-collapse rounded-md  mt-3 block min-h-[150px] max-h-[250px] overflow-y-auto ">
+              <thead className="sticky top-0  z-[10000] bg-white ">
                 <tr>
                   <th className="  py-2  text-center  w-7"></th>
                   <th
-                    className={` px-4 py-2 w-[${width}] text-left text-sm font-normal`}
+                    className={` px-2 py-2 w-[${width}] text-left text-sm font-normal`}
                   >
                     Services/Products
                   </th>
@@ -207,12 +209,11 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
               </thead>
               <tbody>
                 {temp.map((row, index) => (
-                  <tr
-                    key={index}
-                    className="hover:bg-gray-50 border border-b-[2px]  border-gray-100 bg-white  "
-                  >
+                  <tr key={index} className="  bg-white  ">
                     <td className="px-4"></td>
-                    <td className={` pr-8 px-2 py-1 w-[${width}] relative`}>
+                    <td
+                      className={` pr-8 px-2 py-1 w-[${width}] relative overflow-visible`}
+                    >
                       <input
                         type="text"
                         value={row.deliverable}
@@ -225,11 +226,11 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
                             e.target.value
                           )
                         }
-                        className="w-full border border-gray-300 bg-gray-50 rounded px-2 py-2 outline-none focus:border-gray-400"
+                        className="w-full border-[1px] border-gray-300 bg-backgrounds rounded px-2 py-2 outline-none hover:border-active_text focus:border-active_text"
                         placeholder="Deliverable"
                       />
                       {dropdown !== null && index === dropdown && (
-                        <div className="absolute top-[80%] z-[100000]  left-2 w-[90%] bg-white border border-gray-300 rounded-md shadow-md max-h-16 overflow-y-auto scrollbar-thin">
+                        <div className="absolute top-[80%] z-50  left-2 w-[90%] bg-white border border-gray-300 rounded-md shadow-md max-h-16 overflow-y-auto scrollbar-thin">
                           {list
                             .filter((item) =>
                               item
@@ -266,16 +267,16 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
                           }
                           min={0}
                           max={100}
-                          className="w-full border border-gray-300 bg-gray-50 rounded px-2 py-2 outline-none no-spinner focus:border-gray-400 text-center"
+                          className="w-full border-[1px] border-gray-300 bg-backgrounds rounded px-2 py-2 outline-none no-spinner hover:border-active_text focus:border-active_text text-center"
                         />
                       </td>
                     )}
                     {value && (
                       <td className=" px-2 py-2 flex flex-row items-center justify-center gap-1 font-bold w-32  text-md">
-                        {currency}
+                        {/* {currency} */}
                         <input
                           type="number"
-                          placeholder="value"
+                          placeholder="Value "
                           min={0}
                           value={row.value}
                           onChange={(e) =>
@@ -285,7 +286,7 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
                               parseInt(e.target.value)
                             )
                           }
-                          className="w-full border border-gray-300 bg-gray-50 rounded px-2 py-2 font-normal text-sm outline-none no-spinner focus:border-gray-400"
+                          className="w-full border-[1px] border-gray-300 bg-backgrounds rounded px-2 py-2 font-normal text-xs outline-none no-spinner hover:border-active_text focus:border-active_text text-center"
                         />
                       </td>
                     )}

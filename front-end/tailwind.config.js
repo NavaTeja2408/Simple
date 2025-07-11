@@ -54,6 +54,7 @@ export default {
         secondary: "#C80544",
         primary: "#DF064E",
         third: "#9F0036",
+        backgrounds_2: "#F0F0F0",
       },
 
       clipPath: {

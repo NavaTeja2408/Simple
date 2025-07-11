@@ -41,15 +41,17 @@ const PriceTermSlate = ({ index, rows, selected, settings, preview }) => {
       )}
       <div className="w-full flex items-center justify-center">
         <table className="w-full">
-          <thead>
-            <th className="w-[70%] bg-gray-100 py-2 text-left pl-4 border border-gray-300">
+          <thead className="text-active_text">
+            <th className="w-[70%] bg-backgrounds py-2 font-normal text-left pl-4 border border-gray-300">
               Deliverables
             </th>
             {rows.options.percentage && (
-              <th className="border border-gray-300 py-2">Percentage</th>
+              <th className="bg-backgrounds font-normal border border-gray-300 py-2">
+                Percentage
+              </th>
             )}
             {rows.options.value && (
-              <th className="border border-gray-300 py-2 text-right px-3">
+              <th className=" bg-backgrounds font-normal border border-gray-300 py-2 text-right px-3">
                 Value
               </th>
             )}
@@ -57,8 +59,8 @@ const PriceTermSlate = ({ index, rows, selected, settings, preview }) => {
           <tbody>
             {rows.content.map((row, index) => {
               return (
-                <tr>
-                  <td className="w-[70%] border border-gray-300 py-2 bg-gray-100 text-left pl-4  ">
+                <tr className="text-heightlet_text">
+                  <td className="w-[70%] border border-gray-300 py-2 bg-backgrounds_2 text-left pl-4  ">
                     {row.deliverable}
                   </td>
                   {rows.options.percentage && (
@@ -75,18 +77,18 @@ const PriceTermSlate = ({ index, rows, selected, settings, preview }) => {
               );
             })}
 
-            <tr>
-              <td className=" border border-gray-300 py-2 bg-gray-100 font-bold text-left pl-4  ">
+            <tr className="text-active_text">
+              <td className=" border border-gray-300 py-2 bg-backgrounds_2 text-left pl-4  ">
                 Total
               </td>
 
               {rows.options.percentage && (
-                <td className="border-2 border-gray-200 py-2 font-bold">
+                <td className="border-2 border-gray-200 py-2 ">
                   {calculateTotalPercentage()}%
                 </td>
               )}
               {rows.options.value && (
-                <th className="border-2 border-gray-200 py-2 font-bold text-right px-3">
+                <th className="border-2 border-gray-200 py-2 font-normal  text-right px-3">
                   ${calculateTotalValue()}
                 </th>
               )}
