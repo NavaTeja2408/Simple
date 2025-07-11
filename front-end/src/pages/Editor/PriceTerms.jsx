@@ -106,13 +106,15 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-20 flex items-center justify-center p-4 z-[1000]">
       <div className="bg-white rounded-lg shadow-lg  max-w-3xl w-full transition-all transform scale-105 ">
-        <div className="w-full flex flex-col items-center justify-center mt-4 border-b-[2px] border-gray-200">
-          <h1 className="text-md font-bold text-gray-700">Add Price Terms</h1>
-          <p className="text-sm text-gray-500 mb-4">
+        <div className="w-full flex flex-col items-center justify-center mt-4 border-b-[1px] border-border_clr">
+          <h1 className="text-md font-bold text-active_text">
+            Add Price Terms
+          </h1>
+          <p className="text-sm text-non_active_text mb-4">
             Drag & Set your cost for your proposal
           </p>
         </div>
-        <div className="mt-2 border-b-[3px] border-gray-100 ">
+        <div className="mt-2 border-b-[1px] border-border_clr ">
           {/* Table */}
           <div className=" w-full ">
             {/* <div className="w-full px-6 mt-1 mb-2 ">
@@ -130,7 +132,7 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
               <div className="flex items-center px-2 py-1 rounded-md bg-gray-100 gap-2">
                 <label
                   htmlFor="currency"
-                  className="text-sm font-semibold  text-gray-600"
+                  className="text-sm font-semibold  text-active_text "
                 >
                   Currency:
                 </label>
@@ -138,7 +140,7 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
                   id="currency"
                   value={currency}
                   onChange={(e) => setCurrency(e.target.value)}
-                  className="border bg-gray-100 border-gray-100 rounded px-2 py-1 text-sm outline-none "
+                  className="border bg-backgrounds border-gray-100 rounded px-2 py-1 text-sm outline-none "
                 >
                   <option value="$">USD ($)</option>
                   <option value="€">EUR (€)</option>
@@ -149,7 +151,7 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
 
               {/* Checkboxes */}
               <div className="flex items-center gap-4 ">
-                <label className="flex bg-gray-100 px-2 py-1 rounded-md items-center text-sm font-semibold text-gray-600">
+                <label className="flex bg-backgrounds px-2 py-1 rounded-md items-center text-sm font-semibold text-">
                   <input
                     type="checkbox"
                     checked={percentage}
@@ -158,7 +160,7 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
                   />
                   Percentage
                 </label>
-                <label className="flex bg-gray-100 px-2 py-1 rounded-md items-center text-sm font-semibold text-gray-600">
+                <label className="flex bg-backgrounds px-2 py-1 rounded-md items-center text-sm font-semibold text-gray-600">
                   <input
                     type="checkbox"
                     checked={value}
@@ -175,7 +177,7 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
                     min={0}
                     value={total}
                     onChange={(e) => setTotal(e.target.value)}
-                    className="w-32 border border-gray-300 bg-gray-50 rounded px-2 py-1 font-normal text-sm outline-none no-spinner"
+                    className="w-32 border border-gray-300 bg-backgrounds rounded px-2 py-1 font-normal text-sm outline-none no-spinner"
                   />
                 </div>
               </div>

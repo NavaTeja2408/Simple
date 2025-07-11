@@ -108,9 +108,11 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
     <div className="fixed inset-0 bg-black bg-opacity-20 flex items-center justify-center p-4 z-[1000] be-vietnam-pro-regular">
       <div className="bg-white rounded-lg shadow-lg   max-w-6xl  w-full transition-all transform   ">
         <div className="w-full flex flex-col items-center justify-center mt-4 border-b-[1px] border-border_clr">
-          <h1 className="text-md font-bold text-gray-700">Add Cost Module</h1>
-          <p className="text-sm text-gray-500 mb-4">
-            Set your cost for your proposal
+          <h1 className="text-md font-bold text-active_text">
+            Add Cost Module
+          </h1>
+          <p className="text-sm text-non_active_text mb-4">
+            Fill in the details of products and services for your proposal
           </p>
         </div>
         <div className="flex flex-row  border-b-[1px] border-border_clr  ">
@@ -130,7 +132,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
               <div className="flex items-center px-2 py-1 rounded-md  gap-2">
                 <label
                   htmlFor="currency"
-                  className="text-sm   text-active_text"
+                  className="text-sm   text-active_text font-semibold"
                 >
                   Currency:
                 </label>
@@ -176,7 +178,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                   />
                   Tax
                 </label>
-                <div className=" absolute top-5 right-4 text-active_text text-sm">
+                <div className=" absolute top-5 right-4 text-active_text text-sm font-semibold">
                   <p>Total Services: {temp.length}</p>
                 </div>
               </div>
@@ -187,21 +189,21 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
             >
               <thead className="sticky top-0  z-[5000] bg-white">
                 <tr className=" ">
-                  <th className=" px-4 py-2 w-80 text-left font-semibold">
+                  <th className=" px-4 py-2 w-80 text-left font-semibold text-active_text text-sm">
                     Services/Products
                   </th>
                   {quantity && (
-                    <th className=" px-2 py-2 text-center font-semibold">
+                    <th className=" px-2 py-2 text-center font-semibold text-active_text text-sm">
                       Unit Price
                     </th>
                   )}
 
                   {quantity && (
-                    <th className=" px-2 py-2 text-center font-semibold">
+                    <th className=" px-2 py-2 text-center font-semibold text-active_text text-sm">
                       Quantity
                     </th>
                   )}
-                  <th className=" px-2 py-2 text-center font-semibold">
+                  <th className=" px-2 py-2 text-center font-semibold text-active_text text-sm">
                     Amount
                   </th>
                   <th className="  text-center"></th>
