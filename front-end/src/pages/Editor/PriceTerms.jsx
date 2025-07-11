@@ -167,7 +167,7 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
                   />
                   Value
                 </label>
-                <div className="flex justify-center items-center text-sm gap-2 ml-32">
+                <div className="flex justify-center items-center text-sm gap-2 ml-[135px]">
                   <label className="text-gray-600">Total: </label>
                   <input
                     type="number"
@@ -180,8 +180,8 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
                 </div>
               </div>
             </div>
-            <table className="w-[95%] ml-2 text-xs border-collapse rounded-md bg-gray-50 mt-3 block max-h-[250px] overflow-y-auto">
-              <thead className="sticky top-0 bg-gray-50 z-[10000]">
+            <table className="w-[96%] ml-4 text-xs border-collapse rounded-md  mt-3 block max-h-[250px] overflow-y-auto">
+              <thead className="sticky top-0  z-[10000]">
                 <tr>
                   <th className="  py-2  text-center  w-7"></th>
                   <th className={` px-4 py-2 w-[${width}] text-left`}>
@@ -199,7 +199,7 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
                 {temp.map((row, index) => (
                   <tr
                     key={index}
-                    className="hover:bg-gray-50 border border-b-[13px]  border-gray-100 bg-white  "
+                    className="hover:bg-gray-50 border border-b-[2px]  border-gray-100 bg-white  "
                   >
                     <td className="px-4"></td>
                     <td className={` pr-8 px-2 py-1 w-[${width}] relative`}>
@@ -292,12 +292,12 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
                 ))}
               </tbody>
             </table>
-            <div className="w-[95%] flex text-sm items-end justify-end bg-gray-50 ml-2">
+            <div className="w-[95%] flex text-sm items-end justify-end  ml-2">
               <button
                 onClick={handleAddRow}
-                className=" flex felx-row items-center justify-center gap-2 px-4 py-2 text-graidient_bottom   rounded-md mb-2 "
+                className=" flex felx-row items-center justify-center gap-2 px-4 py-2 text-graidient_bottom   rounded-md mb-2 mt-3 "
               >
-                <FaPlus className="text-md  rounded-sm font-bold bg-graidient_bottom text-white p-[2px]" />
+                <FaPlus className="text-md  rounded-sm font-bold bg-graidient_bottom text-white p-[2px] " />
                 Add More
               </button>
             </div>

@@ -16592,7 +16592,7 @@ const Sidebar = ({
                     return (
                       <div
                         key={index}
-                        className="w-[88%] bg-lvl_3_bg py-[15px] flex flex-col items-center justify-center gap-2"
+                        className="w-[88%] bg-lvl_3_bg py-[15px] flex flex-col items-center justify-center gap-2 rounded-md"
                         onClick={() => {
                           setRows([...rows, ...item.data]);
                           setThirdLevel("");

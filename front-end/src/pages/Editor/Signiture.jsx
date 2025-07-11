@@ -94,7 +94,7 @@ const Signature = ({ addSign, rows, setRows }) => {
               setSign(false);
               setSignEdit(null);
             }}
-            className="px-4 py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-300"
+            className="px-4 py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-300 text-sm"
           >
             Cancel
           </button>
@@ -110,7 +110,7 @@ const Signature = ({ addSign, rows, setRows }) => {
               }
               setSign(false);
             }}
-            className="px-4 py-2 bg-graidient_bottom text-white rounded-md hover:bg-gradient_darker"
+            className="px-4 py-2 bg-graidient_bottom text-white rounded-md hover:bg-gradient_darker text-sm"
           >
             Save
           </button>

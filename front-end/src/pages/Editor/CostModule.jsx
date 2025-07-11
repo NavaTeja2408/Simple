@@ -116,16 +116,16 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
         <div className="flex flex-row  border-b-[3px] border-gray-100  ">
           {/* Table */}
           <div className=" w-[75%]  ">
-            <div className="w-full px-6 py-2">
+            {/* <div className="w-full px-6 py-2">
               <input
                 type="text"
                 placeholder="Title"
                 value={heading}
                 onChange={(e) => setHeading(e.target.value)}
-                className=" py-1 outline-none focus:border-b focus:border-gray-300 text-sm"
+                className=" py-1 outline-none border-b border-b-300 focus:border-gray-400 text-sm"
               />
-            </div>
-            <div className="flex items-center pb-3 pl-4 border-b-[2px] border-gray-200 mb-2 gap-4 relative">
+            </div> */}
+            <div className="flex items-center pb-3 pl-4 border-b-[2px] border-gray-200 mb-2 gap-4 relative pt-3">
               {/* Currency Dropdown */}
               <div className="flex items-center px-2 py-1 rounded-md  gap-2">
                 <label
@@ -149,7 +149,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
 
               {/* Checkboxes */}
               <div className="flex items-center gap-4  ">
-                <label className="flex bg-gray-100 px-2 py-1 rounded-md items-center text-sm font-semibold text-gray-600">
+                <label className="flex bg-gray-100 px-3 py-1.5 rounded-md items-center text-sm  text-gray-600">
                   <input
                     type="checkbox"
                     checked={discount}
@@ -158,7 +158,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                   />
                   Discount
                 </label>
-                <label className="flex bg-gray-100 px-2 py-1 rounded-md items-center text-sm font-semibold text-gray-600">
+                <label className="flex bg-gray-100 px-3 py-1.5 rounded-md items-center text-sm  text-gray-600">
                   <input
                     type="checkbox"
                     checked={quantity}
@@ -167,7 +167,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                   />
                   Quantity
                 </label>
-                <label className="flex bg-gray-100 px-4 py-1 rounded-md items-center text-sm font-semibold text-gray-600">
+                <label className="flex bg-gray-100 px-3 py-1.5 rounded-md items-center text-sm  text-gray-600">
                   <input
                     type="checkbox"
                     checked={tax}
@@ -176,7 +176,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                   />
                   Tax
                 </label>
-                <div className=" absolute top-3 right-4 text-gray-600 text-sm">
+                <div className=" absolute top-5 right-4 text-gray-600 text-sm">
                   <p>Total Services: {temp.length}</p>
                 </div>
               </div>

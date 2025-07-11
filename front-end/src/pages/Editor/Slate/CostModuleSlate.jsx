@@ -26,11 +26,11 @@ const CostModuleSlate = ({ index, rows, selected, settings, preview }) => {
 
   return (
     <div className={`p-3 relative font-${settings.body} text-[1em]`}>
-      <h1
+      {/* <h1
         className={`w-full flex items-center justify-start text-[1.75em] font-${settings.heading} font-bold mb-4 pl-1 `}
       >
         {rows.heading}
-      </h1>
+      </h1> */}
       {selected !== null && preview !== true && (
         <button
           onClick={() => {
@@ -85,7 +85,10 @@ const CostModuleSlate = ({ index, rows, selected, settings, preview }) => {
       <div className="mt-2 pt-4 px-2">
         <div className="flex justify-between items-center gap-16">
           <span className=" w-48 text-left">Total Amount</span>
-          <span>${calculateTotalAmount().toFixed(2)}</span>
+          <span>
+            {rows.options.currency ? rows.options.currency : "$"}
+            {calculateTotalAmount().toFixed(2)}
+          </span>
         </div>
         {rows.options.discount && (
           <div className="flex justify-between items-center gap-12">
@@ -98,7 +101,7 @@ const CostModuleSlate = ({ index, rows, selected, settings, preview }) => {
             </span>
 
             <span>
-              {rows.options.currency}
+              {rows.options.currency ? rows.options.currency : "$"}
               {calculateDiscountedAmount().toFixed(2)}
             </span>
           </div>
@@ -114,7 +117,7 @@ const CostModuleSlate = ({ index, rows, selected, settings, preview }) => {
             </span>
 
             <span>
-              {rows.options.currency}
+              {rows.options.currency ? rows.options.currency : "$"}
               {calculateTaxAmount().toFixed(2)}
             </span>
           </div>
@@ -123,7 +126,7 @@ const CostModuleSlate = ({ index, rows, selected, settings, preview }) => {
         <div className="flex justify-between items-cente gap-16 ">
           <span className=" w-48 text-left">Payable Amount</span>
           <span className=" ">
-            {rows.options.currency}
+            {rows.options.currency ? rows.options.currency : "$"}
             {calculatePayableAmount().toFixed(2)}
           </span>
         </div>

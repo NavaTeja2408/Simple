@@ -42,6 +42,7 @@ export default {
         lvl_2_hed: "rgba(140, 140, 140, 1)",
         lvl_3_sha: "rgba(0, 0, 0, 0.2)",
         canvas_bg: "rgba(245, 245, 245, 1)",
+        cost_bg: " rgba(82, 82, 82 , 1 )",
       },
 
       clipPath: {
