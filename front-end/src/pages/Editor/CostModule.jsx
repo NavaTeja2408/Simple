@@ -231,7 +231,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                               e.target.value
                             )
                           }
-                          className="w-full border border-border_clr bg-gray-50 rounded px-2 py-2 outline-none "
+                          className="w-full border border-border_clr bg-backgrounds rounded px-2 py-2 outline-none "
                           placeholder="Deliverable"
                         />
                         {dropdown !== null && index === dropdown && (
@@ -276,7 +276,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                               parseFloat(e.target.value)
                             )
                           }
-                          className="w-full border border-border_clr bg-gray-50  rounded px-2 py-2 no-spinner outline-none text-center focus:border-gray-400"
+                          className="w-full border border-border_clr bg-backgrounds  rounded px-2 py-2 no-spinner outline-none text-center focus:border-gray-400"
                         />
                       </td>
                     )}
@@ -294,7 +294,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                               parseInt(e.target.value)
                             )
                           }
-                          className="w-full border border-border_clr bg-gray-50 rounded px-2 py-2 no-spinner outline-none text-center focus:border-gray-400"
+                          className="w-full border border-border_clr bg-backgrounds rounded px-2 py-2 no-spinner outline-none text-center focus:border-gray-400"
                         />
                       </td>
                     )}
@@ -312,7 +312,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                           )
                         }
                         readOnly={quantity}
-                        className="w-full border border-border_clr bg-gray-50 rounded px-2 py-2 no-spinner text-right outline-none focus:border-gray-400"
+                        className="w-full border border-border_clr bg-backgrounds rounded px-2 py-2 no-spinner text-right outline-none focus:border-gray-400"
                       />
                     </td>
                     <td className=" px-2 py-2 text-center">
