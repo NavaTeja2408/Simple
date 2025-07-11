@@ -348,29 +348,31 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
               </h3>
               <div className="flex flex-col w-full mt-11 gap-2">
                 <div className="w-full flex flex-row justify-between">
-                  <span className="text-sm text-gray-500 ">Total</span>
-                  <span className="text-sm">
+                  <span className="text-sm text-non_active_text ">Total</span>
+                  <span className="text-sm text-active_text">
                     {currency}
                     {calculateTotalAmount().toFixed(2)}
                   </span>
                 </div>
                 {discount && (
                   <div className="w-full flex flex-row justify-between">
-                    <span className="text-sm text-gray-500 flex flex-row items-center justify-center w-16  ">
+                    <span className="text-sm text-non_active_text flex flex-row items-center justify-center w-14  ">
                       Discount{" "}
                     </span>
-                    <div className=" flex flex-row items-center justify-center  rounded-md border border-gray-300">
+                    <div className=" flex flex-row items-center justify-center  rounded-md">
                       <input
-                        className=" outline-none w-10 no-spinner px-1 rounded-md text-center text-xs"
+                        className=" outline-none w-14 no-spinner px-1 py-1 mr-1 rounded-md text-center text-xs border border-border_clr text-heightlet_text"
                         value={values.discount}
+                        min={0}
+                        max={100}
                         type="number"
                         onChange={(e) =>
                           setvalues({ ...values, discount: e.target.value })
                         }
                       />
-                      <span className="text-gray-500">%</span>
+                      <span className="text-non_active_text">%</span>
                     </div>
-                    <span className="text-sm">
+                    <span className="text-sm text-active_text">
                       {currency}
                       {Math.abs(calculateDiscountedAmount().toFixed(2))}
                     </span>
@@ -379,12 +381,12 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
 
                 {tax && (
                   <div className="w-full flex flex-row justify-between">
-                    <span className="text-sm text-gray-500 flex flex-row items-center justify-start w-16 ">
+                    <span className="text-sm text-non_active_text flex flex-row items-center justify-start w-14">
                       Tax{" "}
                     </span>
-                    <div className=" flex flex-row items-center justify-center  rounded-md border border-gray-300">
+                    <div className=" flex flex-row items-center justify-center  rounded-md">
                       <input
-                        className=" outline-none w-10 no-spinner px-1 rounded-md text-center text-xs"
+                        className=" outline-none w-14 no-spinner px-1 py-1 mr-1 rounded-md text-center text-xs border border-border_clr text-heightlet_text"
                         value={values.tax}
                         type="number"
                         onChange={(e) =>
@@ -393,17 +395,18 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                       />
                       <span className="text-gray-500">%</span>
                     </div>
-                    <span className="text-sm">
+                    <span className="text-sm text-active_text">
                       {currency}
                       {Math.abs(calculateTaxAmount().toFixed(2))}
                     </span>
                   </div>
                 )}
-
                 <div>
                   <div className="w-full flex flex-row justify-between">
-                    <span className="text-sm text-gray-500 ">Final Amount</span>
-                    <span className="text-sm">
+                    <span className="text-sm text-non_active_text ">
+                      Final Amount
+                    </span>
+                    <span className="text-sm text-active_text">
                       {currency}
                       {calculateFinalAmount().toFixed(2)}
                     </span>
