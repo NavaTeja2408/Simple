@@ -43,6 +43,16 @@ export default {
         lvl_3_sha: "rgba(0, 0, 0, 0.2)",
         canvas_bg: "rgba(245, 245, 245, 1)",
         cost_bg: " rgba(82, 82, 82 , 1 )",
+        active_text: "#1F1F1F",
+        heightlet_text: "#525252",
+        non_active_text: "#8C8C8C",
+        non_active_text_2: " #CBCBCB",
+        backgrounds: "#FAFAFA",
+        highlight: " #EEEEEE",
+        border_clr: "#E0E0E0",
+        secondary: "#C80544",
+        primary: "#DF064E",
+        third: "#9F0036",
       },
 
       clipPath: {

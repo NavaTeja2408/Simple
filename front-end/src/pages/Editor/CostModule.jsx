@@ -107,13 +107,13 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-20 flex items-center justify-center p-4 z-[1000] be-vietnam-pro-regular">
       <div className="bg-white rounded-lg shadow-lg   max-w-6xl  w-full transition-all transform   ">
-        <div className="w-full flex flex-col items-center justify-center mt-4 border-b-[2px] border-gray-200">
+        <div className="w-full flex flex-col items-center justify-center mt-4 border-b-[2px] border-border_clr">
           <h1 className="text-md font-bold text-gray-700">Add Cost Module</h1>
           <p className="text-sm text-gray-500 mb-4">
-            Drag & Set your cost for your proposal
+            Set your cost for your proposal
           </p>
         </div>
-        <div className="flex flex-row  border-b-[3px] border-gray-100  ">
+        <div className="flex flex-row  border-b-[3px] border-border-border_clr  ">
           {/* Table */}
           <div className=" w-[75%]  ">
             {/* <div className="w-full px-6 py-2">
@@ -125,12 +125,12 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                 className=" py-1 outline-none border-b border-b-300 focus:border-gray-400 text-sm"
               />
             </div> */}
-            <div className="flex items-center pb-3 pl-4 border-b-[2px] border-gray-200 mb-2 gap-4 relative pt-3">
+            <div className="flex items-center pb-3 pl-4 border-b-[2px] border-border_clr mb-2 gap-4 relative pt-3">
               {/* Currency Dropdown */}
               <div className="flex items-center px-2 py-1 rounded-md  gap-2">
                 <label
                   htmlFor="currency"
-                  className="text-sm font-semibold  text-gray-600"
+                  className="text-sm   text-active_text"
                 >
                   Currency:
                 </label>
@@ -138,7 +138,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                   id="currency"
                   value={currency}
                   onChange={(e) => setCurrency(e.target.value)}
-                  className="border border-gray-100  bg-gray-100 rounded px-2 py-1 text-sm outline-none "
+                  className="border border-gray-100  bg-backgrounds rounded px-2 py-1 text-sm outline-none "
                 >
                   <option value="$">USD ($)</option>
                   <option value="€">EUR (€)</option>
@@ -149,7 +149,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
 
               {/* Checkboxes */}
               <div className="flex items-center gap-4  ">
-                <label className="flex bg-gray-100 px-3 py-1.5 rounded-md items-center text-sm  text-gray-600">
+                <label className="flex bg-backgrounds px-3 py-1.5 rounded-md items-center text-sm  text-active_text">
                   <input
                     type="checkbox"
                     checked={discount}
@@ -158,7 +158,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                   />
                   Discount
                 </label>
-                <label className="flex bg-gray-100 px-3 py-1.5 rounded-md items-center text-sm  text-gray-600">
+                <label className="flex bg-backgrounds px-3 py-1.5 rounded-md items-center text-sm  text-active_text">
                   <input
                     type="checkbox"
                     checked={quantity}
@@ -167,7 +167,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                   />
                   Quantity
                 </label>
-                <label className="flex bg-gray-100 px-3 py-1.5 rounded-md items-center text-sm  text-gray-600">
+                <label className="flex bg-backgrounds px-3 py-1.5 rounded-md items-center text-sm  text-active_text">
                   <input
                     type="checkbox"
                     checked={tax}
@@ -176,7 +176,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                   />
                   Tax
                 </label>
-                <div className=" absolute top-5 right-4 text-gray-600 text-sm">
+                <div className=" absolute top-5 right-4 text-active_text text-sm">
                   <p>Total Services: {temp.length}</p>
                 </div>
               </div>
@@ -211,7 +211,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                 {temp.map((row, index) => (
                   <tr
                     key={index}
-                    className="hover:bg-gray-50 border border-gray-200 bg-white h-16 rounded-md   "
+                    className="hover:bg-gray-50 border border-border_clr bg-white h-16 rounded-md   "
                   >
                     <td
                       className={`pr-8 px-2 py-1 relative ${
@@ -231,7 +231,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                               e.target.value
                             )
                           }
-                          className="w-full border border-gray-300 bg-gray-50 rounded px-2 py-2 outline-none focus:border-gray-400"
+                          className="w-full border border-border_clr bg-gray-50 rounded px-2 py-2 outline-none "
                           placeholder="Deliverable"
                         />
                         {dropdown !== null && index === dropdown && (
@@ -276,7 +276,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                               parseFloat(e.target.value)
                             )
                           }
-                          className="w-full border border-gray-300 bg-gray-50  rounded px-2 py-2 no-spinner outline-none text-center focus:border-gray-400"
+                          className="w-full border border-border_clr bg-gray-50  rounded px-2 py-2 no-spinner outline-none text-center focus:border-gray-400"
                         />
                       </td>
                     )}
@@ -294,7 +294,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                               parseInt(e.target.value)
                             )
                           }
-                          className="w-full border border-gray-300 bg-gray-50 rounded px-2 py-2 no-spinner outline-none text-center focus:border-gray-400"
+                          className="w-full border border-border_clr bg-gray-50 rounded px-2 py-2 no-spinner outline-none text-center focus:border-gray-400"
                         />
                       </td>
                     )}
@@ -312,7 +312,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                           )
                         }
                         readOnly={quantity}
-                        className="w-full border border-gray-300 bg-gray-50 rounded px-2 py-2 no-spinner text-right outline-none focus:border-gray-400"
+                        className="w-full border border-border_clr bg-gray-50 rounded px-2 py-2 no-spinner text-right outline-none focus:border-gray-400"
                       />
                     </td>
                     <td className=" px-2 py-2 text-center">
@@ -339,9 +339,9 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
           </div>
 
           {/* Total */}
-          <div className=" pl-7 pr-6 pt-6 w-[25%] ">
+          <div className=" pl-7 pr-6 pt-6 w-[25%] border-l-[1px] border-border_clr ">
             <div className="flex flex-col justify-between ">
-              <h3 className="text-[14px]">Cost Break Down</h3>
+              <h3 className="text-[14px] text-active_text">Cost Break Down</h3>
               <div className="flex flex-col w-full mt-5 gap-2">
                 <div className="w-full flex flex-row justify-between">
                   <span className="text-sm text-gray-500 ">Total</span>
