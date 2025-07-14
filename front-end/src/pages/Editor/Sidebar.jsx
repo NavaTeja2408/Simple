@@ -16761,7 +16761,7 @@ const Sidebar = ({
                     <img
                       src={cover_1_40}
                       onClick={() => insertCoverPage(cover_40)}
-                      className="w-[88%] cursor-pointer"
+                      className="w-[88%] cursor-pointer rounded-md shadow-md shadow-gray-300"
                     />
                   </div>
                 )}

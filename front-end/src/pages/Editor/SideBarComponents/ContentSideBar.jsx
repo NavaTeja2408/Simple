@@ -40,8 +40,10 @@ const ContentSideBar = ({
       </button>
       <button
         onClick={() => setThirdLevel("paragraph")}
-        className=" relative p-2 px-3 w-[95%] rounded-lg flex  mx-3  items-center  
-           gap-4 hover:bg-gray-100 "
+        className={` relative p-2 px-3 w-[95%] rounded-lg flex mx-3  items-center  
+          gap-4 hover:bg-gray-100 ${
+            thirdLevel === "paragraph" && "bg-gray-100"
+          }`}
       >
         <img
           src={paragraph_lv2}
@@ -85,8 +87,8 @@ const ContentSideBar = ({
       </button> */}
       <button
         onClick={() => setThirdLevel("table")}
-        className=" relative p-2 px-3 w-[95%] rounded-lg flex mx-3  items-center  
-           gap-4 hover:bg-gray-100 "
+        className={` relative p-2 px-3 w-[95%] rounded-lg flex mx-3  items-center  
+          gap-4 hover:bg-gray-100 ${thirdLevel === "table" && "bg-gray-100"}`}
       >
         <img
           src={table_lv2}
@@ -98,8 +100,8 @@ const ContentSideBar = ({
       </button>
       <button
         onClick={() => setThirdLevel("image")}
-        className=" relative p-2 px-3 w-[95%] rounded-lg flex  mx-3  items-center  
-           gap-4 hover:bg-gray-100 "
+        className={` relative p-2 px-3 w-[95%] rounded-lg flex mx-3  items-center  
+          gap-4 hover:bg-gray-100 ${thirdLevel === "image" && "bg-gray-100"}`}
       >
         <img
           src={image_lv2}
@@ -111,8 +113,8 @@ const ContentSideBar = ({
       </button>
       <button
         onClick={addBreakPoint}
-        className=" relative p-2 px-3 w-[95%] rounded-lg flex  mx-3 items-center  
-           gap-4 hover:bg-gray-100 "
+        className={` relative p-2 px-3 w-[95%] rounded-lg flex mx-3  items-center  
+          gap-4 hover:bg-gray-100 `}
       >
         <img
           src={devider_lv2}
@@ -125,8 +127,8 @@ const ContentSideBar = ({
 
       <button
         onClick={addCodeBlock}
-        className=" relative p-2 px-3 w-[95%] rounded-lg flex  mx-3  items-center  
-           gap-4 hover:bg-gray-100 "
+        className={` relative p-2 px-3 w-[95%] rounded-lg flex mx-3  items-center  
+          gap-4 hover:bg-gray-100`}
       >
         <img
           src={code_lv2}
