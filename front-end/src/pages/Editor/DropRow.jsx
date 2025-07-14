@@ -287,7 +287,7 @@ const DropRow = ({
                 updatedData[index].textColor = newData;
                 setRows(updatedData);
               }}
-              textColor={row.textColor ? row.textColor : "text-black"}
+              textColor={row.textColor ? row.textColor : "text-active_text"}
               data={row.content}
               preview={preview}
               settings={settings}
@@ -316,7 +316,7 @@ const DropRow = ({
                 updatedData[index].textColor = newData;
                 setRows(updatedData);
               }}
-              textColor={row.textColor ? row.textColor : "text-black"}
+              textColor={row.textColor ? row.textColor : "text-active_text"}
               size={row.size}
               data={row}
               preview={preview}
@@ -353,7 +353,7 @@ const DropRow = ({
                   setRows(updatedData);
                 }}
                 selected={selected}
-                textColor={row.textColor ? row.textColor : "text-black"}
+                textColor={row.textColor ? row.textColor : "text-active_text"}
                 setSelected={setSelected}
               />
             </div>
@@ -377,7 +377,7 @@ const DropRow = ({
                   setRows(updatedData);
                 }}
                 selected={selected}
-                textColor={row.textColor ? row.textColor : "text-black"}
+                textColor={row.textColor ? row.textColor : "text-active_text"}
                 setSelected={setSelected}
               />
             </div>
@@ -413,7 +413,9 @@ const DropRow = ({
                       setRows(updatedData);
                     }}
                     selected={selected}
-                    textColor={row.textColor ? row.textColor : "text-black"}
+                    textColor={
+                      row.textColor ? row.textColor : "text-active_text"
+                    }
                     setSelected={setSelected}
                   />
                 </div>
@@ -552,7 +554,9 @@ const DropRow = ({
                       updatedData[index].textColor = newData;
                       setRows(updatedData);
                     }}
-                    textColor={row.textColor ? row.textColor : "text-black"}
+                    textColor={
+                      row.textColor ? row.textColor : "text-active_text"
+                    }
                     data={row.content}
                     preview={preview}
                     selected={selected}

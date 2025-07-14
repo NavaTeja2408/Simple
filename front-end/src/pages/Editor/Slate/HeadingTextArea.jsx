@@ -203,7 +203,7 @@ const MyRichTextEditor = ({
   setSelected,
 }) => {
   const colors = [
-    { class: "text-black", hex: "#000000" },
+    { class: "text-active_text", hex: "#1F1F1F" },
     { class: "text-white", hex: "#FFFFFF" },
     { class: "text-gray-700", hex: "#374151" },
   ];
@@ -223,7 +223,7 @@ const MyRichTextEditor = ({
       children: [
         {
           text: "",
-          bold: true,
+          bold: false,
         },
       ],
     },
@@ -624,9 +624,11 @@ const MyRichTextEditor = ({
                 ? lightenColor(settings.color, 0.8)
                 : "transparent",
           }}
-          className={` relative min-h-[20px] ${textColor}   px-2 py-1 outline-none   font-${
-            settings.heading
-          } ${index === selected && preview !== true ? "none" : "none"}`}
+          className={` relative min-h-[20px] ${
+            textColor ? textColor : "text-active_text"
+          }   px-2 py-1 outline-none   font-${settings.heading} ${
+            index === selected && preview !== true ? "none" : "none"
+          }`}
           readOnly={preview}
         />
         {settings.theme !== 0 && (

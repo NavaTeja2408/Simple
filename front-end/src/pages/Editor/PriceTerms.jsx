@@ -306,9 +306,9 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
             <div className="w-[95%] flex text-sm items-end justify-end  ml-2">
               <button
                 onClick={handleAddRow}
-                className=" flex felx-row items-center justify-center gap-2 px-4 py-2 text-graidient_bottom   rounded-md mb-2 mt-3 "
+                className=" flex felx-row items-center justify-center gap-2 px-4 py-2 text-graidient_bottom   rounded-md mb-2 "
               >
-                <FaPlus className="text-md  rounded-sm font-bold bg-graidient_bottom text-white p-[2px] " />
+                <FaPlus className="text-md  rounded-sm font-bold bg-graidient_bottom text-white p-[2px]" />
                 Add More
               </button>
             </div>

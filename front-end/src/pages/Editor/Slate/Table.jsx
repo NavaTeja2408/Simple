@@ -17,6 +17,7 @@ import { BsTextRight } from "react-icons/bs";
 import { BsTextLeft } from "react-icons/bs";
 import { IoIosArrowDown } from "react-icons/io";
 import { HiOutlineTrash } from "react-icons/hi";
+import { Icon } from "@iconify/react";
 
 const Table = ({
   data,
@@ -259,24 +260,38 @@ const Table = ({
           ref={toolbarRef}
           className="absolute top-0 left-[30%] flex gap-1 p-2 bg-white shadow-gray-300  shadow-lg rounded-md z-10"
         >
-          <button
-            onClick={() => addRow(row + 1)}
-            className="px-1 py-1 text-sm  "
-          >
-            <img src={tab_add} />
+          <button onClick={() => addRow(row + 1)}>
+            <Icon
+              icon="ci:add-row"
+              width="21"
+              height="21"
+              className="text-non_active_text rotate-180 ml-1"
+            />
           </button>
-          <button onClick={() => addRow(row)} className="px-1 py-1 text-sm  ">
-            <img src={tab_add} className="rotate-180" />
+          <button onClick={() => addRow(row)}>
+            <Icon
+              icon="ci:add-row"
+              width="21"
+              height="21"
+              className="text-non_active_text ml-1"
+            />
           </button>
           <div className="h-8 w-[1px]  bg-gray-300"></div>
-          <button
-            onClick={() => addColumn(col + 1)}
-            className="px-1 py-1 text-sm -rotate-90  "
-          >
-            <img src={tab_add} />
+          <button onClick={() => addColumn(col + 1)}>
+            <Icon
+              icon="ci:add-column"
+              width="21"
+              height="21"
+              className="text-non_active_text rotate-180 ml-1"
+            />
           </button>
-          <button onClick={() => addColumn(col)} className="px-1 py-1 text-sm ">
-            <img src={tab_add} className="rotate-90" />
+          <button onClick={() => addColumn(col)}>
+            <Icon
+              icon="ci:add-column"
+              width="21"
+              height="21"
+              className="text-non_active_text  ml-1"
+            />
           </button>
           <div className="h-8 w-[1px]  bg-gray-300"></div>
           <button
@@ -406,7 +421,7 @@ const Table = ({
             )}
           </div>
           <div className="relative flex items-center justify-center">
-            <button
+            {/* <button
               onClick={() => {
                 // if (colIndexs) {
                 //   deleteColumn(colIndexs - 1);
@@ -418,44 +433,45 @@ const Table = ({
               className=" relative px-1 py-[1px] text-md "
             >
               <HiOutlineTrash className="text-gray-500" />
+            </button> */}
+            <button
+              onMouseEnter={() => {
+                setColH(true);
+              }}
+              onMouseLeave={() => {
+                setColH(false);
+              }}
+              onClick={() => deleteColumn(col)}
+            >
+              <Icon
+                icon="ci:delete-column"
+                width="21"
+                height="21"
+                className="text-non_active_text  ml-1"
+              />
             </button>
-            {deleteShow && (
-              <div
-                ref={deleteRef}
-                className="absolute top-8 w-10 h-fit gap-2 bg-white px-2 py-1   flex flex-col items-center justify-center  rounded-md border border-gray-100"
-              >
-                <button
-                  onMouseEnter={() => {
-                    setRowH(true);
-                  }}
-                  onMouseLeave={() => {
-                    setRowH(false);
-                  }}
-                  onClick={() => deleteRow(row)}
-                  className=" text-sm rotate-180   "
-                >
-                  <img src={tab_del} />
-                </button>
-                <button
-                  onMouseEnter={() => {
-                    setColH(true);
-                  }}
-                  onMouseLeave={() => {
-                    setColH(false);
-                  }}
-                  onClick={() => deleteColumn(col)}
-                  className=" text-sm  "
-                >
-                  <img src={tab_del} className="-rotate-90 " />
-                </button>
-              </div>
-            )}
+            <button
+              onMouseEnter={() => {
+                setRowH(true);
+              }}
+              onMouseLeave={() => {
+                setRowH(false);
+              }}
+              onClick={() => deleteRow(row)}
+            >
+              <Icon
+                icon="ci:delete-row"
+                width="21"
+                height="21"
+                className="text-non_active_text  ml-1"
+              />
+            </button>
           </div>
         </div>
       )}
 
       <table
-        className="w-[98%] border-collapse relative table-auto "
+        className="w-[98%] border-collapse relative table-auto text-active_text "
         ref={buttonRef}
         onFocus={() => setShow(true)}
       >

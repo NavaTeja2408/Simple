@@ -154,6 +154,7 @@ const Sidebar = ({
   const [loading, setLoading] = useState(false);
   const [openCover, setOpenCover] = useState("");
   const { user } = useContext(UserContext);
+  const [outline, setOutline] = useState("");
   const section_3_row = [
     {
       id: "9e671f88-bd20-45e7-90e5-af5cea534dec",
@@ -15416,16 +15417,22 @@ const Sidebar = ({
             return (
               <div
                 key={`${index}-${prefix}-${idx}-${childIdx}`}
-                className="w-full text-ellipsis flex items-center justify-start px-1"
+                className={`w-full text-ellipsis flex items-center justify-start px-1 pl-2 py-1 text-sm border-l ${
+                  outline === child.text
+                    ? "border-primary"
+                    : "border-border_clr"
+                }  hover:border-primary active:border-gradient_darker`}
               >
-                <FaAngleDoubleLeft className="rotate-180 p-[2px] text-gray-400 mt-1 mr-1" />
                 <p
-                  onClick={() => setScrollIndex(index)}
-                  className={`w-[95%] mt-[1px] overflow-hidden text-ellipsis cursor-pointer hover:text-black whitespace-nowrap ${
-                    item.type === "heading-one"
-                      ? "text-gray-700 text-md font-semibold"
-                      : "text-gray-500"
-                  }`}
+                  onClick={() => {
+                    setScrollIndex(index);
+                    setOutline(child.text);
+                  }}
+                  className={`w-[94%]  overflow-hidden text-ellipsis  cursor-pointer  ${
+                    outline === child.text
+                      ? "text-primary"
+                      : "text-non_active_text"
+                  } hover:text-primary active:text-gradient_darker  whitespace-nowrap `}
                 >
                   {child.text}
                 </p>
@@ -15859,13 +15866,16 @@ const Sidebar = ({
             </div>
           ) : active === "outline" ? (
             <div
-              style={{ height: "calc(100vh - 65px)" }}
-              className="w-[220px]  pr-4 border-r-2 border-gray-200  pb-10 scrollbar-thin flex flex-col"
+              className="w-[220px] overflow-x-hidden  pr-4  overflow-auto pb-[16px] scrollbar-hide text-lvl_2_txt z-50  "
+              style={{
+                boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.2)",
+                height: "calc(100vh - 65px)",
+              }}
             >
-              <p className="w-full text-start p-2 px-2 text-gray-400 mb-1 ">
+              <p className="text-sm text-lvl_2_hed font-semibold pt-[16px] pb-[10px] pl-[16px]">
                 Outline
               </p>
-              <div className="w-full h-screen pl-2 scrollbar-thin flex flex-col overflow-y-auto gap-1 ">
+              <div className="w-full  pl-2 scrollbar-thin flex flex-col overflow-y-auto gap-0 ">
                 {rows?.map((row, index) => {
                   if (row.type === "heading") {
                     return renderHeadingLinks(row.content, index);
@@ -16102,7 +16112,7 @@ const Sidebar = ({
             {thirdLevel === "heading" ? (
               <div
                 ref={headingRef}
-                className=" absolute left-0 w-[220px] flex flex-col items-center pt-[16px] gap-[16px]  bg-white z-30 overflow-auto pb-[16px] scrollbar-hide   "
+                className=" absolute left-0 w-[220px] flex flex-col items-center pt-[16px] gap-[16px]  bg-white z-30 overflow-auto pb-[16px]   "
                 style={{
                   boxShadow: "5px 0 10px rgba(0, 0, 0, 0.1)",
                   height: "calc(100vh - 65px)",
@@ -16300,7 +16310,7 @@ const Sidebar = ({
                   boxShadow: "5px 0 10px rgba(0, 0, 0, 0.1)",
                   height: "calc(100vh - 65px)",
                 }}
-                className=" absolute left-0 w-[220px] flex flex-col items-center pt-[16px] gap-4  bg-white z-30 overflow-auto pb-[16px] scrollbar-hide border-r border-gray-100 "
+                className=" absolute left-0 w-[220px] flex flex-col items-center pt-[16px] gap-4  bg-white z-30 overflow-auto pb-[16px] border-r border-gray-100 "
               >
                 <div
                   onClick={() => {
@@ -16361,7 +16371,7 @@ const Sidebar = ({
                   boxShadow: "5px 0 10px rgba(0, 0, 0, 0.1)",
                   height: "calc(100vh - 65px)",
                 }}
-                className=" absolute left-0 w-[220px] flex flex-col items-center pt-[16px] gap-[16px]  bg-white z-30 overflow-auto pb-[16px] scrollbar-hide border-r border-gray-100    "
+                className=" absolute left-0 w-[220px] flex flex-col items-center pt-[16px] gap-[16px]  bg-white z-30 overflow-auto pb-[16px]  border-r border-gray-100    "
               >
                 <p className="text-lvl_2_txt w-full text-left text-sm px-[16px]">
                   Paragraph
@@ -16585,7 +16595,7 @@ const Sidebar = ({
                   boxShadow: "5px 0 10px rgba(0, 0, 0, 0.1)",
                   height: "calc(100vh - 65px)",
                 }}
-                className=" absolute left-0 w-[220px] flex flex-col items-center pt-[16px] gap-[16px] bg-white z-30 overflow-auto pb-20 scrollbar-hide border-r border-gray-100    "
+                className=" absolute left-0 w-[220px] flex flex-col items-center pt-[16px] gap-[16px] bg-white z-30 overflow-auto pb-20  border-r border-gray-100    "
               >
                 {user?.goals ? (
                   user.goals?.map((item, index) => {
@@ -16622,7 +16632,7 @@ const Sidebar = ({
                   boxShadow: "5px 0 10px rgba(0, 0, 0, 0.1)",
                   height: "calc(100vh - 65px)",
                 }}
-                className=" absolute left-0 w-[220px] flex flex-col items-center pt-[16px] gap-[16px] bg-white z-30 overflow-auto pb-[16px] scrollbar-hide border-r border-gray-100    "
+                className=" absolute left-0 w-[220px] flex flex-col items-center pt-[16px] gap-[16px] bg-white z-30 overflow-auto pb-[16px] border-r border-gray-100    "
               >
                 <div className="w-full flex items-center justify-center">
                   <input

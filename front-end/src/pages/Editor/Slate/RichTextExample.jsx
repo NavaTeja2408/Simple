@@ -336,7 +336,7 @@ const RichTextEditor = ({
   const editorRef = useRef(null);
 
   const colors = [
-    { class: "text-black", hex: "#000000" },
+    { class: "text-active_text", hex: "#1F1F1F" },
     { class: "text-white", hex: "#FFFFFF" },
     { class: "text-gray-700", hex: "#374151" },
   ];
