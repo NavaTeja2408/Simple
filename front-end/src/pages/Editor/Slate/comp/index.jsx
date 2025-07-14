@@ -17,7 +17,7 @@ export const Button = React.forwardRef(
               : "#aaa"
             : active
             ? "black"
-            : "rgba(156 ,  163 , 175 , 1)"};
+            : "#8C8C8C"};
         `
       )}
     />

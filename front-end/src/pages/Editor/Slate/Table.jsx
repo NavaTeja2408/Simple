@@ -258,7 +258,7 @@ const Table = ({
       {selected === index && preview !== true && (
         <div
           ref={toolbarRef}
-          className="absolute top-0 left-[30%] flex gap-1 p-2 bg-white shadow-gray-300  shadow-lg rounded-md z-10"
+          className="absolute top-0 left-[30%] flex gap-2 p-2 bg-white shadow-gray-300  shadow-lg rounded-md z-10"
         >
           <button onClick={() => addRow(row + 1)}>
             <Icon
@@ -305,7 +305,7 @@ const Table = ({
           >
             <FaBold
               className={`${
-                boldAll?.[row]?.[col] ? "text-black" : "text-gray-400"
+                boldAll?.[row]?.[col] ? "text-black" : "text-non_active_text"
               }`}
             />
           </button>
@@ -320,7 +320,9 @@ const Table = ({
           >
             <FaUnderline
               className={`${
-                underlineAll?.[row]?.[col] ? "text-black " : "text-gray-400"
+                underlineAll?.[row]?.[col]
+                  ? "text-black "
+                  : "text-non_active_text"
               } mt-[2px]`}
             />
           </button>
@@ -335,7 +337,7 @@ const Table = ({
           >
             <FaItalic
               className={`${
-                italicAll?.[row]?.[col] ? "text-black" : "text-gray-400"
+                italicAll?.[row]?.[col] ? "text-black" : "text-non_active_text"
               } `}
             />
           </button>
@@ -434,6 +436,7 @@ const Table = ({
             >
               <HiOutlineTrash className="text-gray-500" />
             </button> */}
+            <div className="h-8 w-[1px]  bg-gray-300"></div>
             <button
               onMouseEnter={() => {
                 setColH(true);
