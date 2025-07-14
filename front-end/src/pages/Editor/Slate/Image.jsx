@@ -244,7 +244,7 @@ const Image = ({
           <div className="bg-white rounded-lg shadow-xl w-[40%] min-h-[45%] z-[5000] flex flex-col relative ">
             <div className="flex flex-col gap-2 items-center justify-center mt-4">
               <label
-                className={`w-full flex items-start justify-start ml-16 font-bold `}
+                className={`w-full flex items-start justify-start ml-16 font-semibold text-active_text `}
               >
                 Image Caption
               </label>
@@ -253,11 +253,11 @@ const Image = ({
                 value={cHeading}
                 onChange={(e) => setCHeading(e.target.value)}
                 placeholder="Enter the caption"
-                className="w-[90%] py-2 outline-none rounded-md px-3 border border-gray-300 focus:border-graidient_bottom"
+                className="w-[90%] py-2 outline-none rounded-md px-3 border border-gray-300 focus:border-graidient_bottom text-active_text"
               />
             </div>
             <div className="flex flex-col gap-2 items-center justify-center mt-4">
-              <label className="w-full flex items-start justify-start ml-16 font-bold">
+              <label className="w-full flex items-start justify-start ml-16 font-semibold text-active_text ">
                 Description
               </label>
               <textarea
@@ -265,7 +265,7 @@ const Image = ({
                 value={cDiscription}
                 onChange={(e) => setCDisciption(e.target.value)}
                 placeholder="Enter the Descripion"
-                className="w-[90%] h-28 text-sm py-2 outline-none rounded-md px-3 border border-gray-300 focus:border-graidient_bottom"
+                className="w-[90%] h-28 text-sm py-2 outline-none rounded-md px-3 border border-gray-300 focus:border-graidient_bottom text-active_text"
               />
             </div>
             <div className="w-full flex flex-row gap-4 items-end justify-end mb-3 mr-4 mt-4 pr-6">

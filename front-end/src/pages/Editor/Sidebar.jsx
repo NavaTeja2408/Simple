@@ -154,7 +154,7 @@ const Sidebar = ({
   const [loading, setLoading] = useState(false);
   const [openCover, setOpenCover] = useState("");
   const { user } = useContext(UserContext);
-  const [outline, setOutline] = useState("");
+  const [outline, setOutline] = useState(null);
   const section_3_row = [
     {
       id: "9e671f88-bd20-45e7-90e5-af5cea534dec",
@@ -15399,48 +15399,47 @@ const Sidebar = ({
   }, []);
   const navigate = useNavigate();
   const renderHeadingLinks = (items, index, prefix = "") => {
-    return Array.isArray(items)
-      ? items.flatMap((item, idx) => {
-          // Skip if item is not an object
-          if (typeof item !== "object" || item === null) return [];
+    if (!Array.isArray(items)) return [];
 
-          const isHeading =
-            item.type === "heading-one" ||
-            item.type === "heading-two" ||
-            item.type === "heading-three";
+    return items.flatMap((item, idx) => {
+      if (typeof item !== "object" || item === null) return [];
 
-          if (!isHeading || !Array.isArray(item.children)) return [];
+      const isHeading =
+        item.type === "heading-one" ||
+        item.type === "heading-two" ||
+        item.type === "heading-three";
 
-          return item.children.map((child, childIdx) => {
-            if (!child?.text) return null;
+      if (!isHeading || !Array.isArray(item.children)) return [];
 
-            return (
-              <div
-                key={`${index}-${prefix}-${idx}-${childIdx}`}
-                className={`w-full text-ellipsis flex items-center justify-start px-1 pl-2 py-1 text-sm border-l ${
-                  outline === child.text
-                    ? "border-primary"
-                    : "border-border_clr"
-                }  hover:border-primary active:border-gradient_darker`}
-              >
-                <p
-                  onClick={() => {
-                    setScrollIndex(index);
-                    setOutline(child.text);
-                  }}
-                  className={`w-[94%]  overflow-hidden text-ellipsis  cursor-pointer  ${
-                    outline === child.text
-                      ? "text-primary"
-                      : "text-non_active_text"
-                  } hover:text-primary active:text-gradient_darker  whitespace-nowrap `}
-                >
-                  {child.text}
-                </p>
-              </div>
-            );
-          });
-        })
-      : null;
+      // Combine all child texts into a single string
+      const combinedText = item.children
+        .filter((child) => typeof child?.text === "string")
+        .map((child) => child.text)
+        .join(" ");
+
+      if (!combinedText) return null;
+
+      return (
+        <div
+          key={`${index}-${prefix}-${idx}`}
+          className={`w-full text-ellipsis flex items-center justify-start px-1 pl-2 py-1 text-sm border-l ${
+            outline === index ? "border-primary" : "border-border_clr"
+          } hover:border-primary active:border-gradient_darker`}
+        >
+          <p
+            onClick={() => {
+              setScrollIndex(index);
+              setOutline(index);
+            }}
+            className={`w-[94%] overflow-hidden text-ellipsis cursor-pointer ${
+              outline === index ? "text-primary" : "text-non_active_text"
+            } hover:text-primary active:text-gradient_darker whitespace-nowrap`}
+          >
+            {combinedText}
+          </p>
+        </div>
+      );
+    });
   };
 
   const handleUpload = async (e) => {
