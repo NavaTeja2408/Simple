@@ -15937,63 +15937,72 @@ const Sidebar = ({
                   <label className="text-xs text-non_active_text mb-2 ">
                     Heading Font
                   </label>
-                  <select
-                    value={settings.heading}
-                    onChange={(e) => {
-                      const temp = { ...settings };
-                      temp.heading = e.target.value;
-                      setSettings(temp);
-                    }}
-                    className="w-full py-1 px-1 outline-none border border-border_clr rounded-[2px] text-non_active_text text-xs
-            "
-                  >
-                    <option value="arial">Arial</option>
-                    <option value="helvetica">Helvetica</option>
-                    <option value="poppins">Poppins</option>
-                    <option value="montserrat">Montserrat</option>
-                    <option value="roboto">Roboto</option>
-                    <option value="times-new-roman">Times New Roman</option>
-                    <option value="georgia">Georgia</option>
-                    <option value="playfair-display">Playfair Display</option>
-                    <option value="merriweather">Merriweather</option>
-                    <option value="garamond">Garamond</option>
-                    <option value="lobster">Lobster</option>
-                    <option value="pacifico">Pacifico</option>
-                    <option value="bebas-neue">Bebas Neue</option>
-                    <option value="anton">Anton</option>
-                    <option value="oswald">Oswald</option>
-                  </select>
+                  <div className="relative w-full">
+                    <select
+                      value={settings.heading}
+                      onChange={(e) => {
+                        const temp = { ...settings };
+                        temp.heading = e.target.value;
+                        setSettings(temp);
+                      }}
+                      className="w-full py-1 px-2 pr-8 outline-none border border-border_clr rounded-[2px] text-non_active_text text-xs appearance-none"
+                    >
+                      <option value="arial">Arial</option>
+                      <option value="helvetica">Helvetica</option>
+                      <option value="poppins">Poppins</option>
+                      <option value="montserrat">Montserrat</option>
+                      <option value="roboto">Roboto</option>
+                      <option value="times-new-roman">Times New Roman</option>
+                      <option value="georgia">Georgia</option>
+                      <option value="playfair-display">Playfair Display</option>
+                      <option value="merriweather">Merriweather</option>
+                      <option value="garamond">Garamond</option>
+                      <option value="lobster">Lobster</option>
+                      <option value="pacifico">Pacifico</option>
+                      <option value="bebas-neue">Bebas Neue</option>
+                      <option value="anton">Anton</option>
+                      <option value="oswald">Oswald</option>
+                    </select>
+                    <div className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-non_active_text text-xs">
+                      <IoIosArrowDown className="text-non_active_text" />
+                    </div>
+                  </div>
                 </div>
                 <div className="mt-3 gap-1">
                   <label className="text-xs text-non_active_text mb-2">
                     Body Font
                   </label>
-                  <select
-                    value={settings.body}
-                    onChange={(e) => {
-                      const temp = { ...settings };
-                      temp.body = e.target.value;
-                      setSettings(temp);
-                    }}
-                    className="w-full py-1 px-1 outline-none border border-border_clr rounded-[2px] text-non_active_text text-xs
+                  <div className="relative w-full">
+                    <select
+                      value={settings.body}
+                      onChange={(e) => {
+                        const temp = { ...settings };
+                        temp.body = e.target.value;
+                        setSettings(temp);
+                      }}
+                      className="w-full py-1 px-2 pr-8 outline-none border border-border_clr rounded-[2px] text-non_active_text text-xs appearance-none
             "
-                  >
-                    <option value="arial">Arial</option>
-                    <option value="helvetica">Helvetica</option>
-                    <option value="poppins">Poppins</option>
-                    <option value="montserrat">Montserrat</option>
-                    <option value="roboto">Roboto</option>
-                    <option value="times-new-roman">Times New Roman</option>
-                    <option value="georgia">Georgia</option>
-                    <option value="playfair-display">Playfair Display</option>
-                    <option value="merriweather">Merriweather</option>
-                    <option value="garamond">Garamond</option>
-                    <option value="lobster">Lobster</option>
-                    <option value="pacifico">Pacifico</option>
-                    <option value="bebas-neue">Bebas Neue</option>
-                    <option value="anton">Anton</option>
-                    <option value="oswald">Oswald</option>
-                  </select>
+                    >
+                      <option value="arial">Arial</option>
+                      <option value="helvetica">Helvetica</option>
+                      <option value="poppins">Poppins</option>
+                      <option value="montserrat">Montserrat</option>
+                      <option value="roboto">Roboto</option>
+                      <option value="times-new-roman">Times New Roman</option>
+                      <option value="georgia">Georgia</option>
+                      <option value="playfair-display">Playfair Display</option>
+                      <option value="merriweather">Merriweather</option>
+                      <option value="garamond">Garamond</option>
+                      <option value="lobster">Lobster</option>
+                      <option value="pacifico">Pacifico</option>
+                      <option value="bebas-neue">Bebas Neue</option>
+                      <option value="anton">Anton</option>
+                      <option value="oswald">Oswald</option>
+                    </select>
+                    <div className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-non_active_text text-xs">
+                      <IoIosArrowDown className="text-non_active_text " />
+                    </div>
+                  </div>
                 </div>
                 {/* <div className="mt-3 flex items-center justify-between px-3 py-1 border border-gray-200 rounded-md text-xs text-gray-400 ">
                   <label>Header</label>
