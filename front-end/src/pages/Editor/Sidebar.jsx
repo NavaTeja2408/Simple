@@ -15913,7 +15913,7 @@ const Sidebar = ({
                   </h3>
                   <div
                     ref={colorButtonRef}
-                    className="py-1 w-full mt-2 flex   items-center justify-between border border-border_clr"
+                    className="py-1 w-full mt-2 flex   items-center justify-between border border-border_clr rounded-[2px]"
                     onClick={() => setShowPicker(true)}
                   >
                     <p className=" text-sm text-non_active_text">
