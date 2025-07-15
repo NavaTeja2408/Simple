@@ -15904,11 +15904,11 @@ const Sidebar = ({
                 <h3 className="text-sm text-active_text font-semibold  ">
                   Customize Your Proposal
                 </h3>
-                <p className="text-[10px] mt-1 text-non_active_text w-[90%]">
+                <p className="text-[10px] mt-1 text-non_active_text w-[95%]">
                   Set your colors, fonts, and theme to match your brand
                 </p>
                 <div>
-                  <h3 className="text-sm mt-4 text-active_text ">
+                  <h3 className="text-xs mt-4 text-active_text ">
                     Primary Color
                   </h3>
                   <div
@@ -15916,10 +15916,10 @@ const Sidebar = ({
                     className="py-1 w-full mt-2 flex   items-center justify-between border border-border_clr rounded-[2px]"
                     onClick={() => setShowPicker(true)}
                   >
-                    <p className=" text-sm text-non_active_text">
+                    <p className="  text-non_active_text text-xs">
                       <span className="flex gap-1 px-2 items-center">
                         <div
-                          className="w-4 h-4"
+                          className="w-3 h-3"
                           style={{ backgroundColor: settings.color }}
                         ></div>
                         {settings.color}
@@ -15937,7 +15937,7 @@ const Sidebar = ({
                   <label className="text-xs text-non_active_text mb-2 ">
                     Heading Font
                   </label>
-                  <div className="relative w-full">
+                  <div className="relative w-full mt-1">
                     <select
                       value={settings.heading}
                       onChange={(e) => {
@@ -15972,7 +15972,7 @@ const Sidebar = ({
                   <label className="text-xs text-non_active_text mb-2">
                     Body Font
                   </label>
-                  <div className="relative w-full">
+                  <div className="relative w-full mt-1">
                     <select
                       value={settings.body}
                       onChange={(e) => {

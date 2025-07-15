@@ -59,7 +59,7 @@ const Signature = ({ addSign, rows, setRows }) => {
               className="mt-2 w-full px-4 py-2 border border-gray-300 rounded-lg text-active_text shadow-sm outline-none text-sm hover:border-active_text focus:border-active_text"
               placeholder="E.g: Jhon"
             />
-            <p className="text-[11px] p-2">
+            <p className="text-[11px] p-2 text-active_text">
               By clicking <span className="text-graidient_bottom"> Save</span>,
               you agree to electronically sign this proposal and accept its
               terms. This signature is legally binding, just like a handwritten

@@ -140,7 +140,7 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
                   id="currency"
                   value={currency}
                   onChange={(e) => setCurrency(e.target.value)}
-                  className="border bg-backgrounds border-gray-100 rounded px-2 py-1 outline-none text-active_text text-sm "
+                  className="border bg-backgrounds border-gray-100 rounded px-2 py-1 outline-none text-active_text text-sm cursor-pointer "
                 >
                   <option value="$">USD ($)</option>
                   <option value="€">EUR (€)</option>
@@ -151,7 +151,7 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
 
               {/* Checkboxes */}
               <div className="flex items-center gap-4 ">
-                <label className="flex bg-backgrounds px-2 py-1 rounded-md items-center text-sm text-active_text ">
+                <label className="flex bg-backgrounds px-2 py-1 rounded-md items-center text-sm hover:bg-gray-100 cursor-pointer text-active_text ">
                   <input
                     type="checkbox"
                     checked={percentage}
@@ -160,7 +160,7 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
                   />
                   Percentage
                 </label>
-                <label className="flex bg-backgrounds px-2 py-1 rounded-md items-center text-sm text-active_text">
+                <label className="flex bg-backgrounds px-2 py-1 rounded-md items-center text-sm text-active_text hover:bg-gray-100 cursor-pointer">
                   <input
                     type="checkbox"
                     checked={value}
@@ -179,7 +179,7 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
                     min={0}
                     value={total}
                     onChange={(e) => setTotal(e.target.value)}
-                    className="w-24 border border-gray-300 bg-backgrounds rounded px-2 py-1 font-normal text-sm outline-none no-spinner"
+                    className="w-24 border border-gray-300 bg-backgrounds rounded px-2 py-1 font-normal text-sm outline-none no-spinner hover:border-active_text focus:border-active_text"
                   />
                 </div>
               </div>
@@ -306,7 +306,7 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
             <div className="w-[95%] flex text-sm items-end justify-end  ml-2">
               <button
                 onClick={handleAddRow}
-                className=" flex felx-row items-center justify-center gap-2 px-4 py-2 text-graidient_bottom   rounded-md mb-2 "
+                className=" flex felx-row items-center justify-center gap-2 px-4 py-2 text-graidient_bottom hover:text-gradient_darker   rounded-md mb-2 "
               >
                 <FaPlus className="text-md  rounded-sm font-bold bg-graidient_bottom text-white p-[2px]" />
                 Add More

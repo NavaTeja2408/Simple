@@ -151,7 +151,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
 
               {/* Checkboxes */}
               <div className="flex items-center gap-4  ">
-                <label className="flex bg-backgrounds px-3 py-1.5 rounded-md items-center text-sm  text-active_text">
+                <label className="flex bg-backgrounds px-3 py-1.5 rounded-md items-center text-sm  text-active_text cursor-pointer hover:bg-gray-100">
                   <input
                     type="checkbox"
                     checked={discount}
@@ -160,7 +160,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                   />
                   Discount
                 </label>
-                <label className="flex bg-backgrounds px-3 py-1.5 rounded-md items-center text-sm  text-active_text">
+                <label className="flex bg-backgrounds px-3 py-1.5 rounded-md items-center text-sm  text-active_text cursor-pointer hover:bg-gray-100">
                   <input
                     type="checkbox"
                     checked={quantity}
@@ -169,7 +169,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                   />
                   Quantity
                 </label>
-                <label className="flex bg-backgrounds px-3 py-1.5 rounded-md items-center text-sm  text-active_text">
+                <label className="flex bg-backgrounds px-3 py-1.5 rounded-md items-center text-sm  text-active_text cursor-pointer hover:bg-gray-100">
                   <input
                     type="checkbox"
                     checked={tax}
@@ -337,7 +337,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
             <div className="w-[97%] flex text-sm items-end justify-end  ml-2 z-30">
               <button
                 onClick={handleAddRow}
-                className=" flex felx-row items-center justify-center gap-2 px-4 py-2 text-graidient_bottom   rounded-md mb-2 "
+                className=" flex felx-row items-center justify-center gap-2 px-4 py-2 text-graidient_bottom hover:text-gradient_darker   rounded-md mb-2 "
               >
                 <FaPlus className="text-md  rounded-sm font-bold bg-graidient_bottom text-white p-[2px]" />
                 Add More
@@ -366,7 +366,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                     </span>
                     <div className=" flex flex-row items-center justify-center  rounded-md">
                       <input
-                        className=" outline-none w-14 no-spinner px-1 py-1 mr-1 rounded-md text-center text-xs border border-border_clr text-heightlet_text"
+                        className=" outline-none w-14 no-spinner px-1 py-1 mr-1 rounded-md text-center text-xs border border-border_clr text-heightlet_text hover:border-active_text focus:border-active_text "
                         value={values.discount}
                         min={0}
                         max={100}
@@ -391,7 +391,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                     </span>
                     <div className=" flex flex-row items-center justify-center  rounded-md">
                       <input
-                        className=" outline-none w-14 no-spinner px-1 py-1 mr-1 rounded-md text-center text-xs border border-border_clr text-heightlet_text"
+                        className=" outline-none w-14 no-spinner px-1 py-1 mr-1 rounded-md text-center text-xs border border-border_clr text-heightlet_text hover:border-active_text focus:border-active_text"
                         value={values.tax}
                         type="number"
                         onChange={(e) =>
