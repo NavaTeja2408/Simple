@@ -15422,7 +15422,7 @@ const Sidebar = ({
       return (
         <div
           key={`${index}-${prefix}-${idx}`}
-          className={`w-full text-ellipsis flex items-center justify-start px-1 pl-2 py-1 text-sm border-l ${
+          className={`w-full text-ellipsis flex items-center justify-start px-1 pl-3 py-1 text-sm border-l ${
             outline === index ? "border-primary" : "border-border_clr"
           } hover:border-primary active:border-gradient_darker`}
         >
@@ -15431,7 +15431,7 @@ const Sidebar = ({
               setScrollIndex(index);
               setOutline(index);
             }}
-            className={`w-[94%] overflow-hidden text-ellipsis cursor-pointer ${
+            className={`w-[98%] overflow-hidden text-ellipsis cursor-pointer ${
               outline === index ? "text-primary" : "text-non_active_text"
             } hover:text-primary active:text-gradient_darker whitespace-nowrap`}
           >
@@ -15865,16 +15865,13 @@ const Sidebar = ({
             </div>
           ) : active === "outline" ? (
             <div
-              className="w-[220px] overflow-x-hidden  pr-4  overflow-auto pb-[16px] scrollbar-hide text-lvl_2_txt z-50  "
+              className="w-[220px] overflow-x-hidden  pr-2  overflow-auto pb-[16px] scrollbar-hide text-lvl_2_txt z-50  "
               style={{
                 boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.2)",
                 height: "calc(100vh - 65px)",
               }}
             >
-              <p className="text-sm text-lvl_2_hed font-semibold pt-[16px] pb-[10px] pl-[16px]">
-                Outline
-              </p>
-              <div className="w-full  pl-2 scrollbar-thin flex flex-col overflow-y-auto gap-0 ">
+              <div className="w-full  pl-4 scrollbar-thin flex flex-col overflow-y-auto gap-0 mt-[16px] ">
                 {rows?.map((row, index) => {
                   if (row.type === "heading") {
                     return renderHeadingLinks(row.content, index);
@@ -15896,14 +15893,46 @@ const Sidebar = ({
           ) : active === "layout" ? (
             <div className="flex flex-row">
               <div
-                style={{ height: "calc(100vh - 65px)" }}
-                className=" w-[220px] px-4 py-4 border-r-2 border-gray-200  pb-20 scrollbar-thin flex flex-col overflow-y-scroll overflow-x-hidden  "
+                style={{
+                  boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.2)",
+                  height: "calc(100vh - 65px)",
+                }}
+                className=" w-[220px] px-4 py-4 border-r-2 border-gray-200  pb-[16px]  flex flex-col overflow-y-scroll overflow-x-hidden  "
               >
-                <h3 className="text-lg text-gray-800 font-semibold ">
-                  Typography
+                <h3 className="text-sm text-active_text font-semibold  ">
+                  Customize Your Proposal
                 </h3>
+                <p className="text-[10px] mt-1 text-non_active_text w-[90%]">
+                  Set your colors, fonts, and theme to match your brand
+                </p>
+                <div>
+                  <h3 className="text-sm mt-4 text-active_text ">
+                    Primary Color
+                  </h3>
+                  <div
+                    ref={colorButtonRef}
+                    className="py-1 w-full mt-2 flex   items-center justify-between border border-border_clr"
+                    onClick={() => setShowPicker(true)}
+                  >
+                    <p className=" text-sm text-non_active_text">
+                      <span className="flex gap-1 px-2 items-center">
+                        <div
+                          className="w-4 h-4"
+                          style={{ backgroundColor: settings.color }}
+                        ></div>
+                        {settings.color}
+                      </span>
+                    </p>
+                  </div>
+                </div>
+                {/* <div className="w-full h-1 bg-gray-300"></div> */}
+
                 <div className="mt-4">
-                  <label className="text-sm text-gray-400 mb-2">
+                  <div className="w-full h-[1px] bg-border_clr"></div>
+                  <h3 className="text-sm text-active_text mb-2 mt-4">
+                    Typography
+                  </h3>
+                  <label className="text-xs text-non_active_text mb-2 ">
                     Heading Font
                   </label>
                   <select
@@ -15913,7 +15942,7 @@ const Sidebar = ({
                       temp.heading = e.target.value;
                       setSettings(temp);
                     }}
-                    className="w-full py-1 px-1 outline-none border border-gray-50 rounded-md text-gray-400 text-xs
+                    className="w-full py-1 px-1 outline-none border border-border_clr rounded-[2px] text-non_active_text text-xs
             "
                   >
                     <option value="arial">Arial</option>
@@ -15933,8 +15962,8 @@ const Sidebar = ({
                     <option value="oswald">Oswald</option>
                   </select>
                 </div>
-                <div className="mt-2 gap-1">
-                  <label className="text-sm text-gray-400 mb-2">
+                <div className="mt-3 gap-1">
+                  <label className="text-xs text-non_active_text mb-2">
                     Body Font
                   </label>
                   <select
@@ -15944,7 +15973,8 @@ const Sidebar = ({
                       temp.body = e.target.value;
                       setSettings(temp);
                     }}
-                    className="w-full py-1 px-1 outline-none border border-gray-50 rounded-md text-gray-400 text-xs"
+                    className="w-full py-1 px-1 outline-none border border-border_clr rounded-[2px] text-non_active_text text-xs
+            "
                   >
                     <option value="arial">Arial</option>
                     <option value="helvetica">Helvetica</option>
@@ -15963,7 +15993,7 @@ const Sidebar = ({
                     <option value="oswald">Oswald</option>
                   </select>
                 </div>
-                <div className="mt-3 flex items-center justify-between px-3 py-1 border border-gray-200 rounded-md text-xs text-gray-400 ">
+                {/* <div className="mt-3 flex items-center justify-between px-3 py-1 border border-gray-200 rounded-md text-xs text-gray-400 ">
                   <label>Header</label>
                   <input
                     className="accent-graidient_bottom "
@@ -15988,42 +16018,28 @@ const Sidebar = ({
                     }}
                     type="checkbox"
                   />
-                </div>
-                <div>
-                  <h3 className="text-lg mt-3 text-gray-800 font-semibold ">
-                    Theme Fill
-                  </h3>
-                  <div
-                    ref={colorButtonRef}
-                    className="py-1 mt-2 flex   items-center justify-between border border-gray-100"
-                    onClick={() => setShowPicker(true)}
-                  >
-                    <p className=" text-sm">
-                      <span className="flex gap-1 px-2 items-center">
-                        <div
-                          className="w-4 h-4"
-                          style={{ backgroundColor: settings.color }}
-                        ></div>
-                        {settings.color}
-                      </span>
-                    </p>
-                  </div>
-                </div>
+                </div> */}
+
                 <div className="mt-4">
-                  <h3 className="text-lg text-gray-800 font-semibold ">
-                    Design Theme
+                  <div className="w-full h-[1px] bg-border_clr"></div>
+                  <h3 className="text-sm text-active_text mt-3 ">
+                    Choose Proposal Theme
                   </h3>
-                  <p className="text-gray-400 text-sm mt-3">
-                    Select Design Theme
+                  <p className="text-non_active_text text-[11px] ">
+                    Select a design style for your entire proposal.
                   </p>
-                  <div className=" grid grid-cols-2 gap-3 mt-4">
+                  <div className=" w-full grid grid-cols-2 gap-4 mt-4">
                     <img
                       onClick={() => {
                         const temp = { ...settings };
                         temp.theme = 0;
                         setSettings(temp);
                       }}
-                      className="h-28 w-[90%]"
+                      className={`h-28 w-[100%] hover:border hover:border-graidient_bottom ${
+                        settings.theme === 0
+                          ? "border border-gradient_darker"
+                          : "none"
+                      }`}
                       src={theme_0}
                       alt="sometthing"
                     />
@@ -16033,7 +16049,11 @@ const Sidebar = ({
                         temp.theme = 1;
                         setSettings(temp);
                       }}
-                      className="h-28 w-[90%]"
+                      className={`h-28 w-[100%] hover:border hover:border-graidient_bottom ${
+                        settings.theme === 1
+                          ? "border border-gradient_darker"
+                          : "none"
+                      }`}
                       src={theme_1}
                       alt="sometthing"
                     />
@@ -16043,7 +16063,11 @@ const Sidebar = ({
                         temp.theme = 2;
                         setSettings(temp);
                       }}
-                      className="h-28 w-[90%]"
+                      className={`h-28 w-[100%] hover:border hover:border-graidient_bottom ${
+                        settings.theme === 2
+                          ? "border border-gradient_darker"
+                          : "none"
+                      }`}
                       src={theme_2}
                       alt="sometthing"
                     />
@@ -16053,7 +16077,11 @@ const Sidebar = ({
                         temp.theme = 3;
                         setSettings(temp);
                       }}
-                      className="h-28 w-[90%]"
+                      className={`h-28 w-[100%] hover:border hover:border-graidient_bottom ${
+                        settings.theme === 3
+                          ? "border border-gradient_darker"
+                          : "none"
+                      }`}
                       src={theme_3}
                       alt="sometthing"
                     />
@@ -16063,7 +16091,11 @@ const Sidebar = ({
                         temp.theme = 4;
                         setSettings(temp);
                       }}
-                      className="h-28 w-[90%]"
+                      className={`h-28 w-[100%] hover:border hover:border-graidient_bottom ${
+                        settings.theme === 4
+                          ? "border border-gradient_darker"
+                          : "none"
+                      }`}
                       src={theme_4}
                       alt="sometthing"
                     />
@@ -16073,7 +16105,11 @@ const Sidebar = ({
                         temp.theme = 5;
                         setSettings(temp);
                       }}
-                      className="h-28 w-[90%]"
+                      className={`h-28 w-[100%] hover:border hover:border-graidient_bottom ${
+                        settings.theme === 5
+                          ? "border border-gradient_darker"
+                          : "none"
+                      }`}
                       src={theme_5}
                       alt="sometthing"
                     />
@@ -16087,7 +16123,7 @@ const Sidebar = ({
                 {showPicker && (
                   <div
                     ref={colorRef}
-                    className="absolute top-[25%] -left-1 mt-2 shadow-lg z-50"
+                    className="absolute top-[5%] -left-1 mt-2 shadow-lg z-50"
                   >
                     <SketchPicker
                       color={settings.color}
