@@ -197,6 +197,51 @@ const EditorDnD = () => {
     setSelected("image_para");
   };
 
+  const addDoubleImage = (index = null) => {
+    if (index !== null && index >= 0 && index <= rows.length) {
+      // Add at the specified index
+      setRows((prevRows) => [
+        ...prevRows.slice(0, index), // Rows before the index
+        {
+          id: uuidv4(),
+          type: "double-image",
+          ImageLink1: "",
+          height1: "",
+          width1: "",
+          align1: "left",
+          aliegn1: "center",
+          ImageLink2: "",
+          height2: "",
+          width2: "",
+          align2: "left",
+          aliegn2: "center",
+          bookmark: false,
+        },
+        ...prevRows.slice(index), // Rows after the index
+      ]);
+    } else {
+      setRows((prevRows) => [
+        ...prevRows,
+        {
+          id: uuidv4(),
+          type: "double-image",
+          ImageLink1: "",
+          height1: "",
+          width1: "",
+          align1: "left",
+          aliegn1: "center",
+          ImageLink2: "",
+          height2: "",
+          width2: "",
+          align2: "left",
+          aliegn2: "center",
+          bookmark: false,
+        },
+      ]);
+    }
+    setSelected("image_para");
+  };
+
   // Add a row with input field
   const addInputRow = (index = null) => {
     if (index !== null && index >= 0 && index <= rows.length) {
@@ -524,6 +569,7 @@ const EditorDnD = () => {
             setSettings={setSettings}
             addCoverPage={addCoverPage}
             preview={preview}
+            addDoubleImage={addDoubleImage}
           />
         </div>
 

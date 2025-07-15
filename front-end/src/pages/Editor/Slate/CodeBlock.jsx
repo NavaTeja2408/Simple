@@ -9,7 +9,7 @@ const CodeBlock = ({ content, onChange, preview }) => {
   };
 
   return (
-    <div style={containerStyles} className="mx-3">
+    <div style={containerStyles} className="mx-4">
       <textarea
         className="w-full min-h-[20px] bg-gray-200 outline-none font-mono text-sm px-3 resize-none overflow-hidden break-words whitespace-pre-wrap"
         value={content}

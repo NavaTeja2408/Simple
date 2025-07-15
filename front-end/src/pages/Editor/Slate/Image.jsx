@@ -99,7 +99,7 @@ const Image = ({
   return (
     <div
       ref={divRef}
-      className={`w-full min-h-[100px] py-3 flex ${
+      className={`w-full min-h-[100px] px-3 py-3 flex ${
         aliegn === "right" && width !== "100"
           ? "flex-row-reverse"
           : aliegn === "left" && width !== "100"

@@ -18,6 +18,7 @@ const ForDouble = ({
   onWidth,
   preview,
   selected,
+  setSelected,
 }) => {
   const divRef = useRef();
   const [loading, setLoading] = useState(false);
@@ -77,7 +78,8 @@ const ForDouble = ({
   return (
     <div
       ref={divRef}
-      className={`w-full mt-1 min-h-[30px] flex ${
+      onClick={() => setSelected(index)}
+      className={`w-full mt-1  min-h-[30px] flex ${
         aliegn === "left"
           ? "justify-start"
           : aliegn === "right"

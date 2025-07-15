@@ -83,12 +83,12 @@ const PriceTermSlate = ({ index, rows, selected, settings, preview }) => {
               </td>
 
               {rows.options.percentage && (
-                <td className="border-2 border-gray-200 py-2 ">
+                <td className="border border-gray-200 py-2 ">
                   {calculateTotalPercentage()}%
                 </td>
               )}
               {rows.options.value && (
-                <th className="border-2 border-gray-200 py-2 font-normal  text-right px-3">
+                <th className="border border-gray-200 py-2 font-normal  text-right px-3">
                   ${calculateTotalValue()}
                 </th>
               )}

@@ -406,7 +406,7 @@ const MyRichTextEditor = ({
 
   return (
     <div
-      className={` relative z-10 w-[100%] py-0.5 px-2 rounded  ${
+      className={` relative z-10 w-[100%] py-0.5 mx-2 rounded  ${
         selected === index ? "mt-0.5" : "mt-0.5"
       }`}
       onFocus={() => setSelected(index)}

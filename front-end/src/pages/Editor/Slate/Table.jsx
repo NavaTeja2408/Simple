@@ -235,7 +235,7 @@ const Table = ({
 
   return (
     <div
-      className={` w-full flex items-center justify-center py-2   rounded-lg  font-${settings.body} `}
+      className={` w-full flex items-center justify-center py-2 px-3   rounded-lg  font-${settings.body} `}
       style={{
         marginTop: selected === index ? "40px" : "10px",
       }}
@@ -258,7 +258,7 @@ const Table = ({
       {selected === index && preview !== true && (
         <div
           ref={toolbarRef}
-          className="absolute top-0 left-[30%] flex gap-2 p-2 bg-white shadow-gray-300  shadow-lg rounded-md z-10"
+          className="absolute top-0 left-[30%] flex gap-2 p-2 px-3 bg-white shadow-gray-300  shadow-lg rounded-md z-10"
         >
           <button onClick={() => addRow(row + 1)}>
             <Icon
@@ -474,7 +474,7 @@ const Table = ({
       )}
 
       <table
-        className="w-[98%] border-collapse relative table-auto text-active_text "
+        className="w-[100%] border-collapse relative table-auto text-active_text "
         ref={buttonRef}
         onFocus={() => setShow(true)}
       >

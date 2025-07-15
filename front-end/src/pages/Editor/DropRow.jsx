@@ -384,7 +384,7 @@ const DropRow = ({
           </div>
         ) : row.type === "image-para" ? (
           <div
-            className="w-full flex flex-row  items-center   "
+            className="w-full flex flex-row  items-center mx-3  "
             onClick={() => {
               setSelected(index);
               setSwitchButtons(index);
@@ -475,11 +475,12 @@ const DropRow = ({
                       setRows(updatedContent);
                     }}
                     height={row.height ? row.height : "200"}
+                    setSelected={setSelected}
                   />
                 </div>
               </div>
             ) : (
-              <div className="w-full flex items-center justify-center">
+              <div className="w-full flex items-center justify-between">
                 <div className="w-[50%]">
                   <ForDouble
                     onWidth={(newData) => {
@@ -511,6 +512,7 @@ const DropRow = ({
                     }}
                     height={row.height ? row.height : "200"}
                     selected={selected}
+                    setSelected={setSelected}
                   />
                 </div>
 
@@ -538,7 +540,7 @@ const DropRow = ({
                     </button>
                   </div>
                 )}
-                <div className="w-[50%]">
+                <div className="w-[48%] flex justify-end">
                   <RichTextExample
                     right={true}
                     index={index}
@@ -790,6 +792,77 @@ const DropRow = ({
                 setRows(updatedContent);
               }}
             />
+          </div>
+        ) : row.type === "double-image" ? (
+          <div className="w-full flex items-center justify-between px-3">
+            <div className="w-[48%]">
+              <ForDouble
+                onWidth={(newData) => {
+                  const updatedContent = [...rows];
+                  updatedContent[index].width1 = newData;
+                  setRows(updatedContent);
+                }}
+                onAliegn={(newData) => {
+                  const updatedContent = [...rows];
+                  updatedContent[index].aliegn1 = newData;
+                  setRows(updatedContent);
+                }}
+                aliegn={row.aliegn1 ? row.aliegn1 : "center"}
+                width={row.width1 ? row.width1 : "50"}
+                index={index}
+                indexValue={indexValue}
+                setIndexValue={setIndexValue}
+                preview={preview}
+                data={row.ImageLink1}
+                onUpdate={(newData) => {
+                  const updatedContent = [...rows];
+                  updatedContent[index].ImageLink1 = newData;
+                  setRows(updatedContent);
+                }}
+                onHeight={(newData) => {
+                  const updatedContent = [...rows];
+                  updatedContent[index].height1 = newData;
+                  setRows(updatedContent);
+                }}
+                height={row.height1 ? row.height1 : "200"}
+                selected={selected}
+                setSelected={setSelected}
+              />
+            </div>
+            <div className="w-[48%]">
+              <ForDouble
+                onWidth={(newData) => {
+                  const updatedContent = [...rows];
+                  updatedContent[index].width2 = newData;
+                  setRows(updatedContent);
+                }}
+                onAliegn={(newData) => {
+                  const updatedContent = [...rows];
+                  updatedContent[index].aliegn2 = newData;
+                  setRows(updatedContent);
+                }}
+                aliegn={row.aliegn2 ? row.aliegn2 : "center"}
+                width={row.width2 ? row.width2 : "50"}
+                index={index}
+                indexValue={indexValue}
+                setIndexValue={setIndexValue}
+                preview={preview}
+                data={row.ImageLink2}
+                onUpdate={(newData) => {
+                  const updatedContent = [...rows];
+                  updatedContent[index].ImageLink2 = newData;
+                  setRows(updatedContent);
+                }}
+                onHeight={(newData) => {
+                  const updatedContent = [...rows];
+                  updatedContent[index].height2 = newData;
+                  setRows(updatedContent);
+                }}
+                height={row.height2 ? row.height2 : "200"}
+                selected={selected}
+                setSelected={setSelected}
+              />
+            </div>
           </div>
         ) : (
           <div

@@ -66,6 +66,7 @@ import para_2 from "../../assets/para_lvl2_2.svg";
 import double_2 from "../../assets/double_para_lv2.svg";
 import image_2 from "../../assets/img_lvl2_2.svg";
 import image_p_2 from "../../assets/img_para_lvl2_2.svg";
+import double_img from "../../assets/double_img.svg";
 import section_11 from "../../assets/section_11.png";
 import section_12 from "../../assets/section_12.png";
 import section_13 from "../../assets/section_13.png";
@@ -150,6 +151,7 @@ const Sidebar = ({
   setSettings,
   addCoverPage,
   preview,
+  addDoubleImage,
 }) => {
   const [loading, setLoading] = useState(false);
   const [openCover, setOpenCover] = useState("");
@@ -15422,7 +15424,7 @@ const Sidebar = ({
       return (
         <div
           key={`${index}-${prefix}-${idx}`}
-          className={`w-full text-ellipsis flex items-center justify-start px-1 pl-3 py-1 text-sm border-l ${
+          className={`w-full text-ellipsis flex items-center justify-start px-1 pl-3 py-1.5 text-sm border-l ${
             outline === index ? "border-primary" : "border-border_clr"
           } hover:border-primary active:border-gradient_darker`}
         >
@@ -16335,6 +16337,24 @@ const Sidebar = ({
                       src={image_p_2}
                     />
                     <p className="text-lvl_3_txt text-xs">Image & Paragraph</p>
+                  </div>
+                </div>
+                <div
+                  onClick={() => {
+                    addDoubleImage();
+                    setThirdLevel("");
+                  }}
+                  className="w-full flex flex-col justify-center items-center gap-1 cursor-pointer"
+                >
+                  <div className="w-[88%] relative h-[112px] p-1 bg-lvl_3_bg rounded-md flex flex-col text-gray-500 items-center justify-center gap-2 ">
+                    <img
+                      style={{
+                        boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
+                      }}
+                      className=" rounded-md "
+                      src={double_img}
+                    />
+                    <p className="text-lvl_3_txt text-xs">Double Image</p>
                   </div>
                 </div>
               </div>
