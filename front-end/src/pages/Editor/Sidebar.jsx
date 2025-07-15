@@ -15930,7 +15930,7 @@ const Sidebar = ({
                 {/* <div className="w-full h-1 bg-gray-300"></div> */}
 
                 <div className="mt-4">
-                  <div className="w-full h-[1px] bg-border_clr"></div>
+                  <div className="w-[120%] h-[1px] bg-border_clr -mx-4 "></div>
                   <h3 className="text-sm text-active_text mb-2 mt-4">
                     Typography
                   </h3>
@@ -16023,11 +16023,11 @@ const Sidebar = ({
                 </div> */}
 
                 <div className="mt-4">
-                  <div className="w-full h-[1px] bg-border_clr"></div>
+                  <div className="w-[120%] h-[1px] bg-border_clr -mx-4 "></div>
                   <h3 className="text-sm text-active_text mt-3 ">
                     Choose Proposal Theme
                   </h3>
-                  <p className="text-non_active_text text-[11px] ">
+                  <p className="text-non_active_text text-[10px] ">
                     Select a design style for your entire proposal.
                   </p>
                   <div className=" w-full grid grid-cols-2 gap-4 mt-4">
