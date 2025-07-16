@@ -140,7 +140,7 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
                   id="currency"
                   value={currency}
                   onChange={(e) => setCurrency(e.target.value)}
-                  className="border bg-backgrounds border-gray-100 rounded px-2 py-1 outline-none text-active_text text-sm cursor-pointer "
+                  className="border bg-backgrounds border-gray-100 rounded px-2 py-1 outline-none text-active_text text-sm cursor-pointer hover:bg-highlight "
                 >
                   <option value="$">USD ($)</option>
                   <option value="€">EUR (€)</option>
@@ -151,7 +151,7 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
 
               {/* Checkboxes */}
               <div className="flex items-center gap-4 ">
-                <label className="flex bg-backgrounds px-2 py-1 rounded-md items-center text-sm hover:bg-gray-100 cursor-pointer text-active_text ">
+                <label className="flex bg-backgrounds px-2 py-1 rounded items-center text-sm hover:bg-highlight cursor-pointer text-active_text ">
                   <input
                     type="checkbox"
                     checked={percentage}
@@ -160,7 +160,7 @@ const PriceTerms = ({ rows, addPriceTerms, setRows }) => {
                   />
                   Percentage
                 </label>
-                <label className="flex bg-backgrounds px-2 py-1 rounded-md items-center text-sm text-active_text hover:bg-gray-100 cursor-pointer">
+                <label className="flex bg-backgrounds px-2 py-1 rounded items-center text-sm text-active_text hover:bg-highlight cursor-pointer">
                   <input
                     type="checkbox"
                     checked={value}

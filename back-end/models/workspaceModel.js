@@ -13,7 +13,7 @@ const WorkspaceSchema = new Schema(
     proposals: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Proposals",
+        ref: "Proposal",
       },
     ],
     owner: [

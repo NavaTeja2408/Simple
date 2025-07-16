@@ -39,6 +39,7 @@ export function StateManageContextProvider({ children }) {
           params: { user_id: user.id, sortw: sortW },
         }
       );
+      console.log(res.data);
       setWorkspaces(res.data);
     } catch (error) {
       console.error("Error fetching workspaces:", error);

@@ -140,7 +140,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                   id="currency"
                   value={currency}
                   onChange={(e) => setCurrency(e.target.value)}
-                  className="border border-gray-100  bg-backgrounds rounded px-2 py-1 text-sm outline-none "
+                  className="border border-gray-100  bg-backgrounds rounded px-2 py-1 text-sm outline-none cursor-pointer hover:bg-highlight "
                 >
                   <option value="$">USD ($)</option>
                   <option value="€">EUR (€)</option>
@@ -151,7 +151,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
 
               {/* Checkboxes */}
               <div className="flex items-center gap-4  ">
-                <label className="flex bg-backgrounds px-3 py-1.5 rounded-md items-center text-sm  text-active_text cursor-pointer hover:bg-gray-100">
+                <label className="flex bg-backgrounds px-3 py-1.5 rounded items-center text-sm  text-active_text cursor-pointer hover:bg-highlight">
                   <input
                     type="checkbox"
                     checked={discount}
@@ -160,7 +160,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                   />
                   Discount
                 </label>
-                <label className="flex bg-backgrounds px-3 py-1.5 rounded-md items-center text-sm  text-active_text cursor-pointer hover:bg-gray-100">
+                <label className="flex bg-backgrounds px-3 py-1.5 rounded items-center text-sm  text-active_text cursor-pointer hover:bg-highlight">
                   <input
                     type="checkbox"
                     checked={quantity}
@@ -169,7 +169,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                   />
                   Quantity
                 </label>
-                <label className="flex bg-backgrounds px-3 py-1.5 rounded-md items-center text-sm  text-active_text cursor-pointer hover:bg-gray-100">
+                <label className="flex bg-backgrounds px-3 py-1.5 rounded items-center text-sm  text-active_text cursor-pointer hover:bg-highlight">
                   <input
                     type="checkbox"
                     checked={tax}
@@ -366,7 +366,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                     </span>
                     <div className=" flex flex-row items-center justify-center  rounded-md">
                       <input
-                        className=" outline-none w-14 no-spinner px-1 py-1 mr-1 rounded-md text-center text-xs border border-border_clr text-heightlet_text hover:border-active_text focus:border-active_text "
+                        className=" outline-none w-14 no-spinner px-1 py-1 mr-1 rounded text-center text-xs border border-border_clr text-heightlet_text hover:border-active_text focus:border-active_text "
                         value={values.discount}
                         min={0}
                         max={100}
@@ -391,7 +391,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                     </span>
                     <div className=" flex flex-row items-center justify-center  rounded-md">
                       <input
-                        className=" outline-none w-14 no-spinner px-1 py-1 mr-1 rounded-md text-center text-xs border border-border_clr text-heightlet_text hover:border-active_text focus:border-active_text"
+                        className=" outline-none w-14 no-spinner px-1 py-1 mr-1 rounde text-center text-xs border border-border_clr text-heightlet_text hover:border-active_text focus:border-active_text"
                         value={values.tax}
                         type="number"
                         onChange={(e) =>

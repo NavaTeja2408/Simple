@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect, useContext } from "react";
+import axios from "axios";
 import { UserContext } from "../../context/UserContext";
-import { FiPlus } from "react-icons/fi";
+import { FiBookmark, FiPlus } from "react-icons/fi";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import Sign_v from "../../assets/Sign_v.png";
 import cost_v from "../../assets/cost_v.png";
@@ -132,6 +133,13 @@ import cover_1_38 from "../../assets/cover_1_38.png";
 import cover_1_39 from "../../assets/cover_1_39.png";
 import cover_1_40 from "../../assets/cover_1_40.png";
 import { IoIosArrowDown } from "react-icons/io";
+import { DatabaseContext } from "../../context/DatabaseContext";
+import { FiFolder } from "react-icons/fi";
+import { IoDocumentTextOutline } from "react-icons/io5";
+import { CiBookmark } from "react-icons/ci";
+import { FaBookmark } from "react-icons/fa6";
+import { FaRegBookmark } from "react-icons/fa";
+import { IoIosSearch } from "react-icons/io";
 
 const Sidebar = ({
   selected,
@@ -156,7 +164,29 @@ const Sidebar = ({
   const [loading, setLoading] = useState(false);
   const [openCover, setOpenCover] = useState("");
   const { user } = useContext(UserContext);
+  const { databaseUrl } = useContext(DatabaseContext);
+  const { workspaces } = useContext(StateManageContext);
   const [outline, setOutline] = useState(null);
+  const [searchW, setSearchW] = useState("");
+  const [openSections, setOpenSections] = useState("para");
+
+  useEffect(() => {
+    if (user?.id && databaseUrl) {
+      getWorkspaces();
+    }
+  }, [user?.id, databaseUrl]);
+
+  const getWorkspaces = async () => {
+    try {
+      const res = await axios.get(`${databaseUrl}/api/workspace/getall`, {
+        params: { user_id: user.id, sortw: "" },
+      });
+      console.log(res.data);
+    } catch (error) {
+      console.error("Error fetching workspaces:", error);
+      setError("Failed to fetch workspaces. Please try again later.");
+    }
+  };
   const section_3_row = [
     {
       id: "9e671f88-bd20-45e7-90e5-af5cea534dec",
@@ -15526,28 +15556,33 @@ const Sidebar = ({
             className="w-20 relative flex flex-col border-r-[1px] gap-2 border-gray-100 shadow-md shadow-gray-300 pt-2 "
           >
             {tool === "Add Elements" && (
-              <div className=" absolute left-[80%] w-24 top-5 px-1 text-center bg-gray-500 text-white z-50 text-xs rounded-sm  ">
+              <div className=" absolute left-[80%] w-24 top-5 px-1 text-center bg-gray-500 text-white z-[1000]  text-xs rounded-sm  ">
                 {tool}
               </div>
             )}
             {tool === "View outline" && (
-              <div className=" absolute left-[80%] w-24 top-[85px] px-1 text-center bg-gray-500 text-white z-50 text-xs rounded-sm  ">
+              <div className=" absolute left-[80%] w-24 top-[85px] px-1 text-center bg-gray-500 text-white z-[1000] text-xs rounded-sm  ">
                 {tool}
               </div>
             )}
             {tool === "Design Document" && (
-              <div className=" absolute left-[80%] w-28 top-[145px] px-1 text-center bg-gray-500 text-white z-50 text-xs rounded-sm  ">
+              <div className=" absolute left-[80%] w-28 top-[145px] px-1 text-center bg-gray-500 text-white z-[1000] text-xs rounded-sm  ">
                 {tool}
               </div>
             )}
 
             {tool === "Track progress" && (
-              <div className=" absolute left-[80%] w-24 top-[210px] px-1 text-center bg-gray-500 text-white z-50 text-xs rounded-sm  ">
+              <div className=" absolute left-[80%] w-24 top-[210px] px-1 text-center bg-gray-500 text-white z-[1000] text-xs rounded-sm  ">
                 {tool}
               </div>
             )}
             {tool === "Version history" && (
-              <div className=" absolute left-[80%] w-24 top-[275px] px-1 text-center bg-gray-500 text-white z-50 text-xs rounded-sm  ">
+              <div className=" absolute left-[80%] w-24 top-[275px] px-1 text-center bg-gray-500 text-white z-[1000] text-xs rounded-sm  ">
+                {tool}
+              </div>
+            )}
+            {tool === "View all workspace" && (
+              <div className=" absolute left-[80%] w-32 top-[340px] px-1 text-center bg-gray-500 text-white z-[1000]   text-xs rounded-sm  ">
                 {tool}
               </div>
             )}
@@ -15670,6 +15705,29 @@ const Sidebar = ({
               </div>
 
               <p className="text-gray-400">History</p>
+            </div>
+
+            <div
+              onClick={() => setActive("workspace")}
+              className="flex p-1 flex-col w-full h-14 text-[12px] text-gray-500 cursor-pointer items-center justify-center"
+              onMouseEnter={() => setTool("View all workspace")}
+              onMouseLeave={() => setTool(null)}
+            >
+              <div
+                className={`p-1 rounded-md border hover:border-gray-200 ${
+                  active === "workspace"
+                    ? "border-gray-300 shadow-sm shadow-gray-200"
+                    : "border-white"
+                }`}
+              >
+                <FiFolder
+                  className={`w-5 h-5 ${
+                    active === "workspace" ? "text-[#df064e]" : "text-gray-400"
+                  } hover:text-gray-700`}
+                />
+              </div>
+
+              <p className="text-gray-400">Workspace</p>
             </div>
 
             <div className="w-full h-40 absolute bottom-10 pb-0 left-0 flex flex-col items-center justify-end">
@@ -15873,7 +15931,10 @@ const Sidebar = ({
                 height: "calc(100vh - 65px)",
               }}
             >
-              <div className="w-full  pl-4 scrollbar-thin flex flex-col overflow-y-auto gap-0 mt-[16px] ">
+              <p className="text-sm text-lvl_2_hed font-semibold px-3 py-[16px] mt-1">
+                Content Outline
+              </p>
+              <div className="w-full  pl-4 scrollbar-thin flex flex-col overflow-y-auto gap-0  ">
                 {rows?.map((row, index) => {
                   if (row.type === "heading") {
                     return renderHeadingLinks(row.content, index);
@@ -15899,21 +15960,21 @@ const Sidebar = ({
                   boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.2)",
                   height: "calc(100vh - 65px)",
                 }}
-                className=" w-[220px] px-4 py-4 border-r-2 border-gray-200  pb-[16px]  flex flex-col overflow-y-scroll overflow-x-hidden  "
+                className=" w-[220px] px-3 py-4 border-r-2 border-gray-200  pb-[16px]  flex flex-col overflow-y-scroll overflow-x-hidden  "
               >
-                <h3 className="text-sm text-active_text font-semibold  ">
+                <h3 className="text-sm text-lvl_2_hed font-semibold  ">
                   Customize Your Proposal
                 </h3>
-                <p className="text-[10px] mt-1 text-non_active_text w-[95%]">
+                {/* <p className="text-[10px] mt-1 text-non_active_text w-[95%]">
                   Set your colors, fonts, and theme to match your brand
-                </p>
+                </p> */}
                 <div>
                   <h3 className="text-xs mt-4 text-active_text ">
                     Primary Color
                   </h3>
                   <div
                     ref={colorButtonRef}
-                    className="py-1 w-full mt-2 flex   items-center justify-between border border-border_clr rounded-[2px]"
+                    className="py-1.5 w-full mt-2 flex   items-center justify-between border border-border_clr rounded-[2px]"
                     onClick={() => setShowPicker(true)}
                   >
                     <p className="  text-non_active_text text-xs">
@@ -15931,10 +15992,10 @@ const Sidebar = ({
 
                 <div className="mt-4">
                   <div className="w-[120%] h-[1px] bg-border_clr -mx-4 "></div>
-                  <h3 className="text-sm text-active_text mb-2 mt-4">
+                  <h3 className="text-sm text-lvl_2_hed font-semibold mb-2 mt-4">
                     Typography
                   </h3>
-                  <label className="text-xs text-non_active_text mb-2 ">
+                  <label className="text-xs text-active_text mb-2 ">
                     Heading Font
                   </label>
                   <div className="relative w-full mt-1">
@@ -15945,7 +16006,7 @@ const Sidebar = ({
                         temp.heading = e.target.value;
                         setSettings(temp);
                       }}
-                      className="w-full py-1 px-2 pr-8 outline-none border border-border_clr rounded-[2px] text-non_active_text text-xs appearance-none"
+                      className="w-full py-1.5 px-2 pr-8 outline-none border border-border_clr rounded-[2px] text-non_active_text text-xs appearance-none"
                     >
                       <option value="arial">Arial</option>
                       <option value="helvetica">Helvetica</option>
@@ -15969,7 +16030,7 @@ const Sidebar = ({
                   </div>
                 </div>
                 <div className="mt-3 gap-1">
-                  <label className="text-xs text-non_active_text mb-2">
+                  <label className="text-xs text-active_text mb-2">
                     Body Font
                   </label>
                   <div className="relative w-full mt-1">
@@ -15980,7 +16041,7 @@ const Sidebar = ({
                         temp.body = e.target.value;
                         setSettings(temp);
                       }}
-                      className="w-full py-1 px-2 pr-8 outline-none border border-border_clr rounded-[2px] text-non_active_text text-xs appearance-none
+                      className="w-full py-1.5 px-2 pr-8 outline-none border border-border_clr rounded-[2px] text-non_active_text text-xs appearance-none
             "
                     >
                       <option value="arial">Arial</option>
@@ -16033,12 +16094,12 @@ const Sidebar = ({
 
                 <div className="mt-4">
                   <div className="w-[120%] h-[1px] bg-border_clr -mx-4 "></div>
-                  <h3 className="text-sm text-active_text mt-3 ">
+                  <h3 className="text-sm text-lvl_2_hed font-semibold mt-3 ">
                     Choose Proposal Theme
                   </h3>
-                  <p className="text-non_active_text text-[10px] ">
+                  {/* <p className="text-non_active_text text-[10px] ">
                     Select a design style for your entire proposal.
-                  </p>
+                  </p> */}
                   <div className=" w-full grid grid-cols-2 gap-4 mt-4">
                     <img
                       onClick={() => {
@@ -16147,6 +16208,66 @@ const Sidebar = ({
                   </div>
                 )}
               </div>
+            </div>
+          ) : active === "workspace" ? (
+            <div
+              className="w-[220px] overflow-x-hidden  px-4  overflow-auto pb-[16px] text-lvl_2_txt z-50  "
+              style={{
+                boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.2)",
+                height: "calc(100vh - 65px)",
+              }}
+            >
+              <p className="text-md text-lvl_2_hed   mt-2">Workspaces</p>
+              <div className="w-full h-8 bg-backgrounds mt-3 flex items-center px-1 rounded border hover:border-active_text focus-within::border-active_text">
+                <IoIosSearch className="text-non_active_text text-md" />
+                <input
+                  className="w-[90%] h-full outline-none  rounded text-sm bg-backgrounds px-2"
+                  type="text"
+                  placeholder="Search"
+                  value={searchW}
+                  onChange={(e) => setSearchW(e.target.value)}
+                />
+              </div>
+              <p className="text-sm text-active_text mt-3 mb-3">
+                All Workspaces
+              </p>
+              {workspaces
+                .filter((item) => {
+                  const name = item.workspaceName.toLowerCase();
+                  const query = searchW.toLowerCase();
+                  return query === "" ? true : name.startsWith(query);
+                })
+                .map((item, idx) => (
+                  <div key={item._id} className="text-sm">
+                    {idx !== 0 && (
+                      <div className="h-[1px] w-[120%] -mx-4 bg-border_clr mt-2"></div>
+                    )}
+                    <div className="w-[100%] flex items-center justify-start  gap-2 mt-2 mb-2">
+                      <FiFolder className="text-graidient_bottom" />{" "}
+                      <p className="text-[16px] text-active_text w-[70%] overflow-hidden whitespace-nowrap text-ellipsis ">
+                        {item.workspaceName}
+                      </p>
+                      {item.favorate === true ? (
+                        <FaBookmark className="text-md text-primary mt-0.5" />
+                      ) : (
+                        <FaRegBookmark className="text-md text-active_text mt-0.5" />
+                      )}
+                    </div>
+                    {item.proposals &&
+                      item.proposals.map((proposal, index) => (
+                        <div className="w-[100%] flex items-center justify-start  gap-1 mt-1 cursor-pointer text-non_active_text hover:text-heightlet_text">
+                          <IoDocumentTextOutline />
+                          <p
+                            onClick={() => navigate(`/editor/${proposal._id}`)}
+                            className="text-sm  w-[88%] overflow-hidden text-ellipsis whitespace-nowrap  pl-1   "
+                            key={index}
+                          >
+                            {proposal.proposalName}
+                          </p>
+                        </div>
+                      ))}
+                  </div>
+                ))}
             </div>
           ) : (
             <div> </div>
@@ -16437,201 +16558,259 @@ const Sidebar = ({
                 }}
                 className=" absolute left-0 w-[220px] flex flex-col items-center pt-[16px] gap-[16px]  bg-white z-30 overflow-auto pb-[16px]  border-r border-gray-100    "
               >
-                <p className="text-lvl_2_txt w-full text-left text-sm px-[16px]">
+                <p
+                  onClick={() => {
+                    if (openSections === "para") {
+                      setOpenSections("");
+                    } else {
+                      setOpenSections("para");
+                    }
+                  }}
+                  className="text-lvl_2_txt w-full text-left text-sm px-[16px] cursor-pointer flex justify-between items-center"
+                >
                   Paragraph
+                  <IoIosArrowDown />
                 </p>
-                <div
-                  onClick={() => {
-                    setRows([...rows, section_1_row]);
-                    setThirdLevel("");
-                  }}
-                  className="w-[88%]  bg-lvl_3_bg py-[16px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
-                >
-                  <img
-                    className=" w-[85%] rounded-md"
-                    src={s_1}
-                    style={{
-                      boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
-                    }}
-                  />
-                </div>
-                <div
-                  onClick={() => {
-                    setRows([...rows, section_2_row]);
-                    setThirdLevel("");
-                  }}
-                  className="w-[88%]  bg-lvl_3_bg py-[16px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
-                >
-                  <img
-                    className=" w-[85%] rounded-md"
-                    src={s_2}
-                    style={{
-                      boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
-                    }}
-                  />
-                </div>
-                <div
-                  onClick={() => {
-                    setRows([...rows, ...section_6_row]);
-                    setThirdLevel("");
-                  }}
-                  className="w-[88%]  bg-lvl_3_bg py-[16px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
-                >
-                  <img
-                    className=" w-[85%] rounded-md"
-                    src={s_6}
-                    style={{
-                      boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
-                    }}
-                  />
-                </div>
 
-                <p className="text-lvl_2_txt w-full text-left text-sm px-[16px]">
+                {openSections === "para" && (
+                  <div className="w-full flex flex-col items-center  gap-[16px] transition-all duration-500 ease-out opacity-0 animate-fadeIn ">
+                    <div
+                      onClick={() => {
+                        setRows([...rows, section_1_row]);
+                        setThirdLevel("");
+                      }}
+                      className="w-[88%]  bg-lvl_3_bg py-[16px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
+                    >
+                      <img
+                        className=" w-[85%] rounded-md"
+                        src={s_1}
+                        style={{
+                          boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
+                        }}
+                      />
+                    </div>
+                    <div
+                      onClick={() => {
+                        setRows([...rows, section_2_row]);
+                        setThirdLevel("");
+                      }}
+                      className="w-[88%]  bg-lvl_3_bg py-[16px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
+                    >
+                      <img
+                        className=" w-[85%] rounded-md"
+                        src={s_2}
+                        style={{
+                          boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
+                        }}
+                      />
+                    </div>
+                    <div
+                      onClick={() => {
+                        setRows([...rows, ...section_6_row]);
+                        setThirdLevel("");
+                      }}
+                      className="w-[88%]  bg-lvl_3_bg py-[16px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
+                    >
+                      <img
+                        className=" w-[85%] rounded-md"
+                        src={s_6}
+                        style={{
+                          boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
+                        }}
+                      />
+                    </div>
+                  </div>
+                )}
+
+                <p
+                  onClick={() => {
+                    if (openSections === "tables") {
+                      setOpenSections("");
+                    } else {
+                      setOpenSections("tables");
+                    }
+                  }}
+                  className="text-lvl_2_txt w-full text-left text-sm px-[16px] cursor-pointer flex justify-between items-center"
+                >
                   Tables
+                  <IoIosArrowDown />
                 </p>
 
-                <div
+                {openSections === "tables" && (
+                  <div className="w-full flex flex-col items-center  gap-[16px] transition-all duration-500 ease-out opacity-0 animate-fadeIn ">
+                    <div
+                      onClick={() => {
+                        setRows([...rows, ...section_3_row]);
+                        setThirdLevel("");
+                      }}
+                      className="w-[88%]  bg-lvl_3_bg py-[16px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
+                    >
+                      <img
+                        className=" w-[85%] rounded-md"
+                        src={s_3}
+                        style={{
+                          boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
+                        }}
+                      />
+                    </div>
+                    <div
+                      onClick={() => {
+                        setRows([...rows, ...section_4_row]);
+                        setThirdLevel("");
+                      }}
+                      className="w-[88%]  bg-lvl_3_bg py-[16px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
+                    >
+                      <img
+                        className=" w-[85%] rounded-md"
+                        src={s_4}
+                        style={{
+                          boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
+                        }}
+                      />
+                    </div>
+                    <div
+                      onClick={() => {
+                        setRows([...rows, ...section_5_row]);
+                        setThirdLevel("");
+                      }}
+                      className="w-[88%]  bg-lvl_3_bg py-[16px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
+                    >
+                      <img
+                        className=" w-[85%] rounded-md"
+                        src={s_5}
+                        style={{
+                          boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
+                        }}
+                      />
+                    </div>
+                  </div>
+                )}
+
+                <p
                   onClick={() => {
-                    setRows([...rows, ...section_3_row]);
-                    setThirdLevel("");
+                    if (openSections === "img") {
+                      setOpenSections("");
+                    } else {
+                      setOpenSections("img");
+                    }
                   }}
-                  className="w-[88%]  bg-lvl_3_bg py-[16px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
+                  className="text-lvl_2_txt w-full text-left text-sm px-[16px] cursor-pointer flex justify-between items-center"
                 >
-                  <img
-                    className=" w-[85%] rounded-md"
-                    src={s_3}
-                    style={{
-                      boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
-                    }}
-                  />
-                </div>
-                <div
-                  onClick={() => {
-                    setRows([...rows, ...section_4_row]);
-                    setThirdLevel("");
-                  }}
-                  className="w-[88%]  bg-lvl_3_bg py-[16px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
-                >
-                  <img
-                    className=" w-[85%] rounded-md"
-                    src={s_4}
-                    style={{
-                      boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
-                    }}
-                  />
-                </div>
-                <div
-                  onClick={() => {
-                    setRows([...rows, ...section_5_row]);
-                    setThirdLevel("");
-                  }}
-                  className="w-[88%]  bg-lvl_3_bg py-[16px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
-                >
-                  <img
-                    className=" w-[85%] rounded-md"
-                    src={s_5}
-                    style={{
-                      boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
-                    }}
-                  />
-                </div>
-                <p className="text-lvl_2_txt w-full text-left text-sm px-[16px]">
                   Image & Content
+                  <IoIosArrowDown />
                 </p>
+                {openSections === "img" && (
+                  <div className="w-full flex flex-col items-center  gap-[16px] transition-all duration-500 ease-out opacity-0 animate-fadeIn ">
+                    <div
+                      onClick={() => {
+                        setRows([...rows, ...section_7_row]);
+                        setThirdLevel("");
+                      }}
+                      className="w-[88%]  bg-lvl_3_bg py-[16px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
+                    >
+                      <img
+                        className=" w-[85%] rounded-md"
+                        src={s_7}
+                        style={{
+                          boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
+                        }}
+                      />
+                    </div>
+                    <div
+                      onClick={() => {
+                        setRows([...rows, ...section_8_row]);
+                        setThirdLevel("");
+                      }}
+                      className="w-[88%]  bg-lvl_3_bg py-[16px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
+                    >
+                      <img
+                        className=" w-[85%] rounded-md"
+                        src={s_8}
+                        style={{
+                          boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
+                        }}
+                      />
+                    </div>
+                    <div
+                      onClick={() => {
+                        setRows([...rows, ...section_9_row]);
+                        setThirdLevel("");
+                      }}
+                      className="w-[88%]  bg-lvl_3_bg py-[16px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
+                    >
+                      <img
+                        className=" w-[85%] rounded-md"
+                        src={s_9}
+                        style={{
+                          boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
+                        }}
+                      />
+                    </div>
+                  </div>
+                )}
 
-                <div
+                <p
                   onClick={() => {
-                    setRows([...rows, ...section_7_row]);
-                    setThirdLevel("");
+                    if (openSections === "cost") {
+                      setOpenSections("");
+                    } else {
+                      setOpenSections("cost");
+                    }
                   }}
-                  className="w-[88%]  bg-lvl_3_bg py-[16px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
+                  className="text-lvl_2_txt w-full text-left text-sm px-[16px] cursor-pointer flex justify-between items-center"
                 >
-                  <img
-                    className=" w-[85%] rounded-md"
-                    src={s_7}
-                    style={{
-                      boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
-                    }}
-                  />
-                </div>
-                <div
-                  onClick={() => {
-                    setRows([...rows, ...section_8_row]);
-                    setThirdLevel("");
-                  }}
-                  className="w-[88%]  bg-lvl_3_bg py-[16px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
-                >
-                  <img
-                    className=" w-[85%] rounded-md"
-                    src={s_8}
-                    style={{
-                      boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
-                    }}
-                  />
-                </div>
-                <div
-                  onClick={() => {
-                    setRows([...rows, ...section_9_row]);
-                    setThirdLevel("");
-                  }}
-                  className="w-[88%]  bg-lvl_3_bg py-[16px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
-                >
-                  <img
-                    className=" w-[85%] rounded-md"
-                    src={s_9}
-                    style={{
-                      boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
-                    }}
-                  />
-                </div>
-                <p className="text-lvl_2_txt w-full text-left text-sm px-[16px]">
-                  Cost module
+                  Cost Module
+                  <IoIosArrowDown />
                 </p>
-                <div
-                  onClick={() => {
-                    setRows([...rows, ...section_10_row]);
-                    setThirdLevel("");
-                  }}
-                  className="w-[88%]  bg-lvl_3_bg py-[16px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
-                >
-                  <img
-                    className=" w-[85%] rounded-md"
-                    src={s_10}
-                    style={{
-                      boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
-                    }}
-                  />
-                </div>
-                <div
-                  onClick={() => {
-                    setRows([...rows, ...section_11_row]);
-                    setThirdLevel("");
-                  }}
-                  className="w-[88%]  bg-lvl_3_bg py-[16px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
-                >
-                  <img
-                    className=" w-[85%] rounded-md"
-                    src={s_11}
-                    style={{
-                      boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
-                    }}
-                  />
-                </div>
-                <div
-                  onClick={() => {
-                    setRows([...rows, ...section_12_row]);
-                    setThirdLevel("");
-                  }}
-                  className="w-[88%]  bg-lvl_3_bg py-[16px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
-                >
-                  <img
-                    className=" w-[85%] rounded-md"
-                    src={s_12}
-                    style={{
-                      boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
-                    }}
-                  />
-                </div>
+                {openSections === "cost" && (
+                  <div className="w-full flex flex-col items-center  gap-[16px] transition-all duration-500 ease-out opacity-0 animate-fadeIn ">
+                    <div
+                      onClick={() => {
+                        setRows([...rows, ...section_10_row]);
+                        setThirdLevel("");
+                      }}
+                      className="w-[88%]  bg-lvl_3_bg py-[16px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
+                    >
+                      <img
+                        className=" w-[85%] rounded-md"
+                        src={s_10}
+                        style={{
+                          boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
+                        }}
+                      />
+                    </div>
+                    <div
+                      onClick={() => {
+                        setRows([...rows, ...section_11_row]);
+                        setThirdLevel("");
+                      }}
+                      className="w-[88%]  bg-lvl_3_bg py-[16px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
+                    >
+                      <img
+                        className=" w-[85%] rounded-md"
+                        src={s_11}
+                        style={{
+                          boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
+                        }}
+                      />
+                    </div>
+                    <div
+                      onClick={() => {
+                        setRows([...rows, ...section_12_row]);
+                        setThirdLevel("");
+                      }}
+                      className="w-[88%]  bg-lvl_3_bg py-[16px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
+                    >
+                      <img
+                        className=" w-[85%] rounded-md"
+                        src={s_12}
+                        style={{
+                          boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
+                        }}
+                      />
+                    </div>
+                  </div>
+                )}
               </div>
             ) : thirdLevel === "pages" ? (
               <div

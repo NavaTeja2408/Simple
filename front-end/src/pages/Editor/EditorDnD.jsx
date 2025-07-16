@@ -70,7 +70,7 @@ const EditorDnD = () => {
 
   useEffect(() => {
     getProposal();
-  }, []);
+  }, [id]);
 
   const getProposal = async () => {
     try {

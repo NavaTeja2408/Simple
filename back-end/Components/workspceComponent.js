@@ -148,22 +148,45 @@ const workspaceGetAll = async (req, res) => {
   }
 
   try {
-    let sortOption = {};
-
-    if (sortw === "alp") {
-      sortOption = { workspaceName: 1 }; // A-Z
-    } else if (sortw === "recent") {
-      sortOption = { createdAt: -1 }; // Newest first
-    } // else default — no sorting
-
-    const workspaces = await WorkspaceModel.find({ owner: user_id })
-      .sort(sortOption)
+    let workspaces = await WorkspaceModel.find({ owner: user_id })
+      .populate("proposals")
       .lean();
 
-    if (!workspaces || workspaces.length === 0) {
+    if (!workspaces.length) {
       return res
         .status(404)
         .json({ message: "No workspaces found for this user" });
+    }
+
+    // Sort proposals inside each workspace
+    workspaces = workspaces.map((workspace) => {
+      if (workspace.proposals && Array.isArray(workspace.proposals)) {
+        workspace.proposals.sort((a, b) => {
+          if (a.favorite === b.favorite) {
+            return a.proposalName.localeCompare(b.proposalName);
+          }
+          return b.favorite - a.favorite;
+        });
+      }
+      return workspace;
+    });
+
+    // Sort workspaces based on sortw
+    if (sortw === "alp") {
+      workspaces.sort((a, b) => a.workspaceName.localeCompare(b.workspaceName));
+    } else if (sortw === "recent") {
+      workspaces.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    } else if (sortw === "") {
+      // Favorite workspaces first, then alphabetical
+      workspaces.sort((a, b) => {
+        const aFav = a.favorite ? 1 : 0;
+        const bFav = b.favorite ? 1 : 0;
+
+        if (aFav === bFav) {
+          return a.workspaceName.localeCompare(b.workspaceName);
+        }
+        return bFav - aFav;
+      });
     }
 
     return res.status(200).json(workspaces);
@@ -1070,25 +1093,15 @@ const getAllWorkspacesIncluded = async (req, res) => {
   }
 
   try {
-    // Define sort option
-    let sortOption = {};
-    if (sortw === "alp") {
-      sortOption = { workspaceName: 1 }; // A-Z
-    } else if (sortw === "recent") {
-      sortOption = { createdAt: -1 }; // Newest first
-    }
-
-    // Get workspaces owned by user
+    // Step 1: Get owned and collab workspaces
     const ownedWorkspaces = await WorkspaceModel.find({
       owner: user_id,
     }).lean();
 
-    // Get workspaces from collaborations
     const collabs = await CollabModel.find({ user: user_id }).populate(
       "workspaces"
     );
     let collabWorkspaces = [];
-
     collabs.forEach((item) => {
       collabWorkspaces = [
         ...collabWorkspaces,
@@ -1096,10 +1109,8 @@ const getAllWorkspacesIncluded = async (req, res) => {
       ];
     });
 
-    // Combine both arrays
+    // Step 2: Combine and deduplicate
     const combinedWorkspaces = [...ownedWorkspaces, ...collabWorkspaces];
-
-    // Remove duplicates based on workspace _id
     const uniqueWorkspaces = Object.values(
       combinedWorkspaces.reduce((acc, ws) => {
         acc[ws._id.toString()] = ws;
@@ -1107,18 +1118,47 @@ const getAllWorkspacesIncluded = async (req, res) => {
       }, {})
     );
 
-    // Apply sorting on combined list
+    // Step 3: Sort workspaces based on `sortw`
     const sortedWorkspaces = uniqueWorkspaces.sort((a, b) => {
       if (sortw === "alp") {
         return a.workspaceName.localeCompare(b.workspaceName);
       } else if (sortw === "recent") {
         return new Date(b.createdAt) - new Date(a.createdAt);
       } else {
-        return 0;
+        // default or empty — favorite first, then A-Z
+        const aFav = a.favorate ? 1 : 0;
+        const bFav = b.favorate ? 1 : 0;
+        if (aFav === bFav) {
+          return a.workspaceName.localeCompare(b.workspaceName);
+        }
+        return bFav - aFav;
       }
     });
 
-    return res.status(200).json(sortedWorkspaces);
+    // Step 4: Populate proposals and sort them
+    const populatedWorkspaces = await Promise.all(
+      sortedWorkspaces.map(async (ws) => {
+        const fullWS = await WorkspaceModel.findById(ws._id)
+          .populate("proposals")
+          .lean();
+
+        // Sort proposals: favorite first, then A–Z
+        if (fullWS?.proposals?.length) {
+          fullWS.proposals.sort((a, b) => {
+            const aFav = a.favorate ? 1 : 0;
+            const bFav = b.favorate ? 1 : 0;
+            if (aFav === bFav) {
+              return a.proposalName.localeCompare(b.proposalName);
+            }
+            return bFav - aFav;
+          });
+        }
+
+        return fullWS;
+      })
+    );
+
+    return res.status(200).json(populatedWorkspaces);
   } catch (error) {
     console.error("Error fetching workspaces:", error);
     return res.status(500).json({ message: "Internal server error" });
