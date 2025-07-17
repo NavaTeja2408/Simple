@@ -5,6 +5,7 @@ import home_8 from "../../assets/home_8.jpg";
 import { FaArrowRight } from "react-icons/fa";
 import template_1 from "../../assets/template_1.png";
 import { useNavigate } from "react-router-dom";
+import { useTheme } from "@emotion/react";
 
 const ContactUs = () => {
   const [first, setFirst] = useState("");
@@ -16,6 +17,7 @@ const ContactUs = () => {
   const [size, setSize] = useState("");
   const [discription, setDiscription] = useState("");
   const navigate = useNavigate();
+
   return (
     <div>
       <div className="w-full  block overflow-y-scroll be-vietnam-pro-regular">
