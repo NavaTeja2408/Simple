@@ -79,7 +79,7 @@ const ForDouble = ({
     <div
       ref={divRef}
       onClick={() => setSelected(index)}
-      className={`w-full mt-1  min-h-[30px] flex ${
+      className={`w-full  px-4  min-h-[30px] flex ${
         aliegn === "left"
           ? "justify-start"
           : aliegn === "right"
@@ -89,7 +89,7 @@ const ForDouble = ({
     >
       {/* Settings Panel */}
       {show && preview !== true && (
-        <div className="absolute -top-5 left-1/2 transform -translate-x-1/2 px-3 h-10 w-fit  bg-white border border-gray-100 shadow-lg shadow-gray-400 flex flex-row items-center justify-center space-x-2  rounded text-sm z-50">
+        <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 px-3 h-10 w-fit  bg-white border border-gray-100 shadow-lg shadow-gray-400 flex flex-row items-center justify-center space-x-2  rounded text-sm z-50">
           {/* Hidden file input */}
           <input
             id={`file-upload-${index}`}

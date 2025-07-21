@@ -15971,10 +15971,10 @@ const Sidebar = ({
                   boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.2)",
                   height: "calc(100vh - 65px)",
                 }}
-                className=" w-[220px] px-3  border-r-2 border-gray-200  pb-[16px]  flex flex-col overflow-y-scroll overflow-x-hidden  "
+                className=" w-[225px] px-2.5  border-r-2 border-gray-200  pb-[16px]  flex flex-col overflow-y-scroll overflow-x-hidden  "
               >
-                <h3 className="text-sm text-lvl_2_hed p-2 font-semibold  ">
-                  Customize Your Proposal
+                <h3 className="text-sm text-lvl_2_hed py-2 font-semibold  ">
+                  Customize Proposal
                 </h3>
                 {/* <p className="text-[10px] mt-1 text-non_active_text w-[95%]">
                   Set your colors, fonts, and theme to match your brand
@@ -16228,10 +16228,10 @@ const Sidebar = ({
                 height: "calc(100vh - 65px)",
               }}
             >
-              <p className="text-md text-lvl_2_hed   p-2 cursor-default">
+              <p className="text-sm text-lvl_2_hed py-2 px-1 font-semibold  ">
                 Workspaces
               </p>
-              <div className="w-full h-8 bg-backgrounds mt-3 flex items-center px-1 rounded border hover:border-active_text focus-within::border-active_text">
+              <div className="w-full h-8 bg-backgrounds  flex items-center px-1 rounded border hover:border-active_text focus-within::border-active_text">
                 <IoIosSearch className="text-non_active_text text-md" />
                 <input
                   className="w-[90%] h-full outline-none  rounded text-sm bg-backgrounds px-2"
@@ -16241,9 +16241,6 @@ const Sidebar = ({
                   onChange={(e) => setSearchW(e.target.value)}
                 />
               </div>
-              <p className="text-sm text-active_text mt-3 mb-3 cursor-default">
-                All Workspaces
-              </p>
               {workspaces
                 .filter((item) => {
                   const name = item.workspaceName.toLowerCase();
@@ -16284,7 +16281,7 @@ const Sidebar = ({
                     </div>
                     {item.proposals &&
                       item.proposals.map((proposal, index) => (
-                        <div className="w-[100%] flex items-center justify-start  gap-1 mt-2 cursor-pointer text-non_active_text hover:text-heightlet_text">
+                        <div className="w-[100%] ml-3 flex items-center justify-start  gap-1 mt-2 cursor-pointer text-non_active_text hover:text-heightlet_text">
                           <IoDocumentTextOutline />
                           <p
                             onClick={() => navigate(`/editor/${proposal._id}`)}

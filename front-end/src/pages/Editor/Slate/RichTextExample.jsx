@@ -436,7 +436,7 @@ const RichTextEditor = ({
         {index === selected && preview !== true && choosen === true && (
           <Toolbar
             className={`absolute z-10 -top-12 flex flex-row items-center justify-center  shadow-md shadow-gray-300 border border-gray-100 ${
-              right === true ? "-left-32" : "left-3"
+              right === true ? "-left-48" : "left-3"
             }  bg-white  border  border-gray-200 rounded-md  px-3 py-1`}
             ref={toolbarRef}
             onFocus={() => {

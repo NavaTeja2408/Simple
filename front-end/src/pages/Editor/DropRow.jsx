@@ -391,8 +391,8 @@ const DropRow = ({
             }}
           >
             {row.align === undefined || row.align === "left" ? (
-              <div className="w-full flex items-center justify-center">
-                <div className="w-[50%]">
+              <div className="w-full flex items-center justify-between ">
+                <div className="w-[50%] mr-3">
                   <RichTextExample
                     double={true}
                     index={index}
@@ -424,7 +424,7 @@ const DropRow = ({
                   <div
                     className={`w-[3px]          ${
                       row.height ? `h-[${row.height}px]` : "h-[200px]"
-                    }  border-r-[1px]  border-dashed border-red-400 ml-2 relative z-50`}
+                    }  border-r-[1px]  border-dashed border-red-400 ml-2 relative z-[5]`}
                   >
                     <button
                       ref={buttonRef}
@@ -444,7 +444,7 @@ const DropRow = ({
                     </button>
                   </div>
                 )}
-                <div className="w-[50%]">
+                <div className="w-[50%] pr-2 ">
                   <ForDouble
                     onWidth={(newData) => {
                       const updatedContent = [...rows];
@@ -481,7 +481,7 @@ const DropRow = ({
               </div>
             ) : (
               <div className="w-full flex items-center justify-between">
-                <div className="w-[50%]">
+                <div className="w-[50%] -ml-3">
                   <ForDouble
                     onWidth={(newData) => {
                       const updatedContent = [...rows];
@@ -520,7 +520,7 @@ const DropRow = ({
                   <div
                     className={`w-[3px]          ${
                       row.height ? `h-[${row.height}px]` : "h-[200px]"
-                    }  border-r-[1px]  border-dashed border-red-400 mr-1 relative z-50`}
+                    }  border-r-[1px]  border-dashed border-red-400 mr-1 relative z-[5]`}
                   >
                     <button
                       ref={buttonRef}
@@ -877,7 +877,7 @@ const DropRow = ({
       {/* Row management buttons */}
       {selected === index && preview !== true && (
         <div
-          className={`absolute -top-12 right-0 bg-white flex  gap-2 border border-gray-100 shadow-lg py-1 px-1  rounded-sm`}
+          className={`absolute -top-12 right-0 bg-white flex  gap-2 shadow-md shadow-gray-300 border border-gray-100 py-1 px-1  rounded-md z-10`}
           ref={sideRef}
           onClick={() => setIndexValue(index)}
         >
@@ -948,7 +948,7 @@ const DropRow = ({
               setSelected(selected + 1);
               setQuickAdd(false);
             }}
-            className="py-1.5 w-full px-3 hover:bg-gray-100 text-start"
+            className="py-1.5 w-full px-3 hover:bg-gray-100 text-start rounded"
           >
             Heading 1
           </button>
@@ -958,7 +958,7 @@ const DropRow = ({
               setSelected(selected + 1);
               setQuickAdd(false);
             }}
-            className="py-1.5 w-full px-3 hover:bg-gray-100 text-start"
+            className="py-1.5 w-full px-3 hover:bg-gray-100 text-start rounded"
           >
             Heading 2
           </button>
@@ -968,7 +968,7 @@ const DropRow = ({
               setSelected(selected + 1);
               setQuickAdd(false);
             }}
-            className="py-1.5 w-full px-3 hover:bg-gray-100 text-start"
+            className="py-1.5 w-full px-3 hover:bg-gray-100 text-start rounded"
           >
             Heading 3
           </button>
@@ -978,7 +978,7 @@ const DropRow = ({
               setSelected(selected + 1);
               setQuickAdd(false);
             }}
-            className="py-1.5 w-full px-3 hover:bg-gray-100 text-start"
+            className="py-1.5 w-full px-3 hover:bg-gray-100 text-start rounded"
           >
             Heading 4
           </button>
@@ -988,7 +988,7 @@ const DropRow = ({
               setSelected(selected + 1);
               setQuickAdd(false);
             }}
-            className="py-1.5 w-full px-3 hover:bg-gray-100 text-start"
+            className="py-1.5 w-full px-3 hover:bg-gray-100 text-start rounded"
           >
             Heading 5
           </button>
@@ -998,7 +998,7 @@ const DropRow = ({
               setSelected(selected + 1);
               setQuickAdd(false);
             }}
-            className="py-1.5 w-full px-3 hover:bg-gray-100 text-start"
+            className="py-1.5 w-full px-3 hover:bg-gray-100 text-start rounded"
           >
             Heading 6
           </button>
@@ -1008,7 +1008,7 @@ const DropRow = ({
               setSelected(selected + 1);
               setQuickAdd(false);
             }}
-            className="py-1.5 w-full px-3 hover:bg-gray-100 text-start"
+            className="py-1.5 w-full px-3 hover:bg-gray-100 text-start  rounded"
           >
             Paragraph
           </button>
@@ -1018,7 +1018,7 @@ const DropRow = ({
               setSelected(selected + 1);
               setQuickAdd(false);
             }}
-            className="py-1.5 w-full px-3 hover:bg-gray-100 text-start"
+            className="py-1.5 w-full px-3 hover:bg-gray-100 text-start rounded"
           >
             Doble-Para
           </button>
@@ -1028,7 +1028,7 @@ const DropRow = ({
               setSelected(selected + 1);
               setQuickAdd(false);
             }}
-            className="py-1.5 w-full px-3 hover:bg-gray-100 text-start"
+            className="py-1.5 w-full px-3 hover:bg-gray-100 text-start rounded"
           >
             Image
           </button>
@@ -1038,7 +1038,7 @@ const DropRow = ({
               setSelected(selected + 1);
               setQuickAdd(false);
             }}
-            className="py-1.5 w-full px-3 hover:bg-gray-100 text-start"
+            className="py-1.5 w-full px-3 hover:bg-gray-100 text-start rounded"
           >
             Image-Para
           </button>
@@ -1048,7 +1048,7 @@ const DropRow = ({
               setSelected(selected + 1);
               setQuickAdd(false);
             }}
-            className="py-1.5 w-full px-3 hover:bg-gray-100 text-start"
+            className="py-1.5 w-full px-3 hover:bg-gray-100 text-start rounded"
           >
             Code block
           </button>
@@ -1058,7 +1058,7 @@ const DropRow = ({
               setSelected(selected + 1);
               setQuickAdd(false);
             }}
-            className="py-1.5 w-full px-3 hover:bg-gray-100 text-start"
+            className="py-1.5 w-full px-3 hover:bg-gray-100 text-start rounded"
           >
             Page Break
           </button>
@@ -1066,7 +1066,7 @@ const DropRow = ({
             onClick={() => {
               addLineSpace(selected + 1);
             }}
-            className="py-1.5 w-full px-3 hover:bg-gray-100 text-start"
+            className="py-1.5 w-full px-3 hover:bg-gray-100 text-start rounded"
           >
             Line Space
           </button>

@@ -391,7 +391,7 @@ const CostModule = ({ addCostModule, rows, setRows }) => {
                     </span>
                     <div className=" flex flex-row items-center justify-center  rounded-md">
                       <input
-                        className=" outline-none w-14 no-spinner px-1 py-1 mr-1 rounde text-center text-xs border border-border_clr text-heightlet_text hover:border-active_text focus:border-active_text"
+                        className=" outline-none w-14 no-spinner px-1 py-1 mr-1 rounded text-center text-xs border border-border_clr text-heightlet_text hover:border-active_text focus:border-active_text"
                         value={values.tax}
                         type="number"
                         onChange={(e) =>
