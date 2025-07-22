@@ -66,6 +66,7 @@ const EditorDnD = () => {
     costModule,
     setCostModeule,
     setUndo,
+    setQue,
   } = useContext(StateManageContext);
 
   useEffect(() => {
@@ -128,7 +129,7 @@ const EditorDnD = () => {
         },
       ]);
     }
-
+    setQue([]);
     setSelected("heading");
   };
 
@@ -158,6 +159,7 @@ const EditorDnD = () => {
         },
       ]);
     }
+    setQue([]);
     setSelected("double");
   };
   const addImageAndParagraph = (index = null) => {
@@ -194,6 +196,7 @@ const EditorDnD = () => {
         },
       ]);
     }
+    setQue([]);
     setSelected("image_para");
   };
 
@@ -239,6 +242,7 @@ const EditorDnD = () => {
         },
       ]);
     }
+    setQue([]);
     setSelected("image_para");
   };
 
@@ -257,6 +261,7 @@ const EditorDnD = () => {
         { id: uuidv4(), type: "input", content: "", bookmark: false },
       ]);
     }
+    setQue([]);
     setSelected("input");
   };
   const addImageRow = (index = null) => {
@@ -293,6 +298,7 @@ const EditorDnD = () => {
         },
       ]);
     }
+    setQue([]);
     setSelected("image");
   };
 
@@ -320,6 +326,7 @@ const EditorDnD = () => {
       },
       ...prevRows.slice(index), // Rows after the index
     ]);
+    setQue([]);
   };
 
   const addBreakPoint = (index = null) => {
@@ -336,6 +343,7 @@ const EditorDnD = () => {
         { id: uuidv4(), type: "brake", content: "", bookmark: false },
       ]);
     }
+    setQue([]);
     setSelected("break");
   };
 
@@ -369,7 +377,7 @@ const EditorDnD = () => {
         bookmark: false,
       },
     ]);
-
+    setQue([]);
     setSelected("table");
   };
 
@@ -387,6 +395,7 @@ const EditorDnD = () => {
         { id: uuidv4(), type: "code", content: "", bookmark: false },
       ]);
     }
+    setQue([]);
     setSelected("code");
   };
   const addSign = (data) => {
@@ -400,6 +409,24 @@ const EditorDnD = () => {
     setRows((prevRows) => [
       ...prevRows,
       {
+        id: "b66c7cdd-9b53-4eb5-a0e3-de7531e4c9cfesfewrf",
+        type: "heading",
+        size: "heading-two",
+        content: [
+          {
+            type: "heading-two",
+            align: "left",
+            children: [
+              {
+                text: "Cost Module",
+                bold: false,
+              },
+            ],
+          },
+        ],
+        bookmark: false,
+      },
+      {
         id: uuidv4(),
         type: "cost",
         content: arr,
@@ -409,11 +436,31 @@ const EditorDnD = () => {
         heading: heading,
       },
     ]);
+    setQue([]);
     setCostModeule(false);
   };
   const addPriceTerms = (arr, options, heading) => {
     setRows((prevRows) => [
       ...prevRows,
+      {
+        id: "b66c7cdd-9b53-4eb5-a0e3-de7531e4c9cfwekjfhuw",
+        type: "heading",
+        size: "heading-two",
+        content: [
+          {
+            type: "heading-two",
+            align: "left",
+            children: [
+              {
+                text: "Price Terms",
+                bold: false,
+              },
+            ],
+          },
+        ],
+        bookmark: false,
+      },
+
       {
         id: uuidv4(),
         type: "price",
@@ -423,6 +470,7 @@ const EditorDnD = () => {
         heading: heading,
       },
     ]);
+    setQue([]);
     setPriceTerms(false);
   };
   const dropCanvasRef = useRef(null);

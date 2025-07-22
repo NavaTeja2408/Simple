@@ -24,6 +24,7 @@ export function StateManageContextProvider({ children }) {
   const [undo, setUndo] = useState([]);
   const [redo, setRedo] = useState([]);
   const [redoA, setRedoA] = useState(false);
+  const [que, setQue] = useState([]);
 
   useEffect(() => {
     if (user?.id && databaseUrl) {
@@ -97,6 +98,8 @@ export function StateManageContextProvider({ children }) {
         setRedo,
         redoA,
         setRedoA,
+        que,
+        setQue,
       }}
     >
       {children}

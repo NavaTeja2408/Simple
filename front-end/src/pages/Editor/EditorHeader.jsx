@@ -45,6 +45,7 @@ import editor_logo from "../../assets/editor_logo.svg";
 import { BsPin } from "react-icons/bs";
 import { StarIcon } from "@radix-ui/react-icons";
 import { IoMdCloudDone } from "react-icons/io";
+import { StateManageContext } from "../../context/StateManageContext";
 
 const EditorHeader = ({
   rows,
@@ -77,12 +78,13 @@ const EditorHeader = ({
   const menuRef = useRef(null);
   const bellRef = useRef(null);
   const shareRef = useRef(null);
-  const [que, setQue] = useState([]);
+  // const [que, setQue] = useState([]);
   const [name, setName] = useState("");
   const [created, setCreated] = useState("");
   const [changing, setChanging] = useState(false);
   const [view, setView] = useState(true);
   const [tool, setTool] = useState(null);
+  const { que, setQue } = useContext(StateManageContext);
   const date = new Date(createdAt);
 
   const day = String(date.getDate()).padStart(2, "0");

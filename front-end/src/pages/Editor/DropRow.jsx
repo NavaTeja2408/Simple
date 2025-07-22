@@ -20,6 +20,7 @@ import PriceTermSlate from "./Slate/PriceTermSlate";
 import { StateManageContext } from "../../context/StateManageContext";
 import CoverPageSlate from "./Slate/CoverPageSlate";
 import { FiPlus } from "react-icons/fi";
+import { MdOutlineDelete } from "react-icons/md";
 
 const DropRow = ({
   row,
@@ -243,7 +244,7 @@ const DropRow = ({
           row.type !== "cover"
             ? "30px"
             : "4px",
-        paddingBottom: selected === index ? "15px" : "0px",
+        paddingBottom: selected === index ? "20px" : "0px",
 
         border:
           selected === index && preview !== true
@@ -877,7 +878,7 @@ const DropRow = ({
       {/* Row management buttons */}
       {selected === index && preview !== true && (
         <div
-          className={`absolute -top-12 right-0 bg-white flex  gap-2 shadow-md shadow-gray-300 border border-gray-100 py-1 px-1  rounded-md z-10`}
+          className={`absolute -top-12 right-0 bg-white flex  gap-1 shadow-md shadow-gray-300 border border-gray-100 py-1 px-1  rounded-md z-10`}
           ref={sideRef}
           onClick={() => setIndexValue(index)}
         >
@@ -920,10 +921,30 @@ const DropRow = ({
             <LuArrowDownToLine />
           </button>
           <button
-            onClick={() => deleteRow(index)}
+            onClick={() => {
+              if (row.type === "cover") {
+                setRows((prevRows) => {
+                  let updatedRows;
+
+                  const digit = prevRows[0].template;
+
+                  // Ensure digit is a number and valid
+                  const removeCount =
+                    typeof digit === "number" && digit > 0 ? digit : 1;
+
+                  // Remove the first `digit` rows and prepend the new value
+                  const remainingRows = prevRows.slice(removeCount);
+                  updatedRows = [...remainingRows];
+
+                  return updatedRows;
+                });
+              } else {
+                deleteRow(index);
+              }
+            }}
             className="  bg-white flex items-center justify-center px-2 py-2 hover:bg-gray-100"
           >
-            <MdOutlineDeleteForever />
+            <MdOutlineDelete />
           </button>
         </div>
       )}
@@ -932,9 +953,13 @@ const DropRow = ({
         <div
           ref={quickButtonRef}
           onClick={() => setQuickAdd(true)}
-          className={`absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-white flex   border border-graidient_bottom text-graidient_bottom items-center justify-center w-10 h-10  rounded-[50%] text-xl cursor-pointer z-50`}
+          className={`absolute -bottom-3.5 left-1/2 transform -translate-x-1/2 bg-white flex   border shadow-md shadow-gray-300 text-non_active_text items-center justify-center px-2 py-1 cursor-pointer z-50 text-sm rounded gap-1  ${
+            quickAdd === true
+              ? "bg-primary text-white hover:text-white"
+              : "hover:text-heightlet_text"
+          } `}
         >
-          <FiPlus />
+          <FiPlus /> <p>Add Element</p>
         </div>
       )}
       {selected === index && preview !== true && quickAdd === true && (

@@ -18,6 +18,7 @@ const Login = () => {
   const { databaseUrl } = useContext(DatabaseContext);
   const { user, setUser } = useContext(UserContext);
   const [pass, setPass] = useState(false);
+  const [errorL, setErrorL] = useState(null);
 
   const navigate = useNavigate();
   const [error, setError] = useState(false);
@@ -42,6 +43,7 @@ const Login = () => {
         });
         if (res.data.error) {
           toast.error(res.data.error);
+          setErrorL(res.data.error);
         } else {
           localStorage.setItem("user", JSON.stringify(res.data));
           setUser(res.data);
@@ -98,7 +100,11 @@ const Login = () => {
             </div>
             <div className="flex flex-col w-[80%] gap-1">
               <label className="text-gray-700 pl-1">Password</label>
-              <div className="w-full  border border-gray-300 flex items-center justify-between pr-4 rounded-sm">
+              <div
+                className={`w-full  border  flex items-center justify-between pr-4 rounded-sm ${
+                  errorL ? "border-primary" : "border-gray-300"
+                }`}
+              >
                 <input
                   type={pass ? "text" : "password"}
                   className="w-[95%] p-2 outline-none "

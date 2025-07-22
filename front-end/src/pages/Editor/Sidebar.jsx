@@ -162,13 +162,14 @@ const Sidebar = ({
   addDoubleImage,
 }) => {
   const [loading, setLoading] = useState(false);
-  const [openCover, setOpenCover] = useState("");
+  const [openCover, setOpenCover] = useState("half");
   const { user } = useContext(UserContext);
   const { databaseUrl } = useContext(DatabaseContext);
   const { workspaces, setWorkspaces } = useContext(StateManageContext);
   const [outline, setOutline] = useState(null);
   const [searchW, setSearchW] = useState("");
   const [openSections, setOpenSections] = useState("para");
+  const [workspaceInclude, setWorkspaceInclude] = useState([]);
 
   const handleFavorate = async (id, favorate) => {
     try {
@@ -15806,8 +15807,10 @@ const Sidebar = ({
                 <div className="pr-2 w-[220px]">
                   <button
                     onClick={() => setThirdLevel("cover")}
-                    className=" relative p-2 px-3 w-[95%] rounded-lg flex  mx-3  items-center  
-           gap-4 hover:bg-gray-100 "
+                    className={` relative p-2 px-3 w-[95%] rounded-lg flex mx-3  items-center  
+                      gap-4 hover:bg-gray-100 ${
+                        thirdLevel === "cover" && "bg-gray-100"
+                      }`}
                   >
                     <img
                       src={cover_lv2}
@@ -15819,8 +15822,10 @@ const Sidebar = ({
                   </button>
                   <button
                     onClick={() => setThirdLevel("sections")}
-                    className=" relative p-2 px-3 w-[95%] rounded-lg flex  mx-3  items-center  
-           gap-4 hover:bg-gray-100 "
+                    className={` relative p-2 px-3 w-[95%] rounded-lg flex mx-3  items-center  
+                      gap-4 hover:bg-gray-100 ${
+                        thirdLevel === "sections" && "bg-gray-100"
+                      }`}
                   >
                     <img
                       src={sections_lv2}
@@ -15832,8 +15837,10 @@ const Sidebar = ({
                   </button>
                   <button
                     onClick={() => setThirdLevel("saved")}
-                    className=" relative p-2 px-3 w-[95%] rounded-lg flex  mx-3 items-center  
-           gap-4 hover:bg-gray-100 "
+                    className={` relative p-2 px-3 w-[95%] rounded-lg flex mx-3  items-center  
+                      gap-4 hover:bg-gray-100 ${
+                        thirdLevel === "saved" && "bg-gray-100"
+                      }`}
                   >
                     <img
                       src={content_lv2}
@@ -16252,9 +16259,20 @@ const Sidebar = ({
                     {idx !== 0 && (
                       <div className="h-[1px] w-[120%] -mx-4 bg-border_clr mt-2"></div>
                     )}
-                    <div className="w-[100%] flex items-center justify-start  gap-2 mt-2 mb-2.5 cursor-default">
+                    <div
+                      onClick={() => {
+                        if (workspaceInclude.includes(item._id)) {
+                          setWorkspaceInclude(
+                            workspaceInclude.filter((id) => id !== item._id)
+                          );
+                        } else {
+                          setWorkspaceInclude([...workspaceInclude, item._id]);
+                        }
+                      }}
+                      className="w-[100%] flex items-center justify-start  gap-2 mt-2 mb-2.5 cursor-pointer hover:text-black"
+                    >
                       <FiFolder className="text-graidient_bottom" />{" "}
-                      <p className="text-sm text-active_text w-[70%] overflow-hidden whitespace-nowrap text-ellipsis ">
+                      <p className="text-sm text-active_text w-[80%] overflow-hidden whitespace-nowrap text-ellipsis ">
                         {item.workspaceName}
                       </p>
                       {item.favorate === true ? (
@@ -16279,18 +16297,30 @@ const Sidebar = ({
                         />
                       )}
                     </div>
-                    {item.proposals &&
-                      item.proposals.map((proposal, index) => (
-                        <div className="w-[100%] ml-3 flex items-center justify-start  gap-1 mt-2 cursor-pointer text-non_active_text hover:text-heightlet_text">
-                          <IoDocumentTextOutline />
-                          <p
-                            onClick={() => navigate(`/editor/${proposal._id}`)}
-                            className="text-xs  w-[88%] overflow-hidden text-ellipsis whitespace-nowrap  pl-1   "
-                            key={index}
-                          >
-                            {proposal.proposalName}
+                    {workspaceInclude.includes(item._id) &&
+                      (item.proposals && item.proposals.length === 0 ? (
+                        <div className="w-full ml-3 flex items-center justify-start gap-1 mt-2 cursor-pointer text-non_active_text transition-all duration-500 ease-out opacity-0 animate-fadeIn ">
+                          <p className="text-xs w-[88%] overflow-hidden text-ellipsis whitespace-nowrap pl-1">
+                            No Proposals available
                           </p>
                         </div>
+                      ) : (
+                        item.proposals?.map((proposal, index) => (
+                          <div
+                            key={proposal._id || index}
+                            className="w-full ml-3 flex items-center justify-start gap-1 mt-2 cursor-pointer text-non_active_text hover:text-heightlet_text transition-all duration-500 ease-out opacity-0 animate-fadeIn"
+                          >
+                            <IoDocumentTextOutline />
+                            <p
+                              onClick={() =>
+                                navigate(`/editor/${proposal._id}`)
+                              }
+                              className="text-xs w-[88%] overflow-hidden text-ellipsis whitespace-nowrap pl-1"
+                            >
+                              {proposal.proposalName}
+                            </p>
+                          </div>
+                        ))
                       ))}
                   </div>
                 ))}
@@ -16903,8 +16933,7 @@ const Sidebar = ({
                 }}
                 className=" absolute left-0 w-[220px] flex flex-col items-center pt-[16px] gap-[16px] bg-white z-30 overflow-auto pb-[16px] border-r border-gray-100    "
               >
-                <div className="w-full flex items-center justify-center">
-                  <input
+                {/* <input
                     id={`file-upload`}
                     type="file"
                     className="hidden"
@@ -16912,16 +16941,15 @@ const Sidebar = ({
                     onChange={(e) => {
                       handleUpload(e);
                     }}
-                  />
-                  {/* Upload Image Label */}
-                  <label
+                  /> */}
+                {/* Upload Image Label */}
+                {/* <label
                     htmlFor={`file-upload`}
                     className="w-[88%] py-2 flex items-center justify-center gap-2  text-center rounded cursor-pointer text-xs bg-graidient_bottom text-white hover:bg-gradient_darker"
                   >
                     <IoCloudUploadOutline className="text-sm" />
                     {loading ? "Loading..." : "Upload Cover Page"}
-                  </label>
-                </div>
+                  </label> */}
                 <p
                   onClick={() => {
                     if (openCover === "half") {

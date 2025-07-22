@@ -33,6 +33,7 @@ import { useNavigate } from "react-router-dom";
 const Home = () => {
   const [section1, setSection1] = useState(1);
   const [section2, setSection2] = useState(1);
+  const [thirdBody, setThirdBody] = useState(2);
   const navigate = useNavigate();
   return (
     <div>
@@ -132,14 +133,43 @@ const Home = () => {
           </h2>
         </div>
         <div className="w-full flex justify-between mt-20 px-5 mb-10">
+          {thirdBody === 0 && (
+            <div
+              className=" flex flex-col justify-between py-4 px-4 rounded-lg text-white w-[18%] h-[35vh] "
+              style={{
+                backgroundColor: "rgba(78, 94, 211, 1)",
+              }}
+            >
+              <h1 className="text-xl w-[50%]">Marketing & Creative</h1>
+              <p className="text-sm ">Pitch compaingns that actually convert</p>
+              <button className="border border-white w-7 h-7 flex items-center justify-center rounded-md">
+                <GoArrowUpRight />
+              </button>
+            </div>
+          )}
+          {thirdBody <= 1 && (
+            <div
+              className=" flex flex-col justify-between py-4 px-4 rounded-lg text-white w-[18%] h-[35vh] "
+              style={{
+                backgroundColor: "rgba(160, 51, 233, 1)",
+              }}
+            >
+              <h1 className="text-xl w-[50%]">Consulting & Freelance</h1>
+              <p className="text-sm ">Make every proposal feel custom-built</p>
+              <button className="border border-white w-7 h-7 flex items-center justify-center rounded-md">
+                <GoArrowUpRight />
+              </button>
+            </div>
+          )}
+
           <div
             className=" flex flex-col justify-between py-4 px-4 rounded-lg text-white w-[18%] h-[35vh] "
             style={{
-              backgroundColor: "rgba(78, 94, 211, 1)",
+              backgroundColor: "rgba(160, 51, 233, 1)",
             }}
           >
-            <h1 className="text-xl w-[50%]">Marketing & Creative</h1>
-            <p className="text-sm ">Pitch compaingns that actually convert</p>
+            <h1 className="text-xl w-[50%]">Consulting & Freelance</h1>
+            <p className="text-sm ">Make every proposal feel custom-built</p>
             <button className="border border-white w-7 h-7 flex items-center justify-center rounded-md">
               <GoArrowUpRight />
             </button>
@@ -194,6 +224,35 @@ const Home = () => {
               <GoArrowUpRight />
             </button>
           </div>
+          {thirdBody >= 3 && (
+            <div
+              className=" flex flex-col justify-between py-4 px-4 rounded-lg text-white w-[18%] h-[35vh] "
+              style={{
+                backgroundColor: "rgba(160, 51, 233, 1)",
+              }}
+            >
+              <h1 className="text-xl w-[50%]">Consulting & Freelance</h1>
+              <p className="text-sm ">Make every proposal feel custom-built</p>
+              <button className="border border-white w-7 h-7 flex items-center justify-center rounded-md">
+                <GoArrowUpRight />
+              </button>
+            </div>
+          )}
+
+          {thirdBody >= 4 && (
+            <div
+              className=" flex flex-col justify-between py-4 px-4 rounded-lg text-white w-[18%] h-[35vh] "
+              style={{
+                backgroundColor: "rgba(160, 51, 233, 1)",
+              }}
+            >
+              <h1 className="text-xl w-[50%]">Consulting & Freelance</h1>
+              <p className="text-sm ">Make every proposal feel custom-built</p>
+              <button className="border border-white w-7 h-7 flex items-center justify-center rounded-md">
+                <GoArrowUpRight />
+              </button>
+            </div>
+          )}
         </div>
       </div>
 

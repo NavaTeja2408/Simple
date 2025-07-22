@@ -159,31 +159,33 @@ const DropCanvas = ({
       {/* <button onClick={() => console.log(rows)}>Show data</button> */}
       {bookmark !== null && (
         <div className="fixed inset-0 bg-black bg-opacity-20 flex items-center justify-center p-4 z-[1000]">
-          <div className="bg-white  rounded-lg shadow-xl w-[40%] min-h-[35%] flex flex-col relative">
+          <div className="bg-white  rounded-lg shadow-xl w-[40%] min-h-[35%] flex flex-col relative pt-2">
             <div className="flex flex-col gap-2 items-center justify-center mt-4">
               <label
-                className={`w-full flex items-start justify-start ml-16 font-bold `}
+                className={`w-full flex items-start justify-start ml-16 font-semibold text-active_text `}
               >
-                Section Title
+                Content Title
               </label>
               <input
                 type="text"
                 value={savedTitile}
                 onChange={(e) => setSavedTitle(e.target.value)}
-                placeholder="Enter the Title"
-                className="w-[90%] py-2 outline-none rounded-md px-3 border border-gray-300 focus:border-graidient_bottom"
+                placeholder={`E.g. "Client Qoute", "Custom Staement" `}
+                className="w-[90%] py-2 outline-none rounded-md px-3 border border-gray-300 hover:border-active_text focus:border-active_text text-sm"
               />
             </div>
             <div className="flex flex-col gap-2 items-center justify-center mt-4">
-              <label className="w-full flex items-start justify-start ml-16 font-bold">
-                Label
+              <label
+                className={`w-full flex items-start justify-start ml-16 font-semibold text-active_text `}
+              >
+                Content Discription
               </label>
-              <input
+              <textarea
                 type="text"
                 value={savedLabel}
                 onChange={(e) => setSavedLabel(e.target.value)}
-                placeholder="Enter the Label"
-                className="w-[90%]  text-sm py-2 outline-none rounded-md px-3 border border-gray-300 focus:border-graidient_bottom"
+                placeholder="Briefly descibe the conetent block"
+                className="w-[90%] h-28  text-sm py-2 outline-none rounded-md px-3 border border-gray-300 hover:border-active_text focus:border-active_text"
               />
             </div>
             <div className="w-full flex flex-row gap-4 items-end justify-end mb-3 mr-4 mt-4 pr-6">
