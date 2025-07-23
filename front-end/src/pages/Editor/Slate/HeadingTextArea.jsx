@@ -487,44 +487,7 @@ const MyRichTextEditor = ({
                 <option value="capitalize">Aa</option>
               </select>
               <div className="w-[1px] h-8 bg-gray-200 ml-1"></div>
-              <div
-                ref={colorBtnRef}
-                className="relative flex items-center justify-center gap-2 ml-3 "
-              >
-                {/* Selected color button */}
-                <button
-                  className="w-4 h-4 rounded-sm border border-gray-300"
-                  style={{ backgroundColor: selectedColor.hex }}
-                  onClick={() => setOpen((prev) => !prev)}
-                ></button>
-                <IoIosArrowDown
-                  onClick={() => setOpen((prev) => !prev)}
-                  className="text-gray-600 text-sm"
-                />
-
-                {/* Color options */}
-                {open && (
-                  <div
-                    ref={colorRef}
-                    className="absolute top-[79%] z-10 mt-2 flex gap-2 bg-white border border-gray-200 rounded-sm p-2 px-3.5 shadow flex-col left-0"
-                  >
-                    {colors.map((color) => (
-                      <div
-                        key={color.class}
-                        className="w-4 h-4 rounded-sm border cursor-pointer hover:scale-110 transition"
-                        style={{ backgroundColor: color.hex }}
-                        onClick={() => {
-                          setSelectedColor(color);
-                          onTextColor(color.class); // same callback
-                          setOpen(false);
-                        }}
-                      ></div>
-                    ))}
-                  </div>
-                )}
-              </div>
             </div>
-            <div className="w-[1px] h-8 bg-gray-200 "></div>
 
             <Button
               onMouseDown={(e) => {
