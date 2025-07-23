@@ -51,7 +51,7 @@ import { HiOutlineDocumentChartBar } from "react-icons/hi2";
 import { VscHistory } from "react-icons/vsc";
 import { IoIosHelpCircleOutline } from "react-icons/io";
 import profile from "../../assets/profile.png";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import cover_img_1 from "../../assets/cover_1.jpg";
 import cover_img_2 from "../../assets/cover_img_2.jpg";
 import cover_img_3 from "../../assets/cover_img_3.jpg";
@@ -161,6 +161,7 @@ const Sidebar = ({
   preview,
   addDoubleImage,
 }) => {
+  const { id } = useParams();
   const [loading, setLoading] = useState(false);
   const [openCover, setOpenCover] = useState("half");
   const { user } = useContext(UserContext);
@@ -170,6 +171,38 @@ const Sidebar = ({
   const [searchW, setSearchW] = useState("");
   const [openSections, setOpenSections] = useState("para");
   const [workspaceInclude, setWorkspaceInclude] = useState([]);
+  const [version, setVersion] = useState();
+
+  const formatDate = (dateInput) => {
+    const date = new Date(dateInput);
+
+    const options = {
+      month: "short", // Jul
+      day: "numeric", // 22
+      year: "numeric", // 2025
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
+    };
+
+    return date.toLocaleString("en-US", options);
+  };
+
+  useEffect(() => {
+    getHistory();
+  }, [active]);
+
+  const getHistory = async () => {
+    try {
+      const res = await axios.get(`${databaseUrl}/api/editor/gethistory`, {
+        params: { id: id },
+      });
+      setVersion(res.data);
+    } catch (error) {
+      console.error("Error fetching workspaces:", error);
+      setError("Failed to fetch workspaces. Please try again later.");
+    }
+  };
 
   const handleFavorate = async (id, favorate) => {
     try {
@@ -15556,6 +15589,7 @@ const Sidebar = ({
     setThirdLevel("");
   };
 
+  useEffect(() => {});
   return (
     <div className="flex flex-row">
       {preview === true ? (
@@ -16324,6 +16358,36 @@ const Sidebar = ({
                       ))}
                   </div>
                 ))}
+            </div>
+          ) : active === "history" ? (
+            <div
+              className="w-[220px] overflow-x-hidden  pr-2  overflow-auto pb-[16px] scrollbar-hide text-lvl_2_txt z-50  "
+              style={{
+                boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.2)",
+                height: "calc(100vh - 65px)",
+              }}
+            >
+              <p className="text-sm text-lvl_2_hed font-semibold mx-3 p-2 ">
+                Version History
+              </p>
+              <div className="w-full flex flex-col-reverse items-center">
+                {version.map((item, index) => {
+                  return (
+                    <div
+                      key={index}
+                      onClick={() => setRows(item.data)}
+                      className="flex items-center justify-start gap-1 mt-2 cursor-pointer text-heightlet_text hover:text-active_text transition-all duration-500 ease-out opacity-0 animate-fadeIn"
+                    >
+                      <IoDocumentTextOutline />
+                      <p className="text-sm  overflow-hidden text-ellipsis whitespace-nowrap pl-1">
+                        {version.length - 1 === index
+                          ? formatDate(item.updatedAt)
+                          : formatDate(item.createdAt)}
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           ) : (
             <div> </div>

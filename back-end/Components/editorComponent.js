@@ -56,19 +56,50 @@ const createProposal = async (req, res) => {
 
 const updateProposal = async (req, res) => {
   const { id, rows, settings } = req.body;
+
   try {
-    const proposal = await ProposalModel.findByIdAndUpdate(id, {
-      data: rows,
-      settings: settings,
-    });
+    const proposal = await ProposalModel.findById(id);
+
     if (!proposal) {
-      return res.status(404).json({ message: "error" });
+      return res.status(404).json({ message: "Proposal not found" });
     }
+
+    // Update the main data and settings
+    proposal.data = rows;
+    proposal.settings = settings;
+
+    // Ensure history is initialized
+    if (!proposal.history) {
+      proposal.history = [];
+    }
+
+    const now = new Date();
+
+    if (proposal.history.length === 0) {
+      proposal.history.push({ data: rows, createdAt: now, updatedAt: now });
+    } else {
+      const lastEntryIndex = proposal.history.length - 1;
+      const lastEntry = proposal.history[lastEntryIndex];
+      const oneHourAgo = new Date(now.getTime() - 60 * 60 * 1000);
+
+      if (new Date(lastEntry.createdAt) > oneHourAgo) {
+        // Update in-place
+        proposal.history[lastEntryIndex].data = rows;
+        proposal.history[lastEntryIndex].updatedAt = now;
+      } else {
+        // Push new entry
+        proposal.history.push({ data: rows, createdAt: now, updatedAt: now });
+      }
+
+      // Tell Mongoose we modified a nested array
+      proposal.markModified("history");
+    }
+
     await proposal.save();
 
     return res.status(201).json(proposal);
   } catch (error) {
-    console.error("Error creating proposal:", error);
+    console.error("Error updating proposal:", error);
     return res.status(500).json({ message: "Internal Server Error" });
   }
 };
@@ -267,6 +298,21 @@ const updateViews = async (req, res) => {
   }
 };
 
+const getProposalHistory = async (req, res) => {
+  const { id } = req.query;
+  try {
+    const proposal = await ProposalModel.findById(id);
+
+    if (!proposal) {
+      return res.status(404).json({ message: "error" });
+    }
+    return res.status(201).json(proposal.history ? proposal.history : []);
+  } catch (error) {
+    console.error("Error creating proposal:", error);
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
 const updateLastseen = async (req, res) => {
   const { id } = req.body;
   try {
@@ -326,4 +372,5 @@ module.exports = {
   updateLastseen,
   changeName,
   getDetails,
+  getProposalHistory,
 };

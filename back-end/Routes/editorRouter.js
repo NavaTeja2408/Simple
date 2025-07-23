@@ -15,6 +15,7 @@ const {
   updateLastseen,
   changeName,
   getDetails,
+  getProposalHistory,
 } = require("../Components/editorComponent");
 
 const editor = express.Router();
@@ -35,5 +36,6 @@ editor.delete("/delete", deleteProposal);
 editor.delete("/deleteGoal", deleteGoal);
 editor.post("/name", changeName);
 editor.get("/details", getDetails);
+editor.get("/gethistory", getProposalHistory);
 
 module.exports = editor;

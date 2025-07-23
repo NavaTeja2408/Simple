@@ -93,6 +93,11 @@ const ProposalSchema = new Schema(
     recycle: {
       type: Boolean,
     },
+    history: [
+      {
+        type: Object,
+      },
+    ],
 
     // activities: [
     //   {
