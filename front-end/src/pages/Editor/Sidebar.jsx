@@ -197,10 +197,10 @@ const Sidebar = ({
       const res = await axios.get(`${databaseUrl}/api/editor/gethistory`, {
         params: { id: id },
       });
+      console.log(res.data);
       setVersion(res.data);
     } catch (error) {
       console.error("Error fetching workspaces:", error);
-      setError("Failed to fetch workspaces. Please try again later.");
     }
   };
 
@@ -16371,7 +16371,7 @@ const Sidebar = ({
                 Version History
               </p>
               <div className="w-full flex flex-col-reverse items-center">
-                {version.map((item, index) => {
+                {version?.map((item, index) => {
                   return (
                     <div
                       key={index}
