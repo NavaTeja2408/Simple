@@ -300,15 +300,21 @@ const updateViews = async (req, res) => {
 
 const getProposalHistory = async (req, res) => {
   const { id } = req.query;
+
+  if (!id) {
+    return res.status(400).json({ message: "Proposal ID is required" });
+  }
+
   try {
     const proposal = await ProposalModel.findById(id);
 
     if (!proposal) {
-      return res.status(404).json({ message: "error" });
+      return res.status(404).json({ message: "Proposal not found" });
     }
-    return res.status(201).json(proposal.history ? proposal.history : []);
+
+    return res.status(200).json(proposal.history || []);
   } catch (error) {
-    console.error("Error creating proposal:", error);
+    console.error("Error fetching proposal history:", error);
     return res.status(500).json({ message: "Internal Server Error" });
   }
 };
