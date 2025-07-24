@@ -3,6 +3,8 @@ const ProposalModel = require("../models/proposeModel");
 const RecycleModel = require("../models/RecycleBinModel");
 const UserModel = require("../models/tempModel");
 const WorkspaceModel = require("../models/workspaceModel");
+
+const _ = require("lodash");
 const createProposal = async (req, res) => {
   const { email, workspace_id, name, settings } = req.body;
 
@@ -64,11 +66,10 @@ const updateProposal = async (req, res) => {
       return res.status(404).json({ message: "Proposal not found" });
     }
 
-    // Update the main data and settings
+    // Update main data and settings
     proposal.data = rows;
     proposal.settings = settings;
 
-    // Ensure history is initialized
     if (!proposal.history) {
       proposal.history = [];
     }
@@ -82,21 +83,23 @@ const updateProposal = async (req, res) => {
       const lastEntry = proposal.history[lastEntryIndex];
       const oneHourAgo = new Date(now.getTime() - 60 * 60 * 1000);
 
-      if (new Date(lastEntry.createdAt) > oneHourAgo) {
-        // Update in-place
-        proposal.history[lastEntryIndex].data = rows;
-        proposal.history[lastEntryIndex].updatedAt = now;
-      } else {
-        // Push new entry
-        proposal.history.push({ data: rows, createdAt: now, updatedAt: now });
-      }
+      const isSameData = _.isEqual(lastEntry.data, rows); // ✅ deep comparison
 
-      // Tell Mongoose we modified a nested array
-      proposal.markModified("history");
+      if (!isSameData) {
+        if (new Date(lastEntry.createdAt) > oneHourAgo) {
+          // Update in-place
+          proposal.history[lastEntryIndex].data = rows;
+          proposal.history[lastEntryIndex].updatedAt = now;
+        } else {
+          // Push new entry
+          proposal.history.push({ data: rows, createdAt: now, updatedAt: now });
+        }
+
+        proposal.markModified("history");
+      }
     }
 
     await proposal.save();
-
     return res.status(201).json(proposal);
   } catch (error) {
     console.error("Error updating proposal:", error);
