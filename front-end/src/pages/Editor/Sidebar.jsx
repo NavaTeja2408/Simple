@@ -140,6 +140,7 @@ import { CiBookmark } from "react-icons/ci";
 import { FaBookmark } from "react-icons/fa6";
 import { FaRegBookmark } from "react-icons/fa";
 import { IoIosSearch } from "react-icons/io";
+import { Icon } from "@iconify/react";
 
 const Sidebar = ({
   selected,
@@ -16372,7 +16373,7 @@ const Sidebar = ({
             </div>
           ) : active === "history" ? (
             <div
-              className="w-[220px] overflow-x-hidden  pr-2  overflow-auto pb-[16px] scrollbar-hide text-lvl_2_txt z-50  "
+              className="w-[220px] overflow-x-hidden  pr-0  overflow-auto pb-[16px] scrollbar-hide text-lvl_2_txt z-50  "
               style={{
                 boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.2)",
                 height: "calc(100vh - 65px)",
@@ -16381,13 +16382,13 @@ const Sidebar = ({
               <p className="text-sm text-lvl_2_hed font-semibold mx-3 p-2 ">
                 Version History
               </p>
-              <div className="w-full flex flex-col-reverse items-start px-3.5">
+              <div className="w-full flex flex-col-reverse items-start">
                 {version?.map((item, index) => {
                   return (
                     <div
                       key={index}
                       onClick={() => setHistoryPreview(item.data)}
-                      className="w-full flex items-center justify-between gap-1 py-2 cursor-pointer text-lvl_2_txt hover:text-active_text transition-all duration-500 ease-out opacity-0 animate-fadeIn"
+                      className="w-full flex items-center justify-between gap-1  px-4 py-2.5 cursor-pointer text-lvl_2_txt hover:text-active_text transition-all duration-500 ease-out opacity-0 animate-fadeIn border-b border-border_clr"
                     >
                       <div className="flex items-center justify-start gap-1">
                         <IoDocumentTextOutline />
@@ -16398,7 +16399,7 @@ const Sidebar = ({
                         </p>
                       </div>
                       <div>
-                        <IoDocumentTextOutline />
+                        <Icon icon="fluent:window-play-20-regular" />
                       </div>
                     </div>
                   );
