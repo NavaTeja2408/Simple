@@ -16410,7 +16410,7 @@ const Sidebar = ({
                     addHeadingRow("heading-one");
                     setThirdLevel("");
                   }}
-                  className="w-[88%]   py-[14px] bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center gap-2 "
+                  className="w-[88%]   py-[14px] bg-lvl_3_bg hover:bg-gray-200 cursor-pointer rounded-md flex flex-col  items-center justify-center gap-2 "
                 >
                   {/* <img className="h-[85%] w-[70%] " src={heading_one} /> */}
                   <div
@@ -16426,7 +16426,7 @@ const Sidebar = ({
                     addHeadingRow("heading-two");
                     setThirdLevel("");
                   }}
-                  className="w-[88%]  py-[15px] bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center gap-2 "
+                  className="w-[88%]  py-[15px] bg-lvl_3_bg hover:bg-gray-200 cursor-pointer rounded-md flex flex-col  items-center justify-center gap-2 "
                 >
                   <div
                     style={{ boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)" }}
@@ -16441,7 +16441,7 @@ const Sidebar = ({
                     addHeadingRow("heading-three");
                     setThirdLevel("");
                   }}
-                  className="w-[88%] h-28  py-[15px] bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center gap-3 "
+                  className="w-[88%] h-28  py-[15px] bg-lvl_3_bg hover:bg-gray-200 cursor-pointer rounded-md flex flex-col  items-center justify-center gap-3 "
                 >
                   <div
                     style={{ boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)" }}
@@ -16456,7 +16456,7 @@ const Sidebar = ({
                     addHeadingRow("heading-four");
                     setThirdLevel("");
                   }}
-                  className="w-[88%] h-28  py-[15px] gap-3.5 bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center "
+                  className="w-[88%] h-28  py-[15px] gap-3.5 bg-lvl_3_bg hover:bg-gray-200 cursor-pointer rounded-md flex flex-col  items-center justify-center "
                 >
                   <div
                     className="text-[12px] text-lvl_3_img bg-white h-[51px] w-[85px] flex items-center justify-center rounded-md "
@@ -16472,7 +16472,7 @@ const Sidebar = ({
                     addHeadingRow("heading-five");
                     setThirdLevel("");
                   }}
-                  className="w-[88%] h-28  py-[16px] gap-4 bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center "
+                  className="w-[88%] h-28  py-[16px] gap-4 bg-lvl_3_bg hover:bg-gray-200 cursor-pointer rounded-md flex flex-col  items-center justify-center "
                 >
                   <div
                     className="text-[10px] text-lvl_3_img bg-white h-[47px] w-[67px] flex items-center justify-center rounded-md "
@@ -16487,7 +16487,7 @@ const Sidebar = ({
                     addHeadingRow("heading-six");
                     setThirdLevel("");
                   }}
-                  className="w-[88%] h-40 py-[17px] gap-5 bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center "
+                  className="w-[88%] h-40 py-[17px] gap-5 bg-lvl_3_bg hover:bg-gray-200 cursor-pointer rounded-md flex flex-col  items-center justify-center "
                 >
                   <div
                     className="text-[8px] text-lvl_3_img bg-white h-[42px] w-[65px] flex items-center justify-center rounded-md "
@@ -16514,7 +16514,7 @@ const Sidebar = ({
                   }}
                   className="w-full flex flex-col justify-center items-center gap-1 cursor-pointer"
                 >
-                  <div className="w-[88%] relative h-[112px] p-1 bg-lvl_3_bg rounded-md flex flex-col text-gray-500 items-center justify-center gap-2 ">
+                  <div className="w-[88%] relative h-[112px] p-1 bg-lvl_3_bg hover:bg-gray-200 cursor-pointer rounded-md flex flex-col text-gray-500 items-center justify-center gap-2 ">
                     <img
                       style={{
                         boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
@@ -16532,7 +16532,7 @@ const Sidebar = ({
                   }}
                   className="w-full flex flex-col justify-center items-center gap-1 cursor-pointer"
                 >
-                  <div className="w-[88%] relative h-[112px] p-1 bg-lvl_3_bg rounded-md flex flex-col text-gray-500 items-center justify-center gap-2 ">
+                  <div className="w-[88%] relative h-[112px] p-1 bg-lvl_3_bg hover:bg-gray-200 cursor-pointer rounded-md flex flex-col text-gray-500 items-center justify-center gap-2 ">
                     <img
                       style={{
                         boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
@@ -16560,7 +16560,7 @@ const Sidebar = ({
                   }}
                   className="w-full flex flex-col justify-center items-center gap-1 cursor-pointer"
                 >
-                  <div className="w-[88%] relative h-[112px] p-1 bg-lvl_3_bg rounded-md flex flex-col text-gray-500 items-center justify-center gap-2 ">
+                  <div className="w-[88%] relative h-[112px] p-1 bg-lvl_3_bg hover:bg-gray-200 cursor-pointer rounded-md flex flex-col text-gray-500 items-center justify-center gap-2 ">
                     <img
                       style={{
                         boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
@@ -16578,7 +16578,7 @@ const Sidebar = ({
                   }}
                   className="w-full flex flex-col justify-center items-center gap-1 cursor-pointer"
                 >
-                  <div className="w-[88%] relative h-[112px] p-1 bg-lvl_3_bg rounded-md flex flex-col text-gray-500 items-center justify-center gap-2 ">
+                  <div className="w-[88%] relative h-[112px] p-1 bg-lvl_3_bg hover:bg-gray-200 cursor-pointer rounded-md flex flex-col text-gray-500 items-center justify-center gap-2 ">
                     <img
                       style={{
                         boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
@@ -16596,7 +16596,7 @@ const Sidebar = ({
                   }}
                   className="w-full flex flex-col justify-center items-center gap-1 cursor-pointer"
                 >
-                  <div className="w-[88%] relative h-[112px] p-1 bg-lvl_3_bg rounded-md flex flex-col text-gray-500 items-center justify-center gap-2 ">
+                  <div className="w-[88%] relative h-[112px] p-1 bg-lvl_3_bg hover:bg-gray-200 cursor-pointer rounded-md flex flex-col text-gray-500 items-center justify-center gap-2 ">
                     <img
                       style={{
                         boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
@@ -16622,7 +16622,7 @@ const Sidebar = ({
                     addTableRow("normal");
                     setThirdLevel("");
                   }}
-                  className="w-[88%] h-[112px] p-2 bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center "
+                  className="w-[88%] h-[112px] p-2 bg-lvl_3_bg hover:bg-gray-200 cursor-pointer rounded-md flex flex-col  items-center justify-center "
                 >
                   <img className="h-[75%] w-[53%]" src={table_v_1} />
                   <p className="text-lvl_2_txt text-xs">Basic</p>
@@ -16632,7 +16632,7 @@ const Sidebar = ({
                     addTableRow("alternativerow");
                     setThirdLevel("");
                   }}
-                  className="w-[88%] h-[112px] p-2 bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center "
+                  className="w-[88%] h-[112px] p-2 bg-lvl_3_bg hover:bg-gray-200 cursor-pointer rounded-md flex flex-col  items-center justify-center "
                 >
                   <img className="h-[75%] w-[53%]" src={table_v_2} />
                   <p className="text-lvl_2_txt text-xs">Aleternative Row</p>
@@ -16642,7 +16642,7 @@ const Sidebar = ({
                     addTableRow("alternativecol");
                     setThirdLevel("");
                   }}
-                  className="w-[88%] h-[112px] p-2 bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center "
+                  className="w-[88%] h-[112px] p-2 bg-lvl_3_bg hover:bg-gray-200 cursor-pointer rounded-md flex flex-col  items-center justify-center "
                 >
                   <img className="h-[75%] w-[53%]" src={table_v_3} />
                   <p className="text-lvl_2_txt text-xs">Aleternative Coloumn</p>
@@ -16652,7 +16652,7 @@ const Sidebar = ({
                     addTableRow("toprow");
                     setThirdLevel("");
                   }}
-                  className="w-[88%] h-[112px] p-2 bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center "
+                  className="w-[88%] h-[112px] p-2 bg-lvl_3_bg hover:bg-gray-200 cursor-pointer rounded-md flex flex-col  items-center justify-center "
                 >
                   <img className="h-[75%] w-[53%]" src={table_v_4} />
                   <p className="text-lvl_2_txt text-xs">Top Row</p>
@@ -16663,7 +16663,7 @@ const Sidebar = ({
                     addTableRow("leftcol");
                     setThirdLevel("");
                   }}
-                  className="w-[88%] h-[112px] p-2 bg-lvl_3_bg rounded-md flex flex-col  items-center justify-center "
+                  className="w-[88%] h-[112px] p-2 bg-lvl_3_bg hover:bg-gray-200 cursor-pointer rounded-md flex flex-col  items-center justify-center "
                 >
                   <img className="h-[75%] w-[53%]" src={table_v_5} />
                   <p className="text-lvl_2_txt text-xs">Left Coloumn</p>
@@ -16686,7 +16686,11 @@ const Sidebar = ({
                       setOpenSections("para");
                     }
                   }}
-                  className="text-lvl_2_txt w-full text-left text-sm px-[16px] cursor-pointer flex justify-between items-center"
+                  className={` w-full text-left text-sm px-[16px] cursor-pointer py-0.5 flex justify-between hover:text-active_text items-center ${
+                    openSections === "para"
+                      ? "text-active_text"
+                      : "text-lvl_2_txt"
+                  }`}
                 >
                   Paragraph
                   <IoIosArrowDown />
@@ -16750,7 +16754,11 @@ const Sidebar = ({
                       setOpenSections("tables");
                     }
                   }}
-                  className="text-lvl_2_txt w-full text-left text-sm px-[16px] cursor-pointer flex justify-between items-center"
+                  className={` w-full text-left text-sm px-[16px] cursor-pointer py-0.5 flex justify-between hover:text-active_text items-center ${
+                    openSections === "tables"
+                      ? "text-active_text"
+                      : "text-lvl_2_txt"
+                  }`}
                 >
                   Tables
                   <IoIosArrowDown />
@@ -16814,7 +16822,11 @@ const Sidebar = ({
                       setOpenSections("img");
                     }
                   }}
-                  className="text-lvl_2_txt w-full text-left text-sm px-[16px] cursor-pointer flex justify-between items-center"
+                  className={` w-full text-left text-sm px-[16px] cursor-pointer py-0.5 flex justify-between hover:text-active_text items-center ${
+                    openSections === "img"
+                      ? "text-active_text"
+                      : "text-lvl_2_txt"
+                  }`}
                 >
                   Image & Content
                   <IoIosArrowDown />
@@ -16877,7 +16889,11 @@ const Sidebar = ({
                       setOpenSections("cost");
                     }
                   }}
-                  className="text-lvl_2_txt w-full text-left text-sm px-[16px] cursor-pointer flex justify-between items-center"
+                  className={` w-full text-left text-sm px-[16px] cursor-pointer py-0.5 flex justify-between hover:text-active_text items-center ${
+                    openSections === "cost"
+                      ? "text-active_text"
+                      : "text-lvl_2_txt"
+                  }`}
                 >
                   Cost Module
                   <IoIosArrowDown />
@@ -17022,7 +17038,9 @@ const Sidebar = ({
                       setOpenCover("half");
                     }
                   }}
-                  className="text-lvl_2_txt w-full text-left text-sm px-[16px] cursor-pointer flex justify-between items-center"
+                  className={` w-full text-left text-sm px-[16px] cursor-pointer py-0.5 flex justify-between hover:text-active_text items-center ${
+                    openCover === "half" ? "text-active_text" : "text-lvl_2_txt"
+                  }`}
                 >
                   Half Page
                   <IoIosArrowDown />
@@ -17136,7 +17154,9 @@ const Sidebar = ({
                       setOpenCover("full");
                     }
                   }}
-                  className="text-lvl_2_txt w-full text-left text-sm px-[16px] cursor-pointer flex justify-between items-center"
+                  className={` w-full text-left text-sm px-[16px] cursor-pointer py-0.5 flex justify-between hover:text-active_text items-center ${
+                    openCover === "full" ? "text-active_text" : "text-lvl_2_txt"
+                  }`}
                 >
                   Full Page
                   <IoIosArrowDown />

@@ -25,6 +25,7 @@ export function StateManageContextProvider({ children }) {
   const [redo, setRedo] = useState([]);
   const [redoA, setRedoA] = useState(false);
   const [que, setQue] = useState([]);
+  const [historyPreview, setHistoryPreview] = useState(null);
 
   useEffect(() => {
     if (user?.id && databaseUrl) {
