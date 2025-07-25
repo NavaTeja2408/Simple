@@ -166,7 +166,13 @@ const Sidebar = ({
   const [openCover, setOpenCover] = useState("half");
   const { user } = useContext(UserContext);
   const { databaseUrl } = useContext(DatabaseContext);
-  const { workspaces, setWorkspaces } = useContext(StateManageContext);
+  const {
+    workspaces,
+    setWorkspaces,
+    historyPreview,
+    setHistoryPreview,
+    count,
+  } = useContext(StateManageContext);
   const [outline, setOutline] = useState(null);
   const [searchW, setSearchW] = useState("");
   const [openSections, setOpenSections] = useState("para");
@@ -177,20 +183,18 @@ const Sidebar = ({
     const date = new Date(dateInput);
 
     const options = {
-      month: "short", // Jul
-      day: "numeric", // 22
-      year: "numeric", // 2025
-      hour: "numeric",
-      minute: "2-digit",
-      hour12: true,
+      month: "short", // Aug
+      day: "numeric", // 25
+      hour: "numeric", // 3
+      minute: "2-digit", // 45
+      hour12: true, // PM
     };
 
     return date.toLocaleString("en-US", options);
   };
-
   useEffect(() => {
     getHistory();
-  }, [active]);
+  }, [active, count]);
 
   const getHistory = async () => {
     try {
@@ -15623,18 +15627,18 @@ const Sidebar = ({
               </div>
             )}
             {tool === "Version history" && (
-              <div className=" absolute left-[80%] w-24 top-[275px] px-1 text-center bg-gray-500 text-white z-[1000] text-xs rounded-sm  ">
+              <div className=" absolute left-[80%] w-24 top-[210px] px-1 text-center bg-gray-500 text-white z-[1000] text-xs rounded-sm  ">
                 {tool}
               </div>
             )}
             {tool === "View all workspace" && (
-              <div className=" absolute left-[80%] w-32 top-[340px] px-1 text-center bg-gray-500 text-white z-[1000]   text-xs rounded-sm  ">
+              <div className=" absolute left-[80%] w-32 top-[275px] px-1 text-center bg-gray-500 text-white z-[1000]   text-xs rounded-sm  ">
                 {tool}
               </div>
             )}
             <div
               onClick={() => setActive("elements")}
-              className="flex p-1 flex-col w-full h-14 text-[12px] text-gray-500 cursor-pointer items-center justify-center"
+              className="flex p-1 flex-col w-full h-14 text-[12px] text-gray-500 cursor-pointer items-center justify-center "
               onMouseEnter={() => setTool("Add Elements")}
               onMouseLeave={() => setTool(null)}
             >
@@ -15707,7 +15711,7 @@ const Sidebar = ({
               <p className="text-gray-400">Design Doc</p>
             </div>
 
-            <div
+            {/* <div
               onClick={() => setActive("tracking")}
               className="flex p-1 flex-col w-full h-14 text-[12px] text-gray-500 cursor-pointer items-center justify-center"
               onMouseEnter={() => setTool("Track progress")}
@@ -15728,7 +15732,7 @@ const Sidebar = ({
               </div>
 
               <p className="text-gray-400">Doc Track</p>
-            </div>
+            </div> */}
 
             <div
               onClick={() => setActive("history")}
@@ -16263,7 +16267,7 @@ const Sidebar = ({
             </div>
           ) : active === "workspace" ? (
             <div
-              className="w-[220px] overflow-x-hidden  px-3  overflow-auto pb-[16px] text-lvl_2_txt z-50  "
+              className="w-[220px] overflow-x-hidden  px-3  overflow-auto pb-[40px] text-lvl_2_txt z-50  "
               style={{
                 boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.2)",
                 height: "calc(100vh - 65px)",
@@ -16303,10 +16307,16 @@ const Sidebar = ({
                           setWorkspaceInclude([...workspaceInclude, item._id]);
                         }
                       }}
-                      className="w-[100%] flex items-center justify-start  gap-2 mt-2 mb-2.5 cursor-pointer hover:text-black"
+                      className="w-[100%] flex items-center justify-start  gap-2 mt-2.5 mb-2.5 cursor-pointer hover:text-black"
                     >
                       <FiFolder className="text-graidient_bottom" />{" "}
-                      <p className="text-sm text-active_text w-[80%] overflow-hidden whitespace-nowrap text-ellipsis ">
+                      <p
+                        className={`text-sm  w-[80%] overflow-hidden whitespace-nowrap text-ellipsis hover:text-active_text ${
+                          workspaceInclude.includes(item._id)
+                            ? "text-active_text"
+                            : "text-non_active_text"
+                        } `}
+                      >
                         {item.workspaceName}
                       </p>
                       {item.favorate === true ? (
@@ -16327,7 +16337,7 @@ const Sidebar = ({
                             temp[idx].favorate = true;
                             setWorkspaces(temp);
                           }}
-                          className="text-sm text-active_text mt-0.5  cursor-pointer"
+                          className="text-sm text-active_text mt-0.5  cursor-pointer hover:text-primary"
                         />
                       )}
                     </div>
@@ -16358,6 +16368,7 @@ const Sidebar = ({
                       ))}
                   </div>
                 ))}
+              <div className="h-[1px] w-[120%] -mx-4 bg-border_clr mt-2"></div>
             </div>
           ) : active === "history" ? (
             <div
@@ -16370,20 +16381,25 @@ const Sidebar = ({
               <p className="text-sm text-lvl_2_hed font-semibold mx-3 p-2 ">
                 Version History
               </p>
-              <div className="w-full flex flex-col-reverse items-center">
+              <div className="w-full flex flex-col-reverse items-start px-3.5">
                 {version?.map((item, index) => {
                   return (
                     <div
                       key={index}
-                      onClick={() => setRows(item.data)}
-                      className="flex items-center justify-start gap-1 mt-2 cursor-pointer text-heightlet_text hover:text-active_text transition-all duration-500 ease-out opacity-0 animate-fadeIn"
+                      onClick={() => setHistoryPreview(item.data)}
+                      className="w-full flex items-center justify-between gap-1 py-2 cursor-pointer text-lvl_2_txt hover:text-active_text transition-all duration-500 ease-out opacity-0 animate-fadeIn"
                     >
-                      <IoDocumentTextOutline />
-                      <p className="text-sm  overflow-hidden text-ellipsis whitespace-nowrap pl-1">
-                        {version.length - 1 === index
-                          ? formatDate(item.updatedAt)
-                          : formatDate(item.createdAt)}
-                      </p>
+                      <div className="flex items-center justify-start gap-1">
+                        <IoDocumentTextOutline />
+                        <p className="text-sm  overflow-hidden text-ellipsis whitespace-nowrap pl-1">
+                          {version.length - 1 === index
+                            ? formatDate(item.updatedAt)
+                            : formatDate(item.createdAt)}
+                        </p>
+                      </div>
+                      <div>
+                        <IoDocumentTextOutline />
+                      </div>
                     </div>
                   );
                 })}
@@ -16410,7 +16426,7 @@ const Sidebar = ({
                     addHeadingRow("heading-one");
                     setThirdLevel("");
                   }}
-                  className="w-[88%]   py-[14px] bg-lvl_3_bg hover:bg-gray-200 cursor-pointer rounded-md flex flex-col  items-center justify-center gap-2 "
+                  className="w-[88%]   py-[14px] bg-lvl_3_bg hover:bg-highlight cursor-pointer rounded-md flex flex-col  items-center justify-center gap-2 "
                 >
                   {/* <img className="h-[85%] w-[70%] " src={heading_one} /> */}
                   <div
@@ -16426,7 +16442,7 @@ const Sidebar = ({
                     addHeadingRow("heading-two");
                     setThirdLevel("");
                   }}
-                  className="w-[88%]  py-[15px] bg-lvl_3_bg hover:bg-gray-200 cursor-pointer rounded-md flex flex-col  items-center justify-center gap-2 "
+                  className="w-[88%]  py-[15px] bg-lvl_3_bg hover:bg-highlight cursor-pointer rounded-md flex flex-col  items-center justify-center gap-2 "
                 >
                   <div
                     style={{ boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)" }}
@@ -16441,7 +16457,7 @@ const Sidebar = ({
                     addHeadingRow("heading-three");
                     setThirdLevel("");
                   }}
-                  className="w-[88%] h-28  py-[15px] bg-lvl_3_bg hover:bg-gray-200 cursor-pointer rounded-md flex flex-col  items-center justify-center gap-3 "
+                  className="w-[88%] h-28  py-[15px] bg-lvl_3_bg hover:bg-highlight cursor-pointer rounded-md flex flex-col  items-center justify-center gap-3 "
                 >
                   <div
                     style={{ boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)" }}
@@ -16456,7 +16472,7 @@ const Sidebar = ({
                     addHeadingRow("heading-four");
                     setThirdLevel("");
                   }}
-                  className="w-[88%] h-28  py-[15px] gap-3.5 bg-lvl_3_bg hover:bg-gray-200 cursor-pointer rounded-md flex flex-col  items-center justify-center "
+                  className="w-[88%] h-28  py-[15px] gap-3.5 bg-lvl_3_bg hover:bg-highlight cursor-pointer rounded-md flex flex-col  items-center justify-center "
                 >
                   <div
                     className="text-[12px] text-lvl_3_img bg-white h-[51px] w-[85px] flex items-center justify-center rounded-md "
@@ -16472,7 +16488,7 @@ const Sidebar = ({
                     addHeadingRow("heading-five");
                     setThirdLevel("");
                   }}
-                  className="w-[88%] h-28  py-[16px] gap-4 bg-lvl_3_bg hover:bg-gray-200 cursor-pointer rounded-md flex flex-col  items-center justify-center "
+                  className="w-[88%] h-28  py-[16px] gap-4 bg-lvl_3_bg hover:bg-highlight cursor-pointer rounded-md flex flex-col  items-center justify-center "
                 >
                   <div
                     className="text-[10px] text-lvl_3_img bg-white h-[47px] w-[67px] flex items-center justify-center rounded-md "
@@ -16487,7 +16503,7 @@ const Sidebar = ({
                     addHeadingRow("heading-six");
                     setThirdLevel("");
                   }}
-                  className="w-[88%] h-40 py-[17px] gap-5 bg-lvl_3_bg hover:bg-gray-200 cursor-pointer rounded-md flex flex-col  items-center justify-center "
+                  className="w-[88%] h-40 py-[17px] gap-5 bg-lvl_3_bg hover:bg-highlight cursor-pointer rounded-md flex flex-col  items-center justify-center "
                 >
                   <div
                     className="text-[8px] text-lvl_3_img bg-white h-[42px] w-[65px] flex items-center justify-center rounded-md "
@@ -16514,7 +16530,7 @@ const Sidebar = ({
                   }}
                   className="w-full flex flex-col justify-center items-center gap-1 cursor-pointer"
                 >
-                  <div className="w-[88%] relative h-[112px] p-1 bg-lvl_3_bg hover:bg-gray-200 cursor-pointer rounded-md flex flex-col text-gray-500 items-center justify-center gap-2 ">
+                  <div className="w-[88%] relative h-[112px] p-1 bg-lvl_3_bg hover:bg-highlight cursor-pointer rounded-md flex flex-col text-gray-500 items-center justify-center gap-2 ">
                     <img
                       style={{
                         boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
@@ -16532,7 +16548,7 @@ const Sidebar = ({
                   }}
                   className="w-full flex flex-col justify-center items-center gap-1 cursor-pointer"
                 >
-                  <div className="w-[88%] relative h-[112px] p-1 bg-lvl_3_bg hover:bg-gray-200 cursor-pointer rounded-md flex flex-col text-gray-500 items-center justify-center gap-2 ">
+                  <div className="w-[88%] relative h-[112px] p-1 bg-lvl_3_bg hover:bg-highlight cursor-pointer rounded-md flex flex-col text-gray-500 items-center justify-center gap-2 ">
                     <img
                       style={{
                         boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
@@ -16560,7 +16576,7 @@ const Sidebar = ({
                   }}
                   className="w-full flex flex-col justify-center items-center gap-1 cursor-pointer"
                 >
-                  <div className="w-[88%] relative h-[112px] p-1 bg-lvl_3_bg hover:bg-gray-200 cursor-pointer rounded-md flex flex-col text-gray-500 items-center justify-center gap-2 ">
+                  <div className="w-[88%] relative h-[112px] p-1 bg-lvl_3_bg hover:bg-highlight cursor-pointer rounded-md flex flex-col text-gray-500 items-center justify-center gap-2 ">
                     <img
                       style={{
                         boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
@@ -16578,7 +16594,7 @@ const Sidebar = ({
                   }}
                   className="w-full flex flex-col justify-center items-center gap-1 cursor-pointer"
                 >
-                  <div className="w-[88%] relative h-[112px] p-1 bg-lvl_3_bg hover:bg-gray-200 cursor-pointer rounded-md flex flex-col text-gray-500 items-center justify-center gap-2 ">
+                  <div className="w-[88%] relative h-[112px] p-1 bg-lvl_3_bg hover:bg-highlight cursor-pointer rounded-md flex flex-col text-gray-500 items-center justify-center gap-2 ">
                     <img
                       style={{
                         boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
@@ -16596,7 +16612,7 @@ const Sidebar = ({
                   }}
                   className="w-full flex flex-col justify-center items-center gap-1 cursor-pointer"
                 >
-                  <div className="w-[88%] relative h-[112px] p-1 bg-lvl_3_bg hover:bg-gray-200 cursor-pointer rounded-md flex flex-col text-gray-500 items-center justify-center gap-2 ">
+                  <div className="w-[88%] relative h-[112px] p-1 bg-lvl_3_bg hover:bg-highlight cursor-pointer rounded-md flex flex-col text-gray-500 items-center justify-center gap-2 ">
                     <img
                       style={{
                         boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
@@ -16622,7 +16638,7 @@ const Sidebar = ({
                     addTableRow("normal");
                     setThirdLevel("");
                   }}
-                  className="w-[88%] h-[112px] p-2 bg-lvl_3_bg hover:bg-gray-200 cursor-pointer rounded-md flex flex-col  items-center justify-center "
+                  className="w-[88%] h-[112px] p-2 bg-lvl_3_bg hover:bg-highlight cursor-pointer rounded-md flex flex-col  items-center justify-center "
                 >
                   <img className="h-[75%] w-[53%]" src={table_v_1} />
                   <p className="text-lvl_2_txt text-xs">Basic</p>
@@ -16632,7 +16648,7 @@ const Sidebar = ({
                     addTableRow("alternativerow");
                     setThirdLevel("");
                   }}
-                  className="w-[88%] h-[112px] p-2 bg-lvl_3_bg hover:bg-gray-200 cursor-pointer rounded-md flex flex-col  items-center justify-center "
+                  className="w-[88%] h-[112px] p-2 bg-lvl_3_bg hover:bg-highlight cursor-pointer rounded-md flex flex-col  items-center justify-center "
                 >
                   <img className="h-[75%] w-[53%]" src={table_v_2} />
                   <p className="text-lvl_2_txt text-xs">Aleternative Row</p>
@@ -16642,7 +16658,7 @@ const Sidebar = ({
                     addTableRow("alternativecol");
                     setThirdLevel("");
                   }}
-                  className="w-[88%] h-[112px] p-2 bg-lvl_3_bg hover:bg-gray-200 cursor-pointer rounded-md flex flex-col  items-center justify-center "
+                  className="w-[88%] h-[112px] p-2 bg-lvl_3_bg hover:bg-highlight cursor-pointer rounded-md flex flex-col  items-center justify-center "
                 >
                   <img className="h-[75%] w-[53%]" src={table_v_3} />
                   <p className="text-lvl_2_txt text-xs">Aleternative Coloumn</p>
@@ -16652,7 +16668,7 @@ const Sidebar = ({
                     addTableRow("toprow");
                     setThirdLevel("");
                   }}
-                  className="w-[88%] h-[112px] p-2 bg-lvl_3_bg hover:bg-gray-200 cursor-pointer rounded-md flex flex-col  items-center justify-center "
+                  className="w-[88%] h-[112px] p-2 bg-lvl_3_bg hover:bg-highlight cursor-pointer rounded-md flex flex-col  items-center justify-center "
                 >
                   <img className="h-[75%] w-[53%]" src={table_v_4} />
                   <p className="text-lvl_2_txt text-xs">Top Row</p>
@@ -16663,7 +16679,7 @@ const Sidebar = ({
                     addTableRow("leftcol");
                     setThirdLevel("");
                   }}
-                  className="w-[88%] h-[112px] p-2 bg-lvl_3_bg hover:bg-gray-200 cursor-pointer rounded-md flex flex-col  items-center justify-center "
+                  className="w-[88%] h-[112px] p-2 bg-lvl_3_bg hover:bg-highlight cursor-pointer rounded-md flex flex-col  items-center justify-center "
                 >
                   <img className="h-[75%] w-[53%]" src={table_v_5} />
                   <p className="text-lvl_2_txt text-xs">Left Coloumn</p>

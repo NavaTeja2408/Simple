@@ -22,6 +22,7 @@ const DropCanvas = ({
   addTableRow,
   addCodeBlock,
   addLineSpace,
+  height,
 }) => {
   const [bookmark, setBookmark] = useState(null);
   const [snapshotLink, setSnapshotLink] = useState("");
@@ -119,7 +120,9 @@ const DropCanvas = ({
 
   return (
     <div
-      className="canvas mt-10 my mb-20 bg-white shadow-lg shadow-gray-300 h-fit py-10 px-12"
+      className={`canvas ${
+        height === true ? "mt-1" : " mt-10"
+      } my mb-20 bg-white shadow-lg shadow-gray-300 h-fit py-10 px-12`}
       style={{ width: "1000px", minHeight: "230vh", position: "relative" }}
     >
       {/* Render rows */}

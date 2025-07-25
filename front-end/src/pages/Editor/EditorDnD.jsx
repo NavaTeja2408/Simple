@@ -67,6 +67,8 @@ const EditorDnD = () => {
     setCostModeule,
     setUndo,
     setQue,
+    historyPreview,
+    setHistoryPreview,
   } = useContext(StateManageContext);
 
   useEffect(() => {
@@ -564,6 +566,7 @@ const EditorDnD = () => {
             </div>
           </div>
         )}
+
         {costModule && (
           <CostModule
             addCostModule={addCostModule}
@@ -587,6 +590,63 @@ const EditorDnD = () => {
             signEdit={signEdit}
             setSignEdit={setSignEdit}
           />
+        )}
+
+        {historyPreview !== null && (
+          <div className="fixed inset-0 bg-opacity-40 flex justify-center bg-black items-center z-[10000000]">
+            <div className="w-fit h-fit bg-white px-4 py-4 rounded-md">
+              <div className="px-3 py-2 text-non_active_text">
+                <p>History Preview</p>
+              </div>
+              <div
+                className="flex justify-center overflow-y-auto h-[68vh] bg-white"
+                style={{
+                  flex: 1,
+                  overflow: "auto",
+                }}
+                ref={dropCanvasRef}
+              >
+                <DropCanvas
+                  rows={historyPreview}
+                  settings={settings}
+                  setRows={setHistoryPreview}
+                  preview={true}
+                  setSignEdit={setSignEdit}
+                  dropCanvasRef={dropCanvasRef}
+                  addEmptyRow={addEmptyRow}
+                  addInputRow={addInputRow}
+                  addTextRow={addTextRow}
+                  addHeadingRow={addHeadingRow}
+                  addDoublePara={addDoublePara}
+                  addImageAndParagraph={addImageAndParagraph}
+                  addImageRow={addImageRow}
+                  addBreakPoint={addBreakPoint}
+                  addTableRow={addTableRow}
+                  addCodeBlock={addCodeBlock}
+                  addLineSpace={addLineSpace}
+                  height={true}
+                />
+              </div>
+
+              <div className="mt-4 mb-1 mr-2 flex justify-end gap-4">
+                <button
+                  onClick={() => setHistoryPreview(null)}
+                  className="px-4 py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-300 text-sm"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={() => {
+                    setRows(historyPreview);
+                    setHistoryPreview(null);
+                  }}
+                  className="bg-footer_gradient_bot text-white px-4 rounded-md py-2 text-center text-sm flex gap-1 items-center justify-center hover:bg-hover_dark_btn active:bg-gradient_darker "
+                >
+                  Restore this version
+                </button>
+              </div>
+            </div>
+          </div>
         )}
         {/* Sidebar with buttons */}
         <div
@@ -648,6 +708,7 @@ const EditorDnD = () => {
             addTableRow={addTableRow}
             addCodeBlock={addCodeBlock}
             addLineSpace={addLineSpace}
+            height={false}
           />
         </div>
       </div>

@@ -84,7 +84,7 @@ const EditorHeader = ({
   const [changing, setChanging] = useState(false);
   const [view, setView] = useState(true);
   const [tool, setTool] = useState(null);
-  const { que, setQue } = useContext(StateManageContext);
+  const { que, setQue, count, setCount } = useContext(StateManageContext);
   const date = new Date(createdAt);
 
   const day = String(date.getDate()).padStart(2, "0");
@@ -305,6 +305,7 @@ const EditorHeader = ({
       console.log(error);
     } finally {
       setSaving(false);
+      setCount(count + 1);
     }
   };
   const updateTimeout = useRef(null);

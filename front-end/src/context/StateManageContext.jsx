@@ -26,6 +26,7 @@ export function StateManageContextProvider({ children }) {
   const [redoA, setRedoA] = useState(false);
   const [que, setQue] = useState([]);
   const [historyPreview, setHistoryPreview] = useState(null);
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
     if (user?.id && databaseUrl) {
@@ -101,6 +102,10 @@ export function StateManageContextProvider({ children }) {
         setRedoA,
         que,
         setQue,
+        historyPreview,
+        setHistoryPreview,
+        count,
+        setCount,
       }}
     >
       {children}
