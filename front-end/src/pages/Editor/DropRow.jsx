@@ -244,7 +244,7 @@ const DropRow = ({
           row.type !== "cover"
             ? "30px"
             : "4px",
-        paddingBottom: selected === index ? "20px" : "0px",
+        paddingBottom: selected === index ? "15px" : "0px",
 
         border:
           selected === index && preview !== true

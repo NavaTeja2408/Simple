@@ -165,6 +165,7 @@ const Sidebar = ({
   const { id } = useParams();
   const [loading, setLoading] = useState(false);
   const [openCover, setOpenCover] = useState("half");
+  const [designDoc, setDesignDoc] = useState("");
   const { user } = useContext(UserContext);
   const { databaseUrl } = useContext(DatabaseContext);
   const {
@@ -15847,7 +15848,7 @@ const Sidebar = ({
                   <button
                     onClick={() => setThirdLevel("cover")}
                     className={` relative p-2 px-3 w-[95%] rounded-lg flex mx-3  items-center  
-                      gap-4 hover:bg-gray-100 ${
+                      gap-4 hover:bg-gray-100 active:bg-highlight ${
                         thirdLevel === "cover" && "bg-gray-100"
                       }`}
                   >
@@ -15862,7 +15863,7 @@ const Sidebar = ({
                   <button
                     onClick={() => setThirdLevel("sections")}
                     className={` relative p-2 px-3 w-[95%] rounded-lg flex mx-3  items-center  
-                      gap-4 hover:bg-gray-100 ${
+                      gap-4 hover:bg-gray-100 active:bg-highlight ${
                         thirdLevel === "sections" && "bg-gray-100"
                       }`}
                   >
@@ -15877,7 +15878,7 @@ const Sidebar = ({
                   <button
                     onClick={() => setThirdLevel("saved")}
                     className={` relative p-2 px-3 w-[95%] rounded-lg flex mx-3  items-center  
-                      gap-4 hover:bg-gray-100 ${
+                      gap-4 hover:bg-gray-100 active:bg-highlight ${
                         thirdLevel === "saved" && "bg-gray-100"
                       }`}
                   >
@@ -16017,111 +16018,185 @@ const Sidebar = ({
                   boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.2)",
                   height: "calc(100vh - 65px)",
                 }}
-                className=" w-[225px] px-2.5  border-r-2 border-gray-200  pb-[16px]  flex flex-col overflow-y-scroll overflow-x-hidden  "
+                className=" w-[220px] px-2.5  border-r-2 border-gray-200  pb-[16px]  flex flex-col overflow-y-scroll overflow-x-hidden  "
               >
-                <h3 className="text-sm text-lvl_2_hed py-2 font-semibold  ">
-                  Customize Proposal
+                <h3
+                  onClick={() => {
+                    if (designDoc === "color") {
+                      setDesignDoc("");
+                    } else {
+                      setDesignDoc("color");
+                    }
+                  }}
+                  className="text-sm text-lvl_2_hed py-2 font-semibold "
+                >
+                  Design Style
                 </h3>
                 {/* <p className="text-[10px] mt-1 text-non_active_text w-[95%]">
                   Set your colors, fonts, and theme to match your brand
                 </p> */}
-                <div>
-                  <h3 className="text-xs mt-1 text-active_text ">
-                    Primary Color
-                  </h3>
-                  <div
-                    ref={colorButtonRef}
-                    className="py-1.5 w-full mt-2 flex   items-center justify-between border border-border_clr rounded-[2px]"
-                    onClick={() => setShowPicker(true)}
-                  >
-                    <p className="  text-non_active_text text-xs">
-                      <span className="flex gap-1 px-2 items-center">
-                        <div
-                          className="w-3 h-3"
-                          style={{ backgroundColor: settings.color }}
-                        ></div>
-                        {settings.color}
-                      </span>
-                    </p>
-                  </div>
-                </div>
-                {/* <div className="w-full h-1 bg-gray-300"></div> */}
 
-                <div className="mt-4">
-                  <div className="w-[120%] h-[1px] bg-border_clr -mx-4 "></div>
-                  <h3 className="text-sm text-lvl_2_hed font-semibold mb-2 mt-4">
-                    Typography
-                  </h3>
-                  <label className="text-xs text-active_text mb-2 ">
-                    Heading Font
-                  </label>
-                  <div className="relative w-full mt-1">
-                    <select
-                      value={settings.heading}
-                      onChange={(e) => {
-                        const temp = { ...settings };
-                        temp.heading = e.target.value;
-                        setSettings(temp);
-                      }}
-                      className="w-full py-1.5 px-2 pr-8 outline-none border border-border_clr rounded-[2px] text-non_active_text text-xs appearance-none"
+                <h3
+                  onClick={() => {
+                    if (designDoc === "color") {
+                      setDesignDoc("");
+                    } else {
+                      setDesignDoc("color");
+                    }
+                  }}
+                  className={`text-sm  py-2 cursor-pointer -mx-3 h-[48px] flex items-center justify-between px-4 hover:bg-highlight ${
+                    designDoc === "color"
+                      ? "bg-highlight text-active_text"
+                      : "bg-white text-lvl_2_hed"
+                  } `}
+                >
+                  Color
+                  <FaAngleRight
+                    className={`${
+                      designDoc === "color" ? "rotate-90" : "rotate-0"
+                    }`}
+                  />
+                </h3>
+                {designDoc === "color" && (
+                  <div className="w-full transition-all duration-500 ease-out opacity-0 animate-fadeIn mb-2 ">
+                    {/* <h3 className="text-xs mt-1 text-active_text ">
+                      Primary Color
+                    </h3> */}
+                    {/* <div
+                      ref={colorButtonRef}
+                      className="py-1.5 w-full mt-2 flex   items-center justify-between border border-border_clr rounded-[2px]"
+                      onClick={() => setShowPicker(true)}
                     >
-                      <option value="arial">Arial</option>
-                      <option value="helvetica">Helvetica</option>
-                      <option value="poppins">Poppins</option>
-                      <option value="montserrat">Montserrat</option>
-                      <option value="roboto">Roboto</option>
-                      <option value="times-new-roman">Times New Roman</option>
-                      <option value="georgia">Georgia</option>
-                      <option value="playfair-display">Playfair Display</option>
-                      <option value="merriweather">Merriweather</option>
-                      <option value="garamond">Garamond</option>
-                      <option value="lobster">Lobster</option>
-                      <option value="pacifico">Pacifico</option>
-                      <option value="bebas-neue">Bebas Neue</option>
-                      <option value="anton">Anton</option>
-                      <option value="oswald">Oswald</option>
-                    </select>
-                    <div className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-non_active_text text-xs">
-                      <IoIosArrowDown className="text-non_active_text" />
+                      <p className="  text-non_active_text text-xs">
+                        <span className="flex gap-1 px-2 items-center">
+                          <div
+                            className="w-3 h-3"
+                            style={{ backgroundColor: settings.color }}
+                          ></div>
+                          {settings.color}
+                        </span>
+                      </p>
+                    </div> */}
+                    <div className="w-full flex items-center justify-center mt-3">
+                      <SketchPicker
+                        color={settings.color}
+                        onChange={(updatedColor) => {
+                          const temp = { ...settings };
+                          temp.color = updatedColor.hex;
+                          setSettings(temp);
+                        }}
+                        width="180px"
+                      />
                     </div>
                   </div>
-                </div>
-                <div className="mt-3 gap-1">
-                  <label className="text-xs text-active_text mb-2">
-                    Body Font
-                  </label>
-                  <div className="relative w-full mt-1">
-                    <select
-                      value={settings.body}
-                      onChange={(e) => {
-                        const temp = { ...settings };
-                        temp.body = e.target.value;
-                        setSettings(temp);
-                      }}
-                      className="w-full py-1.5 px-2 pr-8 outline-none border border-border_clr rounded-[2px] text-non_active_text text-xs appearance-none
-            "
-                    >
-                      <option value="arial">Arial</option>
-                      <option value="helvetica">Helvetica</option>
-                      <option value="poppins">Poppins</option>
-                      <option value="montserrat">Montserrat</option>
-                      <option value="roboto">Roboto</option>
-                      <option value="times-new-roman">Times New Roman</option>
-                      <option value="georgia">Georgia</option>
-                      <option value="playfair-display">Playfair Display</option>
-                      <option value="merriweather">Merriweather</option>
-                      <option value="garamond">Garamond</option>
-                      <option value="lobster">Lobster</option>
-                      <option value="pacifico">Pacifico</option>
-                      <option value="bebas-neue">Bebas Neue</option>
-                      <option value="anton">Anton</option>
-                      <option value="oswald">Oswald</option>
-                    </select>
-                    <div className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-non_active_text text-xs">
-                      <IoIosArrowDown className="text-non_active_text " />
+                )}
+
+                {/* <div className="w-full h-1 bg-gray-300"></div> */}
+                <h3
+                  onClick={() => {
+                    if (designDoc === "typo") {
+                      setDesignDoc("");
+                    } else {
+                      setDesignDoc("typo");
+                    }
+                  }}
+                  className={`text-sm  py-2 cursor-pointer -mx-3 h-[48px] flex items-center justify-between px-4 hover:bg-highlight ${
+                    designDoc === "typo"
+                      ? "bg-highlight text-active_text"
+                      : "bg-white text-lvl_2_hed"
+                  } `}
+                >
+                  Font
+                  <FaAngleRight
+                    className={`${
+                      designDoc === "typo" ? "rotate-90" : "rotate-0"
+                    }`}
+                  />
+                </h3>
+                {designDoc === "typo" && (
+                  <div className="transition-all duration-500 ease-out opacity-0 animate-fadeIn mb-2 ">
+                    <div className="mt-1 ">
+                      <label className="text-xs text-non_active_text mb-2 ">
+                        Heading Font
+                      </label>
+                      <div className="relative w-full mt-1">
+                        <select
+                          value={settings.heading}
+                          onChange={(e) => {
+                            const temp = { ...settings };
+                            temp.heading = e.target.value;
+                            setSettings(temp);
+                          }}
+                          className="w-full py-1.5 px-2 pr-8 outline-none border border-border_clr rounded-[2px] text-non_active_text text-xs appearance-none"
+                        >
+                          <option value="arial">Arial</option>
+                          <option value="helvetica">Helvetica</option>
+                          <option value="poppins">Poppins</option>
+                          <option value="montserrat">Montserrat</option>
+                          <option value="roboto">Roboto</option>
+                          <option value="times-new-roman">
+                            Times New Roman
+                          </option>
+                          <option value="georgia">Georgia</option>
+                          <option value="playfair-display">
+                            Playfair Display
+                          </option>
+                          <option value="merriweather">Merriweather</option>
+                          <option value="garamond">Garamond</option>
+                          <option value="lobster">Lobster</option>
+                          <option value="pacifico">Pacifico</option>
+                          <option value="bebas-neue">Bebas Neue</option>
+                          <option value="anton">Anton</option>
+                          <option value="oswald">Oswald</option>
+                        </select>
+                        <div className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-non_active_text text-xs">
+                          <IoIosArrowDown className="text-non_active_text" />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="mt-3 gap-1">
+                      <label className="text-xs text-non_active_text mb-2">
+                        Body Font
+                      </label>
+                      <div className="relative w-full mt-1">
+                        <select
+                          value={settings.body}
+                          onChange={(e) => {
+                            const temp = { ...settings };
+                            temp.body = e.target.value;
+                            setSettings(temp);
+                          }}
+                          className="w-full py-1.5 px-2 pr-8 outline-none border border-border_clr rounded-[2px] text-non_active_text text-xs appearance-none
+                     "
+                        >
+                          <option value="arial">Arial</option>
+                          <option value="helvetica">Helvetica</option>
+                          <option value="poppins">Poppins</option>
+                          <option value="montserrat">Montserrat</option>
+                          <option value="roboto">Roboto</option>
+                          <option value="times-new-roman">
+                            Times New Roman
+                          </option>
+                          <option value="georgia">Georgia</option>
+                          <option value="playfair-display">
+                            Playfair Display
+                          </option>
+                          <option value="merriweather">Merriweather</option>
+                          <option value="garamond">Garamond</option>
+                          <option value="lobster">Lobster</option>
+                          <option value="pacifico">Pacifico</option>
+                          <option value="bebas-neue">Bebas Neue</option>
+                          <option value="anton">Anton</option>
+                          <option value="oswald">Oswald</option>
+                        </select>
+                        <div className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-non_active_text text-xs">
+                          <IoIosArrowDown className="text-non_active_text " />
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
+                )}
+
                 {/* <div className="mt-3 flex items-center justify-between px-3 py-1 border border-gray-200 rounded-md text-xs text-gray-400 ">
                   <label>Header</label>
                   <input
@@ -16149,101 +16224,150 @@ const Sidebar = ({
                   />
                 </div> */}
 
-                <div className="mt-4">
-                  <div className="w-[120%] h-[1px] bg-border_clr -mx-4 "></div>
-                  <h3 className="text-sm text-lvl_2_hed font-semibold mt-3 ">
-                    Choose Proposal Theme
-                  </h3>
-                  {/* <p className="text-non_active_text text-[10px] ">
-                    Select a design style for your entire proposal.
-                  </p> */}
-                  <div className=" w-full grid grid-cols-2 gap-4 mt-4">
-                    <img
-                      onClick={() => {
-                        const temp = { ...settings };
-                        temp.theme = 0;
-                        setSettings(temp);
-                      }}
-                      className={`h-28 w-[100%] hover:border hover:border-graidient_bottom ${
-                        settings.theme === 0
-                          ? "border border-gradient_darker"
-                          : "none"
-                      }`}
-                      src={theme_0}
-                      alt="sometthing"
-                    />
-                    <img
-                      onClick={() => {
-                        const temp = { ...settings };
-                        temp.theme = 1;
-                        setSettings(temp);
-                      }}
-                      className={`h-28 w-[100%] hover:border hover:border-graidient_bottom ${
-                        settings.theme === 1
-                          ? "border border-gradient_darker"
-                          : "none"
-                      }`}
-                      src={theme_1}
-                      alt="sometthing"
-                    />
-                    <img
-                      onClick={() => {
-                        const temp = { ...settings };
-                        temp.theme = 2;
-                        setSettings(temp);
-                      }}
-                      className={`h-28 w-[100%] hover:border hover:border-graidient_bottom ${
-                        settings.theme === 2
-                          ? "border border-gradient_darker"
-                          : "none"
-                      }`}
-                      src={theme_2}
-                      alt="sometthing"
-                    />
-                    <img
-                      onClick={() => {
-                        const temp = { ...settings };
-                        temp.theme = 3;
-                        setSettings(temp);
-                      }}
-                      className={`h-28 w-[100%] hover:border hover:border-graidient_bottom ${
-                        settings.theme === 3
-                          ? "border border-gradient_darker"
-                          : "none"
-                      }`}
-                      src={theme_3}
-                      alt="sometthing"
-                    />
-                    <img
-                      onClick={() => {
-                        const temp = { ...settings };
-                        temp.theme = 4;
-                        setSettings(temp);
-                      }}
-                      className={`h-28 w-[100%] hover:border hover:border-graidient_bottom ${
-                        settings.theme === 4
-                          ? "border border-gradient_darker"
-                          : "none"
-                      }`}
-                      src={theme_4}
-                      alt="sometthing"
-                    />
-                    <img
-                      onClick={() => {
-                        const temp = { ...settings };
-                        temp.theme = 5;
-                        setSettings(temp);
-                      }}
-                      className={`h-28 w-[100%] hover:border hover:border-graidient_bottom ${
-                        settings.theme === 5
-                          ? "border border-gradient_darker"
-                          : "none"
-                      }`}
-                      src={theme_5}
-                      alt="sometthing"
-                    />
+                <h3
+                  onClick={() => {
+                    if (designDoc === "theme") {
+                      setDesignDoc("");
+                    } else {
+                      setDesignDoc("theme");
+                    }
+                  }}
+                  className={`text-sm  py-2 cursor-pointer -mx-3 h-[48px] flex items-center justify-between px-4 hover:bg-highlight ${
+                    designDoc === "theme"
+                      ? "bg-highlight text-active_text"
+                      : "bg-white text-lvl_2_hed"
+                  } `}
+                >
+                  Themes
+                  <FaAngleRight
+                    className={`${
+                      designDoc === "theme" ? "rotate-90" : "rotate-0"
+                    }`}
+                  />
+                </h3>
+                {designDoc === "theme" && (
+                  <div className="mt-4 transition-all duration-500 ease-out opacity-0 animate-fadeIn ">
+                    {/* <p className="text-non_active_text text-[10px] ">
+          Select a design style for your entire proposal.
+        </p> */}
+                    <div className=" w-full grid grid-cols-2 gap-4 mt-2">
+                      <div className="flex flex-col items-center justify-center">
+                        <img
+                          onClick={() => {
+                            const temp = { ...settings };
+                            temp.theme = 0;
+                            setSettings(temp);
+                          }}
+                          className={`h-28 w-[100%] hover:border hover:border-graidient_bottom ${
+                            settings.theme === 0
+                              ? "border border-gradient_darker"
+                              : "none"
+                          }`}
+                          src={theme_0}
+                          alt="sometthing"
+                        />
+                        <p className="text-xs text-non_active_text mt-1">
+                          Classic
+                        </p>
+                      </div>
+                      <div className="flex flex-col items-center justify-center">
+                        <img
+                          onClick={() => {
+                            const temp = { ...settings };
+                            temp.theme = 1;
+                            setSettings(temp);
+                          }}
+                          className={`h-28 w-[100%] hover:border hover:border-graidient_bottom ${
+                            settings.theme === 1
+                              ? "border border-gradient_darker"
+                              : "none"
+                          }`}
+                          src={theme_1}
+                          alt="sometthing"
+                        />
+                        <p className="text-xs text-non_active_text mt-1">
+                          Classic
+                        </p>
+                      </div>
+                      <div className="flex flex-col items-center justify-center">
+                        <img
+                          onClick={() => {
+                            const temp = { ...settings };
+                            temp.theme = 2;
+                            setSettings(temp);
+                          }}
+                          className={`h-28 w-[100%] hover:border hover:border-graidient_bottom ${
+                            settings.theme === 2
+                              ? "border border-gradient_darker"
+                              : "none"
+                          }`}
+                          src={theme_2}
+                          alt="sometthing"
+                        />
+                        <p className="text-xs text-non_active_text mt-1">
+                          Classic
+                        </p>
+                      </div>
+                      <div className="flex flex-col items-center justify-center">
+                        <img
+                          onClick={() => {
+                            const temp = { ...settings };
+                            temp.theme = 3;
+                            setSettings(temp);
+                          }}
+                          className={`h-28 w-[100%] hover:border hover:border-graidient_bottom ${
+                            settings.theme === 3
+                              ? "border border-gradient_darker"
+                              : "none"
+                          }`}
+                          src={theme_3}
+                          alt="sometthing"
+                        />
+                        <p className="text-xs text-non_active_text mt-1">
+                          Classic
+                        </p>
+                      </div>
+                      <div className="flex flex-col items-center justify-center">
+                        <img
+                          onClick={() => {
+                            const temp = { ...settings };
+                            temp.theme = 4;
+                            setSettings(temp);
+                          }}
+                          className={`h-28 w-[100%] hover:border hover:border-graidient_bottom ${
+                            settings.theme === 4
+                              ? "border border-gradient_darker"
+                              : "none"
+                          }`}
+                          src={theme_4}
+                          alt="sometthing"
+                        />
+                        <p className="text-xs text-non_active_text mt-1">
+                          Classic
+                        </p>
+                      </div>
+                      <div className="flex flex-col items-center justify-center">
+                        <img
+                          onClick={() => {
+                            const temp = { ...settings };
+                            temp.theme = 5;
+                            setSettings(temp);
+                          }}
+                          className={`h-28 w-[100%] hover:border hover:border-graidient_bottom ${
+                            settings.theme === 5
+                              ? "border border-gradient_darker"
+                              : "none"
+                          }`}
+                          src={theme_5}
+                          alt="sometthing"
+                        />
+                        <p className="text-xs text-non_active_text mt-1">
+                          Classic
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
               <div
                 style={{ height: "calc(100vh - 65px)" }}
@@ -16277,7 +16401,7 @@ const Sidebar = ({
               <p className="text-sm text-lvl_2_hed py-2 px-1 font-semibold  ">
                 Workspaces
               </p>
-              <div className="w-full h-8 bg-backgrounds  flex items-center px-1 rounded border hover:border-active_text focus-within::border-active_text">
+              <div className="w-full h-8 bg-backgrounds  flex items-center px-1 rounded border hover:border-active_text focus-within::border-active_text mb-2">
                 <IoIosSearch className="text-non_active_text text-md" />
                 <input
                   className="w-[90%] h-full outline-none  rounded text-sm bg-backgrounds px-2"
@@ -16294,9 +16418,9 @@ const Sidebar = ({
                   return query === "" ? true : name.startsWith(query);
                 })
                 .map((item, idx) => (
-                  <div key={item._id} className="text-sm">
+                  <div key={item._id} className="text-sm -mx-3 ">
                     {idx !== 0 && (
-                      <div className="h-[1px] w-[120%] -mx-4 bg-border_clr mt-2"></div>
+                      <div className="h-[1px] w-[120%] -mx-4 bg-border_clr "></div>
                     )}
                     <div
                       onClick={() => {
@@ -16308,7 +16432,7 @@ const Sidebar = ({
                           setWorkspaceInclude([...workspaceInclude, item._id]);
                         }
                       }}
-                      className="w-[100%] flex items-center justify-start  gap-2 mt-2.5 mb-2.5 cursor-pointer hover:text-black"
+                      className="w-[100%] h-[48px] flex items-center justify-start  gap-2  cursor-pointer hover:text-black hover:bg-gray-200 px-3"
                     >
                       <FiFolder className="text-graidient_bottom" />{" "}
                       <p
@@ -16344,7 +16468,7 @@ const Sidebar = ({
                     </div>
                     {workspaceInclude.includes(item._id) &&
                       (item.proposals && item.proposals.length === 0 ? (
-                        <div className="w-full ml-3 flex items-center justify-start gap-1 mt-2 cursor-pointer text-non_active_text transition-all duration-500 ease-out opacity-0 animate-fadeIn ">
+                        <div className="w-full ml-4 flex items-center justify-start gap-1 my-2 cursor-pointer text-non_active_text transition-all duration-500 ease-out opacity-0 animate-fadeIn ">
                           <p className="text-xs w-[88%] overflow-hidden text-ellipsis whitespace-nowrap pl-1">
                             No Proposals available
                           </p>
@@ -16353,14 +16477,14 @@ const Sidebar = ({
                         item.proposals?.map((proposal, index) => (
                           <div
                             key={proposal._id || index}
-                            className="w-full ml-3 flex items-center justify-start gap-1 mt-2 cursor-pointer text-non_active_text hover:text-heightlet_text transition-all duration-500 ease-out opacity-0 animate-fadeIn"
+                            className="w-full ml-4 flex items-center justify-start gap-1 my-2 cursor-pointer text-non_active_text hover:text-heightlet_text transition-all duration-500 ease-out opacity-0 animate-fadeIn"
                           >
                             <IoDocumentTextOutline />
                             <p
                               onClick={() =>
                                 navigate(`/editor/${proposal._id}`)
                               }
-                              className="text-xs w-[88%] overflow-hidden text-ellipsis whitespace-nowrap pl-1"
+                              className="text-xs w-[84%] overflow-hidden text-ellipsis whitespace-nowrap pl-1"
                             >
                               {proposal.proposalName}
                             </p>
@@ -16388,9 +16512,9 @@ const Sidebar = ({
                     <div
                       key={index}
                       onClick={() => setHistoryPreview(item.data)}
-                      className="w-full flex items-center justify-between gap-1  px-4 py-2.5 cursor-pointer text-lvl_2_txt hover:text-active_text transition-all duration-500 ease-out opacity-0 animate-fadeIn border-b border-border_clr"
+                      className="w-full flex items-center justify-between gap-1  px-4  cursor-pointer text-lvl_2_txt hover:text-active_text transition-all duration-500 ease-out opacity-0 animate-fadeIn border-b border-border_clr"
                     >
-                      <div className="flex items-center justify-start gap-1">
+                      <div className="flex items-center justify-start h-[47px]">
                         <IoDocumentTextOutline />
                         <p className="text-sm  overflow-hidden text-ellipsis whitespace-nowrap pl-1">
                           {version.length - 1 === index
@@ -16436,7 +16560,9 @@ const Sidebar = ({
                   >
                     Heading 1
                   </div>
-                  <p className="text-xs font-semibold text-lvl_3_txt">H1</p>
+                  <p className="text-xs font-semibold text-lvl_3_txt hover:text-active_text">
+                    H1
+                  </p>
                 </div>
                 <div
                   onClick={() => {
@@ -16451,7 +16577,9 @@ const Sidebar = ({
                   >
                     Heading 2
                   </div>
-                  <p className="text-xs font-semibold text-lvl_3_txt">H2</p>
+                  <p className="text-xs font-semibold text-lvl_3_txt hover:text-active_text">
+                    H2
+                  </p>
                 </div>
                 <div
                   onClick={() => {
@@ -16466,7 +16594,9 @@ const Sidebar = ({
                   >
                     Heading 3
                   </div>
-                  <p className="text-xs font-semibold text-lvl_3_txt">H3</p>
+                  <p className="text-xs font-semibold text-lvl_3_txt hover:text-active_text">
+                    H3
+                  </p>
                 </div>
                 <div
                   onClick={() => {
@@ -16481,7 +16611,9 @@ const Sidebar = ({
                   >
                     Heading 4
                   </div>
-                  <p className="text-xs font-semibold text-lvl_3_txt">H4</p>
+                  <p className="text-xs font-semibold text-lvl_3_txt hover:text-active_text">
+                    H4
+                  </p>
                 </div>
 
                 <div
@@ -16497,7 +16629,9 @@ const Sidebar = ({
                   >
                     Heading 5
                   </div>
-                  <p className="text-xs font-semibold text-lvl_3_txt">H5</p>
+                  <p className="text-xs font-semibold text-lvl_3_txt hover:text-active_text">
+                    H5
+                  </p>
                 </div>
                 <div
                   onClick={() => {
@@ -16512,7 +16646,9 @@ const Sidebar = ({
                   >
                     Heading 6
                   </div>
-                  <p className="text-xs font-semibold text-lvl_3_txt">H6</p>
+                  <p className="text-xs font-semibold text-lvl_3_txt hover:text-active_text">
+                    H6
+                  </p>
                 </div>
               </div>
             ) : thirdLevel === "paragraph" ? (
@@ -16539,7 +16675,9 @@ const Sidebar = ({
                       className=" rounded-md "
                       src={para_2}
                     />
-                    <p className="text-lvl_3_txt text-xs">Paragraph</p>
+                    <p className="text-lvl_3_txt text-xs hover:text-active_text">
+                      Paragraph
+                    </p>
                   </div>
                 </div>
                 <div
@@ -16557,7 +16695,9 @@ const Sidebar = ({
                       className=" rounded-md "
                       src={double_2}
                     />
-                    <p className="text-lvl_3_txt text-xs">Double Paragraph</p>
+                    <p className="text-lvl_3_txt text-xs hover:text-active_text">
+                      Double Paragraph
+                    </p>
                   </div>
                 </div>
               </div>
@@ -16585,7 +16725,9 @@ const Sidebar = ({
                       className="rounded-md "
                       src={image_2}
                     />
-                    <p className="text-lvl_3_txt text-xs">Image</p>
+                    <p className="text-lvl_3_txt text-xs hover:text-active_text ">
+                      Image
+                    </p>
                   </div>
                 </div>
                 <div
@@ -16603,7 +16745,9 @@ const Sidebar = ({
                       className=" rounded-md "
                       src={image_p_2}
                     />
-                    <p className="text-lvl_3_txt text-xs">Image & Paragraph</p>
+                    <p className="text-lvl_3_txt text-xs hover:text-active_text ">
+                      Image & Paragraph
+                    </p>
                   </div>
                 </div>
                 <div
@@ -16621,7 +16765,9 @@ const Sidebar = ({
                       className=" rounded-md "
                       src={double_img}
                     />
-                    <p className="text-lvl_3_txt text-xs">Double Image</p>
+                    <p className="text-lvl_3_txt text-xs hover:text-active_text">
+                      Double Image
+                    </p>
                   </div>
                 </div>
               </div>
@@ -16642,7 +16788,9 @@ const Sidebar = ({
                   className="w-[88%] h-[112px] p-2 bg-lvl_3_bg hover:bg-highlight cursor-pointer rounded-md flex flex-col  items-center justify-center "
                 >
                   <img className="h-[75%] w-[53%]" src={table_v_1} />
-                  <p className="text-lvl_2_txt text-xs">Basic</p>
+                  <p className="text-lvl_2_txt text-xs hover:text-active_text">
+                    Basic
+                  </p>
                 </div>
                 <div
                   onClick={() => {
@@ -16652,7 +16800,9 @@ const Sidebar = ({
                   className="w-[88%] h-[112px] p-2 bg-lvl_3_bg hover:bg-highlight cursor-pointer rounded-md flex flex-col  items-center justify-center "
                 >
                   <img className="h-[75%] w-[53%]" src={table_v_2} />
-                  <p className="text-lvl_2_txt text-xs">Aleternative Row</p>
+                  <p className="text-lvl_2_txt text-xs hover:text-active_text">
+                    Aleternative Row
+                  </p>
                 </div>
                 <div
                   onClick={() => {
@@ -16662,7 +16812,9 @@ const Sidebar = ({
                   className="w-[88%] h-[112px] p-2 bg-lvl_3_bg hover:bg-highlight cursor-pointer rounded-md flex flex-col  items-center justify-center "
                 >
                   <img className="h-[75%] w-[53%]" src={table_v_3} />
-                  <p className="text-lvl_2_txt text-xs">Aleternative Coloumn</p>
+                  <p className="text-lvl_2_txt text-xs hover:text-active_text">
+                    Aleternative Coloumn
+                  </p>
                 </div>
                 <div
                   onClick={() => {
@@ -16672,7 +16824,9 @@ const Sidebar = ({
                   className="w-[88%] h-[112px] p-2 bg-lvl_3_bg hover:bg-highlight cursor-pointer rounded-md flex flex-col  items-center justify-center "
                 >
                   <img className="h-[75%] w-[53%]" src={table_v_4} />
-                  <p className="text-lvl_2_txt text-xs">Top Row</p>
+                  <p className="text-lvl_2_txt text-xs hover:text-active_text">
+                    Top Row
+                  </p>
                 </div>
 
                 <div
@@ -16683,7 +16837,9 @@ const Sidebar = ({
                   className="w-[88%] h-[112px] p-2 bg-lvl_3_bg hover:bg-highlight cursor-pointer rounded-md flex flex-col  items-center justify-center "
                 >
                   <img className="h-[75%] w-[53%]" src={table_v_5} />
-                  <p className="text-lvl_2_txt text-xs">Left Coloumn</p>
+                  <p className="text-lvl_2_txt text-xs hover:text-active_text">
+                    Left Coloumn
+                  </p>
                 </div>
               </div>
             ) : thirdLevel === "sections" ? (
@@ -16720,7 +16876,7 @@ const Sidebar = ({
                         setRows([...rows, section_1_row]);
                         setThirdLevel("");
                       }}
-                      className="w-[88%]  bg-lvl_3_bg py-[16px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
+                      className="w-[88%]  bg-lvl_3_bg cursor-pointer hover:bg-highlight py-[16px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
                     >
                       <img
                         className=" w-[85%] rounded-md"
@@ -16735,7 +16891,7 @@ const Sidebar = ({
                         setRows([...rows, section_2_row]);
                         setThirdLevel("");
                       }}
-                      className="w-[88%]  bg-lvl_3_bg py-[16px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
+                      className="w-[88%]  bg-lvl_3_bg py-[16px] cursor-pointer hover:bg-highlight rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
                     >
                       <img
                         className=" w-[85%] rounded-md"
@@ -16750,7 +16906,7 @@ const Sidebar = ({
                         setRows([...rows, ...section_6_row]);
                         setThirdLevel("");
                       }}
-                      className="w-[88%]  bg-lvl_3_bg py-[16px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
+                      className="w-[88%]  bg-lvl_3_bg py-[16px] cursor-pointer hover:bg-highlight rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
                     >
                       <img
                         className=" w-[85%] rounded-md"
@@ -16788,7 +16944,7 @@ const Sidebar = ({
                         setRows([...rows, ...section_3_row]);
                         setThirdLevel("");
                       }}
-                      className="w-[88%]  bg-lvl_3_bg py-[16px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
+                      className="w-[88%]  bg-lvl_3_bg cursor-pointer hover:bg-highlight py-[16px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
                     >
                       <img
                         className=" w-[85%] rounded-md"
@@ -16803,7 +16959,7 @@ const Sidebar = ({
                         setRows([...rows, ...section_4_row]);
                         setThirdLevel("");
                       }}
-                      className="w-[88%]  bg-lvl_3_bg py-[16px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
+                      className="w-[88%]  bg-lvl_3_bg py-[16px] cursor-pointer hover:bg-highlight rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
                     >
                       <img
                         className=" w-[85%] rounded-md"
@@ -16818,7 +16974,7 @@ const Sidebar = ({
                         setRows([...rows, ...section_5_row]);
                         setThirdLevel("");
                       }}
-                      className="w-[88%]  bg-lvl_3_bg py-[16px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
+                      className="w-[88%]  bg-lvl_3_bg py-[16px] cursor-pointer hover:bg-highlight rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
                     >
                       <img
                         className=" w-[85%] rounded-md"
@@ -16855,7 +17011,7 @@ const Sidebar = ({
                         setRows([...rows, ...section_7_row]);
                         setThirdLevel("");
                       }}
-                      className="w-[88%]  bg-lvl_3_bg py-[16px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
+                      className="w-[88%]  bg-lvl_3_bg py-[16px] cursor-pointer hover:bg-highlight rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
                     >
                       <img
                         className=" w-[85%] rounded-md"
@@ -16870,7 +17026,7 @@ const Sidebar = ({
                         setRows([...rows, ...section_8_row]);
                         setThirdLevel("");
                       }}
-                      className="w-[88%]  bg-lvl_3_bg py-[16px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
+                      className="w-[88%]  bg-lvl_3_bg py-[16px] rounded-md cursor-pointer hover:bg-highlight flex flex-col text-gray-500 items-center justify-center gap-1 "
                     >
                       <img
                         className=" w-[85%] rounded-md"
@@ -16885,7 +17041,7 @@ const Sidebar = ({
                         setRows([...rows, ...section_9_row]);
                         setThirdLevel("");
                       }}
-                      className="w-[88%]  bg-lvl_3_bg py-[16px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
+                      className="w-[88%]  bg-lvl_3_bg py-[16px] rounded-md cursor-pointer hover:bg-highlight flex flex-col text-gray-500 items-center justify-center gap-1 "
                     >
                       <img
                         className=" w-[85%] rounded-md"
@@ -16922,7 +17078,7 @@ const Sidebar = ({
                         setRows([...rows, ...section_10_row]);
                         setThirdLevel("");
                       }}
-                      className="w-[88%]  bg-lvl_3_bg py-[16px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
+                      className="w-[88%]  bg-lvl_3_bg py-[16px] cursor-pointer hover:bg-highlight rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
                     >
                       <img
                         className=" w-[85%] rounded-md"
@@ -16937,7 +17093,7 @@ const Sidebar = ({
                         setRows([...rows, ...section_11_row]);
                         setThirdLevel("");
                       }}
-                      className="w-[88%]  bg-lvl_3_bg py-[16px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
+                      className="w-[88%]  bg-lvl_3_bg py-[16px] cursor-pointer hover:bg-highlight rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
                     >
                       <img
                         className=" w-[85%] rounded-md"
@@ -16952,7 +17108,7 @@ const Sidebar = ({
                         setRows([...rows, ...section_12_row]);
                         setThirdLevel("");
                       }}
-                      className="w-[88%]  bg-lvl_3_bg py-[16px] rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
+                      className="w-[88%]  bg-lvl_3_bg py-[16px] cursor-pointer hover:bg-highlight rounded-md flex flex-col text-gray-500 items-center justify-center gap-1 "
                     >
                       <img
                         className=" w-[85%] rounded-md"
