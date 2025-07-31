@@ -16018,7 +16018,7 @@ const Sidebar = ({
                   boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.2)",
                   height: "calc(100vh - 65px)",
                 }}
-                className=" w-[220px] px-2.5  border-r-2 border-gray-200  pb-[16px]  flex flex-col overflow-y-scroll overflow-x-hidden  "
+                className=" w-[220px] px-2.5  border-r-2 border-gray-200  pb-[16px]  flex flex-col overflow-y-auto overflow-x-hidden  "
               >
                 <h3
                   onClick={() => {
@@ -16044,7 +16044,7 @@ const Sidebar = ({
                       setDesignDoc("color");
                     }
                   }}
-                  className={`text-sm  py-2 cursor-pointer -mx-3 h-[48px] flex items-center justify-between px-4 hover:bg-highlight ${
+                  className={`text-sm  py-2 cursor-pointer -mx-3 h-[48px] flex items-center justify-between border-b border-border_clr hover:text-active_text px-4 hover:bg-highlight ${
                     designDoc === "color"
                       ? "bg-highlight text-active_text"
                       : "bg-white text-lvl_2_hed"
@@ -16100,7 +16100,7 @@ const Sidebar = ({
                       setDesignDoc("typo");
                     }
                   }}
-                  className={`text-sm  py-2 cursor-pointer -mx-3 h-[48px] flex items-center justify-between px-4 hover:bg-highlight ${
+                  className={`text-sm  py-2 cursor-pointer -mx-3 h-[48px] flex items-center justify-between px-4 hover:bg-highlight hover:text-active_text border-b border-border_clr ${
                     designDoc === "typo"
                       ? "bg-highlight text-active_text"
                       : "bg-white text-lvl_2_hed"
@@ -16232,7 +16232,7 @@ const Sidebar = ({
                       setDesignDoc("theme");
                     }
                   }}
-                  className={`text-sm  py-2 cursor-pointer -mx-3 h-[48px] flex items-center justify-between px-4 hover:bg-highlight ${
+                  className={`text-sm  py-2 cursor-pointer -mx-3 h-[48px] flex items-center justify-between borderr-b border-border_clr hover:text-active_text px-4 hover:bg-highlight ${
                     designDoc === "theme"
                       ? "bg-highlight text-active_text"
                       : "bg-white text-lvl_2_hed"
@@ -16432,15 +16432,15 @@ const Sidebar = ({
                           setWorkspaceInclude([...workspaceInclude, item._id]);
                         }
                       }}
-                      className="w-[100%] h-[48px] flex items-center justify-start  gap-2  cursor-pointer hover:text-black hover:bg-gray-200 px-3"
+                      className={`w-[100%] h-[48px] flex items-center justify-start  gap-2  cursor-pointer hover:text-black hover:bg-gray-200 px-3 ${
+                        workspaceInclude.includes(item._id)
+                          ? "text-active_text"
+                          : "text-non_active_text "
+                      }`}
                     >
                       <FiFolder className="text-graidient_bottom" />{" "}
                       <p
-                        className={`text-sm  w-[80%] overflow-hidden whitespace-nowrap text-ellipsis hover:text-active_text ${
-                          workspaceInclude.includes(item._id)
-                            ? "text-active_text"
-                            : "text-non_active_text"
-                        } `}
+                        className={`text-sm  w-[80%] overflow-hidden whitespace-nowrap text-ellipsis  `}
                       >
                         {item.workspaceName}
                       </p>
@@ -16477,7 +16477,7 @@ const Sidebar = ({
                         item.proposals?.map((proposal, index) => (
                           <div
                             key={proposal._id || index}
-                            className="w-full ml-4 flex items-center justify-start gap-1 my-2 cursor-pointer text-non_active_text hover:text-heightlet_text transition-all duration-500 ease-out opacity-0 animate-fadeIn"
+                            className="w-full ml-4 flex items-center justify-start gap-1 my-2 cursor-pointer text-non_active_text hover:text-active_text transition-all duration-500 ease-out opacity-0 animate-fadeIn"
                           >
                             <IoDocumentTextOutline />
                             <p
@@ -16512,7 +16512,7 @@ const Sidebar = ({
                     <div
                       key={index}
                       onClick={() => setHistoryPreview(item.data)}
-                      className="w-full flex items-center justify-between gap-1  px-4  cursor-pointer text-lvl_2_txt hover:text-active_text transition-all duration-500 ease-out opacity-0 animate-fadeIn border-b border-border_clr"
+                      className="w-full flex items-center justify-between gap-1  px-4  cursor-pointer text-lvl_2_txt hover:text-active_text transition-all duration-500 ease-out opacity-0 animate-fadeIn border-b border-border_clr hover:bg-gray-200 "
                     >
                       <div className="flex items-center justify-start h-[47px]">
                         <IoDocumentTextOutline />
