@@ -104,7 +104,7 @@ const EditorHeader = ({
   ];
   const month = monthNames[date.getMonth()];
   const year = date.getFullYear();
-  const formattedDate = `${day}-${month}-${year}`;
+  const formattedDate = `${day} ${month}-${year}`;
   const undo = () => {
     if (rows.length > 0) {
       const lastItem = rows[rows.length - 1];
@@ -693,7 +693,7 @@ const EditorHeader = ({
               setShare(!share);
               setMenu(false);
             }}
-            className="bg-footer_gradient_bot text-white px-4 rounded-md py-2 text-center text-sm flex gap-1 items-center justify-center active:bg-gradient_darker"
+            className="bg-footer_gradient_bot text-white px-4 rounded-md py-2 text-center text-sm flex gap-1 items-center justify-center hover:bg-graidient_bottom active:bg-gradient_darker"
           >
             <FaRegShareSquare className="w-3 h-3" />
             Share

@@ -15847,9 +15847,9 @@ const Sidebar = ({
                 <div className="pr-2 w-[220px]">
                   <button
                     onClick={() => setThirdLevel("cover")}
-                    className={` relative p-2 px-3 w-[95%] rounded-lg flex mx-3  items-center  
+                    className={` relative p-2 px-3 w-[95%] rounded-lg flex mx-3 hover:text-active_text  items-center  
                       gap-4 hover:bg-gray-100 active:bg-highlight ${
-                        thirdLevel === "cover" && "bg-gray-100"
+                        thirdLevel === "cover" && "bg-gray-100 text-active_text"
                       }`}
                   >
                     <img
@@ -15862,9 +15862,10 @@ const Sidebar = ({
                   </button>
                   <button
                     onClick={() => setThirdLevel("sections")}
-                    className={` relative p-2 px-3 w-[95%] rounded-lg flex mx-3  items-center  
+                    className={` relative p-2 px-3 w-[95%] rounded-lg flex mx-3 hover:text-active_text  items-center  
                       gap-4 hover:bg-gray-100 active:bg-highlight ${
-                        thirdLevel === "sections" && "bg-gray-100"
+                        thirdLevel === "sections" &&
+                        "bg-gray-100 text-active_text"
                       }`}
                   >
                     <img
@@ -15877,9 +15878,9 @@ const Sidebar = ({
                   </button>
                   <button
                     onClick={() => setThirdLevel("saved")}
-                    className={` relative p-2 px-3 w-[95%] rounded-lg flex mx-3  items-center  
+                    className={` relative p-2 px-3 w-[95%] rounded-lg hover:text-active_text flex mx-3  items-center  
                       gap-4 hover:bg-gray-100 active:bg-highlight ${
-                        thirdLevel === "saved" && "bg-gray-100"
+                        thirdLevel === "saved" && "bg-gray-100 text-active_text"
                       }`}
                   >
                     <img
@@ -15905,7 +15906,7 @@ const Sidebar = ({
                 <div className="pr-2 w-[220px]">
                   <button
                     onClick={() => setCostModeule(true)}
-                    className=" relative p-2 px-3 w-[95%] rounded-lg flex  mx-3 items-center  
+                    className=" relative p-2 px-3 w-[95%] rounded-lg flex hover:text-active_text  mx-3 items-center  
            gap-4 hover:bg-gray-100 "
                   >
                     <img
@@ -15918,7 +15919,7 @@ const Sidebar = ({
                   </button>
                   <button
                     onClick={() => setPriceTerms(true)}
-                    className=" relative p-2 px-3 w-[95%] rounded-lg flex  mx-3  items-center  
+                    className=" relative p-2 px-3 w-[95%] hover:text-active_text rounded-lg flex  mx-3  items-center  
            gap-4 hover:bg-gray-100 "
                   >
                     <img
@@ -15942,7 +15943,7 @@ const Sidebar = ({
                 <div className="pr-4 w-[220px]">
                   <button
                     onClick={() => setSign(true)}
-                    className=" relative p-2 px-3 w-[95%] rounded-lg flex  mx-3  items-center  
+                    className=" relative p-2 px-3 w-[95%] hover:text-active_text rounded-lg flex  mx-3  items-center  
            gap-4 hover:bg-gray-100 "
                   >
                     <img
@@ -16050,7 +16051,13 @@ const Sidebar = ({
                       : "bg-white text-lvl_2_hed"
                   } `}
                 >
-                  Color
+                  <div className="flex items-center justify-start gap-3">
+                    <div className="h-[32px] flex items-center justify-center text-black w-[32px] shadow-md shadow-gray-300 rounded-md">
+                      <Icon icon="bxs:color" height={21} />
+                    </div>
+                    Color
+                  </div>
+
                   <FaAngleRight
                     className={`${
                       designDoc === "color" ? "rotate-90" : "rotate-0"
@@ -16058,7 +16065,7 @@ const Sidebar = ({
                   />
                 </h3>
                 {designDoc === "color" && (
-                  <div className="w-full transition-all duration-500 ease-out opacity-0 animate-fadeIn mb-2 ">
+                  <div className="w-full transition-all duration-500 ease-out opacity-0 animate-fadeIn mb-7 mt-3 ">
                     {/* <h3 className="text-xs mt-1 text-active_text ">
                       Primary Color
                     </h3> */}
@@ -16106,7 +16113,12 @@ const Sidebar = ({
                       : "bg-white text-lvl_2_hed"
                   } `}
                 >
-                  Font
+                  <div className="flex items-center justify-start gap-3">
+                    <div className="h-[32px] flex items-center justify-center text-black w-[32px] shadow-md shadow-gray-300 rounded-md">
+                      <Icon icon="tabler:typography" height={20} />
+                    </div>
+                    Font
+                  </div>
                   <FaAngleRight
                     className={`${
                       designDoc === "typo" ? "rotate-90" : "rotate-0"
@@ -16116,7 +16128,7 @@ const Sidebar = ({
                 {designDoc === "typo" && (
                   <div className="transition-all duration-500 ease-out opacity-0 animate-fadeIn mb-2 ">
                     <div className="mt-1 ">
-                      <label className="text-xs text-non_active_text mb-2 ">
+                      <label className="text-xs text-active_text mb-2 ">
                         Heading Font
                       </label>
                       <div className="relative w-full mt-1">
@@ -16127,7 +16139,7 @@ const Sidebar = ({
                             temp.heading = e.target.value;
                             setSettings(temp);
                           }}
-                          className="w-full py-1.5 px-2 pr-8 outline-none border border-border_clr rounded-[2px] text-non_active_text text-xs appearance-none"
+                          className="w-full py-1.5 px-2 pr-8 outline-none border border-border_clr rounded-[2px] text-non_active_text text-xs appearance-none hover:border-active_text focus:border-active_text cursor-pointer"
                         >
                           <option value="arial">Arial</option>
                           <option value="helvetica">Helvetica</option>
@@ -16155,7 +16167,7 @@ const Sidebar = ({
                       </div>
                     </div>
                     <div className="mt-3 gap-1">
-                      <label className="text-xs text-non_active_text mb-2">
+                      <label className="text-xs text-active_text mb-2">
                         Body Font
                       </label>
                       <div className="relative w-full mt-1">
@@ -16166,7 +16178,7 @@ const Sidebar = ({
                             temp.body = e.target.value;
                             setSettings(temp);
                           }}
-                          className="w-full py-1.5 px-2 pr-8 outline-none border border-border_clr rounded-[2px] text-non_active_text text-xs appearance-none
+                          className="w-full py-1.5 px-2 pr-8 outline-none border border-border_clr rounded-[2px] text-non_active_text text-xs appearance-none hover:border-active_text focus:border-active_text cursor-pointer
                      "
                         >
                           <option value="arial">Arial</option>
@@ -16238,7 +16250,12 @@ const Sidebar = ({
                       : "bg-white text-lvl_2_hed"
                   } `}
                 >
-                  Themes
+                  <div className="flex items-center justify-start gap-3">
+                    <div className="h-[32px] flex items-center justify-center text-black w-[32px] shadow-md shadow-gray-300 rounded-md">
+                      <Icon icon="solar:documents-linear" height={20} />
+                    </div>
+                    Theme
+                  </div>
                   <FaAngleRight
                     className={`${
                       designDoc === "theme" ? "rotate-90" : "rotate-0"
@@ -16401,7 +16418,7 @@ const Sidebar = ({
               <p className="text-sm text-lvl_2_hed py-2 px-1 font-semibold  ">
                 Workspaces
               </p>
-              <div className="w-full h-8 bg-backgrounds  flex items-center px-1 rounded border hover:border-active_text focus-within::border-active_text mb-2">
+              <div className="w-full h-8 bg-backgrounds  flex items-center px-1 rounded border hover:border-active_text focus-within:border-active_text mb-2">
                 <IoIosSearch className="text-non_active_text text-md" />
                 <input
                   className="w-[90%] h-full outline-none  rounded text-sm bg-backgrounds px-2"
@@ -16493,7 +16510,7 @@ const Sidebar = ({
                       ))}
                   </div>
                 ))}
-              <div className="h-[1px] w-[120%] -mx-4 bg-border_clr mt-2"></div>
+              <div className="h-[1px] w-[120%] -mx-4 bg-border_clr "></div>
             </div>
           ) : active === "history" ? (
             <div
@@ -16512,7 +16529,7 @@ const Sidebar = ({
                     <div
                       key={index}
                       onClick={() => setHistoryPreview(item.data)}
-                      className="w-full flex items-center justify-between gap-1  px-4  cursor-pointer text-lvl_2_txt hover:text-active_text transition-all duration-500 ease-out opacity-0 animate-fadeIn border-b border-border_clr hover:bg-gray-200 "
+                      className="w-full flex items-center justify-between gap-1  px-4  cursor-pointer text-lvl_2_txt hover:text-active_text transition-all duration-500 ease-out opacity-0 animate-fadeIn border-b border-border_clr hover:bg-gray-200 active:bg-highlight "
                     >
                       <div className="flex items-center justify-start h-[47px]">
                         <IoDocumentTextOutline />

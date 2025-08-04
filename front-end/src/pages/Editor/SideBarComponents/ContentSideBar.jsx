@@ -25,9 +25,9 @@ const ContentSideBar = ({
     <div className=" w-[220px]  pr-2 text-lvl_2_txt  ">
       <button
         onClick={() => setThirdLevel("heading")}
-        className={` relative p-2 px-3 w-[95%] rounded-lg flex mx-3  items-center  
+        className={` relative p-2 px-3 w-[95%] rounded-lg flex mx-3 hover:text-active_text  items-center  
            gap-4 hover:bg-gray-100 active:bg-highlight ${
-             thirdLevel === "heading" && "bg-gray-100"
+             thirdLevel === "heading" && "bg-gray-100 text-active_text"
            }`}
       >
         <img
@@ -41,8 +41,8 @@ const ContentSideBar = ({
       <button
         onClick={() => setThirdLevel("paragraph")}
         className={` relative p-2 px-3 w-[95%] rounded-lg flex mx-3  items-center  
-          gap-4 hover:bg-gray-100 active:bg-highlight ${
-            thirdLevel === "paragraph" && "bg-gray-100"
+          gap-4 hover:bg-gray-100 active:bg-highlight hover:text-active_text ${
+            thirdLevel === "paragraph" && "bg-gray-100 text-active_text"
           }`}
       >
         <img
@@ -87,9 +87,9 @@ const ContentSideBar = ({
       </button> */}
       <button
         onClick={() => setThirdLevel("table")}
-        className={` relative p-2 px-3 w-[95%] rounded-lg flex mx-3  items-center  
+        className={` relative p-2 px-3 w-[95%] rounded-lg flex mx-3 hover:text-active_text  items-center  
           gap-4 hover:bg-gray-100 active:bg-highlight ${
-            thirdLevel === "table" && "bg-gray-100"
+            thirdLevel === "table" && "bg-gray-100 text-active_text"
           }`}
       >
         <img
@@ -102,9 +102,9 @@ const ContentSideBar = ({
       </button>
       <button
         onClick={() => setThirdLevel("image")}
-        className={` relative p-2 px-3 w-[95%] rounded-lg flex mx-3  items-center  
+        className={` relative p-2 px-3 w-[95%] rounded-lg flex mx-3 hover:text-active_text  items-center  
           gap-4 hover:bg-gray-100 active:bg-highlight ${
-            thirdLevel === "image" && "bg-gray-100"
+            thirdLevel === "image" && "bg-gray-100 text-active_text"
           }`}
       >
         <img
@@ -117,7 +117,7 @@ const ContentSideBar = ({
       </button>
       <button
         onClick={addBreakPoint}
-        className={` relative p-2 px-3 w-[95%] rounded-lg active:bg-highlight flex mx-3  items-center  
+        className={` relative p-2 px-3 w-[95%] hover:text-active_text rounded-lg active:bg-highlight flex mx-3  items-center  
           gap-4 hover:bg-gray-100 `}
       >
         <img
@@ -131,7 +131,7 @@ const ContentSideBar = ({
 
       <button
         onClick={addCodeBlock}
-        className={` relative p-2 px-3 w-[95%] active:bg-highlight rounded-lg flex mx-3  items-center  
+        className={` relative p-2 px-3 w-[95%] active:bg-highlight hover:text-active_text rounded-lg flex mx-3  items-center  
           gap-4 hover:bg-gray-100`}
       >
         <img

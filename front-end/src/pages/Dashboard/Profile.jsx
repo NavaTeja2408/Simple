@@ -172,15 +172,24 @@ const Profile = () => {
               <div className="flex justify-between mt-4 ">
                 <div className="w-[48%] flex flex-col gap-1 ">
                   <label className="text-gray-500 pl-2">Country Code</label>
-                  <input
-                    type="text"
+                  <select
                     value={country}
                     onChange={(e) => {
                       setCuntry(e.target.value);
                       updateCountry(e.target.value);
                     }}
-                    className="w-full border border-gray-200 px-2 py-2 rounded-md outline-none"
-                  />
+                    className="w-full cursor-pointer border border-gray-300 rounded-lg px-4 py-2 text-sm text-gray-700 
+                            focus:outline-none transition-all duration-150"
+                  >
+                    <option value="">Select Country Code</option>
+                    <option value="IST">IST [+91]</option>
+                    <option value="EST">GST [+971]</option>
+                    <option value="PST">PST [+1]</option>
+                    <option value="GMT">GMT [+44]</option>
+                    <option value="JST">JST [+81]</option>
+                    <option value="AEST">AEST [+61]</option>
+                    <option value="NST">NST [+1]</option>
+                  </select>
                 </div>
                 <div className="w-[48%] flex flex-col gap-1 ">
                   <label className="text-gray-500 pl-2">Phone Number</label>

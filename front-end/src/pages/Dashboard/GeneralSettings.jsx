@@ -188,31 +188,54 @@ const GeneralSettings = () => {
                 readOnly={true}
               />
             </div>
-            <div className="flex justify-between mt-4 w-[70%] ">
-              <div className="w-[48%] flex flex-col gap-1 ">
-                <label className="text-gray-500 pl-2">Time</label>
-                <input
-                  type="text"
+            <div className="flex justify-between mt-4 w-[70%]">
+              <div className="w-[48%] flex flex-col gap-1">
+                <label className="text-gray-500 pl-2">Time Zone</label>
+                <select
                   value={time}
                   onChange={(e) => {
                     updateTime(e.target.value);
                     setTime(e.target.value);
                   }}
-                  className="w-full border border-gray-200 px-2 py-2 rounded-md outline-none"
-                />
+                  className="w-full cursor-pointer border border-gray-300 rounded-lg px-4 py-2 text-sm text-gray-700 
+                            focus:outline-none transition-all duration-150"
+                >
+                  <option value="">Select Time Zone</option>
+                  <option value="IST">IST (India Standard Time)</option>
+                  <option value="EST">EST (Eastern Standard Time)</option>
+                  <option value="PST">PST (Pacific Standard Time)</option>
+                  <option value="CST">CST (Central Standard Time)</option>
+                  <option value="GMT">GMT (Greenwich Mean Time)</option>
+                  <option value="UTC">UTC (Coordinated Universal Time)</option>
+                  <option value="JST">JST (Japan Standard Time)</option>
+                  <option value="AEST">
+                    AEST (Australia Eastern Standard Time)
+                  </option>
+                  <option value="NST">NST (Newfoundland Standard Time)</option>
+                </select>
               </div>
-              <div className="w-[48%] flex flex-col gap-1 ">
-                <label className="text-gray-500 pl-2">Curency</label>
-                <input
-                  type="text"
+
+              <div className="w-[48%] flex flex-col gap-1">
+                <label className="text-gray-500 pl-2">Currency</label>
+                <select
                   value={curency}
                   onChange={(e) => {
                     updateCurency(e.target.value);
                     setCurency(e.target.value);
                   }}
-                  placeholder="Phone Number"
-                  className="w-full border border-gray-200 px-2 py-2 rounded-md outline-none"
-                />
+                  className="w-full cursor-pointer border border-gray-300 rounded-lg px-4 py-2 text-sm text-gray-700 
+                            focus:outline-none transition-all duration-150"
+                >
+                  <option value="">Select Currency</option>
+                  <option value="USD">USD – US Dollar</option>
+                  <option value="EUR">EUR – Euro</option>
+                  <option value="INR">INR – Indian Rupee</option>
+                  <option value="GBP">GBP – British Pound</option>
+                  <option value="JPY">JPY – Japanese Yen</option>
+                  <option value="AUD">AUD – Australian Dollar</option>
+                  <option value="CAD">CAD – Canadian Dollar</option>
+                  <option value="CNY">AED – United Arab Emirates Dirham</option>
+                </select>
               </div>
             </div>
             <div className="w-[70%] flex flex-col gap-1 mt-4 ">

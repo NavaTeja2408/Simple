@@ -19,7 +19,6 @@ const Login = () => {
   const { user, setUser } = useContext(UserContext);
   const [pass, setPass] = useState(false);
   const [errorL, setErrorL] = useState(null);
-
   const navigate = useNavigate();
   const [error, setError] = useState(false);
 
@@ -43,7 +42,11 @@ const Login = () => {
         });
         if (res.data.error) {
           toast.error(res.data.error);
-          setErrorL(res.data.error);
+          console.log(res.data.error);
+          if (res.data.error === "Password didn't match") {
+            setErrorL("Wrong Password");
+          }
+          setError(true);
         } else {
           localStorage.setItem("user", JSON.stringify(res.data));
           setUser(res.data);
@@ -70,7 +73,7 @@ const Login = () => {
               <img src={logo} className="w-40" alt="" />
             </div>
             <p className="w-[70%] text-center">
-              Welcome back to Simple Quest — where great proposals begin
+              Welcome back to Simple Quotes — where great proposals begin
             </p>
           </div>
         </div>
@@ -92,40 +95,50 @@ const Login = () => {
                 className="w-full  p-2 border border-gray-300 rounded-sm outline-none "
                 placeholder="Email Address"
                 value={email}
-                style={{
-                  borderColor: error && "red",
-                }}
+                // style={{
+                //   borderColor: error && "red",
+                // }}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div className="flex flex-col w-[80%] gap-1">
               <label className="text-gray-700 pl-1">Password</label>
-              <div
-                className={`w-full  border  flex items-center justify-between pr-4 rounded-sm ${
-                  errorL ? "border-primary" : "border-gray-300"
-                }`}
-              >
-                <input
-                  type={pass ? "text" : "password"}
-                  className="w-[95%] p-2 outline-none "
-                  placeholder="Password"
-                  value={password}
-                  style={{
-                    borderColor: error && "red",
-                  }}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-                <FaEye
-                  onClick={() => setPass(!pass)}
-                  className=" cursor-pointer"
-                />
+              <div className="relative w-full">
+                <div
+                  className={`w-full flex items-center justify-between pr-4 rounded-sm border ${
+                    error ? "border-[#DF064E]" : "border-gray-300"
+                  }`}
+                >
+                  <input
+                    type={pass ? "text" : "password"}
+                    className="w-[95%] p-2 outline-none "
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                  <FaEye
+                    onClick={() => setPass(!pass)}
+                    className=" cursor-pointer"
+                  />
+                </div>
+                <div className="flex items-center justify-between w-full">
+                  {error && (
+                    <p className="text-xs text-[#DF064E]">Wrong Password</p>
+                  )}
+                  <p
+                    onClick={() => navigate("/forgot")}
+                    className="text-xs text-gray-500 cursor-pointer ml-auto"
+                  >
+                    Forgot Password
+                  </p>
+                </div>
               </div>
-              <p
-                onClick={() => navigate("/forgot")}
-                className="w-full text-end text-xs text-gray-500 cursor-pointer"
-              >
-                Forgot Password
-              </p>
+              {/* ✅ Error text below input */}
+              {error && (
+                <div className="mt-1">
+                  <p className="text-sm text-[#DF064E] pl-1">{errorL}</p>
+                </div>
+              )}
             </div>
           </div>
           <div className="flex flex-col items-center justify-center w-full mt-4">

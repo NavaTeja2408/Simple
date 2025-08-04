@@ -132,127 +132,188 @@ const Home = () => {
             collaboration, and seamless tracking.
           </h2>
         </div>
-        <div className="w-full flex justify-between mt-20 px-5 mb-10">
-          {thirdBody === 0 && (
-            <div
-              className=" flex flex-col justify-between py-4 px-4 rounded-lg text-white w-[18%] h-[35vh] "
-              style={{
-                backgroundColor: "rgba(78, 94, 211, 1)",
-              }}
+        <div className="relative w-full flex justify-center items-center mt-10 mb-10">
+          <button
+            type="button"
+            aria-label="Scroll left"
+            onClick={() => {
+              const el = document.getElementById("card-row");
+              if (el)
+                el.scrollBy({ left: -el.offsetWidth / 2, behavior: "smooth" });
+            }}
+            className="absolute left-0 z-10 h-full flex items-center px-2 bg-gradient-to-r from-gray-50 via-gray-50/80 to-transparent hover:from-gray-200 transition"
+            style={{ top: 0, bottom: 0 }}
+          >
+            <svg
+              width="32"
+              height="32"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              className="text-blue-600"
             >
-              <h1 className="text-xl w-[50%]">Marketing & Creative</h1>
-              <p className="text-sm ">Pitch compaingns that actually convert</p>
-              <button className="border border-white w-7 h-7 flex items-center justify-center rounded-md">
-                <GoArrowUpRight />
-              </button>
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 19l-7-7 7-7"
+              />
+            </svg>
+          </button>
+          <div
+            id="card-row"
+            className="flex gap-x-11 overflow-x-auto no-scrollbar w-[90vw] max-w-[1400px] mx-auto snap-x snap-mandatory"
+            style={{ scrollBehavior: "smooth" }}
+          >
+            <div className="group overflow-hidden flex flex-col justify-between p-4 rounded-lg text-white w-[18vw] min-w-[240px] max-w-[290px] h-[35vh] bg-[#4e5ed3] transition-all duration-300 hover:shadow-2xl cursor-pointer snap-start">
+              <h1 className="text-xl w-full whitespace-nowrap overflow-hidden text-ellipsis group-hover:whitespace-normal group-hover:overflow-visible transition-all duration-300">
+                Marketing & Creative
+              </h1>
+              <p className="text-sm whitespace-nowrap overflow-hidden text-ellipsis group-hover:whitespace-normal group-hover:overflow-visible transition-all duration-300">
+                Pitch compaingns that actually convert
+              </p>
+              <div className="w-full flex justify-start">
+                <button className="border border-white px-2 h-7 flex items-center justify-center rounded-md text-sm transition-all duration-300 group-hover:w-[90px] group-hover:justify-center group-hover:text-white-700">
+                  <span className="group-hover:inline hidden">Start Now</span>
+                  <span className="group-hover:hidden block">
+                    <GoArrowUpRight />
+                  </span>
+                </button>
+              </div>
             </div>
-          )}
-          {thirdBody <= 1 && (
-            <div
-              className=" flex flex-col justify-between py-4 px-4 rounded-lg text-white w-[18%] h-[35vh] "
-              style={{
-                backgroundColor: "rgba(160, 51, 233, 1)",
-              }}
+            <div className="group overflow-hidden flex flex-col justify-between p-4 rounded-lg text-white w-[18vw] min-w-[240px] max-w-[290px] h-[35vh] bg-[#4e5ed3] transition-all duration-300 hover:shadow-2xl cursor-pointer snap-start">
+              <h1 className="text-xl w-full whitespace-nowrap overflow-hidden text-ellipsis group-hover:whitespace-normal group-hover:overflow-visible transition-all duration-300">
+                Marketing & Creative
+              </h1>
+              <p className="text-sm whitespace-nowrap overflow-hidden text-ellipsis group-hover:whitespace-normal group-hover:overflow-visible transition-all duration-300">
+                Pitch compaingns that actually convert
+              </p>
+              <div className="w-full flex justify-start">
+                <button className="border border-white px-2 h-7 flex items-center justify-center rounded-md text-sm transition-all duration-300 group-hover:w-[90px] group-hover:justify-center group-hover:text-white-700">
+                  <span className="group-hover:inline hidden">Start Now</span>
+                  <span className="group-hover:hidden block">
+                    <GoArrowUpRight />
+                  </span>
+                </button>
+              </div>
+            </div>
+            <div className="group overflow-hidden flex flex-col justify-between p-4 rounded-lg text-white w-[18vw] min-w-[240px] max-w-[290px] h-[35vh] bg-[#4e5ed3] transition-all duration-300 hover:shadow-2xl cursor-pointer snap-start">
+              <h1 className="text-xl w-full whitespace-nowrap overflow-hidden text-ellipsis group-hover:whitespace-normal group-hover:overflow-visible transition-all duration-300">
+                Marketing & Creative
+              </h1>
+              <p className="text-sm whitespace-nowrap overflow-hidden text-ellipsis group-hover:whitespace-normal group-hover:overflow-visible transition-all duration-300">
+                Pitch compaingns that actually convert
+              </p>
+              <div className="w-full flex justify-start">
+                <button className="border border-white px-2 h-7 flex items-center justify-center rounded-md text-sm transition-all duration-300 group-hover:w-[90px] group-hover:justify-center group-hover:text-white-700">
+                  <span className="group-hover:inline hidden">Start Now</span>
+                  <span className="group-hover:hidden block">
+                    <GoArrowUpRight />
+                  </span>
+                </button>
+              </div>
+            </div>
+            <div className="group overflow-hidden flex flex-col justify-between p-4 rounded-lg text-white w-[18vw] min-w-[240px] max-w-[290px] h-[35vh] bg-[#a033e9] transition-all duration-300 hover:shadow-2xl cursor-pointer snap-start">
+              <h1 className="text-xl w-full whitespace-nowrap overflow-hidden text-ellipsis group-hover:whitespace-normal group-hover:overflow-visible transition-all duration-300">
+                Consulting & Freelance
+              </h1>
+              <p className="text-sm whitespace-nowrap overflow-hidden text-ellipsis group-hover:whitespace-normal group-hover:overflow-visible transition-all duration-300">
+                Make every proposal feel custom-built
+              </p>
+              <div className="w-full flex justify-start">
+                <button className="border border-white px-2 h-7 flex items-center justify-center rounded-md text-sm transition-all duration-300 group-hover:w-[90px] group-hover:justify-center group-hover:text-white-700">
+                  <span className="group-hover:inline hidden">Start Now</span>
+                  <span className="group-hover:hidden block">
+                    <GoArrowUpRight />
+                  </span>
+                </button>
+              </div>
+            </div>
+            <div className="group overflow-hidden flex flex-col justify-between p-4 rounded-lg text-white w-[18vw] min-w-[240px] max-w-[290px] h-[35vh] bg-[#0076e4] transition-all duration-300 hover:shadow-2xl cursor-pointer snap-start">
+              <h1 className="text-xl w-full whitespace-nowrap overflow-hidden text-ellipsis group-hover:whitespace-normal group-hover:overflow-visible transition-all duration-300">
+                Startups & Founders
+              </h1>
+              <p className="text-sm whitespace-nowrap overflow-hidden text-ellipsis group-hover:whitespace-normal group-hover:overflow-visible transition-all duration-300">
+                Raise capital with proposal that stand out
+              </p>
+              <div className="w-full flex justify-start">
+                <button className="border border-white px-2 h-7 flex items-center justify-center rounded-md text-sm transition-all duration-300 group-hover:w-[90px] group-hover:justify-center group-hover:text-white-700">
+                  <span className="group-hover:inline hidden">Start Now</span>
+                  <span className="group-hover:hidden block">
+                    <GoArrowUpRight />
+                  </span>
+                </button>
+              </div>
+            </div>
+            <div className="group overflow-hidden flex flex-col justify-between p-4 rounded-lg text-white w-[18vw] min-w-[240px] max-w-[290px] h-[35vh] bg-[#ff4261] transition-all duration-300 hover:shadow-2xl cursor-pointer snap-start">
+              <h1 className="text-xl w-full whitespace-nowrap overflow-hidden text-ellipsis group-hover:whitespace-normal group-hover:overflow-visible transition-all duration-300">
+                HR & Operations
+              </h1>
+              <p className="text-sm whitespace-nowrap overflow-hidden text-ellipsis group-hover:whitespace-normal group-hover:overflow-visible transition-all duration-300">
+                Streamline internal approvals
+              </p>
+              <div className="w-full flex justify-start">
+                <button className="border border-white px-2 h-7 flex items-center justify-center rounded-md text-sm transition-all duration-300 group-hover:w-[90px] group-hover:justify-center group-hover:text-white-700">
+                  <span className="group-hover:inline hidden">Start Now</span>
+                  <span className="group-hover:hidden block">
+                    <GoArrowUpRight />
+                  </span>
+                </button>
+              </div>
+            </div>
+            <div className="group overflow-hidden flex flex-col justify-between p-4 rounded-lg text-white w-[18vw] min-w-[240px] max-w-[290px] h-[35vh] bg-[#a033e9] transition-all duration-300 hover:shadow-2xl cursor-pointer snap-start">
+              <h1 className="text-xl w-full whitespace-nowrap overflow-hidden text-ellipsis group-hover:whitespace-normal group-hover:overflow-visible transition-all duration-300">
+                Consulting & Freelance
+              </h1>
+              <p className="text-sm whitespace-nowrap overflow-hidden text-ellipsis group-hover:whitespace-normal group-hover:overflow-visible transition-all duration-300">
+                Make every proposal feel custom-built
+              </p>
+              <div className="w-full flex justify-start">
+                <button className="border border-white px-2 h-7 flex items-center justify-center rounded-md text-sm transition-all duration-300 group-hover:w-[90px] group-hover:justify-center group-hover:text-white-700">
+                  <span className="group-hover:inline hidden">Start Now</span>
+                  <span className="group-hover:hidden block">
+                    <GoArrowUpRight />
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <button
+            type="button"
+            aria-label="Scroll right"
+            onClick={() => {
+              const el = document.getElementById("card-row");
+              if (el)
+                el.scrollBy({ left: el.offsetWidth / 2, behavior: "smooth" });
+            }}
+            className="absolute right-0 z-10 h-full flex items-center px-2 bg-gradient-to-l from-gray-50 via-gray-50/80 to-transparent hover:from-gray-200 transition"
+            style={{ top: 0, bottom: 0 }}
+          >
+            <svg
+              width="32"
+              height="32"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              className="text-blue-600"
             >
-              <h1 className="text-xl w-[50%]">Consulting & Freelance</h1>
-              <p className="text-sm ">Make every proposal feel custom-built</p>
-              <button className="border border-white w-7 h-7 flex items-center justify-center rounded-md">
-                <GoArrowUpRight />
-              </button>
-            </div>
-          )}
-
-          <div
-            className=" flex flex-col justify-between py-4 px-4 rounded-lg text-white w-[18%] h-[35vh] "
-            style={{
-              backgroundColor: "rgba(160, 51, 233, 1)",
-            }}
-          >
-            <h1 className="text-xl w-[50%]">Consulting & Freelance</h1>
-            <p className="text-sm ">Make every proposal feel custom-built</p>
-            <button className="border border-white w-7 h-7 flex items-center justify-center rounded-md">
-              <GoArrowUpRight />
-            </button>
-          </div>
-          <div
-            className=" flex flex-col justify-between py-4 px-4 rounded-lg text-white w-[18%] h-[35vh] "
-            style={{
-              backgroundColor: "rgba(160, 51, 233, 1)",
-            }}
-          >
-            <h1 className="text-xl w-[50%]">Consulting & Freelance</h1>
-            <p className="text-sm ">Make every proposal feel custom-built</p>
-            <button className="border border-white w-7 h-7 flex items-center justify-center rounded-md">
-              <GoArrowUpRight />
-            </button>
-          </div>
-          <div
-            className=" flex flex-col justify-between py-4 px-4 rounded-md text-white w-[18%] h-[35vh] "
-            style={{
-              backgroundColor: "rgba(0, 118, 228, 1)",
-            }}
-          >
-            <h1 className="text-xl w-[50%]">Startups & Founders</h1>
-            <p className="text-sm ">
-              Raise capital with proposal that stand out
-            </p>
-            <button className="border border-white w-7 h-7 flex items-center justify-center rounded-md">
-              <GoArrowUpRight />
-            </button>
-          </div>
-          <div
-            className=" flex flex-col justify-between py-4 px-4 rounded-md text-white w-[18%] h-[35vh] "
-            style={{
-              backgroundColor: "rgba(255, 66, 97, 1)",
-            }}
-          >
-            <h1 className="text-xl w-[50%]">HR & Operations</h1>
-            <p className="text-sm ">Streamline internal approvals</p>
-            <button className="border border-white w-7 h-7 flex items-center justify-center rounded-md">
-              <GoArrowUpRight />
-            </button>
-          </div>
-          <div
-            className=" flex flex-col justify-between py-4 px-4 rounded-md text-white w-[18%] h-[35vh] "
-            style={{
-              backgroundColor: "rgba(160, 51, 233, 1)",
-            }}
-          >
-            <h1 className="text-xl w-[50%]">Consulting & Freelance</h1>
-            <p className="text-sm ">Make every proposal feel custom-built</p>
-            <button className="border border-white w-7 h-7 flex items-center justify-center rounded-md">
-              <GoArrowUpRight />
-            </button>
-          </div>
-          {thirdBody >= 3 && (
-            <div
-              className=" flex flex-col justify-between py-4 px-4 rounded-lg text-white w-[18%] h-[35vh] "
-              style={{
-                backgroundColor: "rgba(160, 51, 233, 1)",
-              }}
-            >
-              <h1 className="text-xl w-[50%]">Consulting & Freelance</h1>
-              <p className="text-sm ">Make every proposal feel custom-built</p>
-              <button className="border border-white w-7 h-7 flex items-center justify-center rounded-md">
-                <GoArrowUpRight />
-              </button>
-            </div>
-          )}
-
-          {thirdBody >= 4 && (
-            <div
-              className=" flex flex-col justify-between py-4 px-4 rounded-lg text-white w-[18%] h-[35vh] "
-              style={{
-                backgroundColor: "rgba(160, 51, 233, 1)",
-              }}
-            >
-              <h1 className="text-xl w-[50%]">Consulting & Freelance</h1>
-              <p className="text-sm ">Make every proposal feel custom-built</p>
-              <button className="border border-white w-7 h-7 flex items-center justify-center rounded-md">
-                <GoArrowUpRight />
-              </button>
-            </div>
-          )}
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          </button>
+          <style jsx global>{`
+            .no-scrollbar::-webkit-scrollbar {
+              display: none;
+            }
+            .no-scrollbar {
+              -ms-overflow-style: none;
+              scrollbar-width: none;
+            }
+          `}</style>
         </div>
       </div>
 

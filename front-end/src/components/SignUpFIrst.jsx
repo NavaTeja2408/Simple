@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useState } from "react";
+import React, { useCallback, useContext, useState, useEffect } from "react";
 import Signup_logo from "../assets/Signup_logo.png";
 import Google from "../assets/Google.png";
 import Linkedin from "../assets/Linkedin.png";
@@ -25,19 +25,62 @@ const SignUpFIrst = () => {
   const [pass1, setPass1] = useState(false);
   const [pass2, setPass2] = useState(false);
   const [cpassword, setCPassword] = useState("");
+  const passwordErrors = getPasswordErrors(password);
+
+  const getPasswordStrength = (password) => {
+    let score = 0;
+    if (password.length >= 8) score++;
+    if (/[A-Z]/.test(password)) score++;
+    if (/[0-9]/.test(password)) score++;
+    if (/[!@#$%^&*(),.?":{}|<>]/.test(password)) score++;
+
+    if (score <= 1) return { label: "Weak", color: "#DF064E" };
+    if (score === 2 || score === 3)
+      return { label: "Medium", color: "#FFD600" };
+    if (score === 4) return { label: "Strong", color: "#00C853" };
+    return { label: "", color: "" };
+  };
+
+  useEffect(() => {
+    if (cpassword.length > 0 && password !== cpassword) {
+      setError(true);
+    } else {
+      setError(false);
+    }
+  }, [password, cpassword]);
 
   const handleSignupFirst = () => {
-    if (email === "" || password === "") {
+    if (email === "" || password === "" || cpassword === "") {
       setError(true);
       toast.error("Please enter all the details");
+      return;
     }
     if (password !== cpassword) {
       setError(true);
       toast.error("Password and confirm password didn't match");
-    } else {
-      setNext(true);
+      return;
     }
+    setNext(true);
   };
+
+  function getPasswordErrors(password) {
+    const errors = [];
+
+    if (!/[A-Z]/.test(password)) {
+      errors.push("1 capital letter");
+    }
+
+    if (!/[0-9]/.test(password)) {
+      errors.push("1 numeric");
+    }
+
+    if (!/[!@#$%^&*(),.?\":{}|<>]/.test(password)) {
+      errors.push("1 special character");
+    }
+
+    return errors;
+  }
+
   const signupwithgoogle = () => {
     window.open(`${databaseUrl}/auth/google/callback`, "_self");
   };
@@ -49,7 +92,7 @@ const SignUpFIrst = () => {
             <img src={logo} className="w-40" alt="" />
           </div>
           <p className="w-[70%] text-center">
-            Start your quest with Simple Quest — create proposals that win.
+            Start your quest with Simple Quotes — create proposals that win.
           </p>
         </div>
       </div>
@@ -69,52 +112,77 @@ const SignUpFIrst = () => {
                 className="w-full  p-2 border border-gray-200 rounded-sm outline-none "
                 placeholder="Email Address"
                 value={email}
-                style={{
-                  borderColor: error && "red",
-                }}
+                // style={{
+                //   borderColor: error && "red",
+                // }}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div className="flex flex-col w-[80%] gap-1">
               <label className="text-gray-700 pl-1">Password</label>
-              <div
-                className="w-full  border border-gray-200 flex items-center justify-between pr-4 rounded-sm"
-                style={{
-                  borderColor: error && "red",
-                }}
-              >
-                <input
-                  type={pass1 ? "text" : "password"}
-                  className="w-[95%] p-2 outline-none "
-                  placeholder="Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-                <FaEye
-                  onClick={() => setPass1(!pass1)}
-                  className=" cursor-pointer"
-                />
+              <div className="relative w-full">
+                <div
+                  className="w-full  border border-gray-200 flex items-center justify-between pr-4 rounded-sm"
+                  style={{
+                    borderColor: error && "red",
+                  }}
+                >
+                  <input
+                    type={pass1 ? "text" : "password"}
+                    className="w-[95%] p-2 outline-none "
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                  <FaEye
+                    onClick={() => setPass1(!pass1)}
+                    className=" cursor-pointer"
+                  />
+                  {/* Password strength indicator */}
+                  {password.length > 0 && (
+                    <span
+                      className="absolute right-10 text-xs font-medium"
+                      style={{ color: getPasswordStrength(password).color }}
+                    >
+                      {getPasswordStrength(password).label}
+                    </span>
+                  )}
+                </div>
+                {/* Error message */}
+                {password.length > 0 && passwordErrors.length > 0 && (
+                  <p className="text-xs text-[#DF064E] left-1 -bottom-5">
+                    Password must contain atleast {passwordErrors.join(", ")}
+                  </p>
+                )}
               </div>
             </div>
             <div className="flex flex-col w-[80%] gap-1">
               <label className="text-gray-700 pl-1">Confirm Password</label>
-              <div
-                className="w-full  border border-gray-200 flex items-center justify-between pr-4 rounded-sm"
-                style={{
-                  borderColor: error && "red",
-                }}
-              >
-                <input
-                  type={pass2 ? "text" : "password"}
-                  className="w-[95%] p-2 outline-none "
-                  placeholder="Password"
-                  value={cpassword}
-                  onChange={(e) => setCPassword(e.target.value)}
-                />
-                <FaEye
-                  onClick={() => setPass2(!pass2)}
-                  className=" cursor-pointer"
-                />
+              <div className="relative w-full">
+                <div
+                  className="w-full  border border-gray-200 flex items-center justify-between pr-4 rounded-sm"
+                  style={{
+                    borderColor: error && "red",
+                  }}
+                >
+                  <input
+                    type={pass2 ? "text" : "password"}
+                    className="w-[95%] p-2 outline-none "
+                    placeholder="Password"
+                    value={cpassword}
+                    onChange={(e) => setCPassword(e.target.value)}
+                  />
+                  <FaEye
+                    onClick={() => setPass2(!pass2)}
+                    className=" cursor-pointer"
+                  />
+                </div>
+                {/* Error text */}
+                {error && (
+                  <p className="text-xs text-[#DF064E] left-1 -bottom-5">
+                    Passwords do not match
+                  </p>
+                )}
               </div>
             </div>
           </div>
@@ -126,7 +194,7 @@ const SignUpFIrst = () => {
               NEXT
               <img src={Arrow} alt="no" className="w-5 m-[2px]" />
             </button>
-            <div className="w-full flex flez-row items-center justify-center p-6 gap-3 ">
+            <div className="w-full flex flex-row items-center justify-center px-6 py-3 gap-3 ">
               <div className=" w-[30%] h-[1px] bg-gray-400"></div>
               <p className="text-sm text-gray-700">Or sign Up with</p>
               <div className=" w-[30%] h-[1px] bg-gray-400"></div>
