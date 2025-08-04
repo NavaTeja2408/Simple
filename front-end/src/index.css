@@ -34,6 +34,37 @@ html, body, #root {
 }
 
 
+@keyframes fadeInforRow {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fadeInforRow {
+  animation: fadeInforRow 0.5s ease-out forwards;
+}
+
+@keyframes fadeInforAdd {
+  from {
+    opacity: 0;
+    transform: scaleX(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+.animate-fadeInforAdd {
+  animation: fadeInforAdd 0.5s ease-out forwards;
+}
+
+
+
+
 @layer utilities {
   .scrollbar-thin::-webkit-scrollbar {
     width: 1px; /* Thin scrollbar */

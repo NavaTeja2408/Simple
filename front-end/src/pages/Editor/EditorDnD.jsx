@@ -357,28 +357,49 @@ const EditorDnD = () => {
     ]);
   };
 
-  const addTableRow = (design) => {
+  const addTableRow = (design, index = null) => {
     const initialTable = Array.from({ length: 4 }, () =>
       Array.from({ length: 4 }, () => "")
     );
     const initialValues = Array.from({ length: 4 }, () =>
       Array.from({ length: 4 }, () => false)
     );
-    setRows((prevRows) => [
-      ...prevRows,
-      {
-        id: uuidv4(),
-        type: "table",
-        design: design,
-        content: initialTable,
-        colAlign: {},
-        boldAll: initialValues,
-        underlineAll: initialValues,
-        italicAll: initialValues,
-        textFormat: "left",
-        bookmark: false,
-      },
-    ]);
+
+    if (index !== null && index >= 0 && index <= rows.length) {
+      // Add at the specified index
+      setRows((prevRows) => [
+        ...prevRows.slice(0, index), // Rows before the index
+        {
+          id: uuidv4(),
+          type: "table",
+          design: design,
+          content: initialTable,
+          colAlign: {},
+          boldAll: initialValues,
+          underlineAll: initialValues,
+          italicAll: initialValues,
+          textFormat: "left",
+          bookmark: false,
+        },
+        ...prevRows.slice(index), // Rows after the index
+      ]);
+    } else {
+      setRows((prevRows) => [
+        ...prevRows,
+        {
+          id: uuidv4(),
+          type: "table",
+          design: design,
+          content: initialTable,
+          colAlign: {},
+          boldAll: initialValues,
+          underlineAll: initialValues,
+          italicAll: initialValues,
+          textFormat: "left",
+          bookmark: false,
+        },
+      ]);
+    }
     setQue([]);
     setSelected("table");
   };
@@ -624,6 +645,7 @@ const EditorDnD = () => {
                   addTableRow={addTableRow}
                   addCodeBlock={addCodeBlock}
                   addLineSpace={addLineSpace}
+                  addDoubleImage={addDoubleImage}
                   height={true}
                 />
               </div>

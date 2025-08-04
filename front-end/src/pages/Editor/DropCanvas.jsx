@@ -22,6 +22,7 @@ const DropCanvas = ({
   addTableRow,
   addCodeBlock,
   addLineSpace,
+  addDoubleImage,
   height,
 }) => {
   const [bookmark, setBookmark] = useState(null);
@@ -156,6 +157,7 @@ const DropCanvas = ({
             addTableRow={addTableRow}
             addCodeBlock={addCodeBlock}
             addLineSpace={addLineSpace}
+            addDoubleImage={addDoubleImage}
           />
         </div>
       ))}
