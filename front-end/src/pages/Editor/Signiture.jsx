@@ -29,7 +29,7 @@ const Signature = ({ addSign, rows, setRows }) => {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-20 flex items-center justify-center p-4 z-[1000] be-vietnam-pro-regular ">
       {/* Popup Content */}
-      <div className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-lg transition-all transform scale-105">
+      <div className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-lg transition-all transform scale-105  duration-500 ease-out opacity-15 animate-fadeInforRow ">
         {/* Header */}
         <div className="mb-8 text-center">
           <h2 className="text-lg font-bold text-active_text">

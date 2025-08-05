@@ -15710,7 +15710,7 @@ const Sidebar = ({
                 />
               </div>
 
-              <p className="text-gray-400">Design Doc</p>
+              <p className="text-gray-400 ">Design Doc</p>
             </div>
 
             {/* <div
@@ -16029,7 +16029,7 @@ const Sidebar = ({
                       setDesignDoc("color");
                     }
                   }}
-                  className="text-sm text-lvl_2_hed py-2 font-semibold "
+                  className="text-sm text-lvl_2_hed pt-2 pb-3 pl-2 font-semibold "
                 >
                   Design Style
                 </h3>
@@ -17202,7 +17202,16 @@ const Sidebar = ({
                     openCover === "half" ? "text-active_text" : "text-lvl_2_txt"
                   }`}
                 >
-                  Half Page
+                  <div className="flex items-center gap-2">
+                    <Icon
+                      icon="fluent:document-fit-20-regular"
+                      width="20"
+                      height="20"
+                      className={` cursor-pointer`}
+                    />
+                    Half Page
+                  </div>
+
                   <IoIosArrowDown />
                 </p>
                 {openCover === "half" && (
@@ -17318,7 +17327,16 @@ const Sidebar = ({
                     openCover === "full" ? "text-active_text" : "text-lvl_2_txt"
                   }`}
                 >
-                  Full Page
+                  <div className="flex items-center gap-2 ">
+                    <Icon
+                      icon="material-symbols-light:aspect-ratio-outline-rounded"
+                      width="20"
+                      height="20"
+                      className={` cursor-pointer`}
+                    />
+                    Full Page
+                  </div>
+
                   <IoIosArrowDown />
                 </p>
                 {openCover === "full" && (

@@ -615,7 +615,7 @@ const EditorDnD = () => {
 
         {historyPreview !== null && (
           <div className="fixed inset-0 bg-opacity-40 flex justify-center bg-black items-center z-[10000000]">
-            <div className="w-fit h-fit bg-white px-4 py-4 rounded-md">
+            <div className="w-fit h-fit bg-white px-4 py-4 rounded-md transition-all duration-500 ease-out opacity-15 animate-fadeInforRow ">
               <div className="px-3 py-2 text-non_active_text">
                 <p>History Preview</p>
               </div>
