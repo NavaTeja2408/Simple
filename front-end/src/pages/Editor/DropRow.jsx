@@ -34,6 +34,13 @@ import p_2 from "../../assets/p_2.svg";
 import l_1 from "../../assets/l_1.svg";
 import d_1 from "../../assets/d_1.svg";
 import c_1 from "../../assets/c_1.svg";
+import h_m from "../../assets/h_m.svg";
+import p_m from "../../assets/p_m.svg";
+import i_m from "../../assets/i_m.svg";
+import t_m from "../../assets/t_m.svg";
+import { FaRegBookmark } from "react-icons/fa6";
+import { ImCancelCircle } from "react-icons/im";
+import { LuBookmark } from "react-icons/lu";
 
 const DropRow = ({
   row,
@@ -1014,14 +1021,14 @@ const DropRow = ({
               setBookmark(index);
             }}
             disabled={!!row.bookmark}
-            className={` bg-white flex items-center justify-center px-2 py-2 ${
-              row.bookmark ? "none" : "hover:bg-gray-100"
+            className={` bg-white flex items-center rounded-md justify-center px-2 py-2 ${
+              row.bookmark ? "none" : "hover:bg-highlight"
             }   `}
           >
             {row.bookmark ? (
               <FaBookmark className="text-graidient_bottom" />
             ) : (
-              <CiBookmark />
+              <LuBookmark />
             )}
           </button>
           <button
@@ -1031,7 +1038,7 @@ const DropRow = ({
                 setSelected(index - 1);
               }
             }}
-            className="  bg-white flex items-center justify-center px-2 py-2 hover:bg-gray-100"
+            className="  bg-white flex items-center justify-center px-2 py-2 hover:bg-highlight rounded-md"
           >
             <LuArrowUpToLine />
           </button>
@@ -1042,7 +1049,7 @@ const DropRow = ({
                 setSelected(index + 1);
               }
             }}
-            className="  bg-white flex items-center justify-center px-2 py-2 hover:bg-gray-100"
+            className="  bg-white flex items-center justify-center px-2 py-2 hover:bg-highlight rounded-md"
           >
             <LuArrowDownToLine />
           </button>
@@ -1068,7 +1075,7 @@ const DropRow = ({
                 deleteRow(index);
               }
             }}
-            className="  bg-white flex items-center justify-center px-2 py-2 hover:bg-gray-100"
+            className="  bg-white flex items-center justify-center px-2 py-2 hover:bg-highlight rounded-md"
           >
             <MdOutlineDelete />
           </button>
@@ -1107,17 +1114,17 @@ const DropRow = ({
                   // setQuickAdd(false);
                   setQuicHeading(true);
                 }}
-                className={` px-3 py-1.5 text-md hover:bg-highlight ${
+                className={` px-2 py-1 mx-1 flex items-center text-md hover:bg-highlight ${
                   quickHeading === true ? "bg-highlight" : "bg-white"
                 } text-start rounded`}
               >
-                H
+                <img src={h_m} alt="" className="mix-blend-multiply h-6 w-6" />
               </button>
 
               {quickHeading === true && (
                 <div
                   ref={headingDropRef}
-                  className=" absolute top-[100%] -left-2.5 flex flex-col bg-white px-1 py-1 gap-1 justify-center items-center border-b border-x border-gray-200 shadow-md shadow-gray-300 rounded rounded-b-md z-50  "
+                  className=" absolute top-[100%] -left-1 flex flex-col bg-white px-1 py-1 gap-1 justify-center items-center border-b border-x border-gray-200 shadow-md shadow-gray-300 rounded rounded-b-md z-50  "
                 >
                   <button
                     onClick={() => {
@@ -1192,11 +1199,11 @@ const DropRow = ({
                   setQuickPara(true);
                 }}
                 ref={paraBtnRef}
-                className={` flex items-center  hover:bg-highlight ${
+                className={` flex items-center mx-1 px-2 py-1  hover:bg-highlight ${
                   quickPara === true ? "bg-highlight" : "bg-white"
                 } text-start rounded`}
               >
-                <img src={t_4} alt="" className="mix-blend-multiply h-8 w-8" />
+                <img src={p_m} alt="" className="mix-blend-multiply h-6 w-6" />
               </button>
               {quickPara === true && (
                 <div
@@ -1246,11 +1253,11 @@ const DropRow = ({
                   // setQuickAdd(false);
                   setQuickImg(true);
                 }}
-                className={` flex items-center hover:bg-highlight ${
+                className={` flex items-center mx-1 px-2 py-1 hover:bg-highlight ${
                   quickImg === true ? "bg-highlight" : "bg-white"
                 } text-start rounded`}
               >
-                <img src={t_4} alt="" className="mix-blend-multiply h-8 w-8" />
+                <img src={i_m} alt="" className="mix-blend-multiply h-6 w-6" />
               </button>
               {quickImg === true && (
                 <div
@@ -1300,16 +1307,16 @@ const DropRow = ({
                   // setQuickAdd(false);
                   setQuickTable(true);
                 }}
-                className={`  hover:bg-highlight flex items-center ${
+                className={`  hover:bg-highlight mx-1 px-2 py-1 flex items-center ${
                   quickTable === true ? "bg-highlight" : "bg-white"
                 } text-start rounded`}
               >
-                <img src={t_4} alt="" className="mix-blend-multiply h-8 w-8" />
+                <img src={t_m} alt="" className="mix-blend-multiply h-6 w-6" />
               </button>
               {quickTable === true && (
                 <div
                   ref={tableDropRef}
-                  className=" absolute top-[100%] -left-1  w-12 flex flex-col bg-white px-1 py-1 gap-1 justify-center items-center border-b border-x border-gray-200 shadow-sm shadow-gray-300 rounded rounded-b-md z-50 "
+                  className=" absolute top-[100%] -left-0  w-12 flex flex-col bg-white px-1 py-1 gap-1 justify-center items-center border-b border-x border-gray-200 shadow-sm shadow-gray-300 rounded rounded-b-md z-50 "
                 >
                   <button
                     onClick={() => {
@@ -1403,19 +1410,19 @@ const DropRow = ({
               onClick={() => {
                 addLineSpace(selected + 1);
               }}
-              className=" px-3 py-1.5 hover:bg-highlight text-start rounded whitespace-nowrap flex items-center justify-center gap-1"
+              className=" px-3 py-1.5 hover:bg-highlight text-start rounded whitespace-nowrap flex items-center justify-center gap-1 mr-2"
             >
               <img src={l_1} alt="" className="mix-blend-multiply " /> Line
               Space
             </button>
-            <div className="h-10 -my-1 w-[1px] bg-gray-200"></div>
+
             <button
               onClick={() => {
                 setQuickAdd(false);
               }}
-              className=" px-3 py-1.5 hover:bg-gray-100 text-start rounded"
+              className=" absolute top-0.5 right-0.5 text-non_active_text   hover:text-active_text text-start rounded"
             >
-              X
+              <ImCancelCircle />
             </button>
           </div>
         )

@@ -16052,7 +16052,7 @@ const Sidebar = ({
                   } `}
                 >
                   <div className="flex items-center justify-start gap-3">
-                    <div className="h-[32px] flex items-center justify-center text-black w-[32px] shadow-md shadow-gray-300 rounded-md">
+                    <div className="h-[32px] flex items-center justify-center  w-[32px] shadow-md shadow-gray-300 rounded-md">
                       <Icon icon="bxs:color" height={21} />
                     </div>
                     Color
@@ -16114,7 +16114,7 @@ const Sidebar = ({
                   } `}
                 >
                   <div className="flex items-center justify-start gap-3">
-                    <div className="h-[32px] flex items-center justify-center text-black w-[32px] shadow-md shadow-gray-300 rounded-md">
+                    <div className="h-[32px] flex items-center justify-center  w-[32px] shadow-md shadow-gray-300 rounded-md">
                       <Icon icon="tabler:typography" height={20} />
                     </div>
                     Font
@@ -16251,7 +16251,7 @@ const Sidebar = ({
                   } `}
                 >
                   <div className="flex items-center justify-start gap-3">
-                    <div className="h-[32px] flex items-center justify-center text-black w-[32px] shadow-md shadow-gray-300 rounded-md">
+                    <div className="h-[32px] flex items-center justify-center  w-[32px] shadow-md shadow-gray-300 rounded-md">
                       <Icon icon="solar:documents-linear" height={20} />
                     </div>
                     Theme
@@ -16568,7 +16568,7 @@ const Sidebar = ({
                     addHeadingRow("heading-one");
                     setThirdLevel("");
                   }}
-                  className="w-[88%]   py-[14px] bg-lvl_3_bg hover:bg-highlight cursor-pointer rounded-md flex flex-col  items-center justify-center gap-2 "
+                  className="w-[88%]   py-[14px] bg-lvl_3_bg hover:bg-highlight cursor-pointer rounded-md flex flex-col  items-center justify-center gap-2 text-lvl_2_txt hover:text-active_text"
                 >
                   {/* <img className="h-[85%] w-[70%] " src={heading_one} /> */}
                   <div
@@ -16577,16 +16577,14 @@ const Sidebar = ({
                   >
                     Heading 1
                   </div>
-                  <p className="text-xs font-semibold text-lvl_3_txt hover:text-active_text">
-                    H1
-                  </p>
+                  <p className="text-xs font-semibold ">H1</p>
                 </div>
                 <div
                   onClick={() => {
                     addHeadingRow("heading-two");
                     setThirdLevel("");
                   }}
-                  className="w-[88%]  py-[15px] bg-lvl_3_bg hover:bg-highlight cursor-pointer rounded-md flex flex-col  items-center justify-center gap-2 "
+                  className="w-[88%]  py-[15px] bg-lvl_3_bg hover:bg-highlight cursor-pointer rounded-md flex flex-col  items-center justify-center gap-2 text-lvl_2_txt hover:text-active_text"
                 >
                   <div
                     style={{ boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)" }}
@@ -16594,16 +16592,14 @@ const Sidebar = ({
                   >
                     Heading 2
                   </div>
-                  <p className="text-xs font-semibold text-lvl_3_txt hover:text-active_text">
-                    H2
-                  </p>
+                  <p className="text-xs font-semibold ">H2</p>
                 </div>
                 <div
                   onClick={() => {
                     addHeadingRow("heading-three");
                     setThirdLevel("");
                   }}
-                  className="w-[88%] h-28  py-[15px] bg-lvl_3_bg hover:bg-highlight cursor-pointer rounded-md flex flex-col  items-center justify-center gap-3 "
+                  className="w-[88%] h-28  py-[15px] bg-lvl_3_bg hover:bg-highlight cursor-pointer rounded-md flex flex-col  items-center justify-center gap-3 text-lvl_2_txt hover:text-active_text"
                 >
                   <div
                     style={{ boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)" }}
@@ -16611,16 +16607,14 @@ const Sidebar = ({
                   >
                     Heading 3
                   </div>
-                  <p className="text-xs font-semibold text-lvl_3_txt hover:text-active_text">
-                    H3
-                  </p>
+                  <p className="text-xs font-semibold ">H3</p>
                 </div>
                 <div
                   onClick={() => {
                     addHeadingRow("heading-four");
                     setThirdLevel("");
                   }}
-                  className="w-[88%] h-28  py-[15px] gap-3.5 bg-lvl_3_bg hover:bg-highlight cursor-pointer rounded-md flex flex-col  items-center justify-center "
+                  className="w-[88%] h-28  py-[15px] gap-3.5 bg-lvl_3_bg hover:bg-highlight cursor-pointer rounded-md flex flex-col  items-center justify-center text-lvl_2_txt hover:text-active_text "
                 >
                   <div
                     className="text-[12px] text-lvl_3_img bg-white h-[51px] w-[85px] flex items-center justify-center rounded-md "
@@ -16628,9 +16622,7 @@ const Sidebar = ({
                   >
                     Heading 4
                   </div>
-                  <p className="text-xs font-semibold text-lvl_3_txt hover:text-active_text">
-                    H4
-                  </p>
+                  <p className="text-xs font-semibold ">H4</p>
                 </div>
 
                 <div
@@ -16638,7 +16630,7 @@ const Sidebar = ({
                     addHeadingRow("heading-five");
                     setThirdLevel("");
                   }}
-                  className="w-[88%] h-28  py-[16px] gap-4 bg-lvl_3_bg hover:bg-highlight cursor-pointer rounded-md flex flex-col  items-center justify-center "
+                  className="w-[88%] h-28  py-[16px] gap-4 bg-lvl_3_bg hover:bg-highlight cursor-pointer rounded-md flex flex-col  items-center justify-center text-lvl_2_txt hover:text-active_text"
                 >
                   <div
                     className="text-[10px] text-lvl_3_img bg-white h-[47px] w-[67px] flex items-center justify-center rounded-md "
@@ -16646,16 +16638,14 @@ const Sidebar = ({
                   >
                     Heading 5
                   </div>
-                  <p className="text-xs font-semibold text-lvl_3_txt hover:text-active_text">
-                    H5
-                  </p>
+                  <p className="text-xs font-semibold ">H5</p>
                 </div>
                 <div
                   onClick={() => {
                     addHeadingRow("heading-six");
                     setThirdLevel("");
                   }}
-                  className="w-[88%] h-40 py-[17px] gap-5 bg-lvl_3_bg hover:bg-highlight cursor-pointer rounded-md flex flex-col  items-center justify-center "
+                  className="w-[88%] h-40 py-[17px] gap-5 bg-lvl_3_bg hover:bg-highlight cursor-pointer rounded-md flex flex-col  items-center justify-center text-lvl_2_txt hover:text-active_text"
                 >
                   <div
                     className="text-[8px] text-lvl_3_img bg-white h-[42px] w-[65px] flex items-center justify-center rounded-md "
@@ -16663,9 +16653,7 @@ const Sidebar = ({
                   >
                     Heading 6
                   </div>
-                  <p className="text-xs font-semibold text-lvl_3_txt hover:text-active_text">
-                    H6
-                  </p>
+                  <p className="text-xs font-semibold ">H6</p>
                 </div>
               </div>
             ) : thirdLevel === "paragraph" ? (
@@ -16684,7 +16672,7 @@ const Sidebar = ({
                   }}
                   className="w-full flex flex-col justify-center items-center gap-1 cursor-pointer"
                 >
-                  <div className="w-[88%] relative h-[112px] p-1 bg-lvl_3_bg hover:bg-highlight cursor-pointer rounded-md flex flex-col text-gray-500 items-center justify-center gap-2 ">
+                  <div className="w-[88%] relative h-[112px] p-1 bg-lvl_3_bg hover:bg-highlight cursor-pointer rounded-md flex flex-col text-gray-500 items-center justify-center gap-2 text-lvl_2_txt hover:text-active_text ">
                     <img
                       style={{
                         boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
@@ -16692,9 +16680,7 @@ const Sidebar = ({
                       className=" rounded-md "
                       src={para_2}
                     />
-                    <p className="text-lvl_3_txt text-xs hover:text-active_text">
-                      Paragraph
-                    </p>
+                    <p className="text-xs ">Paragraph</p>
                   </div>
                 </div>
                 <div
@@ -16704,7 +16690,7 @@ const Sidebar = ({
                   }}
                   className="w-full flex flex-col justify-center items-center gap-1 cursor-pointer"
                 >
-                  <div className="w-[88%] relative h-[112px] p-1 bg-lvl_3_bg hover:bg-highlight cursor-pointer rounded-md flex flex-col text-gray-500 items-center justify-center gap-2 ">
+                  <div className="w-[88%] relative h-[112px] p-1 bg-lvl_3_bg hover:bg-highlight cursor-pointer rounded-md flex flex-col text-gray-500 items-center justify-center gap-2 text-lvl_2_txt hover:text-active_text ">
                     <img
                       style={{
                         boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
@@ -16712,9 +16698,7 @@ const Sidebar = ({
                       className=" rounded-md "
                       src={double_2}
                     />
-                    <p className="text-lvl_3_txt text-xs hover:text-active_text">
-                      Double Paragraph
-                    </p>
+                    <p className="text-xs ">Double Paragraph</p>
                   </div>
                 </div>
               </div>
@@ -16734,7 +16718,7 @@ const Sidebar = ({
                   }}
                   className="w-full flex flex-col justify-center items-center gap-1 cursor-pointer"
                 >
-                  <div className="w-[88%] relative h-[112px] p-1 bg-lvl_3_bg hover:bg-highlight cursor-pointer rounded-md flex flex-col text-gray-500 items-center justify-center gap-2 ">
+                  <div className="w-[88%] relative h-[112px] p-1 bg-lvl_3_bg hover:bg-highlight cursor-pointer rounded-md flex flex-col text-gray-500 items-center justify-center gap-2 text-lvl_2_txt hover:text-active_text">
                     <img
                       style={{
                         boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
@@ -16742,9 +16726,7 @@ const Sidebar = ({
                       className="rounded-md "
                       src={image_2}
                     />
-                    <p className="text-lvl_3_txt text-xs hover:text-active_text ">
-                      Image
-                    </p>
+                    <p className=" text-xs  ">Image</p>
                   </div>
                 </div>
                 <div
@@ -16754,7 +16736,7 @@ const Sidebar = ({
                   }}
                   className="w-full flex flex-col justify-center items-center gap-1 cursor-pointer"
                 >
-                  <div className="w-[88%] relative h-[112px] p-1 bg-lvl_3_bg hover:bg-highlight cursor-pointer rounded-md flex flex-col text-gray-500 items-center justify-center gap-2 ">
+                  <div className="w-[88%] relative h-[112px] p-1 bg-lvl_3_bg hover:bg-highlight cursor-pointer rounded-md flex flex-col text-gray-500 items-center justify-center gap-2 text-lvl_2_txt hover:text-active_text ">
                     <img
                       style={{
                         boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
@@ -16762,9 +16744,7 @@ const Sidebar = ({
                       className=" rounded-md "
                       src={image_p_2}
                     />
-                    <p className="text-lvl_3_txt text-xs hover:text-active_text ">
-                      Image & Paragraph
-                    </p>
+                    <p className="text-xs">Image & Paragraph</p>
                   </div>
                 </div>
                 <div
@@ -16774,7 +16754,7 @@ const Sidebar = ({
                   }}
                   className="w-full flex flex-col justify-center items-center gap-1 cursor-pointer"
                 >
-                  <div className="w-[88%] relative h-[112px] p-1 bg-lvl_3_bg hover:bg-highlight cursor-pointer rounded-md flex flex-col text-gray-500 items-center justify-center gap-2 ">
+                  <div className="w-[88%] relative h-[112px] p-1 bg-lvl_3_bg hover:bg-highlight cursor-pointer rounded-md flex flex-col text-gray-500 items-center justify-center gap-2 text-lvl_2_txt hover:text-active_text ">
                     <img
                       style={{
                         boxShadow: "1px 2px 8px 0px rgba(0, 0, 0, 0.2)",
@@ -16782,9 +16762,7 @@ const Sidebar = ({
                       className=" rounded-md "
                       src={double_img}
                     />
-                    <p className="text-lvl_3_txt text-xs hover:text-active_text">
-                      Double Image
-                    </p>
+                    <p className="text-xs ">Double Image</p>
                   </div>
                 </div>
               </div>
@@ -16802,24 +16780,20 @@ const Sidebar = ({
                     addTableRow("normal");
                     setThirdLevel("");
                   }}
-                  className="w-[88%] h-[112px] p-2 bg-lvl_3_bg hover:bg-highlight cursor-pointer rounded-md flex flex-col  items-center justify-center "
+                  className="w-[88%] h-[112px] p-2 bg-lvl_3_bg hover:bg-highlight cursor-pointer rounded-md flex flex-col  items-center justify-center text-lvl_2_txt hover:text-active_text "
                 >
                   <img className="h-[75%] w-[53%]" src={table_v_1} />
-                  <p className="text-lvl_2_txt text-xs hover:text-active_text">
-                    Basic
-                  </p>
+                  <p className="text-xs">Basic</p>
                 </div>
                 <div
                   onClick={() => {
                     addTableRow("alternativerow");
                     setThirdLevel("");
                   }}
-                  className="w-[88%] h-[112px] p-2 bg-lvl_3_bg hover:bg-highlight cursor-pointer rounded-md flex flex-col  items-center justify-center "
+                  className="w-[88%] h-[112px] p-2 bg-lvl_3_bg hover:bg-highlight cursor-pointer rounded-md flex flex-col  items-center justify-center text-lvl_2_txt hover:text-active_text "
                 >
                   <img className="h-[75%] w-[53%]" src={table_v_2} />
-                  <p className="text-lvl_2_txt text-xs hover:text-active_text">
-                    Aleternative Row
-                  </p>
+                  <p className=" text-xs ">Aleternative Row</p>
                 </div>
                 <div
                   onClick={() => {
@@ -16838,12 +16812,10 @@ const Sidebar = ({
                     addTableRow("toprow");
                     setThirdLevel("");
                   }}
-                  className="w-[88%] h-[112px] p-2 bg-lvl_3_bg hover:bg-highlight cursor-pointer rounded-md flex flex-col  items-center justify-center "
+                  className="w-[88%] h-[112px] p-2 bg-lvl_3_bg hover:bg-highlight cursor-pointer rounded-md flex flex-col  items-center justify-center text-lvl_2_txt hover:text-active_text "
                 >
                   <img className="h-[75%] w-[53%]" src={table_v_4} />
-                  <p className="text-lvl_2_txt text-xs hover:text-active_text">
-                    Top Row
-                  </p>
+                  <p className="text-xs">Top Row</p>
                 </div>
 
                 <div
@@ -16851,12 +16823,10 @@ const Sidebar = ({
                     addTableRow("leftcol");
                     setThirdLevel("");
                   }}
-                  className="w-[88%] h-[112px] p-2 bg-lvl_3_bg hover:bg-highlight cursor-pointer rounded-md flex flex-col  items-center justify-center "
+                  className="w-[88%] h-[112px] p-2 bg-lvl_3_bg hover:bg-highlight cursor-pointer rounded-md flex flex-col  items-center justify-center text-lvl_2_txt hover:text-active_text "
                 >
                   <img className="h-[75%] w-[53%]" src={table_v_5} />
-                  <p className="text-lvl_2_txt text-xs hover:text-active_text">
-                    Left Coloumn
-                  </p>
+                  <p className=" text-xs ">Left Coloumn</p>
                 </div>
               </div>
             ) : thirdLevel === "sections" ? (

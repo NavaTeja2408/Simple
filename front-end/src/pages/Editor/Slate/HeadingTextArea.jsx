@@ -457,7 +457,7 @@ const MyRichTextEditor = ({
 
             <div className="relative my-[-3px] flex flex-row ">
               <select
-                className="   rounded px-1 bg-white py-1 outline-none text-md  font-semibold text-gray-500"
+                className="   rounded px-1 bg-white py-1 outline-none text-md  font-semibold text-lvl_2_txt"
                 onChange={(e) => {
                   toggleBlock(editor, e.target.value);
                   onSizeChange(e.target.value);
